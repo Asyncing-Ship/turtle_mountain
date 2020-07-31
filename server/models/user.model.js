@@ -23,7 +23,11 @@ const User = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false, // NOT NULL
     },
-    isAdmin: false
+    isAdmin: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    }
   },
   config
 );
