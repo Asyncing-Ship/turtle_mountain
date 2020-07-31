@@ -1,12 +1,20 @@
 .App {
   text-align: center;
+  background-color: #f5fffa !important;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+nav Button{
+  background-color: #008080 !important;
+  color:#f5fffa
+}
+.active Button{
+  background-color:#f5fffa !important;
+  color:#008080;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -25,7 +33,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color:#f5fffa ;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
