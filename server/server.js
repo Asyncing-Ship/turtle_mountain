@@ -7,6 +7,7 @@ const sessionMiddleware = require("./modules/session-middleware");
 const app = express();
 const passport = require("./strategies/user.strategy");
 
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('server/public'));
