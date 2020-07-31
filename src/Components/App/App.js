@@ -13,7 +13,7 @@ import {
 // Chakra UI Imports:
 import { ThemeProvider, CSSReset, Button, Heading } from "@chakra-ui/core";
 // Protected Route Import:
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+// import ProtectedRoute from "../Utilities/ProtectedRoute/ProtectedRoute";
 // Components Imports:
 import Home from "../Pages/Home/Home"; // home component
 // import Admin from '../Pages/Admin/Admin';
@@ -49,15 +49,15 @@ function App() {
           <Redirect exact from="/" to="/home" />
           {/*
 
-  _____           _            _           _   _____             _            
- |  __ \         | |          | |         | | |  __ \           | |           
- | |__) | __ ___ | |_ ___  ___| |_ ___  __| | | |__) |___  _   _| |_ ___  ___ 
- |  ___/ '__/ _ \| __/ _ \/ __| __/ _ \/ _` | |  _  // _ \| | | | __/ _ \/ __|
- | |   | | | (_) | ||  __/ (__| ||  __/ (_| | | | \ \ (_) | |_| | ||  __/\__ \
- |_|   |_|  \___/ \__\___|\___|\__\___|\__,_| |_|  \_\___/ \__,_|\__\___||___/
+              ,_____           _            _           _   _____             _            
+              |  __ \         | |          | |         | | |  __ \           | |           
+              | |__) | __ ___ | |_ ___  ___| |_ ___  __| | | |__) |___  _   _| |_ ___  ___ 
+              |  ___/ '__/ _ \| __/ _ \/ __| __/ _ \/ _` | |  _  // _ \| | | | __/ _ \/ __|
+              | |   | | | (_) | ||  __/ (__| ||  __/ (_| | | | \ \ (_) | |_| | ||  __/\__ \
+              |_|   |_|  \___/ \__\___|\___|\__\___|\__,_| |_|  \_\___/ \__,_|\__\___||___/
                                                                               
 
-*/}
+          */}
           {/* <ProtectedRoute exact path="/home" component={Home} />
           <ProtectedRoute exact path="/tasks" component={TaskPage} />
           <ProtectedRoute exact path="/questions" component={QuestionPage} />

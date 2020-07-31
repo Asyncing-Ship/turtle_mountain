@@ -1,8 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import Login from "../Login/Login";
-import Signup from "../Signup/Signup";
+import Login from "../../Pages/Login";
+import Signup from "../../Pages/Signup";
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
