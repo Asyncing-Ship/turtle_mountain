@@ -6,7 +6,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <h1 className="App-logo"><span role="img" aria-label="">🐢</span></h1>
+        <h1 className="App-logo1"><span role="img" aria-label="">⛰️</span></h1>
         <p>Welcome to Turtle Mountain!</p>
       </header>
     </div>

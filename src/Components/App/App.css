@@ -13,6 +13,17 @@
   }
 }
 
+.App-logo1 {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo1 {
+    animation: App-logo-spin1 infinite 50s linear;
+  }
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -34,5 +45,14 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes App-logo-spin1 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
   }
 }
