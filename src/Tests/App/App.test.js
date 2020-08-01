@@ -1,9 +1,37 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
-
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import React from "react";
+import { shallow, mount } from "enzyme";
+import { App } from "../../Components/App/App";
+import toJson from "enzyme-to-json";
+import { createStore, applyMiddleware } from "redux";
+import rootReducer from "../../Redux/Reducers/reducers";
+import { Provider } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { Button } from "@chakra-ui/core";
+const store = createStore(rootReducer);
+it("renders correctly", () => {
+  const wrapper = mount(<App />);
+  expect(wrapper.state("error")).toEqual(null);
+});
+it("renders without crashing", () => {
+  shallow(<App />);
+});
+it("renders Account header", () => {
+  const wrapper = shallow(<App />);
+  const header = (
+    <nav>
+      <NavLink to="/home">
+        <Button m={2}>Home</Button>
+      </NavLink>
+      <NavLink to="/tasks">
+        <Button m={2}>Tasks</Button>
+      </NavLink>
+      <NavLink to="/questions">
+        <Button m={2}>Questions</Button>
+      </NavLink>
+      <NavLink to="/policies">
+        <Button m={2}>Policies</Button>
+      </NavLink>
+    </nav>
+  );
+  expect(wrapper.contains(header)).toEqual(true);
 });
