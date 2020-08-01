@@ -5,7 +5,6 @@ const bodyParser = require("body-parser");
 const sessionMiddleware = require("./modules/session-middleware");
 
 const app = express();
-//commenting for jared
 const passport = require("./strategies/user.strategy");
 require("./strategies/google.strategy");
 require("./strategies/facebook.strategy");
