@@ -24,30 +24,32 @@ import PoliciesPage from "../Pages/Policies/PoliciesPage";
 import "./App.css";
 // ----- End of imports -----
 
-function App() {
-  return (
-    <ThemeProvider>
-      <CSSReset />
-      <Router>
-        <div className="App">
-          <header className="App-header">
-            <nav>
-              <NavLink to="/home">
-                <Button m={2}>Home</Button>
-              </NavLink>
-              <NavLink to="/tasks">
-                <Button m={2}>Tasks</Button>
-              </NavLink>
-              <NavLink to="/questions">
-                <Button m={2}>Questions</Button>
-              </NavLink>
-              <NavLink to="/policies">
-                <Button m={2}>Policies</Button>
-              </NavLink>
-            </nav>
-          </header>
-          <Redirect exact from="/" to="/home" />
-          {/*
+export class App extends React.Component {
+  state = { error: null };
+  render() {
+    return (
+      <ThemeProvider>
+        <CSSReset />
+        <Router>
+          <div className="App">
+            <header className="App-header">
+              <nav>
+                <NavLink to="/home">
+                  <Button m={2}>Home</Button>
+                </NavLink>
+                <NavLink to="/tasks">
+                  <Button m={2}>Tasks</Button>
+                </NavLink>
+                <NavLink to="/questions">
+                  <Button m={2}>Questions</Button>
+                </NavLink>
+                <NavLink to="/policies">
+                  <Button m={2}>Policies</Button>
+                </NavLink>
+              </nav>
+            </header>
+            <Redirect exact from="/" to="/home" />
+            {/*
 
               ,_____           _            _           _   _____             _            
               |  __ \         | |          | |         | | |  __ \           | |           
@@ -58,19 +60,20 @@ function App() {
                                                                               
 
           */}
-          {/* <ProtectedRoute exact path="/home" component={Home} />
+            {/* <ProtectedRoute exact path="/home" component={Home} />
           <ProtectedRoute exact path="/tasks" component={TaskPage} />
           <ProtectedRoute exact path="/questions" component={QuestionPage} />
           <ProtectedRoute exact path="/policies" component={PoliciesPage} /> */}
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/tasks" component={TaskPage} />
-          <Route exact path="/questions" component={QuestionPage} />
-          <Route exact path="/policies" component={PoliciesPage} />
-          {/* <Route render={() => <Heading as="h1">404? Four Oh For!</Heading>} /> */}
-        </div>
-      </Router>
-    </ThemeProvider>
-  );
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/tasks" component={TaskPage} />
+            <Route exact path="/questions" component={QuestionPage} />
+            <Route exact path="/policies" component={PoliciesPage} />
+            {/* <Route render={() => <Heading as="h1">404? Four Oh For!</Heading>} /> */}
+          </div>
+        </Router>
+      </ThemeProvider>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
