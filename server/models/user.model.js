@@ -1,5 +1,3 @@
-
-
 const Sequelize = require("sequelize");
 const sequelize = require("../modules/orm.config");
 
@@ -9,7 +7,7 @@ const config = {
   underscored: true, // Use snake_case not camelCase for attributes
 };
 
-// Model for artist table
+// Model for user table
 // see: https://sequelize.org/master/class/lib/sequelize.js~Sequelize.html#instance-method-define
 const User = sequelize.define(
   "user",
@@ -27,7 +25,7 @@ const User = sequelize.define(
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false,
-    }
+    },
   },
   config
 );

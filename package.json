@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
-    "passport-google-oauth20": "^2.0.0",
+    "passport-google": "^0.3.0",
     "passport-local": "^1.0.0",
     "pg": "^8.3.0",
     "pg-hstore": "^2.3.3",
@@ -38,7 +38,17 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "react-scripts start",
-    "server": "nodemon --watch server server/server.js"
+    "server": "nodemon --watch server server/server.js",
+    "db:create": "node_modules/.bin/sequelize db:create",
+    "db:migrate": "node_modules/.bin/sequelize db:migrate",
+    "db:rollback": "node_modules/.bin/sequelize db:migrate:undo",
+    "db:rollback:all": "node_modules/.bin/sequelize db:migrate:undo:all",
+    "db:drop": "node_modules/.bin/sequelize db:drop",
+    "db:reset": "yarn run db:drop && yarn run db:create && yarn run db:migrate"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "sequelize-cli": "^6.2.0"
   },
   "eslintConfig": {
     "extends": "react-app"

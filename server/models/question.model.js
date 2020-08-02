@@ -54,7 +54,4 @@ Question.belongsTo(User, {
   onDelete: "CASCADE",
 });
 
-
 module.exports = Question;
-
-
