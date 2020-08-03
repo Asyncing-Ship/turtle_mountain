@@ -12,9 +12,13 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false, // NOT NULL
       },
+      email: {
+        type: Sequelize.STRING,
+        unique: true,
+      },
       password: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true, // Allowing null for those who register and sign in through Facebook.
       },
       isAdmin: {
         type: Sequelize.BOOLEAN,
