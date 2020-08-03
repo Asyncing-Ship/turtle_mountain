@@ -12,9 +12,11 @@ import {
   InputRightElement,
   Stack,
 } from "@chakra-ui/core";
+// CSS Import:
+import "./Login.css";
 // ----- End of imports -----
 
-const SignIn = () => {
+const Login = () => {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   return (
@@ -27,6 +29,7 @@ const SignIn = () => {
           Chakra Example
         </Heading>
         <Box
+          backgroundColor="#2f2e2e"
           as="form"
           p={4}
           borderWidth="1px"
@@ -34,14 +37,6 @@ const SignIn = () => {
           shadow="1px 1px 3px rgba(0,0,0,0.3)"
           // onSubmit={handleSubmit}
         >
-          <ButtonGroup spacing={4} mb={4}>
-            <Button variantColor="blue" variant="solid">
-              Facebook
-            </Button>
-            <Button variantColor="blue" variant="outline">
-              Google
-            </Button>
-          </ButtonGroup>
           <Stack spacing={3}>
             <Input variant="outline" placeholder="Email" />
             <InputGroup size="md">
@@ -68,18 +63,23 @@ const SignIn = () => {
               Sign In
             </Button>
             <Button
-              variantColor="teal"
+              className="btn-signup"
+              variantColor=""
               variant="outline"
+              color="#f5fffa"
               // onClick={form.reset}
               // isDisabled={submitting || pristine}
             >
               Sign Up
+            </Button>
+            <Button variantColor="blue" variant="solid">
+              Facebook
             </Button>
           </ButtonGroup>
         </Box>
       </Box>
     </div>
   );
-}
+};
 
-export default SignIn;
+export default Login;
