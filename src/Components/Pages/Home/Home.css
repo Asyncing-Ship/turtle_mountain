@@ -7,6 +7,9 @@
   height: 160px;
   width: 160px;
 }
+.CircleBtn:hover {
+  filter: brightness(120%);
+}
 
 .btn-text {
   font-size: 1.5rem;
