@@ -1,8 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import Login from "../../Pages/Login";
-import Signup from "../../Pages/Signup";
+import Login from "../../Pages/Login/Login";
+import Signup from "../../Pages/Signup/Signup";
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
@@ -14,7 +14,7 @@ import Signup from "../../Pages/Signup";
 // by checking req.isAuthenticated for authentication
 // and by checking req.user for authorization
 
-const ProtectedRoute = (props) => {
+export const ProtectedRoute = (props) => {
   // Using destructuring, this takes ComponentToProtect from component
   // prop and grabs all other props to pass them along to Route
   const {

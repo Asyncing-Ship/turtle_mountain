@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<Fragment>
+  Accept selected task here:
+</Fragment>
+`;
+
+exports[`renders without crashing 2`] = `
+<Fragment>
+  Complete selected task here:
+</Fragment>
+`;
+
+exports[`renders without crashing 3`] = `
+<Fragment>
+  Create new task here:
+</Fragment>
+`;
+
+exports[`renders without crashing 4`] = `
+<Fragment>
+  This is the task page!
+</Fragment>
+`;
