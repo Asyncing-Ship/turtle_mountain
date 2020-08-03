@@ -17,8 +17,8 @@ import { ThemeProvider, CSSReset, Button, Heading } from "@chakra-ui/core";
 // Components Imports:
 import Home from "../Pages/Home/Home"; // home component
 // import Admin from '../Pages/Admin/Admin';
-import TaskPage from "../ViewsTask/TaskPage";
-import QuestionPage from "../ViewsQuestion/QuestionPage";
+import TaskPage from "../Pages/ViewsTask/TaskPage";
+import QuestionPage from "../Pages/ViewsQuestion/QuestionPage";
 import PoliciesPage from "../Pages/Policies/PoliciesPage";
 import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";

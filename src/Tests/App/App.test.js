@@ -24,6 +24,9 @@ it("renders nav buttons", () => {
       <NavLink to="/signin">
         <Button m={2}>SignIn</Button>
       </NavLink>
+      <NavLink to="/signup">
+        <Button m={2}>SignUp</Button>
+      </NavLink>
       <NavLink to="/tasks">
         <Button m={2}>Tasks</Button>
       </NavLink>
