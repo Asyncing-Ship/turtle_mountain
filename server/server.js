@@ -6,7 +6,6 @@ const sessionMiddleware = require("./modules/session-middleware");
 
 const app = express();
 const passport = require("./strategies/user.strategy");
-
 require("./strategies/facebook.strategy");
 
 const userRouter = require("./routes/user.router");

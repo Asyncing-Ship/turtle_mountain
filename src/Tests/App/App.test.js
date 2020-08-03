@@ -34,9 +34,4 @@ it("renders nav buttons", () => {
   );
   expect(wrapper.contains(header)).toEqual(true);
 });
-it("renders without crashing", () => {
-  const mockColor = "David";
-  const wrapper = shallow(<App color={mockColor} />);
-  expect(toJson(wrapper)).toMatchSnapshot();
-});
 it("renders without crashing", () => {});

@@ -10,9 +10,4 @@ const store = createStore(rootReducer);
 it("renders without crashing", () => {
   shallow(<Login />);
 });
-it("renders without crashing", () => {
-  const mockColor = "David";
-  const wrapper = shallow(<Login color={mockColor} />);
-  expect(toJson(wrapper)).toMatchSnapshot();
-});
 it("renders without crashing", () => {});

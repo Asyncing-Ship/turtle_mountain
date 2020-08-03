@@ -9,15 +9,5 @@ it("renders without crashing", () => {
   shallow(<PoliciesPage />);
 });
 it("renders without crashing", () => {
-  const mockColor = "David";
-  const wrapper = shallow(<PoliciesPage color={mockColor} />);
-  expect(toJson(wrapper)).toMatchSnapshot();
-});
-it("renders without crashing", () => {
   shallow(<Upload />);
-});
-it("renders without crashing", () => {
-  const mockColor = "David";
-  const wrapper = shallow(<Upload color={mockColor} />);
-  expect(toJson(wrapper)).toMatchSnapshot();
 });
