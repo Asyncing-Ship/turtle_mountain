@@ -15,4 +15,3 @@ it("renders without crashing", () => {
   );
   expect(toJson(wrapper)).toMatchSnapshot();
 });
-it("renders without crashing", () => {});
