@@ -12,6 +12,8 @@ import {
   InputRightElement,
   Stack,
 } from "@chakra-ui/core";
+// CSS Import:
+import "../Login/Login.css";
 // ----- End of imports -----
 
 const SignUp = () => {
@@ -27,6 +29,7 @@ const SignUp = () => {
           Chakra Example
         </Heading>
         <Box
+          backgroundColor="#2f2e2e"
           as="form"
           p={4}
           borderWidth="1px"
@@ -34,14 +37,6 @@ const SignUp = () => {
           shadow="1px 1px 3px rgba(0,0,0,0.3)"
           // onSubmit={handleSubmit}
         >
-          <ButtonGroup spacing={4} mb={4}>
-            <Button variantColor="blue" variant="solid">
-              Facebook
-            </Button>
-            <Button variantColor="blue" variant="solid">
-              Google
-            </Button>
-          </ButtonGroup>
           <Stack spacing={3}>
             <Input variant="outline" placeholder="First Name" />
             <Input variant="outline" placeholder="Last Name" />
@@ -70,12 +65,17 @@ const SignUp = () => {
               Sign In
             </Button>
             <Button
-              variantColor="teal"
+              className="btn-signup"
+              variantColor=""
               variant="outline"
+              color="#f5fffa"
               // onClick={form.reset}
               // isDisabled={submitting || pristine}
             >
               Sign Up
+            </Button>
+            <Button variantColor="blue" variant="solid">
+              Facebook
             </Button>
           </ButtonGroup>
         </Box>

@@ -18,11 +18,14 @@ it("renders nav buttons", () => {
   const wrapper = shallow(<App />);
   const header = (
     <nav>
+      <NavLink to="/login">
+        <Button m={2}>Login</Button>
+      </NavLink>
+      <NavLink to="/signup">
+        <Button m={2}>Signup</Button>
+      </NavLink>
       <NavLink to="/home">
         <Button m={2}>Home</Button>
-      </NavLink>
-      <NavLink to="/signin">
-        <Button m={2}>SignIn</Button>
       </NavLink>
       <NavLink to="/tasks">
         <Button m={2}>Tasks</Button>
