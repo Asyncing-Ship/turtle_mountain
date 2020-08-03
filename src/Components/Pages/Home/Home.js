@@ -13,8 +13,8 @@ class Home extends Component {
           className="CircleBtn"
           onClick={() => this.props.history.push("/tasks")}
         >
-          <Icon name="warning" size="5rem" color="red.500" />
-          Tasks
+          <Icon name="warning" size="3.5rem" color="red.500" />
+          <div className="btn-text">tasks</div>
         </Button>
         <br />
         <Button
@@ -22,24 +22,24 @@ class Home extends Component {
           className="CircleBtn"
           onClick={() => this.props.history.push("/policies")}
         >
-          <Icon name="info" size="5rem" color="black.500" />
-          Policy
+          <Icon name="info" size="3.5rem" color="black.500" />
+          <div className="btn-text">policy</div>
         </Button>
         <Button
           m={2}
           className="CircleBtn"
           onClick={() => this.props.history.push("/alerts")}
         >
-          <Icon name="bell" size="4rem" color="orange.500" />
-          Alerts
+          <Icon name="bell" size="3.5rem" color="orange.400" />
+          <div className="btn-text">alerts</div>
         </Button>
         <Button
           m={2}
           className="CircleBtn"
           onClick={() => this.props.history.push("/questions")}
         >
-          <Icon name="question" size="5rem" color="yellow.500" />
-          Q&amp;A
+          <Icon name="question" size="3.5rem" color="yellow.300" />
+          <div className="btn-text">q&amp;a</div>
         </Button>
         <br />
         <Button
@@ -47,8 +47,8 @@ class Home extends Component {
           className="CircleBtn"
           onClick={() => this.props.history.push("/chat")}
         >
-          <Icon name="chat" size="5rem" color="red.500" />
-          Chat
+          <Icon name="chat" size="3.5rem" color="green.300" />
+          <div className="btn-text">chat</div>
         </Button>
       </div>
     );
