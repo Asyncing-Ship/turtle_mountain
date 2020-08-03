@@ -1,9 +1,16 @@
 .CircleBtn {
   border-radius: 50% !important;
+  margin: 2.5rem !important;
   padding: 5rem;
   background-color: #008080 !important;
   color: #f5fffa;
+  height: 160px;
+  width: 160px;
 }
-.CircleBtn:hover {
-  border: 5px solid #008080;
+
+.btn-text {
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 17%;
+  font-variant: small-caps;
 }
