@@ -1,0 +1,11 @@
+.btn-signup {
+  border-color: #319795 !important;
+}
+.btn-signup:hover {
+  background-color: #2c7a7b !important;
+  border-color: #2c7a7b !important;
+}
+.btn-signup:active {
+  background-color: #285e61 !important;
+  border-color: #285e61 !important;
+}

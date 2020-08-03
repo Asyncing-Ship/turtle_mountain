@@ -2,13 +2,17 @@
   border-radius: 50% !important;
   margin: 2.5rem !important;
   padding: 5rem;
-  background-color: #008080 !important;
+  background-color: #2f2e2e !important;
   color: #f5fffa;
   height: 160px;
   width: 160px;
 }
 .CircleBtn:hover {
-  filter: brightness(120%);
+  filter: brightness(150%);
+}
+.CircleBtn:active {
+  background-color: #c79e61 !important;
+  filter: unset;
 }
 
 .btn-text {

@@ -7,13 +7,16 @@
   height: 40vmin;
   pointer-events: none;
 }
-nav Button{
-  background-color: #008080 !important;
-  color:#f5fffa
+nav Button {
+  background-color: #2f2e2e !important;
+  color: #f5fffa;
 }
-.active Button{
-  background-color:#f5fffa !important;
-  color:#008080;
+nav :not(.active) Button:hover {
+  filter: brightness(125%);
+}
+.active Button {
+  background-color: #c79e61 !important;
+  color: #f5fffa;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -33,18 +36,16 @@ nav Button{
 }
 
 .App-header {
-  background-color:#f5fffa ;
-  min-height: 20vh;
+  background-color: #2f2e2e;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .App-page {
-  background-color:#f5fffa ;
+  background-color: #f5fffa;
   min-height: 80vh;
   display: flex;
   justify-content: center;
