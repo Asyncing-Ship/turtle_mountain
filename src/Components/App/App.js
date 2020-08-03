@@ -21,6 +21,7 @@ import TaskPage from "../ViewsTask/TaskPage";
 import QuestionPage from "../ViewsQuestion/QuestionPage";
 import PoliciesPage from "../Pages/Policies/PoliciesPage";
 import SignIn from "../Pages/SignIn/SignIn";
+import SignUp from "../Pages/SignUp/SignUp";
 // CSS Import:
 import "./App.css";
 // ----- End of imports -----
@@ -40,6 +41,9 @@ export class App extends React.Component {
                 </NavLink>
                 <NavLink to="/signin">
                   <Button m={2}>SignIn</Button>
+                </NavLink>
+                <NavLink to="/signup">
+                  <Button m={2}>SignUp</Button>
                 </NavLink>
                 <NavLink to="/tasks">
                   <Button m={2}>Tasks</Button>
@@ -71,6 +75,7 @@ export class App extends React.Component {
           <ProtectedRoute exact path="/policies" component={PoliciesPage} /> */}
               <Route exact path="/home" component={Home} />
               <Route exact path="/signin" component={SignIn} />
+              <Route exact path="/signup" component={SignUp} />
               <Route exact path="/tasks" component={TaskPage} />
               <Route exact path="/questions" component={QuestionPage} />
               <Route exact path="/policies" component={PoliciesPage} />

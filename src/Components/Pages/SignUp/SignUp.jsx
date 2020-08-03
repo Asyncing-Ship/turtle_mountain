@@ -1,6 +1,6 @@
 // ----- Start of imports -----
 // React Import:
-import React from "./node_modules/react";
+import React from "react";
 // Chakra UI Imports:
 import {
   Box,
@@ -11,7 +11,7 @@ import {
   InputGroup,
   InputRightElement,
   Stack,
-} from "./node_modules/@chakra-ui/core";
+} from "@chakra-ui/core";
 // ----- End of imports -----
 
 const SignUp = () => {
