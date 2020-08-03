@@ -6,33 +6,29 @@ const config = {
   underscored: true, // Use snake_case not camelCase for attributes
 };
 
-// Model for an album - assumes table name is plural or 'albums'
-const Task = sequelize.define(
-  "task",
+// Model for an Response - assumes table name is plural or 'responses'
+const Task_Response = sequelize.define(
+  "task_response",
   {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    title: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
     content: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    added_by: {
-      type: Sequelize.INTEGER,
-      allowNull: true,
+    verified: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
     },
     date_posted: {
       type: Sequelize.DATE,
       allowNull: false,
       defaultValue: Sequelize.fn("now"),
     },
-    assigned_to: {
+    asked_by: {
       type: Sequelize.INTEGER,
       allowNull: true,
     },
@@ -41,11 +37,20 @@ const Task = sequelize.define(
 );
 
 const User = require("./user.model");
-Task.belongsTo(User, {
+Task_Response.belongsTo(User, {
   foreignKey: {
     allowNull: false,
   },
   onDelete: "CASCADE",
 });
 
-module.exports = Task;
+const Task = require("./task.model");
+Task_Response.belongsTo(Task, {
+  foreignKey: {
+    allowNull: false,
+  },
+  onDelete: "CASCADE",
+});
+
+
+module.exports = Task_Response;
