@@ -30,13 +30,15 @@ router.post(
       console.log(errors);
       return res.sendStatus(422).json({ errors: errors.array() });
     }
-    const username = req.body.username;
+    const email = req.body.email;
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
     const password = encryptLib.encryptPassword(req.body.password);
 
     const queryText =
-      'INSERT INTO "user" (username, password) VALUES ($1, $2) RETURNING id';
+      'INSERT INTO "users" (email, password, first_name, last_name) VALUES ($1, $2, $3, $4) RETURNING id';
     pool
-      .query(queryText, [username, password])
+      .query(queryText, [email, password, first_name, last_name])
       .then(() => res.sendStatus(201))
       .catch(() => res.sendStatus(500));
   }

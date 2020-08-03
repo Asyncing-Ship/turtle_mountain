@@ -8,22 +8,36 @@ module.exports = {
         autoIncrement: true, // SERIAL
         primaryKey: true, // Primary Key
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false, // NOT NULL
-      },
       email: {
         type: Sequelize.STRING,
-        unique: true,
+        allowNull: false, // NOT NULL
+        unique: true
       },
       password: {
         type: Sequelize.STRING,
         allowNull: true, // Allowing null for those who register and sign in through Facebook.
       },
+      first_name: {
+        type: Sequelize.STRING,
+        allowNull: false, // NOT NULL
+      },
+      last_name: {
+        type: Sequelize.STRING,
+        allowNull: false, // NOT NULL
+      },
       isAdmin: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false,
+      },
+      location: {
+        type: Sequelize.STRING,
+        allowNull: true, // NOT NULL
+      },
+      date_posted: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.fn("now"),
       },
     });
   },
