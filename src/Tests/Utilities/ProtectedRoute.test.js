@@ -8,10 +8,3 @@ it("renders without crashing", () => {
 it("renders without crashing", () => {
   shallow(<ProtectedRoute user={{ id: null }} />);
 });
-it("renders without crashing", () => {
-  const mockColor = "David";
-  const wrapper = shallow(
-    <ProtectedRoute color={mockColor} user={{ id: 3 }} />
-  );
-  expect(toJson(wrapper)).toMatchSnapshot();
-});
