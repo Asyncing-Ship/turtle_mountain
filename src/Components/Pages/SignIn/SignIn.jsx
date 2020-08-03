@@ -5,12 +5,12 @@ import React from "react";
 import {
   Box,
   Button,
-  ButtonGroup,
   Heading,
   Input,
   InputGroup,
   InputRightElement,
   Stack,
+  Text,
 } from "@chakra-ui/core";
 // ----- End of imports -----
 
@@ -24,7 +24,7 @@ const SignIn = () => {
           This is the Sign In Page.
         </Heading>
         <Heading as="h2" size="l" textAlign="center" m={5}>
-          Chakra Example
+          Please Sign In and have some fun.
         </Heading>
         <Box
           as="form"
@@ -34,15 +34,14 @@ const SignIn = () => {
           shadow="1px 1px 3px rgba(0,0,0,0.3)"
           // onSubmit={handleSubmit}
         >
-          <ButtonGroup spacing={4} mb={4}>
+          <Stack spacing={3} mb={4}>
+            <Text fontSize="md">Sign in with Facebook</Text>
             <Button variantColor="blue" variant="solid">
               Facebook
             </Button>
-            <Button variantColor="blue" variant="outline">
-              Google
-            </Button>
-          </ButtonGroup>
+          </Stack>
           <Stack spacing={3}>
+            <Text fontSize="md">Sign in with your email and password</Text>
             <Input variant="outline" placeholder="Email" />
             <InputGroup size="md">
               <Input
@@ -57,8 +56,7 @@ const SignIn = () => {
               </InputRightElement>
             </InputGroup>
           </Stack>
-
-          <ButtonGroup spacing={4} mt={4}>
+          <Stack spacing={3} mt={4}>
             <Button
               // isLoading={submitting}
               loadingText="Submitting"
@@ -67,6 +65,7 @@ const SignIn = () => {
             >
               Sign In
             </Button>
+            <Text fontSize="md">or</Text>
             <Button
               variantColor="teal"
               variant="outline"
@@ -75,7 +74,7 @@ const SignIn = () => {
             >
               Sign Up
             </Button>
-          </ButtonGroup>
+          </Stack>
         </Box>
       </Box>
     </div>
