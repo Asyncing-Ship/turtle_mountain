@@ -22,7 +22,7 @@ class Home extends Component {
           className="CircleBtn"
           onClick={() => this.props.history.push("/policies")}
         >
-          <Icon name="info" size="3.5rem" color="black.500" />
+          <Icon name="info" size="3.5rem" color="blue.200" />
           <div className="btn-text">policy</div>
         </Button>
         <Button
