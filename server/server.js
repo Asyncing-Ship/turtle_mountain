@@ -25,7 +25,7 @@ app.use(passport.session());
 app.use("/api/user", userRouter);
 app.use("/api/auth", oauthRouter);
 
-const port = process.env.PORT || 5432;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log("listening on port", port);
 });

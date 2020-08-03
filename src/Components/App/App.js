@@ -21,7 +21,7 @@ import TaskPage from "../Pages/ViewsTask/TaskPage";
 import QuestionPage from "../Pages/ViewsQuestion/QuestionPage";
 import PoliciesPage from "../Pages/Policies/PoliciesPage";
 import SignIn from "../Pages/SignIn/SignIn";
-import SignUp from "../Pages/SignUp/SignUp";
+import SignUp from "../Pages/SignUp/SignUp.jsx";
 // CSS Import:
 import "./App.css";
 // ----- End of imports -----

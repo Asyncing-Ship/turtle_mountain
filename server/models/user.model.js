@@ -17,7 +17,20 @@ const User = sequelize.define(
       autoIncrement: true, // SERIAL
       primaryKey: true, // Primary Key
     },
-    name: {
+    email: {
+      type: Sequelize.STRING,
+      allowNull: false, // NOT NULL
+      unique: true
+    },
+    password: {
+      type: Sequelize.STRING,
+      allowNull: true, // Allowing null for those who register and sign in through Facebook.
+    },
+    first_name: {
+      type: Sequelize.STRING,
+      allowNull: false, // NOT NULL
+    },
+    last_name: {
       type: Sequelize.STRING,
       allowNull: false, // NOT NULL
     },
@@ -25,6 +38,15 @@ const User = sequelize.define(
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    location: {
+      type: Sequelize.STRING,
+      allowNull: true, // NOT NULL
+    },
+    date_posted: {
+      type: Sequelize.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.fn("now"),
     },
   },
   config
