@@ -12,8 +12,6 @@ import {
   InputRightElement,
   Stack,
 } from "@chakra-ui/core";
-
-import { FacebookSquare } from "@styled-icons/boxicons-logos";
 // ----- End of imports -----
 
 const SignIn = () => {
@@ -36,19 +34,11 @@ const SignIn = () => {
           shadow="1px 1px 3px rgba(0,0,0,0.3)"
           // onSubmit={handleSubmit}
         >
-          <ButtonGroup spacing={4}>
-            <Button
-              leftIcon={FacebookSquare}
-              variantColor="pink"
-              variant="solid"
-            >
+          <ButtonGroup spacing={4} mb={4}>
+            <Button variantColor="blue" variant="solid">
               Facebook
             </Button>
-            <Button
-              leftIcon={FacebookSquare}
-              variantColor="blue"
-              variant="outline"
-            >
+            <Button variantColor="blue" variant="outline">
               Google
             </Button>
           </ButtonGroup>
