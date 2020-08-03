@@ -6,12 +6,13 @@ import "./Home.css";
 
 class Home extends Component {
   render() {
+    const { history } = this.props;
     return (
       <div>
         <Button
           m={2}
           className="CircleBtn"
-          onClick={() => this.props.history.push("/tasks")}
+          onClick={() => history.push("/tasks")}
         >
           <Icon name="warning" size="3.5rem" color="red.500" />
           <div className="btn-text">tasks</div>
@@ -20,7 +21,7 @@ class Home extends Component {
         <Button
           m={2}
           className="CircleBtn"
-          onClick={() => this.props.history.push("/policies")}
+          onClick={() => history.push("/policies")}
         >
           <Icon name="info" size="3.5rem" color="blue.200" />
           <div className="btn-text">policy</div>
@@ -28,7 +29,7 @@ class Home extends Component {
         <Button
           m={2}
           className="CircleBtn"
-          onClick={() => this.props.history.push("/alerts")}
+          onClick={() => history.push("/alerts")}
         >
           <Icon name="bell" size="3.5rem" color="orange.400" />
           <div className="btn-text">alerts</div>
@@ -36,7 +37,7 @@ class Home extends Component {
         <Button
           m={2}
           className="CircleBtn"
-          onClick={() => this.props.history.push("/questions")}
+          onClick={() => history.push("/questions")}
         >
           <Icon name="question" size="3.5rem" color="yellow.300" />
           <div className="btn-text">q&amp;a</div>
@@ -45,7 +46,7 @@ class Home extends Component {
         <Button
           m={2}
           className="CircleBtn"
-          onClick={() => this.props.history.push("/chat")}
+          onClick={() => history.push("/chat")}
         >
           <Icon name="chat" size="3.5rem" color="green.300" />
           <div className="btn-text">chat</div>
