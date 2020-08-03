@@ -25,11 +25,11 @@ router.post(
     check("password").isLength({ mind: 6 }),
   ],
   (req, res, next) => {
-    const errors = validationResult(req);
-    if (errors.isEmpty()) {
-      console.log(errors);
-      return res.sendStatus(422).json({ errors: errors.array() });
-    }
+    // const errors = validationResult(req);
+    // if (errors.isEmpty()) {
+    //   console.log(errors);
+    //   return res.sendStatus(422).json({ errors: errors.array() }); // Commented out for now
+    // }
     const email = req.body.email;
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
