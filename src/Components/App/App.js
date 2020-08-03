@@ -48,8 +48,9 @@ export class App extends React.Component {
                 </NavLink>
               </nav>
             </header>
-            <Redirect exact from="/" to="/home" />
-            {/*
+            <div className="App-page">
+              <Redirect exact from="/" to="/home" />
+              {/*
 
               ,_____           _            _           _   _____             _            
               |  __ \         | |          | |         | | |  __ \           | |           
@@ -60,15 +61,16 @@ export class App extends React.Component {
                                                                               
 
           */}
-            {/* <ProtectedRoute exact path="/home" component={Home} />
+              {/* <ProtectedRoute exact path="/home" component={Home} />
           <ProtectedRoute exact path="/tasks" component={TaskPage} />
           <ProtectedRoute exact path="/questions" component={QuestionPage} />
           <ProtectedRoute exact path="/policies" component={PoliciesPage} /> */}
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/tasks" component={TaskPage} />
-            <Route exact path="/questions" component={QuestionPage} />
-            <Route exact path="/policies" component={PoliciesPage} />
-            {/* <Route render={() => <Heading as="h1">404? Four Oh For!</Heading>} /> */}
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/tasks" component={TaskPage} />
+              <Route exact path="/questions" component={QuestionPage} />
+              <Route exact path="/policies" component={PoliciesPage} />
+              {/* <Route render={() => <Heading as="h1">404? Four Oh For!</Heading>} /> */}
+            </div>
           </div>
         </Router>
       </ThemeProvider>
