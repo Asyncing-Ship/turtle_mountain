@@ -20,6 +20,7 @@ import Home from "../Pages/Home/Home"; // home component
 import TaskPage from "../ViewsTask/TaskPage";
 import QuestionPage from "../ViewsQuestion/QuestionPage";
 import PoliciesPage from "../Pages/Policies/PoliciesPage";
+import SignIn from "../Pages/SignIn/SignIn";
 // CSS Import:
 import "./App.css";
 // ----- End of imports -----
@@ -36,6 +37,9 @@ export class App extends React.Component {
               <nav>
                 <NavLink to="/home">
                   <Button m={2}>Home</Button>
+                </NavLink>
+                <NavLink to="/signin">
+                  <Button m={2}>SignIn</Button>
                 </NavLink>
                 <NavLink to="/tasks">
                   <Button m={2}>Tasks</Button>
@@ -66,6 +70,7 @@ export class App extends React.Component {
           <ProtectedRoute exact path="/questions" component={QuestionPage} />
           <ProtectedRoute exact path="/policies" component={PoliciesPage} /> */}
               <Route exact path="/home" component={Home} />
+              <Route exact path="/signin" component={SignIn} />
               <Route exact path="/tasks" component={TaskPage} />
               <Route exact path="/questions" component={QuestionPage} />
               <Route exact path="/policies" component={PoliciesPage} />
