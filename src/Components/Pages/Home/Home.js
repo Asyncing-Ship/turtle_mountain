@@ -30,7 +30,7 @@ class Home extends Component {
           className="CircleBtn"
           onClick={() => this.props.history.push("/alerts")}
         >
-          <Icon name="bell" size="3.5rem" color="orange.500" />
+          <Icon name="bell" size="3.5rem" color="orange.400" />
           <div className="btn-text">alerts</div>
         </Button>
         <Button
@@ -38,7 +38,7 @@ class Home extends Component {
           className="CircleBtn"
           onClick={() => this.props.history.push("/questions")}
         >
-          <Icon name="question" size="3.5rem" color="yellow.500" />
+          <Icon name="question" size="3.5rem" color="yellow.300" />
           <div className="btn-text">q&amp;a</div>
         </Button>
         <br />
