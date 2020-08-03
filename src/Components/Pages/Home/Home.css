@@ -1,0 +1,9 @@
+.CircleBtn {
+  border-radius: 50% !important;
+  padding: 5rem;
+  background-color: #008080 !important;
+  color: #f5fffa;
+}
+.CircleBtn:hover {
+  border: 5px solid #008080;
+}
