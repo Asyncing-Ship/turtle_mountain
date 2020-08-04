@@ -38,4 +38,8 @@ pool.on("error", (err) => {
   process.exit(-1);
 });
 
+pool.on("connect", () => {
+  console.log("database connection established");
+});
+
 module.exports = pool;
