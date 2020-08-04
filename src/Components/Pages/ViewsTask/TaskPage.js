@@ -11,7 +11,7 @@ import NewTask from "./NewTask";
 import AcceptTask from "./AcceptTask";
 export class TaskPage extends Component {
   componentDidMount() {
-    //this.props.dispatch({ type: "FETCH_TASKS" });
+    this.props.dispatch({ type: "FETCH_TASKS" });
   }
   render() {
     return (

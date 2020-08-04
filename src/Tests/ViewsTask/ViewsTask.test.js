@@ -6,6 +6,7 @@ import NewTask from "../../Components/Pages/ViewsTask/NewTask";
 import { TaskPage } from "../../Components/Pages/ViewsTask/TaskPage";
 import { createStore } from "redux";
 import rootReducer from "../../Redux/Reducers/index";
+import { Provider } from "react-redux";
 const store = createStore(rootReducer);
 it("renders correctly", () => {
   shallow(
@@ -25,5 +26,9 @@ it("renders correctly", () => {
   shallow(<NewTask />);
 });
 it("renders correctly", () => {
-  shallow(<TaskPage />);
+  shallow(
+    <Provider store={store}>
+      <TaskPage />
+    </Provider>
+  );
 });
