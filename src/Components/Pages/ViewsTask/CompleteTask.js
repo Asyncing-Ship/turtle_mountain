@@ -1,13 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class CompleteTask extends Component {
   render() {
-    return (
-      <>
-        Complete selected task here:
-      </>
-    )
+    return <>Complete selected task here:</>;
   }
 }
-
 export default CompleteTask;
