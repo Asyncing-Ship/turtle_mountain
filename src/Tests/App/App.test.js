@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import { App } from "../../Components/App/App";
+import App from "../../Components/App/App";
 import { createStore } from "redux";
 import rootReducer from "../../Redux/Reducers/index";
 import { NavLink } from "react-router-dom";
