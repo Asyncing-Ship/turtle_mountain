@@ -36,36 +36,45 @@ export class App extends React.Component {
           <div className="App">
             <header className="App-header">
               <nav>
-                <NavLink to="/login">
-                  <Button m={2}>Login</Button>
-                </NavLink>
-                <NavLink to="/signup">
-                  <Button m={2}>Signup</Button>
-                </NavLink>
-                <NavLink to="/home">
-                  <Button m={2}>Home</Button>
-                </NavLink>
-                <NavLink to="/tasks">
-                  <Button m={2}>Tasks</Button>
-                </NavLink>
-                <NavLink to="/questions">
-                  <Button m={2}>Questions</Button>
-                </NavLink>
-                <NavLink to="/policies">
-                  <Button m={2}>Policies</Button>
-                </NavLink>
-
-                <Button
-                  // This button shows up in multiple locations and is styled differently
-                  // because it's styled differently depending on where it is used, the className
-                  // is passed to it from it's parents through React props
-
-                  onClick={() => {
-                    this.props.dispatch({ type: "LOGOUT" });
-                  }}
-                >
-                  Logout
-                </Button>
+                {
+                  !this.props.user.id
+                  ?
+                  <>
+                    <NavLink to="/login">
+                      <Button m={2}>Login</Button>
+                    </NavLink>
+                    <NavLink to="/signup">
+                      <Button m={2}>Signup</Button>
+                    </NavLink>
+                  </>
+                  :
+                  <>
+                    <NavLink to="/home">
+                      <Button m={2}>Home</Button>
+                    </NavLink>
+                    <NavLink to="/tasks">
+                      <Button m={2}>Tasks</Button>
+                    </NavLink>
+                    <NavLink to="/questions">
+                      <Button m={2}>Questions</Button>
+                    </NavLink>
+                    <NavLink to="/policies">
+                      <Button m={2}>Policies</Button>
+                    </NavLink>
+                    <NavLink to="/login">
+                      <Button
+                        // This button shows up in multiple locations and is styled differently
+                        // because it's styled differently depending on where it is used, the className
+                        // is passed to it from it's parents through React props
+                        onClick={() => {
+                          this.props.dispatch({ type: "LOGOUT" });
+                        }}
+                      >
+                        Logout
+                      </Button>
+                    </NavLink>
+                  </>
+                }
               </nav>
             </header>
             <div className="App-page">
