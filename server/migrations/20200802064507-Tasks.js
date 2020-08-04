@@ -29,6 +29,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: "open",
+      },
     });
   },
 
