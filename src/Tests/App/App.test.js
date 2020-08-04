@@ -18,7 +18,7 @@ it("renders correctly", () => {
 it("renders correctly", () => {
   mount(
     <Provider store={store}>
-      <App />
+      <App user={{}} />
     </Provider>
   );
 });

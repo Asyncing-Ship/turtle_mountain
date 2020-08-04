@@ -36,7 +36,7 @@ export class App extends React.Component {
           <div className="App">
             <header className="App-header">
               <nav>
-                {!this.props.user != null ? (
+                {!this.props.user.id ? (
                   <>
                     <NavLink to="/login">
                       <Button m={2}>Login</Button>
