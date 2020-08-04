@@ -13,7 +13,7 @@ import {
 // Chakra UI Imports:
 import { ThemeProvider, CSSReset, Button, Heading } from "@chakra-ui/core";
 // Protected Route Import:
-// import ProtectedRoute from "../Utilities/ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "../Utilities/ProtectedRoute/ProtectedRoute";
 // Components Imports:
 import Home from "../Pages/Home/Home"; // home component
 // import Admin from '../Pages/Admin/Admin';
@@ -54,6 +54,19 @@ export class App extends React.Component {
                 <NavLink to="/policies">
                   <Button m={2}>Policies</Button>
                 </NavLink>
+
+                <Button
+                  // This button shows up in multiple locations and is styled differently
+                  // because it's styled differently depending on where it is used, the className
+                  // is passed to it from it's parents through React props
+
+                  onClick={() => {
+                    this.props.dispatch({ type: "LOGOUT" });
+                    this.props.history.push("/login");
+                  }}
+                >
+                  Logout
+                </Button>
               </nav>
             </header>
             <div className="App-page">
@@ -73,12 +86,16 @@ export class App extends React.Component {
           <ProtectedRoute exact path="/tasks" component={TaskPage} />
           <ProtectedRoute exact path="/questions" component={QuestionPage} />
           <ProtectedRoute exact path="/policies" component={PoliciesPage} /> */}
-              <Route exact path="/home" component={Home} />
+              <ProtectedRoute exact path="/home" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
-              <Route path="/tasks" component={TaskPage} />
-              <Route exact path="/questions" component={QuestionPage} />
-              <Route exact path="/policies" component={PoliciesPage} />
+              <ProtectedRoute path="/tasks" component={TaskPage} />
+              <ProtectedRoute
+                exact
+                path="/questions"
+                component={QuestionPage}
+              />
+              <ProtectedRoute exact path="/policies" component={PoliciesPage} />
               {/* <Route render={() => <Heading as="h1">404? Four Oh For!</Heading>} /> */}
             </div>
           </div>

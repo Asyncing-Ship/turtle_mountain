@@ -8,11 +8,11 @@ const pool = require("./pool");
   exist, create the user. The password is assumed to have already
   been hashed, processec, etc. before being passed in.
 */
-async function findOrCreateUser(username, password) {
+async function findOrCreateUser(username, first_name, last_name, password) {
   async function findUser(username) {
     try {
       const result = await pool.query(
-        'SELECT * from "user" where username = $1;',
+        'SELECT * from "users" where email = $1;',
         [username]
       );
       const user = result && result.rows && result.rows[0];
@@ -23,12 +23,13 @@ async function findOrCreateUser(username, password) {
     }
   }
 
-  async function createUser(username, password) {
+  async function createUser(username, first_name, last_name, password) {
+    console.log(username, first_name, last_name);
     // assumes that password has already been encrypted
     try {
       await pool.query(
-        'INSERT INTO "user" (username, password) values ($1, $2)',
-        [username, password]
+        'INSERT INTO "users" (email, first_name, last_name, password) values ($1, $2, $3, $4) RETURNING id',
+        [username, first_name, last_name, password]
       );
       const user = await findUser(username);
       return user;
@@ -44,7 +45,7 @@ async function findOrCreateUser(username, password) {
 
   // User doesn't exist, so let's create one
   console.log("user doesnt exist... creating");
-  user = await createUser(username, password);
+  user = await createUser(username, first_name, last_name, password);
   return user;
 }
 
