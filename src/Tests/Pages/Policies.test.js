@@ -4,7 +4,7 @@ import PoliciesPage from "../../Components/Pages/Policies/PoliciesPage";
 import Upload from "../../Components/Pages/Policies/Upload";
 import toJson from "enzyme-to-json";
 import { createStore } from "redux";
-import rootReducer from "../../Redux/Reducers/reducers";
+import rootReducer from "../../Redux/Reducers/index";
 it("renders without crashing", () => {
   shallow(<PoliciesPage />);
 });
