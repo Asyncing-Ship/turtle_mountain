@@ -20,11 +20,17 @@ export class TaskPage extends Component {
           <NewTask />
         </Route>
         {this.props.tasks ? (
-          this.props.tasks.map((x) => (
-            <Route exact path={`tasks/acceptTask/${x.id}`}>
-              <AcceptTask task={x} />
-            </Route>
-          ))
+          this.props.tasks.map((x) => {
+            if (x.assigned_to == this.props.user.id) {
+              <Route exact path={`tasks/acceptTask/${x.id}`}>
+                <AcceptTask task={x} />
+              </Route>;
+            } else {
+              <Route exact path={`tasks/completeTask/${x.id}`}>
+                <CompleteTask task={x} />
+              </Route>;
+            }
+          })
         ) : (
           <div></div>
         )}
@@ -37,7 +43,11 @@ export class TaskPage extends Component {
             this.props.tasks.map((x) => (
               <Button
                 onClick={() => {
-                  this.props.history.push(`/tasks/acceptTask/${x.id}`);
+                  if (x.assigned_to == this.props.user.id) {
+                    this.props.history.push(`/tasks/completeTask/${x.id}`);
+                  } else {
+                    this.props.history.push(`/tasks/acceptTask/${x.id}`);
+                  }
                 }}
                 key={x.id}
               >
