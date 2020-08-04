@@ -11,7 +11,7 @@ import {
   Route,
 } from "react-router-dom";
 // Chakra UI Imports:
-import { ThemeProvider, CSSReset, Button, Heading } from "@chakra-ui/core";
+import { ThemeProvider, CSSReset, Button } from "@chakra-ui/core";
 // Protected Route Import:
 import ProtectedRoute from "../Utilities/ProtectedRoute/ProtectedRoute";
 // Components Imports:
@@ -28,6 +28,11 @@ import "./App.css";
 
 export class App extends React.Component {
   state = { error: null };
+
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_USER' })
+  }
+
   render() {
     return (
       <ThemeProvider>
@@ -61,6 +66,7 @@ export class App extends React.Component {
                     </NavLink>
                     <NavLink to="/login">
                       <Button
+                        m={2}
                         // This button shows up in multiple locations and is styled differently
                         // because it's styled differently depending on where it is used, the className
                         // is passed to it from it's parents through React props
@@ -76,8 +82,14 @@ export class App extends React.Component {
               </nav>
             </header>
             <div className="App-page">
-              <Redirect exact from="/" to="/home" />
-              {/*
+              {
+                !this.props.user.id ? (
+                  <Redirect exact from="/" to="/login" />
+                ) : (
+                  <Redirect exact from="/" to="/home" />
+                )
+              }
+            {/*
 
               ,_____           _            _           _   _____             _            
               |  __ \         | |          | |         | | |  __ \           | |           
@@ -88,10 +100,6 @@ export class App extends React.Component {
                                                                               
 
           */}
-              {/* <ProtectedRoute exact path="/home" component={Home} />
-          <ProtectedRoute exact path="/tasks" component={TaskPage} />
-          <ProtectedRoute exact path="/questions" component={QuestionPage} />
-          <ProtectedRoute exact path="/policies" component={PoliciesPage} /> */}
               <ProtectedRoute exact path="/home" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />

@@ -23,7 +23,7 @@ export class TaskPage extends Component {
         {this.props.tasks &&
           this.props.tasks.map((x) => (
             <div>
-              {x.assigned_to == this.props.user.id ? (
+              {x.assigned_to === this.props.user.id ? (
                 <Route exact path={`tasks/acceptTask/${x.id}`}>
                   <AcceptTask task={x} />
                 </Route>
@@ -43,7 +43,7 @@ export class TaskPage extends Component {
             this.props.tasks.map((x) => (
               <Button
                 onClick={() => {
-                  if (x.assigned_to == this.props.user.id) {
+                  if (x.assigned_to === this.props.user.id) {
                     this.props.history.push(`/tasks/completeTask/${x.id}`);
                   } else {
                     this.props.history.push(`/tasks/acceptTask/${x.id}`);
