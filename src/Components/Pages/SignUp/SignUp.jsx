@@ -84,7 +84,7 @@ class SignUp extends Component {
             // onSubmit={handleSubmit}
           >
             <Stack spacing={3}>
-              <FormLabel htmlFor="first_name">
+              <FormLabel p={0} htmlFor="first_name">
                 First Name:
                 <Input
                   variant="outline"
@@ -96,7 +96,7 @@ class SignUp extends Component {
                 />
               </FormLabel>
 
-              <FormLabel htmlFor="last_name">
+              <FormLabel p={0} htmlFor="last_name">
                 Last Name:
                 <Input
                   variant="outline"
@@ -108,7 +108,7 @@ class SignUp extends Component {
                 />
               </FormLabel>
 
-              <FormLabel htmlFor="email">
+              <FormLabel p={0} htmlFor="email">
                 Email:
                 <Input
                   variant="outline"
@@ -119,14 +119,13 @@ class SignUp extends Component {
                   onChange={this.handleInputChangeFor("email")}
                 />
               </FormLabel>
-              <InputGroup size="md">
-                <FormLabel htmlFor="password">
-                  Password:
+              <FormLabel p={0} htmlFor="password">
+                Password:
+                <InputGroup>
                   <Input
                     pr="4.5rem"
                     type={this.state.show ? "text" : "password"}
                     placeholder="Enter password"
-                    type="password"
                     name="password"
                     value={this.state.password}
                     onChange={this.handleInputChangeFor("password")}
@@ -140,8 +139,8 @@ class SignUp extends Component {
                       {this.state.show ? "Hide" : "Show"}
                     </Button>
                   </InputRightElement>
-                </FormLabel>
-              </InputGroup>
+                </InputGroup>
+              </FormLabel>
             </Stack>
 
             <ButtonGroup spacing={4} mt={4}>
