@@ -30,7 +30,7 @@ export class App extends React.Component {
   state = { error: null };
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_USER' })
+    this.props.dispatch({ type: "FETCH_USER" });
   }
 
   render() {
@@ -82,14 +82,12 @@ export class App extends React.Component {
               </nav>
             </header>
             <div className="App-page">
-              {
-                !this.props.user.id ? (
-                  <Redirect exact from="/" to="/login" />
-                ) : (
-                  <Redirect exact from="/" to="/home" />
-                )
-              }
-            {/*
+              {!this.props.user.id ? (
+                <Redirect exact from="/" to="/login" />
+              ) : (
+                <Redirect exact from="/" to="/home" />
+              )}
+              {/*
 
               ,_____           _            _           _   _____             _            
               |  __ \         | |          | |         | | |  __ \           | |           
