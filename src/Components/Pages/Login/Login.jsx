@@ -101,7 +101,7 @@ class Login extends Component {
                     onChange={this.handleInputChangeFor("password")}
                   />
                   <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={this.handleShowClick}>
+                    <Button variantColor="gray" color="gray.800" h="1.75rem" size="sm" onClick={this.handleShowClick}>
                       {this.state.show ? "Hide" : "Show"}
                     </Button>
                   </InputRightElement>

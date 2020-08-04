@@ -72,7 +72,7 @@ class SignUp extends Component {
       <div>
         <Box w={500} p={4} m="20px auto">
           <Heading as="h1" size="xl" textAlign="center">
-            This is the Sign In Page.
+            This is the Sign Up Page.
           </Heading>
           <Box
             backgroundColor="#2f2e2e"
@@ -132,6 +132,8 @@ class SignUp extends Component {
                   />
                   <InputRightElement width="4.5rem">
                     <Button
+                      variantColor="gray"
+                      color="gray.800"
                       h="1.75rem"
                       size="sm"
                       onClick={this.handleShowClick}
