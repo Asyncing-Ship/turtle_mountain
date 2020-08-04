@@ -36,9 +36,7 @@ export class App extends React.Component {
           <div className="App">
             <header className="App-header">
               <nav>
-                {
-                  !this.props.user.id
-                  ?
+                {!this.props.user.id ? (
                   <>
                     <NavLink to="/login">
                       <Button m={2}>Login</Button>
@@ -47,7 +45,7 @@ export class App extends React.Component {
                       <Button m={2}>Signup</Button>
                     </NavLink>
                   </>
-                  :
+                ) : (
                   <>
                     <NavLink to="/home">
                       <Button m={2}>Home</Button>
@@ -74,7 +72,7 @@ export class App extends React.Component {
                       </Button>
                     </NavLink>
                   </>
-                }
+                )}
               </nav>
             </header>
             <div className="App-page">
