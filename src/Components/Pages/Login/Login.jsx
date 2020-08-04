@@ -12,21 +12,24 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/core";
+// CSS Import:
+import "./Login.css";
 // ----- End of imports -----
 
-const SignIn = () => {
+const Login = () => {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   return (
     <div>
       <Box w={500} p={4} m="20px auto">
         <Heading as="h1" size="xl" textAlign="center">
-          This is the Sign In Page.
+          This is the Login Page.
         </Heading>
         <Heading as="h2" size="l" textAlign="center" m={5}>
-          Please Sign In and have some fun.
+          Please login and have some fun.
         </Heading>
         <Box
+          backgroundColor="#2f2e2e"
           as="form"
           p={4}
           borderWidth="1px"
@@ -34,14 +37,8 @@ const SignIn = () => {
           shadow="1px 1px 3px rgba(0,0,0,0.3)"
           // onSubmit={handleSubmit}
         >
-          <Stack spacing={3} mb={4}>
-            <Text fontSize="md">Sign in with Facebook</Text>
-            <Button variantColor="blue" variant="solid">
-              Facebook
-            </Button>
-          </Stack>
           <Stack spacing={3}>
-            <Text fontSize="md">Sign in with your email and password</Text>
+            <Text fontSize="md">Login with your email and password</Text>
             <Input variant="outline" placeholder="Email" />
             <InputGroup size="md">
               <Input
@@ -63,22 +60,28 @@ const SignIn = () => {
               variantColor="teal"
               type="submit"
             >
-              Sign In
+              Login
             </Button>
             <Text fontSize="md">or</Text>
             <Button
-              variantColor="teal"
+              className="btn-signup"
+              variantColor=""
               variant="outline"
+              color="#f5fffa"
               // onClick={form.reset}
               // isDisabled={submitting || pristine}
             >
               Sign Up
+            </Button>
+            <Text fontSize="md">Sign in with Facebook</Text>
+            <Button variantColor="blue" variant="solid">
+              Facebook
             </Button>
           </Stack>
         </Box>
       </Box>
     </div>
   );
-}
+};
 
-export default SignIn;
+export default Login;

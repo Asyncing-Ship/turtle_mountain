@@ -20,7 +20,7 @@ import Home from "../Pages/Home/Home"; // home component
 import TaskPage from "../Pages/ViewsTask/TaskPage";
 import QuestionPage from "../Pages/ViewsQuestion/QuestionPage";
 import PoliciesPage from "../Pages/Policies/PoliciesPage";
-import SignIn from "../Pages/SignIn/SignIn";
+import Login from "../Pages/Login/Login.jsx";
 import SignUp from "../Pages/SignUp/SignUp.jsx";
 // CSS Import:
 import "./App.css";
@@ -36,14 +36,14 @@ export class App extends React.Component {
           <div className="App">
             <header className="App-header">
               <nav>
-                <NavLink to="/home">
-                  <Button m={2}>Home</Button>
-                </NavLink>
-                <NavLink to="/signin">
-                  <Button m={2}>SignIn</Button>
+                <NavLink to="/login">
+                  <Button m={2}>Login</Button>
                 </NavLink>
                 <NavLink to="/signup">
-                  <Button m={2}>SignUp</Button>
+                  <Button m={2}>Signup</Button>
+                </NavLink>
+                <NavLink to="/home">
+                  <Button m={2}>Home</Button>
                 </NavLink>
                 <NavLink to="/tasks">
                   <Button m={2}>Tasks</Button>
@@ -74,7 +74,7 @@ export class App extends React.Component {
           <ProtectedRoute exact path="/questions" component={QuestionPage} />
           <ProtectedRoute exact path="/policies" component={PoliciesPage} /> */}
               <Route exact path="/home" component={Home} />
-              <Route exact path="/signin" component={SignIn} />
+              <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/tasks" component={TaskPage} />
               <Route exact path="/questions" component={QuestionPage} />

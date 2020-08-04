@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import Signin from "../../Pages/SignIn/SignIn";
+import Signin from "../../Pages/Login/Login";
 import Signup from "../../Pages/SignUp/SignUp";
 
 // A Custom Wrapper Component -- This will keep our code DRY.
