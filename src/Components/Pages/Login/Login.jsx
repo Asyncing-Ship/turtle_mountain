@@ -9,11 +9,11 @@ import {
   Button,
   Heading,
   Input,
-  InputGroup,
   InputRightElement,
   Stack,
   Text,
   FormLabel,
+  InputGroup,
 } from "@chakra-ui/core";
 // CSS Import:
 import "./Login.css";
@@ -79,7 +79,8 @@ class Login extends Component {
             <Stack spacing={3}>
               <Text fontSize="md">Login with your email and password</Text>
 
-              <FormLabel htmlFor="email">
+              <FormLabel p={0} htmlFor="email">
+                Email:
                 <Input
                   variant="outline"
                   placeholder="Email"
@@ -89,26 +90,24 @@ class Login extends Component {
                   onChange={this.handleInputChangeFor("email")}
                 />
               </FormLabel>
-
-              <InputGroup size="md">
-                <FormLabel htmlFor="password">
+              <FormLabel p={0} htmlFor="password">
+                Password:
+                <InputGroup>
                   <Input
                     pr="4.5rem"
                     type={this.state.show ? "text" : "password"}
                     placeholder="Enter password"
-                    type="password"
                     name="password"
                     value={this.state.password}
                     onChange={this.handleInputChangeFor("password")}
                   />
-                </FormLabel>
-
-                <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={this.handleShowClick}>
-                    {this.state.show ? "Hide" : "Show"}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
+                  <InputRightElement width="4.5rem">
+                    <Button h="1.75rem" size="sm" onClick={this.handleShowClick}>
+                      {this.state.show ? "Hide" : "Show"}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+              </FormLabel>
             </Stack>
             <Stack spacing={3} mt={4}>
               <Button
@@ -123,7 +122,7 @@ class Login extends Component {
               <Text fontSize="md">or</Text>
               <Button
                 className="btn-signup"
-                variantColor=""
+                variantColor="teal"
                 variant="outline"
                 color="#f5fffa"
                 onClick={() => this.props.history.push("/signup")}
