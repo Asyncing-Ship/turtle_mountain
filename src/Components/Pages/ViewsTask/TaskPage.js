@@ -20,7 +20,7 @@ export class TaskPage extends Component {
         <Route exact path="/tasks/newTask">
           <NewTask />
         </Route>
-        {this.props.tasks &&
+        {this.props.tasks[0] &&
           this.props.tasks.map((x) => (
             <div>
               {x.assigned_to === this.props.user.id ? (
@@ -39,7 +39,7 @@ export class TaskPage extends Component {
             <Button>New Task</Button>
           </Link>
           <br />
-          {this.props.tasks ? (
+          {this.props.tasks[0] ? (
             this.props.tasks.map((x) => (
               <Button
                 onClick={() => {
