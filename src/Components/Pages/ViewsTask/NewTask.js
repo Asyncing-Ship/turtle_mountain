@@ -4,7 +4,11 @@ import { Textarea } from "@chakra-ui/core";
 class NewTask extends Component {
   render() {
     return (
-      <form>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
         <Input placeholder="Title" />
         <Textarea placeholder="Detailed Description" />
         <Textarea placeholder="Directions (if applicable)" />
