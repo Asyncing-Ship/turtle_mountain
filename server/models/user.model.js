@@ -10,7 +10,7 @@ const config = {
 // Model for user table
 // see: https://sequelize.org/master/class/lib/sequelize.js~Sequelize.html#instance-method-define
 const User = sequelize.define(
-  "user",
+  "users",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -20,7 +20,7 @@ const User = sequelize.define(
     email: {
       type: Sequelize.STRING,
       allowNull: false, // NOT NULL
-      unique: true
+      unique: true,
     },
     password: {
       type: Sequelize.STRING,
@@ -42,11 +42,6 @@ const User = sequelize.define(
     location: {
       type: Sequelize.STRING,
       allowNull: true, // NOT NULL
-    },
-    date_posted: {
-      type: Sequelize.DATE,
-      allowNull: false,
-      defaultValue: Sequelize.fn("now"),
     },
   },
   config

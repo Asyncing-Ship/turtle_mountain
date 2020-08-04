@@ -1,6 +1,8 @@
 // ----- Start of imports -----
 // React Import:
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 // Chakra UI Imports:
 import {
   Box,
@@ -11,6 +13,7 @@ import {
   InputGroup,
   InputRightElement,
   Stack,
+  FormLabel,
 } from "@chakra-ui/core";
 // CSS Import:
 import "../Login/Login.css";
@@ -19,6 +22,10 @@ import "../Login/Login.css";
 class SignUp extends Component {
   state = {
     show: false,
+    email: "",
+    password: "",
+    first_name: "",
+    last_name: "",
   };
 
   handleShowClick = () => {
@@ -33,15 +40,39 @@ class SignUp extends Component {
     }
   };
 
+  registerUser = (event) => {
+    console.log("registerUser Function");
+    event.preventDefault();
+
+    if (this.state.email && this.state.password) {
+      console.log(this.state);
+      this.props.dispatch({
+        type: "REGISTER",
+        payload: {
+          email: this.state.email,
+          password: this.state.password,
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
+        },
+      });
+    } else {
+      this.props.dispatch({ type: "REGISTRATION_INPUT_ERROR" });
+    }
+  }; // end registerUser
+
+  handleInputChangeFor = (propertyName) => (event) => {
+    // console.log(`In change: ${propertyName}: ${event.target.value}`);
+    this.setState({
+      [propertyName]: event.target.value,
+    });
+  };
+
   render() {
     return (
       <div>
         <Box w={500} p={4} m="20px auto">
           <Heading as="h1" size="xl" textAlign="center">
             This is the Sign In Page.
-          </Heading>
-          <Heading as="h2" size="l" textAlign="center" m={5}>
-            Chakra Example
           </Heading>
           <Box
             backgroundColor="#2f2e2e"
@@ -53,20 +84,63 @@ class SignUp extends Component {
             // onSubmit={handleSubmit}
           >
             <Stack spacing={3}>
-              <Input variant="outline" placeholder="First Name" />
-              <Input variant="outline" placeholder="Last Name" />
-              <Input variant="outline" placeholder="Email" />
-              <InputGroup size="md">
+              <FormLabel htmlFor="first_name">
+                First Name:
                 <Input
-                  pr="4.5rem"
-                  type={this.state.show ? "text" : "password"}
-                  placeholder="Enter password"
+                  variant="outline"
+                  placeholder="First Name"
+                  type="text"
+                  name="first_name"
+                  value={this.state.first_name}
+                  onChange={this.handleInputChangeFor("first_name")}
                 />
-                <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={this.handleShowClick}>
-                    {this.state.show ? "Hide" : "Show"}
-                  </Button>
-                </InputRightElement>
+              </FormLabel>
+
+              <FormLabel htmlFor="last_name">
+                Last Name:
+                <Input
+                  variant="outline"
+                  placeholder="Last Name"
+                  type="text"
+                  name="last_name"
+                  value={this.state.last_name}
+                  onChange={this.handleInputChangeFor("last_name")}
+                />
+              </FormLabel>
+
+              <FormLabel htmlFor="email">
+                Email:
+                <Input
+                  variant="outline"
+                  placeholder="Email"
+                  type="email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleInputChangeFor("email")}
+                />
+              </FormLabel>
+              <InputGroup size="md">
+                <FormLabel htmlFor="password">
+                  Password:
+                  <Input
+                    pr="4.5rem"
+                    type={this.state.show ? "text" : "password"}
+                    placeholder="Enter password"
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleInputChangeFor("password")}
+                  />
+                  <InputRightElement width="4.5rem">
+                    <Button
+                      h="1.75rem"
+                      size="sm"
+                      onClick={this.handleShowClick}
+                    >
+                      {this.state.show ? "Hide" : "Show"}
+                    </Button>
+                  </InputRightElement>
+                </FormLabel>
               </InputGroup>
             </Stack>
 
@@ -76,14 +150,16 @@ class SignUp extends Component {
                 loadingText="Submitting"
                 variantColor="teal"
                 type="submit"
+                onClick={() => this.props.history.push("/login")}
               >
-                Sign In
+                Login
               </Button>
               <Button
                 className="btn-signup"
                 variantColor=""
                 variant="outline"
                 color="#f5fffa"
+                onClick={this.registerUser}
                 // onClick={form.reset}
                 // isDisabled={submitting || pristine}
               >
@@ -100,4 +176,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default connect()(SignUp);

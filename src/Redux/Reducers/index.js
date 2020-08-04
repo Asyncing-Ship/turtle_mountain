@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import user from "./userReducer";
-import loginMode from './loginModeReducer';
+import loginMode from "./loginModeReducer";
+import errors from "./errorsReducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -11,6 +12,7 @@ import loginMode from './loginModeReducer';
 const rootReducer = combineReducers({
   user, // will have an id and email if someone is logged in
   loginMode,
+  errors,
 });
 
 export default rootReducer;

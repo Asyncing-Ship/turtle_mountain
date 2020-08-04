@@ -6,8 +6,8 @@ import createSagaMiddleware from "redux-saga";
 import { composeWithDevTools } from "redux-devtools-extension";
 import logger from "redux-logger";
 
-import rootReducer from "./Redux/Reducers/reducers"; // imports ./redux/reducers/index.js
-import rootSaga from "./Redux/Sagas/sagas"; // imports ./redux/sagas/index.js
+import rootReducer from "./Redux/Reducers"; // imports ./redux/reducers/index.js
+import rootSaga from "./Redux/Sagas"; // imports ./redux/sagas/index.js
 
 import App from "./Components/App/App";
 
