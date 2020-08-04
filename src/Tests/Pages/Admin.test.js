@@ -5,7 +5,7 @@ import Approved from "../../Components/Pages/Admin/Approved";
 import Incoming from "../../Components/Pages/Admin/Incoming";
 import toJson from "enzyme-to-json";
 import { createStore } from "redux";
-import rootReducer from "../../Redux/Reducers/reducers";
+import rootReducer from "../../Redux/Reducers/index";
 const store = createStore(rootReducer);
 it("renders without crashing", () => {
   shallow(<AdminPage />);

@@ -19,12 +19,15 @@ export class TaskPage extends Component {
         <Route exact path="/tasks/newTask">
           <NewTask />
         </Route>
-        {this.props.tasks &&
+        {this.props.tasks ? (
           this.props.tasks.map((x) => (
             <Route exact path={`tasks/acceptTask/${x.id}`}>
               <AcceptTask task={x} />
             </Route>
-          ))}
+          ))
+        ) : (
+          <div></div>
+        )}
         <Route exact path="/tasks">
           <Link to="/tasks/newTask">
             <Button>New Task</Button>
