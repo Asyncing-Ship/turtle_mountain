@@ -25,6 +25,7 @@ router.post(
     check("password").isLength({ mind: 6 }),
   ],
   (req, res, next) => {
+    console.log("User is trying to register.");
     // const errors = validationResult(req);
     // if (errors.isEmpty()) {
     //   console.log(errors);
