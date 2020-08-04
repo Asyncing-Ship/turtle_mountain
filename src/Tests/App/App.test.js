@@ -11,7 +11,7 @@ const store = createStore(rootReducer);
 it("renders correctly", () => {
   mount(
     <Provider store={store}>
-      <App />
+      <App user={{ id: 1 }} />
     </Provider>
   );
 });
