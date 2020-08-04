@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import NewTask from "./NewTask";
 import AcceptTask from "./AcceptTask";
+import CompleteTask from "./CompleteTask";
 export class TaskPage extends Component {
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_TASKS" });
@@ -19,21 +20,20 @@ export class TaskPage extends Component {
         <Route exact path="/tasks/newTask">
           <NewTask />
         </Route>
-        {this.props.tasks ? (
-          this.props.tasks.map((x) => {
-            if (x.assigned_to == this.props.user.id) {
-              <Route exact path={`tasks/acceptTask/${x.id}`}>
-                <AcceptTask task={x} />
-              </Route>;
-            } else {
-              <Route exact path={`tasks/completeTask/${x.id}`}>
-                <CompleteTask task={x} />
-              </Route>;
-            }
-          })
-        ) : (
-          <div></div>
-        )}
+        {this.props.tasks &&
+          this.props.tasks.map((x) => (
+            <div>
+              {x.assigned_to == this.props.user.id ? (
+                <Route exact path={`tasks/acceptTask/${x.id}`}>
+                  <AcceptTask task={x} />
+                </Route>
+              ) : (
+                <Route exact path={`tasks/completeTask/${x.id}`}>
+                  <CompleteTask task={x} />
+                </Route>
+              )}
+            </div>
+          ))}
         <Route exact path="/tasks">
           <Link to="/tasks/newTask">
             <Button>New Task</Button>
