@@ -1,8 +1,8 @@
 import Axios from "axios";
 import { put, takeEvery } from "redux-saga/effects";
 
-// function to get Posts
-function* fetchPosts(action) {
+// function to get Tasks
+function* fetchTasks(action) {
   // wrap it all in try/catch
   // yield axios
   // dispatch the result with put!
@@ -11,39 +11,39 @@ function* fetchPosts(action) {
     // const result = yield call(axios.get, '/task');
     yield put({ type: "SET_TASKS", payload: response.data });
   } catch (error) {
-    // console.log('Error fetching Posts', error);
-    alert("unable to get Post from server");
+    // console.log('Error fetching Tasks', error);
+    alert("unable to get Task from server");
   }
 }
 
-// function to add Posts
-function* addPost(action) {
+// function to add Tasks
+function* addTask(action) {
   // wrap it all in try/catch
   // yield axios
   // dispatch the result with put!
   try {
     yield Axios.task("/api/tasks", action.payload);
   } catch (error) {
-    // console.log('Error fetching Posts', error);
-    alert("unable to add new Post to server");
+    // console.log('Error fetching Tasks', error);
+    alert("unable to add new Task to server");
   }
 }
 
-// function to delete Posts
-function* deletePost(action) {
+// function to delete Tasks
+function* deleteTask(action) {
   // wrap it all in try/catch
   // yield axios
   // dispatch the result with put!
   try {
     yield Axios.delete(`/api/tasks/${action.payload}`);
   } catch (error) {
-    // console.log('Error fetching Posts', error);
-    alert("unable to delete Post from server");
+    // console.log('Error fetching Tasks', error);
+    alert("unable to delete Task from server");
   }
 }
 
-// function to get current Post
-function* fetchPostDetail(action) {
+// function to get current Task
+function* fetchTaskDetail(action) {
   // wrap it all in try/catch
   // yield axios
   // dispatch the result with put!
@@ -57,8 +57,8 @@ function* fetchPostDetail(action) {
   }
 }
 
-// function to get current Post
-function* fetchCurrentPost(action) {
+// function to get current Task
+function* fetchCurrentTask(action) {
   // wrap it all in try/catch
   // yield axios
   // dispatch the result with put!
@@ -68,19 +68,19 @@ function* fetchCurrentPost(action) {
     yield put({ type: "SET_CURRENT_TASK", payload: response.data });
   } catch (error) {
     // console.log('Error fetching tasks', error);
-    alert("Unable to fetch current Post");
+    alert("Unable to fetch current Task");
   }
 }
-function* updatePost(action) {
+function* updateTask(action) {
   //Update the task
   try {
     yield Axios.put(`/api/tasks/${action.payload.currentId}`, action.payload);
   } catch (error) {
-    alert("Unable to update Post on server", error);
+    alert("Unable to update Task on server", error);
   }
 }
 
-function* fetchPostAuthor(action) {
+function* fetchTaskAuthor(action) {
   try {
     const response = Axios.get(`/api/members/${action.payload}`);
     console.log(response.data);
@@ -91,7 +91,7 @@ function* fetchPostAuthor(action) {
   }
 }
 
-function* addPostLike(action) {
+function* addTaskLike(action) {
   try {
     yield Axios.put("api/likes/tasks", action.payload);
   } catch (error) {
@@ -100,14 +100,14 @@ function* addPostLike(action) {
 }
 
 function* tasksSaga() {
-  yield takeEvery("FETCH_TASKS", fetchPosts);
-  yield takeEvery("FETCH_TASK_DETAIL", fetchPostDetail);
-  yield takeEvery("UPDATE_TASK", updatePost);
-  yield takeEvery("FETCH_CURRENT_TASK", fetchCurrentPost);
-  yield takeEvery("ADD_TASK", addPost);
-  yield takeEvery("DELETE_TASK", deletePost);
-  yield takeEvery("FETCH_TASK_AUTHOR", fetchPostAuthor);
-  yield takeEvery("ADD_TASK_LIKE", addPostLike);
+  yield takeEvery("FETCH_TASKS", fetchTasks);
+  yield takeEvery("FETCH_TASK_DETAIL", fetchTaskDetail);
+  yield takeEvery("UPDATE_TASK", updateTask);
+  yield takeEvery("FETCH_CURRENT_TASK", fetchCurrentTask);
+  yield takeEvery("ADD_TASK", addTask);
+  yield takeEvery("DELETE_TASK", deleteTask);
+  yield takeEvery("FETCH_TASK_AUTHOR", fetchTaskAuthor);
+  yield takeEvery("ADD_TASK_LIKE", addTaskLike);
 }
 
 export default tasksSaga;
