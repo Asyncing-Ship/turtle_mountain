@@ -15,3 +15,10 @@ it("renders correctly", () => {
     </Provider>
   );
 });
+it("renders correctly", () => {
+  mount(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+});
