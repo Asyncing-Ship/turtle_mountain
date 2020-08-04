@@ -11,7 +11,7 @@ import {
   Route,
 } from "react-router-dom";
 // Chakra UI Imports:
-import { ThemeProvider, CSSReset, Button, Heading } from "@chakra-ui/core";
+import { ThemeProvider, CSSReset, Button } from "@chakra-ui/core";
 // Protected Route Import:
 import ProtectedRoute from "../Utilities/ProtectedRoute/ProtectedRoute";
 // Components Imports:
