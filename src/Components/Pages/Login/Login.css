@@ -9,3 +9,9 @@
   background-color: #285e61 !important;
   border-color: #285e61 !important;
 }
+Form p, Form label {
+  color: #f5fffa;
+}
+Form input {
+  color: initial;
+}
