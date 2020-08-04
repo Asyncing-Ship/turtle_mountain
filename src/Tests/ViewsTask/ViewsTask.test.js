@@ -10,13 +10,16 @@ import { Provider } from "react-redux";
 const store = createStore(rootReducer);
 it("renders correctly", () => {
   shallow(
-    <AcceptTask
-      task={{
-        title: "go take a shower",
-        content:
-          "Try not to drop the soap, we don't need any more blood on our floor",
-      }}
-    />
+    <Provider store={store}>
+      <AcceptTask
+        task={{
+          title: "go take a shower",
+          content:
+            "Try not to drop the soap, we don't need any more blood on our floor",
+        }}
+        user={{ id: 1 }}
+      />
+    </Provider>
   );
 });
 it("renders correctly", () => {
