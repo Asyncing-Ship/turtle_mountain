@@ -14,8 +14,8 @@ const {
  */
 router.get("/", (req, res) => {
   console.log("getting tasks");
-  const queryText = `SELECT id, title, content, added_by, date_posted, status FROM tasks
-  JOIN users ON tasks.added_by = users.id
+  const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.content, tasks.added_by FROM users
+  JOIN tasks ON tasks.added_by = users.id
   ORDER BY tasks.id DESC`;
   pool
     .query(queryText)
@@ -39,7 +39,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
   const body = req.body.content;
   const user = req.user.id;
   const queryText = `
-    INSERT INTO tasks (task_title, task_body, asked_id)
+    INSERT INTO tasks (task_title, task_body, added_by)
     VALUES ($1, $2, $3)`;
   pool
     .query(queryText, [title, body, user])

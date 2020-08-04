@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 // Update database name
-const DATABASE_NAME = "turtle_mountain_connect";
+const DATABASE_NAME = "turtle_mountain_connect_development";
 
 // Configure Sequelize instance
 let sequelize = null;

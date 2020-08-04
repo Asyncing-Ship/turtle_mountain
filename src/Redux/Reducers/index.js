@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import user from "./userReducer";
 import loginMode from "./loginModeReducer";
 import errors from "./errorsReducer";
-import tasks from "./taksReducer";
+import tasks from "./tasksReducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
