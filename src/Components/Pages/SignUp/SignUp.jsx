@@ -142,7 +142,6 @@ class SignUp extends Component {
                 </InputGroup>
               </FormLabel>
             </Stack>
-
             <ButtonGroup spacing={4} mt={4}>
               <Button
                 // isLoading={submitting}

@@ -78,7 +78,6 @@ class Login extends Component {
           >
             <Stack spacing={3}>
               <Text fontSize="md">Login with your email and password</Text>
-
               <FormLabel p={0} htmlFor="email">
                 Email:
                 <Input
