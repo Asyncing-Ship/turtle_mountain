@@ -1,12 +1,12 @@
+html {
+  background-color: #f5fffa;
+}
+
 .App {
   text-align: center;
   background-color: #f5fffa !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 nav Button {
   background-color: #2f2e2e !important;
   color: #f5fffa;
@@ -17,22 +17,6 @@ nav :not(.active) Button:hover {
 .active Button {
   background-color: #c79e61 !important;
   color: #f5fffa;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-logo1 {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo1 {
-    animation: App-logo-spin1 infinite 50s linear;
-  }
 }
 
 .App-header {
@@ -46,7 +30,6 @@ nav :not(.active) Button:hover {
 
 .App-page {
   background-color: #f5fffa;
-  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -54,22 +37,4 @@ nav :not(.active) Button:hover {
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes App-logo-spin1 {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
 }
