@@ -76,7 +76,7 @@ export class App extends React.Component {
               <Route exact path="/home" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/tasks" component={TaskPage} />
+              <Route path="/tasks" component={TaskPage} />
               <Route exact path="/questions" component={QuestionPage} />
               <Route exact path="/policies" component={PoliciesPage} />
               {/* <Route render={() => <Heading as="h1">404? Four Oh For!</Heading>} /> */}
