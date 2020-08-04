@@ -62,7 +62,6 @@ export class App extends React.Component {
 
                   onClick={() => {
                     this.props.dispatch({ type: "LOGOUT" });
-                    this.props.history.push("/login");
                   }}
                 >
                   Logout
