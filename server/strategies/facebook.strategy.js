@@ -21,6 +21,8 @@ passport.use(
 
       // _json.email is the same for github too
       const username = profile._json.email;
+      const first_name = profile.name.givenName;
+      const last_name = profile._json.last_name;
       if (!username) {
         // if for some reason the username is empty, null, etc.
         // let passport know that it didnt work
@@ -28,7 +30,12 @@ passport.use(
         done(null, null);
       } else {
         try {
-          const user = await findOrCreateUser(username, "");
+          const user = await findOrCreateUser(
+            username,
+            first_name,
+            last_name,
+            ""
+          );
           // console.log(user);
           done(null, user);
         } catch (error) {

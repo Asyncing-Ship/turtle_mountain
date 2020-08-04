@@ -49,6 +49,7 @@ class Login extends Component {
           password: this.state.password,
         },
       });
+      this.props.history.push("/home");
     } else {
       this.props.dispatch({ type: "LOGIN_INPUT_ERROR" });
     }
@@ -115,6 +116,7 @@ class Login extends Component {
                 loadingText="Submitting"
                 variantColor="teal"
                 type="submit"
+                onClick={this.login}
               >
                 Login
               </Button>
@@ -124,7 +126,7 @@ class Login extends Component {
                 variantColor=""
                 variant="outline"
                 color="#f5fffa"
-                onClick={this.login}
+                onClick={() => this.props.history.push("/signup")}
                 // onClick={form.reset}
                 // isDisabled={submitting || pristine}
               >
