@@ -16,20 +16,23 @@ import {
 import NewTask from "./NewTask";
 import AcceptTask from "./AcceptTask";
 import "./TaskPage.css";
-export class TaskPage extends Component {
+
+class TaskPage extends Component {
   state = {
     selectedTask: 0,
   };
+
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_TASKS" });
   }
+
   render() {
     return (
       <Router>
-        <Accordion>
-          {this.props.tasks.map((x) => (
-            <AccordionItem>
-              <AccordionHeader className="accordionHead">
+        <Accordion className="accordion">
+          {this.props.tasks.map((x, i) => (
+            <AccordionItem key={i}>
+              <AccordionHeader className="accordion-head">
                 {x.title}
               </AccordionHeader>
               <AccordionPanel>

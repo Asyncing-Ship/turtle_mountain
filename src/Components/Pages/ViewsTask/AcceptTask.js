@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Button, useToast } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+
 const AcceptTask = (props) => {
   const toast = useToast();
   return (
@@ -14,7 +15,7 @@ const AcceptTask = (props) => {
             title: "Task accepted.",
             description: "You accepted this task",
             status: "success",
-            duration: 2000,
+            duration: 5000,
             isClosable: true,
           });
           await props.dispatch({
@@ -32,7 +33,9 @@ const AcceptTask = (props) => {
     </div>
   );
 };
+
 const mapStateToProps = (state) => {
   return { user: state.user };
 };
+
 export default withRouter(connect(mapStateToProps)(AcceptTask));

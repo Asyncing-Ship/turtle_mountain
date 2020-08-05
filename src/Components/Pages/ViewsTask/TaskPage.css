@@ -1,11 +1,15 @@
-.accordionHead {
+.accordion {
+  width: 50%;
+}
+.accordion-head {
   background-color: #c79e61;
   color: white;
+  border-radius: 0.25rem;
 }
-.accordionHead:hover {
-  background-color: #c79e61;
-  color: black;
+.accordion-head:hover {
+  background-color: #c79e61 !important;
+  filter: brightness(95%);
 }
-.accordionHead:active {
+.accordion-head:active {
   color: black;
 }
