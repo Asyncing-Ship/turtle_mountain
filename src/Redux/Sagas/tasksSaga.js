@@ -1,6 +1,5 @@
 import Axios from "axios";
 import { put, takeEvery } from "redux-saga/effects";
-
 // function to get Tasks
 function* fetchTasks(action) {
   // wrap it all in try/catch
@@ -11,8 +10,7 @@ function* fetchTasks(action) {
     // const result = yield call(axios.get, '/task');
     yield put({ type: "SET_TASKS", payload: response.data });
   } catch (error) {
-    // console.log('Error fetching Tasks', error);
-    alert("unable to get Task from server");
+    alert("Error fetching Tasks", error);
   }
 }
 
@@ -72,10 +70,14 @@ function* fetchCurrentTask(action) {
     alert("Unable to fetch current Task");
   }
 }
-function* updateTask(action) {
+function* acceptTask(action) {
   //Update the task
   try {
-    yield Axios.put(`/api/tasks/${action.payload.currentId}`, action.payload);
+    yield Axios.put(
+      `/api/tasks/accept/${action.payload.task_id}`,
+      action.payload
+    );
+    yield put({ type: "FETCH_TASKS" });
   } catch (error) {
     alert("Unable to update Task on server", error);
   }
@@ -103,7 +105,7 @@ function* addTaskLike(action) {
 function* tasksSaga() {
   yield takeEvery("FETCH_TASKS", fetchTasks);
   yield takeEvery("FETCH_TASK_DETAIL", fetchTaskDetail);
-  yield takeEvery("UPDATE_TASK", updateTask);
+  yield takeEvery("ACCEPT_TASK", acceptTask);
   yield takeEvery("FETCH_CURRENT_TASK", fetchCurrentTask);
   yield takeEvery("ADD_TASK", addTask);
   yield takeEvery("DELETE_TASK", deleteTask);
