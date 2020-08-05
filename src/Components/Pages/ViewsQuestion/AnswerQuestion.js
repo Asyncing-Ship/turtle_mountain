@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Input } from "@chakra-ui/core";
 
 class AnswerQuestion extends Component {
   render() {
-    return (
-      <>
-        Answer the selected question here:
-      </>
-    )
+    return <Input placeholder="Your answer"></Input>;
   }
 }
 
