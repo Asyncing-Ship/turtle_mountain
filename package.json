@@ -21,6 +21,7 @@
     "emotion-theming": "^10.0.27",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
+    "filestack-js": "^3.16.0",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-local": "^1.0.0",
