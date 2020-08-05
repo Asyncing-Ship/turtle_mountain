@@ -25,7 +25,10 @@ import NewTask from "./NewTask";
 import AcceptTask from "./AcceptTask";
 import "./TaskPage.css";
 
-class TaskPage extends Component {
+// ----- This is the TaskPage component -----
+// This component is tha main page component for tasks that displays the task for the users.
+export class TaskPage extends Component {
+  // Local State:
   state = {
     selectedTask: 0,
   };
@@ -79,4 +82,5 @@ const mapStateToProps = (state) => {
 // ----- End of mapStateToProps function -----
 
 // ----- Default export of TaskPage component with router connection, Redux connection that maps to props.
+
 export default withRouter(connect(mapStateToProps)(TaskPage));
