@@ -16,7 +16,6 @@ const AcceptTask = (props) => {
             description: "You accepted this task",
             status: "success",
             duration: 5000,
-
             isClosable: true,
           });
           await props.dispatch({
