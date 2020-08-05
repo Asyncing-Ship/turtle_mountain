@@ -7,8 +7,8 @@ const config = {
 };
 
 // Model for an Response - assumes table name is plural or 'responses'
-const Task_Response = sequelize.define(
-  "task_response",
+const Question_Response = sequelize.define(
+  "question_response",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -37,20 +37,19 @@ const Task_Response = sequelize.define(
 );
 
 const User = require("./user.model");
-Task_Response.belongsTo(User, {
+Question_Response.belongsTo(User, {
   foreignKey: {
     allowNull: false,
   },
   onDelete: "CASCADE",
 });
 
-const Task = require("./task.model");
-Task_Response.belongsTo(Task, {
+const Question = require("./question.model");
+Question_Response.belongsTo(Question, {
   foreignKey: {
     allowNull: false,
   },
   onDelete: "CASCADE",
 });
 
-
-module.exports = Task_Response;
+module.exports = Question_Response;
