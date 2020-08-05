@@ -25,6 +25,7 @@ import SignUp from "../Pages/SignUp/SignUp.jsx";
 // CSS Import:
 import "./App.css";
 import NewTask from "../Pages/ViewsTask/NewTask";
+import NewQuestion from "../Pages/ViewsQuestion/NewQuestion";
 // ----- End of imports -----
 
 export class App extends React.Component {
@@ -33,7 +34,6 @@ export class App extends React.Component {
   UNSAFE_componentWillMount() {
     this.props.dispatch({ type: "FETCH_USER" });
   }
-
   render() {
     return (
       <ThemeProvider>
@@ -107,6 +107,11 @@ export class App extends React.Component {
                 exact
                 path="/questions"
                 component={QuestionPage}
+              />
+              <ProtectedRoute
+                exact
+                path="/questions/newquestion"
+                component={NewQuestion}
               />
               <ProtectedRoute path="/tasks/newTask">
                 <NewTask />
