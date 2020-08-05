@@ -24,6 +24,7 @@ import Login from "../Pages/Login/Login.jsx";
 import SignUp from "../Pages/SignUp/SignUp.jsx";
 // CSS Import:
 import "./App.css";
+import NewTask from "../Pages/ViewsTask/NewTask";
 // ----- End of imports -----
 
 export class App extends React.Component {
@@ -101,12 +102,15 @@ export class App extends React.Component {
               <ProtectedRoute exact path="/home" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
-              <ProtectedRoute path="/tasks" component={TaskPage} />
+              <ProtectedRoute exact path="/tasks" component={TaskPage} />
               <ProtectedRoute
                 exact
                 path="/questions"
                 component={QuestionPage}
               />
+              <ProtectedRoute path="/tasks/newTask">
+                <NewTask />
+              </ProtectedRoute>
               <ProtectedRoute exact path="/policies" component={PoliciesPage} />
               {/* <Route render={() => <Heading as="h1">404? Four Oh For!</Heading>} /> */}
             </div>

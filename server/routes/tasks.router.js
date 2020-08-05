@@ -33,13 +33,13 @@ router.get("/", (req, res) => {
  */
 router.post("/", rejectUnauthenticated, (req, res) => {
   console.log("Adding task to the database");
-  console.log(req);
+  console.log(req.body);
 
   const title = req.body.title;
   const body = req.body.content;
   const user = req.user.id;
   const queryText = `
-    INSERT INTO tasks (task_title, task_body, added_by)
+    INSERT INTO tasks (title, content, added_by)
     VALUES ($1, $2, $3)`;
   pool
     .query(queryText, [title, body, user])
