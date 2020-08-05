@@ -6,10 +6,9 @@ class AcceptTask extends Component {
   render() {
     return (
       <div>
-        <h2>{this.props.task.title}</h2>
         <h3>{this.props.task.content}</h3>
         <Button
-          className="active"
+          className="new_class_goes_here"
           onClick={async () => {
             await this.props.dispatch({
               type: "UPDATE_TASK",
