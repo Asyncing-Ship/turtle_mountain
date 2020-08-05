@@ -8,6 +8,7 @@ class AnswerQuestion extends Component {
       [value]: event.target.value,
     });
   };
+
   render() {
     return (
       <Input
