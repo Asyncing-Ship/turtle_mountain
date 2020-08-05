@@ -25,9 +25,6 @@ export class TaskPage extends Component {
   render() {
     return (
       <Router>
-        <Route path="/tasks/newTask">
-          <NewTask />
-        </Route>
         <Accordion>
           {this.props.tasks.map((x) => (
             <AccordionItem>

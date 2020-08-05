@@ -22,7 +22,7 @@ function* addTask(action) {
   // yield axios
   // dispatch the result with put!
   try {
-    yield Axios.task("/api/tasks", action.payload);
+    yield Axios.post("/api/task", action.payload);
     yield put({ type: "FETCH_TASKS" });
   } catch (error) {
     // console.log('Error fetching Tasks', error);
