@@ -7,7 +7,7 @@ function* fetchTasks(action) {
   // yield axios
   // dispatch the result with put!
   try {
-    const response = yield Axios.get("/api/tasks");
+    const response = yield Axios.get("/api/task");
     // const result = yield call(axios.get, '/task');
     yield put({ type: "SET_TASKS", payload: response.data });
   } catch (error) {
@@ -23,6 +23,7 @@ function* addTask(action) {
   // dispatch the result with put!
   try {
     yield Axios.task("/api/tasks", action.payload);
+    yield put({ type: "FETCH_TASKS" });
   } catch (error) {
     // console.log('Error fetching Tasks', error);
     alert("unable to add new Task to server");

@@ -120,6 +120,7 @@ export class App extends React.Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    tasks: state.tasks.tasks,
   };
 };
 export default connect(mapStateToProps)(App);
