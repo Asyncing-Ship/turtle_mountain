@@ -73,10 +73,7 @@ function* fetchCurrentTask(action) {
 function* acceptTask(action) {
   //Update the task
   try {
-    yield Axios.put(
-      `/api/tasks/accept/${action.payload.task_id}`,
-      action.payload
-    );
+    yield Axios.put(`/api/task/accept/${action.payload.task_id}`);
     yield put({ type: "FETCH_TASKS" });
   } catch (error) {
     alert("Unable to update Task on server", error);

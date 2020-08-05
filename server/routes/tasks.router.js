@@ -14,7 +14,7 @@ const {
  */
 router.get("/", (req, res) => {
   console.log("getting tasks");
-  const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.content, tasks.added_by FROM users
+  const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content, tasks.added_by FROM users
   JOIN tasks ON tasks.added_by = users.id
   ORDER BY tasks.id DESC`;
   pool
@@ -67,15 +67,14 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 /**
  * Update an tasks if it's something the logged in user added
  */
-router.put("/:id", rejectUnauthenticated, (req, res) => {
-  let task_title = req.body.task_title;
-  let task_body = req.body.task_body;
+router.put("/accept/:id", rejectUnauthenticated, (req, res) => {
+  let assigned_to = req.user.id;
   let id = req.params.id;
-  let user_id = req.user.id;
   const queryText = `
-    UPDATE tasks SET task_title = $1, task_body = $2 WHERE id = $3 AND user_id = $4`;
+    UPDATE tasks SET status='In Progress', assigned_to = $1 
+    WHERE id = $2`;
   pool
-    .query(queryText, [task_title, task_body, id, user_id])
+    .query(queryText, [assigned_to, id])
     .then(() => res.sendStatus(204))
     .catch((error) => console.log(error));
 });

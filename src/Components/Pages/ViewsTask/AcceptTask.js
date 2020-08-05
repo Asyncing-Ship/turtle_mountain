@@ -14,14 +14,13 @@ const AcceptTask = (props) => {
             title: "Task accepted.",
             description: "You accepted this task",
             status: "success",
-            duration: 9000,
+            duration: 2000,
             isClosable: true,
           });
           await props.dispatch({
             type: "ACCEPT_TASK",
             payload: {
               task_id: props.task.id,
-              assigned_to: props.user.id,
             },
           });
           await props.history.push("/tasks");
@@ -29,6 +28,7 @@ const AcceptTask = (props) => {
       >
         Accept Task
       </Button>
+      <h4>{props.task.status}</h4>
     </div>
   );
 };
