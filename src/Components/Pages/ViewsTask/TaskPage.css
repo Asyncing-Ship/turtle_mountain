@@ -1,0 +1,11 @@
+.accordionHead {
+  background-color: #c79e61;
+  color: white;
+}
+.accordionHead:hover {
+  background-color: #c79e61;
+  color: black;
+}
+.accordionHead:active {
+  color: black;
+}

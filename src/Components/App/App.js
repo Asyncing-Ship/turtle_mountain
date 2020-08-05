@@ -30,7 +30,7 @@ import NewTask from "../Pages/ViewsTask/NewTask";
 export class App extends React.Component {
   state = { error: null };
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.dispatch({ type: "FETCH_USER" });
   }
 

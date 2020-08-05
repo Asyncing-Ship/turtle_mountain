@@ -15,6 +15,7 @@ import {
 } from "react-router-dom";
 import NewTask from "./NewTask";
 import AcceptTask from "./AcceptTask";
+import "./TaskPage.css";
 export class TaskPage extends Component {
   state = {
     selectedTask: 0,
@@ -28,7 +29,9 @@ export class TaskPage extends Component {
         <Accordion>
           {this.props.tasks.map((x) => (
             <AccordionItem>
-              <AccordionHeader>{x.title}</AccordionHeader>
+              <AccordionHeader className="accordionHead">
+                {x.title}
+              </AccordionHeader>
               <AccordionPanel>
                 <AcceptTask task={x} />
               </AccordionPanel>
