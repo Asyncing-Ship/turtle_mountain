@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { Button } from "@chakra-ui/core";
 import { connect } from "react-redux";
-
+import { withRouter } from "react-router";
 class AcceptTask extends Component {
   render() {
     return (
-      <>
-        <h3>{this.props.task.added_by}</h3>
-        <h2>{this.props.task.title}</h2>
+      <div>
         <h3>{this.props.task.content}</h3>
         <Button
+          className="new_class_goes_here"
           onClick={async () => {
             await this.props.dispatch({
               type: "UPDATE_TASK",
@@ -23,11 +22,11 @@ class AcceptTask extends Component {
         >
           Accept Task
         </Button>
-      </>
+      </div>
     );
   }
 }
 const mapStateToProps = (state) => {
-  return { user: this.state.user };
+  return { user: state.user };
 };
-export default connect(mapStateToProps)(AcceptTask);
+export default withRouter(connect(mapStateToProps)(AcceptTask));
