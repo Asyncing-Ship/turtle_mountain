@@ -12,6 +12,8 @@ import {
 } from "react-router-dom";
 // Chakra UI Imports:
 import { ThemeProvider, CSSReset, Button } from "@chakra-ui/core";
+// Custom Chakra theme import:
+import customTheme from "../../style/theme";
 // Protected Route Import:
 import ProtectedRoute from "../Utilities/ProtectedRoute/ProtectedRoute";
 // Components Imports:
@@ -36,7 +38,7 @@ export class App extends React.Component {
   }
   render() {
     return (
-      <ThemeProvider>
+      <ThemeProvider theme={customTheme}>
         <CSSReset />
         <Router>
           <div className="App">
