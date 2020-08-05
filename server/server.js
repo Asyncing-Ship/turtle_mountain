@@ -3,10 +3,13 @@ require("dotenv").config();
 const bodyParser = require("body-parser");
 
 const sessionMiddleware = require("./modules/session-middleware");
+
 // model imports
 const User = require("./models/user.model");
 const Question = require("./models/question.model");
 const Task = require("./models/task.model");
+const Question_Response = require("./models/question.response.model");
+const Task_Response = require("./models/task.response.model");
 
 const app = express();
 const passport = require("./strategies/user.strategy");
@@ -15,6 +18,8 @@ require("./strategies/facebook.strategy");
 // router imports
 const questionRouter = require("./routes/question.router");
 const taskRouter = require("./routes/tasks.router");
+const taskResponseRouter = require("./routes/task.response.router");
+const questionResponseRouter = require("./routes/question.response.router");
 const userRouter = require("./routes/user.router");
 const oauthRouter = require("./routes/oauth.router");
 
@@ -33,6 +38,8 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", oauthRouter);
 app.use("/api/question", questionRouter);
 app.use("/api/task", taskRouter);
+app.use("/api/question_response", questionResponseRouter);
+app.use("/api/task_response", taskResponseRouter);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
