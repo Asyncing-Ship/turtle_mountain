@@ -23,7 +23,11 @@ it("renders correctly", () => {
   );
 });
 it("renders correctly", () => {
-  shallow(<CompleteTask />);
+  shallow(
+    <Provider store={store}>
+      <CompleteTask task={{ title: "" }} />
+    </Provider>
+  );
 });
 it("renders correctly", () => {
   shallow(<NewTask />);

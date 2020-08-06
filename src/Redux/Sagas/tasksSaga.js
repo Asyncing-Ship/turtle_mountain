@@ -70,6 +70,16 @@ function* fetchCurrentTask(action) {
     alert("Unable to fetch current Task");
   }
 }
+
+function* completeTask(action) {
+  //Update the task
+  try {
+    yield Axios.put(`/api/task/complete/${action.payload.task_id}`);
+    yield put({ type: "FETCH_TASKS" });
+  } catch (error) {
+    alert("Unable to update Task on server", error);
+  }
+}
 function* acceptTask(action) {
   //Update the task
   try {
@@ -108,6 +118,7 @@ function* tasksSaga() {
   yield takeEvery("DELETE_TASK", deleteTask);
   yield takeEvery("FETCH_TASK_AUTHOR", fetchTaskAuthor);
   yield takeEvery("ADD_TASK_LIKE", addTaskLike);
+  yield takeEvery("COMPLETE_TASK", completeTask);
 }
 
 export default tasksSaga;
