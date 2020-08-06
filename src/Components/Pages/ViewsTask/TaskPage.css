@@ -13,3 +13,10 @@
 .accordion-head:active {
   color: black;
 }
+.apanel {
+  background-color: #2f2e2e !important ;
+}
+.apanel input {
+  background-color: black !important ;
+  color: white;
+}

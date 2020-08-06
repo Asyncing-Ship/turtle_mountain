@@ -8,13 +8,22 @@ const {
 } = require("../modules/authentication-middleware");
 
 // JOIN task_comments ON task_comments.task_id = tasks.id
-
+router.put("/complete/:id", rejectUnauthenticated, (req, res) => {
+  let id = req.params.id;
+  const queryText = `
+    UPDATE tasks SET status='Complete', assigned_to = null 
+    WHERE id = $1`;
+  pool
+    .query(queryText, [id])
+    .then(() => res.sendStatus(204))
+    .catch((error) => console.log(error));
+});
 /**
  * Get all of the tasks on the table
  */
 router.get("/", (req, res) => {
   console.log("getting tasks");
-  const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content, tasks.added_by FROM users
+  const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content,tasks.assigned_to, tasks.added_by FROM users
   JOIN tasks ON tasks.added_by = users.id
   ORDER BY tasks.id DESC`;
   pool
