@@ -339,6 +339,8 @@ Pink 900
 
 // Chakra-ui Default Theme Import:
 import { theme } from "@chakra-ui/core";
+// Font CSS Import:
+import "../Components/App/App.css"
 
 // ----- This is the custom theme for Turtle Mountain Connect -----
 const customTheme = {
@@ -387,6 +389,7 @@ const customTheme = {
     },
   },
   /*
+    ----- Typography -----
     To manage Typography options, the theme object supports the following keys:
       fonts (font families)
       fontSizes
@@ -394,75 +397,22 @@ const customTheme = {
       lineHeights
       letterSpacings
     */
-  // fonts: {
-  //   body: "system-ui, sans-serif",
-  //   heading: "Georgia, serif",
-  //   mono: "Menlo, monospace",
-  // },
-  // fontSizes: {
-  //   xs: "12px",
-  //   sm: "14px",
-  //   md: "16px",
-  //   lg: "18px",
-  //   xl: "20px",
-  //   "2xl": "24px",
-  //   "3xl": "28px",
-  //   "4xl": "36px",
-  //   "5xl": "48px",
-  //   "6xl": "64px",
-  // },
-  // fontWeights: {
-  //   normal: 400,
-  //   medium: 500,
-  //   bold: 700,
-  // },
-  // lineHeights: {
-  //   normal: "normal",
-  //   none: "1",
-  //   shorter: "1.25",
-  //   short: "1.375",
-  //   base: "1.5",
-  //   tall: "1.625",
-  //   taller: "2",
-  // },
-  // letterSpacings: {
-  //   tighter: "-0.05em",
-  //   tight: "-0.025em",
-  //   normal: "0",
-  //   wide: "0.025em",
-  //   wider: "0.05em",
-  //   widest: "0.1em",
-  // },
+  fonts: {
+    ...theme.fonts,
+    tmarBody: "Montserrat', sans-serif",
+    tmarHeading: "Merriweather', serif",
+    tmarMono: "Menlo, monospace",
+  },
   /*
+    ----- Breakpoints -----
     To configure the default breakpoints used in responsive array values, add a breakpoints array to your theme.
     These values will be used to generate mobile-first (i.e. min-width) media queries, which can then be used to apply responsive styles.
     */
-  // breakpoints: ["30em", "48em", "62em", "80em"],
   /*
+     ----- Spacing -----
     The space key allows you to customize the global spacing and sizing scale for your project.
     By default these spacing value can be referenced by the padding, margin, and top, left, right, bottom styles.
     */
-  // space: {
-  //   px: "1px",
-  //   "0": "0",
-  //   "1": "0.25rem",
-  //   "2": "0.5rem",
-  //   "3": "0.75rem",
-  //   "4": "1rem",
-  //   "5": "1.25rem",
-  //   "6": "1.5rem",
-  //   "8": "2rem",
-  //   "10": "2.5rem",
-  //   "12": "3rem",
-  //   "16": "4rem",
-  //   "20": "5rem",
-  //   "24": "6rem",
-  //   "32": "8rem",
-  //   "40": "10rem",
-  //   "48": "12rem",
-  //   "56": "14rem",
-  //   "64": "16rem",
-  // },
   /*
     ----- Sizes -----
     The sizes key allows you to customize the global sizing of components you build for your project.

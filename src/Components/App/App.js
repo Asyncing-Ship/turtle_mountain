@@ -17,17 +17,16 @@ import customTheme from "../../style/theme";
 // Protected Route Import:
 import ProtectedRoute from "../Utilities/ProtectedRoute/ProtectedRoute";
 // Components Imports:
-import Home from "../Pages/Home/Home"; // home component
-// import Admin from '../Pages/Admin/Admin';
+import Home from "../Pages/Home/Home";
 import TaskPage from "../Pages/ViewsTask/TaskPage";
 import QuestionPage from "../Pages/ViewsQuestion/QuestionPage";
 import PoliciesPage from "../Pages/Policies/PoliciesPage";
 import Login from "../Pages/Login/Login.jsx";
 import SignUp from "../Pages/SignUp/SignUp.jsx";
-// CSS Import:
-import "./App.css";
 import NewTask from "../Pages/ViewsTask/NewTask";
 import NewQuestion from "../Pages/ViewsQuestion/NewQuestion";
+// CSS Import:
+import "./App.css";
 // ----- End of imports -----
 
 export class App extends React.Component {
@@ -42,6 +41,7 @@ export class App extends React.Component {
         <CSSReset />
         <Router>
           <div className="App">
+            {/* Start of Navbar this can move into a nav component! */}
             <header className="App-header">
               <nav>
                 {!this.props.user.id ? (
@@ -84,6 +84,8 @@ export class App extends React.Component {
                 )}
               </nav>
             </header>
+            {/* End of Navbar */}
+            {/* Start of pages content area */}
             <div className="App-page">
               {!this.props.user.id ? (
                 <Redirect exact from="/" to="/login" />
@@ -121,6 +123,7 @@ export class App extends React.Component {
               <ProtectedRoute exact path="/policies" component={PoliciesPage} />
               {/* <Route render={() => <Heading as="h1">404? Four Oh For!</Heading>} /> */}
             </div>
+            {/* End of pages content area */}
           </div>
         </Router>
       </ThemeProvider>
