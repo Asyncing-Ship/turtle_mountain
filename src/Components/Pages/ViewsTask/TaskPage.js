@@ -139,8 +139,8 @@ export class TaskPage extends Component {
                 (x) =>
                   x.title.includes(this.state.searchString) ||
                   x.content.includes(this.state.searchString) ||
-                  x.added_by.includes(this.state.searchString) ||
-                  x.assigned_to.includes(this.state.searchString)
+                  x.first_name.includes(this.state.searchString) ||
+                  x.last_name.includes(this.state.searchString)
               )
               .map((x) => (
                 <AccordionItem defaultIsOpen="False">
