@@ -44,6 +44,7 @@ export class TaskPage extends Component {
   render() {
     return (
       <Router>
+        {/* 2 Buttons to filter task by status and assignment. the first 2 buttons will clear the search strings */}
         <Button
           m={3}
           onClick={() => this.setState({ selectedTask: 1, searchString: "" })}
@@ -56,6 +57,7 @@ export class TaskPage extends Component {
         >
           My Tasks
         </Button>
+        {/* The input will be used to filter the tasks by matching results. it should do this without a button */}
         <Input
           m={3}
           value={this.state.searchString}
@@ -63,6 +65,9 @@ export class TaskPage extends Component {
             this.setState({ selectedTask: 3, searchString: event.target.value })
           }
         />
+        {/* the first button will give us this result,
+         after filtering by open tasks, we map each task to an accordion item with the title being the task title. 
+         then feed each task into its own acceptTask component*/}
         {this.state.selectedTask === 1 && (
           <Accordion allowMultiple>
             {this.props.tasks
@@ -89,6 +94,10 @@ export class TaskPage extends Component {
               ))}
           </Accordion>
         )}
+        {/* the second button will give us this result,
+         after filtering by tasks, assigned to the current user,
+          we map each task to an accordion item with the title being the task title. 
+         then feed each task into its own completeTask component*/}
         {this.state.selectedTask === 2 && (
           <Accordion allowMultiple>
             {this.props.tasks
@@ -118,6 +127,11 @@ export class TaskPage extends Component {
               ))}
           </Accordion>
         )}
+        {/* the input will give us this result,
+         after filtering search string, we map 
+         each task to an accordion item with the
+          title being the task title. and the body being the content, 
+          followed by the status of the task*/}
         {this.state.selectedTask === 3 && (
           <Accordion allowMultiple>
             {this.props.tasks
@@ -150,6 +164,7 @@ export class TaskPage extends Component {
               ))}
           </Accordion>
         )}
+        {/* a button that links to the new tasks page */}
         <Link to="/tasks/newTask">
           <Button>New Task</Button>
         </Link>
