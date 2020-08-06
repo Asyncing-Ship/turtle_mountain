@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import Upload from './Upload';
+import { connect } from 'react-redux';
 
 class PoliciesPage extends Component {
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_POLICIES' });
+  }
+
   render() {
     return (
       <>
@@ -12,4 +17,10 @@ class PoliciesPage extends Component {
   }
 }
 
-export default PoliciesPage;
+const mapStateToProps = state => {
+  return {
+    policies: state.policies,
+  }
+}
+
+export default connect(mapStateToProps)(PoliciesPage);
