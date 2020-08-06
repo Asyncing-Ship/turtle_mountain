@@ -47,7 +47,7 @@ export class Navbar extends React.Component {
         padding="1rem"
         bg="tmarBlack.800"
         color="white"
-        direction="row"
+        // direction="row"
       >
         <Flex align="center" mr={5}>
           <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
@@ -70,10 +70,13 @@ export class Navbar extends React.Component {
           </svg>
         </Button>
         <Box
-          display={{ sm: this.state.show ? "block" : "none", md: "block" }}
-          mt={{ base: 4, md: 0 }}
+          justifyContent="flex-end"
+          display={{ sm: this.state.show ? "block" : "none", md: "flex" }}
+          width={{ sm: "full", md: "auto" }}
+          alignItems="center"
+          flexGrow={1}
         >
-          <Flex direction="row">
+          <Flex direction={this.state.show ? "column" : "row"}>
             {!this.props.user.id ? (
               <>
                 <MenuItems>
