@@ -38,7 +38,7 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
     "sequelize": "^6.3.3",
-    "sequelize-auto-migrations": "^1.0.3"
+    "sequelize-auto-migrations": "github:scimonster/sequelize-auto-migrations#a063aa6535a3f580623581bf866cef2d609531ba"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -52,7 +52,8 @@
     "db:rollback": "node_modules/.bin/sequelize db:migrate:undo",
     "db:rollback:all": "node_modules/.bin/sequelize db:migrate:undo:all",
     "db:drop": "node_modules/.bin/sequelize db:drop",
-    "db:reset": "yarn run db:drop && yarn run db:create && yarn run db:migrate"
+    "db:reset": "yarn run db:drop && yarn run db:create && yarn run db:migrate",
+    "db:makemigrations": "./node_modules/sequelize-auto-migrations/bin/makemigration.js"
   },
   "devDependencies": {
     "enzyme": "^3.11.0",
