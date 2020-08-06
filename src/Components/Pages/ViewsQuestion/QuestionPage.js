@@ -58,7 +58,7 @@ class QuestionPage extends Component {
         {this.state.filter === 1 && (
           <Accordion>
             {this.props.questions.map((x) => (
-              <AccordionItem>
+              <AccordionItem defaultIsOpen="False">
                 <AccordionHeader className="accordionHead">
                   {x.title}
                 </AccordionHeader>
@@ -75,7 +75,7 @@ class QuestionPage extends Component {
             {this.props.questions
               .filter((x) => !x.is_answered)
               .map((x) => (
-                <AccordionItem>
+                <AccordionItem defaultIsOpen="False">
                   <AccordionHeader className="accordionHead">
                     {x.title}
                   </AccordionHeader>
@@ -96,7 +96,7 @@ class QuestionPage extends Component {
                   x.title.includes(this.state.searchText)
               )
               .map((x) => (
-                <AccordionItem>
+                <AccordionItem defaultIsOpen="False">
                   <AccordionHeader className="accordionHead">
                     {x.title}
                   </AccordionHeader>
