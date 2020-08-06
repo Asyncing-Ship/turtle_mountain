@@ -45,7 +45,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const questionTitle = req.body.title;
   const questionContent = req.body.content;
-  const userId = req.body.user_id;
+  const userId = req.body.user.id;
 
   console.log(`POST request add question`, req.body);
 
