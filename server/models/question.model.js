@@ -39,10 +39,6 @@ const Question = sequelize.define(
       allowNull: false,
       defaultValue: Sequelize.fn("now"),
     },
-    asked_by: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
   },
   config
 );

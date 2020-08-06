@@ -31,11 +31,7 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
       },
-      asked_by: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER,
         references: {
           model: "users",
