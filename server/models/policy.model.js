@@ -15,7 +15,11 @@ const Policy = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    path: {
+    filename: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    handle: {
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -27,13 +31,5 @@ const Policy = sequelize.define(
   },
   config
 );
-
-const User = require("./user.model");
-Policy.belongsTo(User, {
-  foreignKey: {
-    allowNull: false,
-  },
-  onDelete: "CASCADE",
-});
 
 module.exports = Policy;
