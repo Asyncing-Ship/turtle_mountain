@@ -33,6 +33,7 @@ export class TaskPage extends Component {
   // Local State:
   state = {
     selectedTask: 1,
+    searchString: "",
   };
 
   componentDidMount() {
@@ -43,15 +44,25 @@ export class TaskPage extends Component {
   render() {
     return (
       <Router>
-        <Button m={3} onClick={() => this.setState({ selectedTask: 1 })}>
+        <Button
+          m={3}
+          onClick={() => this.setState({ selectedTask: 1, searchString: "" })}
+        >
           Open Tasks
         </Button>
-        <Button m={3} onClick={() => this.setState({ selectedTask: 2 })}>
+        <Button
+          m={3}
+          onClick={() => this.setState({ selectedTask: 2, searchString: "" })}
+        >
           My Tasks
         </Button>
-        <Button m={3} onClick={() => this.setState({ selectedTask: 3 })}>
-          Search
-        </Button>
+        <Input
+          m={3}
+          value={this.state.searchString}
+          onChange={(event) =>
+            this.setState({ selectedTask: 3, searchString: event.target.value })
+          }
+        />
         {this.state.selectedTask === 1 && (
           <Accordion allowMultiple>
             {this.props.tasks
@@ -109,26 +120,34 @@ export class TaskPage extends Component {
         )}
         {this.state.selectedTask === 3 && (
           <Accordion allowMultiple>
-            {this.props.tasks.map((x) => (
-              <AccordionItem defaultIsOpen="False">
-                {({ isExpanded }) => (
-                  <>
-                    <AccordionHeader
-                      _expanded={{ bg: "#c79e61", color: "white" }}
-                      _hover={{ bg: "#c79e61", color: "white" }}
-                    >
-                      <Box flex="1" textAlign="left">
-                        {x.title}
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionHeader>
-                    <AccordionPanel pb={4}>
-                      <AcceptTask task={x} />
-                    </AccordionPanel>
-                  </>
-                )}
-              </AccordionItem>
-            ))}
+            {this.props.tasks
+              .filter(
+                (x) =>
+                  x.title.includes(this.state.searchString) ||
+                  x.content.includes(this.state.searchString) ||
+                  x.added_by.includes(this.state.searchString) ||
+                  x.assigned_to.includes(this.state.searchString)
+              )
+              .map((x) => (
+                <AccordionItem defaultIsOpen="False">
+                  {({ isExpanded }) => (
+                    <>
+                      <AccordionHeader
+                        _expanded={{ bg: "#c79e61", color: "white" }}
+                        _hover={{ bg: "#c79e61", color: "white" }}
+                      >
+                        <Box flex="1" textAlign="left">
+                          {x.title}
+                        </Box>
+                        <AccordionIcon />
+                      </AccordionHeader>
+                      <AccordionPanel pb={4}>
+                        <AcceptTask task={x} />
+                      </AccordionPanel>
+                    </>
+                  )}
+                </AccordionItem>
+              ))}
           </Accordion>
         )}
         <Link to="/tasks/newTask">
