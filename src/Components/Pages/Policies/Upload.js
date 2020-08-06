@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import * as filestack from "filestack-js";
 
-const client = filestack.init(`${REACT_APP_FILESTACK_KEY}`);
+const client = filestack.init(`${process.env.REACT_APP_FILESTACK_KEY}`);
 
 const Upload = (props) => {
   const toast = useToast();
