@@ -6,22 +6,22 @@ module.exports = {
       {
         title: "This is an example",
         content: "of a question",
-        added_by: 1,
+        asked_by: 1,
       },
       {
         title: "This is another example",
         content: "of a question",
-        added_by: 1,
+        asked_by: 1,
       },
       {
         title: "And another example",
         content: "of a question",
-        added_by: 1,
+        asked_by: 1,
       },
       {
         title: "Last example",
         content: "of a question",
-        added_by: 1,
+        asked_by: 1,
       },
     ]);
   },
