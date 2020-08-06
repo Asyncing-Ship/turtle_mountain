@@ -83,6 +83,9 @@ export class TaskPage extends Component {
                         <Box flex="1" textAlign="left">
                           {x.title}
                         </Box>
+                        <Box flex="1" textAlign="left">
+                          {`(${x.status})`}
+                        </Box>
                         <AccordionIcon />
                       </AccordionHeader>
                       <AccordionPanel pb={4}>
@@ -115,6 +118,9 @@ export class TaskPage extends Component {
                       >
                         <Box flex="1" textAlign="left">
                           {x.title}
+                        </Box>
+                        <Box flex="1" textAlign="left">
+                          {`(${x.status})`}
                         </Box>
                         <AccordionIcon />
                       </AccordionHeader>
@@ -153,10 +159,13 @@ export class TaskPage extends Component {
                         <Box flex="1" textAlign="left">
                           {x.title}
                         </Box>
+                        <Box flex="1" textAlign="left">
+                          {`(${x.status})`}
+                        </Box>
                         <AccordionIcon />
                       </AccordionHeader>
                       <AccordionPanel pb={4}>
-                        <AcceptTask task={x} />
+                        {(x.content, x.status)}
                       </AccordionPanel>
                     </>
                   )}
