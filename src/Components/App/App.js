@@ -6,12 +6,11 @@ import { connect } from "react-redux";
 // React Router DOM Imports:
 import {
   HashRouter as Router,
-  NavLink,
   Redirect,
   Route,
 } from "react-router-dom";
 // Chakra UI Imports:
-import { ThemeProvider, CSSReset, Button } from "@chakra-ui/core";
+import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 // Custom Chakra theme import:
 import customTheme from "../../style/theme";
 // Protected Route Import:
@@ -25,6 +24,8 @@ import Login from "../Pages/Login/Login.jsx";
 import SignUp from "../Pages/SignUp/SignUp.jsx";
 import NewTask from "../Pages/ViewsTask/NewTask";
 import NewQuestion from "../Pages/ViewsQuestion/NewQuestion";
+
+import Navbar from "../Layout/Navbar/Navbar"
 // CSS Import:
 import "./App.css";
 // ----- End of imports -----
@@ -41,51 +42,7 @@ export class App extends React.Component {
         <CSSReset />
         <Router>
           <div className="App">
-            {/* Start of Navbar this can move into a nav component! */}
-            <header className="App-header">
-              <nav>
-                {!this.props.user.id ? (
-                  <>
-                    <NavLink to="/login">
-                      <Button m={2}>Login</Button>
-                    </NavLink>
-                    <NavLink to="/signup">
-                      <Button m={2}>Signup</Button>
-                    </NavLink>
-                  </>
-                ) : (
-                  <>
-                    <NavLink to="/home">
-                      <Button m={2}>Home</Button>
-                    </NavLink>
-                    <NavLink to="/tasks">
-                      <Button m={2}>Tasks</Button>
-                    </NavLink>
-                    <NavLink to="/questions">
-                      <Button m={2}>Questions</Button>
-                    </NavLink>
-                    <NavLink to="/policies">
-                      <Button m={2}>Policies</Button>
-                    </NavLink>
-                    <NavLink to="/login">
-                      <Button
-                        m={2}
-                        // This button shows up in multiple locations and is styled differently
-                        // because it's styled differently depending on where it is used, the className
-                        // is passed to it from it's parents through React props
-                        onClick={() => {
-                          this.props.dispatch({ type: "LOGOUT" });
-                        }}
-                      >
-                        Logout
-                      </Button>
-                    </NavLink>
-                  </>
-                )}
-              </nav>
-            </header>
-            {/* End of Navbar */}
-            {/* Start of pages content area */}
+            <Navbar/>
             <div className="App-page">
               {!this.props.user.id ? (
                 <Redirect exact from="/" to="/login" />
