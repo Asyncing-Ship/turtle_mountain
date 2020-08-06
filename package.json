@@ -53,7 +53,7 @@
     "db:rollback:all": "node_modules/.bin/sequelize db:migrate:undo:all",
     "db:drop": "node_modules/.bin/sequelize db:drop",
     "db:reset": "yarn run db:drop && yarn run db:create && yarn run db:migrate",
-    "db:makemigrations": "./node_modules/sequelize-auto-migrations/bin/makemigration.js"
+    "db:seed": "node_modules/.bin/sequelize db:seed:all"
   },
   "devDependencies": {
     "enzyme": "^3.11.0",

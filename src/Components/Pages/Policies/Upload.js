@@ -1,36 +1,36 @@
 import React from "react";
 import { Button, useToast } from "@chakra-ui/core";
 import { connect } from "react-redux";
-import * as filestack from 'filestack-js';
+import { withRouter } from "react-router";
+import * as filestack from "filestack-js";
 
-const client = filestack.init(`${process.env.REACT_APP_FILESTACK_KEY}`);
+const client = filestack.init(`${REACT_APP_FILESTACK_KEY}`);
 
 const Upload = (props) => {
   const toast = useToast();
 
-  const saveUserData = data => {
+  const saveUserData = (data) => {
     return new Promise((resolve) => {
       console.log(data);
       resolve({
-        success: true
-      })
+        success: true,
+      });
     });
   };
 
-  const uploadFiles = async data => {
+  const uploadFiles = async (data) => {
     await this.props.dispatch({
-      type: 'UPLOAD_FILE',
-      payload: { filename: data.filename, handle: data.handle }
+      type: "UPLOAD_FILE",
+      payload: { filename: data.filename, handle: data.handle },
     });
-    
-  }
+  };
 
   const options = {
     fromSources: ["local_file_system", "googledrive", "facebook"],
-    onFileUploadFinished: res => {  
+    onFileUploadFinished: (res) => {
       saveUserData({
         filename: res.filename,
-        fileHandle: res.handle
+        fileHandle: res.handle,
       }).then((res) => {
         toast({
           title: "Uploaded!",
@@ -40,7 +40,7 @@ const Upload = (props) => {
           isClosable: true,
           position: "bottom-right",
         });
-      })
+      });
     },
     onUploadDone: () => {
       toast({
@@ -59,11 +59,14 @@ const Upload = (props) => {
 
   return (
     <>
-      <Button onClick={async () => {
-        await client
-          .picker(options)
-          .open()
-      }}>Upload Policy</Button>
+      This is the policy page!
+      <Button
+        onClick={async () => {
+          await client.picker().open();
+        }}
+      >
+        Upload Policy
+      </Button>
     </>
   );
 };
