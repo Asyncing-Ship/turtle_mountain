@@ -22,14 +22,18 @@ class QuestionPage extends Component {
     return (
       <div>
         <Button
+          m={3}
           onClick={() => {
             this.setState({
               filter: 1,
               searchText: "",
             });
           }}
-        ></Button>
+        >
+          Most Recent
+        </Button>
         <Button
+          m={3}
           onClick={() => {
             this.setState({
               filter: 2,
@@ -40,6 +44,7 @@ class QuestionPage extends Component {
           Unanswered
         </Button>
         <Input
+          m={3}
           placeholder="Search For a Question"
           onClick={() => {
             this.setState({

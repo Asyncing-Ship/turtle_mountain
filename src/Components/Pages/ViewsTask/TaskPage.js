@@ -165,7 +165,12 @@ export class TaskPage extends Component {
                         <AccordionIcon />
                       </AccordionHeader>
                       <AccordionPanel pb={4}>
-                        {(x.content, x.status)}
+                        <Box flex="1" textAlign="left">
+                          {x.content}
+                        </Box>
+                        <Box flex="1" textAlign="left">
+                          {x.status}
+                        </Box>
                       </AccordionPanel>
                     </>
                   )}
