@@ -337,26 +337,55 @@ Pink 900
 */
 // ----- End of default theme colors -----
 
+// Chakra-ui Default Theme Import:
 import { theme } from "@chakra-ui/core";
 
 // ----- This is the custom theme for Turtle Mountain Connect -----
 const customTheme = {
+  // Spreading the theme object to add new key values for custom css
   ...theme,
-  colors: {
-    ...theme.colors,
-    brand: {
-      900: "#1a365d",
-      800: "#153e75",
-      700: "#2a69ac",
-    },
-  },
   // Add a theme.colors object to provide colors for your project. By default these colors can be referenced by the color, borderColor, and backgroundColor, fill, stroke, styles.
   // We recommend adding palette that go from 50 - 900.
-  // colors: {
-  //   transparent: "transparent",
-  //   black: "#000",
-  //   white: "#fff",
-  // },
+  colors: {
+    ...theme.colors,
+    transparent: "transparent",
+    tmarBlack: {
+      50: "#f8f0f2",
+      100: "#d9d8d8",
+      200: "#bfbfbf",
+      300: "#a5a5a5",
+      400: "#8b8b8b",
+      500: "#727272",
+      600: "#585858",
+      700: "#3f3f3f",
+      800: "#272626", // This is our nav bar color
+      900: "#130b0d",
+    },
+    tmarTan: {
+      50: "#fef2e1",
+      100: "#eedcc2",
+      200: "#dfc59e",
+      300: "#d1ae7a",
+      400: "#c39756", // This is our nav selected button color
+      500: "#a97d3c",
+      600: "#84622e",
+      700: "#5f461f",
+      800: "#392a0f",
+      900: "#190d00",
+    },
+    tmarNeoGreen: {
+      50: "#e5fff2", // This is our page background color
+      100: "#b9fedb",
+      200: "#8bfdc2",
+      300: "#60fdaa",
+      400: "#41fd92",
+      500: "#34e479",
+      600: "#28b25e",
+      700: "#1b7f44",
+      800: "#0c4c28",
+      900: "#001a0d",
+    },
+  },
   /*
     To manage Typography options, the theme object supports the following keys:
       fonts (font families)
