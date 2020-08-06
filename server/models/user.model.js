@@ -5,6 +5,7 @@ const sequelize = require("../modules/orm.config");
 const config = {
   freezeTableName: true, // Don't use plural for table names
   underscored: true, // Use snake_case not camelCase for attributes
+  timestamps: false,
 };
 
 // Model for user table
@@ -34,7 +35,7 @@ const User = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false, // NOT NULL
     },
-    isAdmin: {
+    is_admin: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false,
