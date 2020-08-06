@@ -1,47 +1,47 @@
 import { combineReducers } from "redux";
 
-// Used to store tasks returned from the server
-const tasks = (state = [], action) => {
+// Used to store questions returned from the server
+const questions = (state = [], action) => {
   switch (action.type) {
-    case "SET_TASKS":
+    case "SET_QUESTIONS":
       return action.payload;
     default:
       return state;
   }
 };
 
-// Used to store the detail of the task that is selected
-const taskDetail = (state = [], action) => {
+// Used to store the detail of the question that is selected
+const questionDetail = (state = [], action) => {
   switch (action.type) {
-    case "SET_TASK_DETAIL":
+    case "SET_QUESTION_DETAIL":
       return action.payload;
     default:
       return state;
   }
 };
 
-// Used to store the current task that is selected
-const currentTask = (state = [], action) => {
+// Used to store the current question that is selected
+const currentQuestion = (state = [], action) => {
   switch (action.type) {
-    case "SET_CURRENT_TASK":
+    case "SET_CURRENT_QUESTION":
       return action.payload;
     default:
       return state;
   }
 };
 
-const currentTaskId = (state = [], action) => {
+const currentQuestionId = (state = [], action) => {
   switch (action.type) {
-    case "SET_CURRENT_TASK_ID":
+    case "SET_CURRENT_QUESTION_ID":
       return action.payload;
     default:
       return state;
   }
 };
 
-const taskAuthor = (state = [], action) => {
+const questionAuthor = (state = [], action) => {
   switch (action.type) {
-    case "SET_TASK_AUTHOR":
+    case "SET_QUESTION_AUTHOR":
       return action.payload;
     default:
       return state;
@@ -52,9 +52,9 @@ const taskAuthor = (state = [], action) => {
 // these will be on the redux state at:
 // state.errors.loginMessage and state.errors.registrationMessage
 export default combineReducers({
-  tasks,
-  taskDetail,
-  currentTaskId,
-  currentTask,
-  taskAuthor,
+  questions,
+  questionDetail,
+  currentQuestionId,
+  currentQuestion,
+  questionAuthor,
 });

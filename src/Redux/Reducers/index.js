@@ -3,6 +3,7 @@ import user from "./userReducer";
 import loginMode from "./loginModeReducer";
 import errors from "./errorsReducer";
 import tasks from "./tasksReducer";
+import questions from "./questionsReducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   loginMode,
   errors,
   tasks,
+  questions,
 });
 
 export default rootReducer;
