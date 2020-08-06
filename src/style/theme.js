@@ -339,7 +339,7 @@ Pink 900
 
 // Chakra-ui Default Theme Import:
 import { theme } from "@chakra-ui/core";
-
+// Font CSS Import:
 import "../Components/App/App.css"
 
 // ----- This is the custom theme for Turtle Mountain Connect -----
