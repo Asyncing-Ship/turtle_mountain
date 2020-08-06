@@ -45,14 +45,14 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const questionTitle = req.body.title;
   const questionContent = req.body.content;
-  const askedBy = req.body.askedBy;
+  const userId = req.body.user_id;
 
   console.log(`POST request add question`, req.body);
 
   let newQuestion = Question.build({
     title: questionTitle,
     content: questionContent,
-    asked_by: askedBy,
+    userId: userId,
   });
   // Save to database
   newQuestion
