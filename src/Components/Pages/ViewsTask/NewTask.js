@@ -1,5 +1,15 @@
 import React, { Component } from "react";
-import { Input, Button, FormControl } from "@chakra-ui/core";
+import {
+  Input,
+  Button,
+  FormControl,
+  FormLabel,
+  InputGroup,
+  InputLeftElement,
+  Icon,
+  Box,
+  Heading
+} from "@chakra-ui/core";
 import { Textarea } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
@@ -18,7 +28,7 @@ class NewTask extends Component {
 
   render() {
     return (
-      <FormControl
+      <form
         onSubmit={async (event) => {
           event.preventDefault();
           await this.props.dispatch({
@@ -29,22 +39,61 @@ class NewTask extends Component {
               user: this.props.user.id,
             },
           });
-          await this.props.history.push("/tasks");
+          await this.props.history.push("/open");
         }}
       >
-        <Input
-          placeholder="Title"
-          onChange={(event) => this.handleChange(event, "title")}
-          value={this.state.title}
-        />
-        <Textarea
-          placeholder="Detailed Description"
-          onChange={(event) => this.handleChange(event, "content")}
-          value={this.state.content}
-        />
-        <Input placeholder="Tag other users!" />
-        <Button type="submit">Add Task</Button>
-      </FormControl>
+        <FormControl textAlign="left" bg="#2f2e2e" p={5} rounded="lg" isRequired>
+          <Heading color="#f5fffe">New Task</Heading>
+          <FormLabel htmlFor="task-title">Task Title</FormLabel>
+          <Input
+            _focus={{ bg: "#f5fffe", border: "2px solid #3182ce" }}
+            autoComplete="off"
+            id="task-title"
+            aria-required="true"
+            placeholder="Task Title"
+            onChange={(event) => this.handleChange(event, "title")}
+            value={this.state.title}
+            variant="filled"
+            mb={5}
+          />
+          <FormLabel htmlFor="task-body">Description</FormLabel>
+          <Textarea
+            _focus={{ bg: "#f5fffe", border: "2px solid #3182ce" }}
+            id="task-body"
+            placeholder="Describe the task..."
+            onChange={(event) => this.handleChange(event, "content")}
+            value={this.state.content}
+            variant="filled"
+            resize="vertical"
+            mb={5}
+          />
+          <InputGroup>
+            <InputLeftElement
+              children={
+                <Icon
+                  name="at-sign"
+                  color="gray.400"
+                />
+              }
+            />
+            <Input
+              _focus={{ bg: "#f5fffe", border: "2px solid #3182ce" }}
+              variant="filled"
+              placeholder="Tag other users"
+              mb={5}
+            />
+          </InputGroup>
+          <Box textAlign="right">
+            <Button
+              type="submit"
+              rightIcon="add"
+              variantColor="green"
+            >
+              Add Task
+            </Button>
+          </Box>
+        </FormControl>
+      </form>
     );
   }
 }

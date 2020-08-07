@@ -6,7 +6,10 @@ import {
   Box,
   AccordionItem,
   Accordion,
-  Input
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Icon
 } from '@chakra-ui/core';
 import TaskBadge from './TaskBadge';
 import { connect } from 'react-redux';
@@ -24,14 +27,25 @@ class SearchTask extends Component {
     return (
       <>
         {/* The input will be used to filter the tasks by matching results. it should do this without a button */}
-        <Input
-          className="tasks-search"
-          m={3}
-          value={this.state.searchString}
-          onChange={(event) =>
-            this.setState({ searchString: event.target.value })
-          }
-        />
+        <InputGroup m={3} w="100%">
+          <InputLeftElement
+            children={
+              <Icon
+                name="search"
+                color="gray.400"
+              />
+            }
+          />
+          <Input
+            className="tasks-search"
+            value={this.state.searchString}
+            onChange={(event) =>
+              this.setState({ searchString: event.target.value })
+            }
+            variant="filled"
+            placeholder="Search"
+          />
+        </InputGroup>
         {/* the input will give us this result,
             after filtering search string, we map 
             each task to an accordion item with the
@@ -61,12 +75,9 @@ class SearchTask extends Component {
                       <TaskBadge x={x} />
                       <AccordionIcon />
                     </AccordionHeader>
-                    <AccordionPanel pb={4}>
+                    <AccordionPanel className="apanel" pb={4}>
                       <Box flex="1" textAlign="left">
                         {x.content}
-                      </Box>
-                      <Box flex="1" textAlign="left">
-                        {x.status}
                       </Box>
                     </AccordionPanel>
                   </>

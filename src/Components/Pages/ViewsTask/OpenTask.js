@@ -37,7 +37,7 @@ class OpenTask extends Component {
                       <TaskBadge x={x} />
                       <AccordionIcon />
                     </AccordionHeader>
-                    <AccordionPanel pb={4}>
+                    <AccordionPanel className="apanel" pb={4}>
                       <AcceptTask task={x} />
                     </AccordionPanel>
                   </>

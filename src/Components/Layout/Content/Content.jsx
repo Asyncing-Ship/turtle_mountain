@@ -14,7 +14,6 @@ import QuestionPage from "../../Pages/ViewsQuestion/QuestionPage";
 import PoliciesPage from "../../Pages/Policies/PoliciesPage";
 import Login from "../../Pages/Login/Login.jsx";
 import SignUp from "../../Pages/SignUp/SignUp.jsx";
-import NewTask from "../../Pages/ViewsTask/NewTask";
 import NewQuestion from "../../Pages/ViewsQuestion/NewQuestion";
 // CSS Import:
 import "../../App/App.css";
@@ -63,11 +62,6 @@ export class Content extends React.Component {
           exact
           path="/questions/new"
           component={NewQuestion}
-        />
-        <ProtectedRoute
-          exact
-          path="/tasks/new"
-          component={NewTask}
         />
         <ProtectedRoute
           exact
