@@ -47,14 +47,14 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const responseContent = req.body.content;
   const responseVerified = false; // req.body.verified; TODO FIX THIS
-  const askedBy = req.body.askedBy;
+  const userId = req.user.id;
 
   console.log(`POST question response adding response`, req.body);
 
   let newQuestionResponse = Question_Response.build({
     content: responseContent,
     verified: responseVerified,
-    asked_by: askedBy,
+    userId: userId,
   });
   // Save to database
   newQuestionResponse
