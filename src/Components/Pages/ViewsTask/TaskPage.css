@@ -1,9 +1,7 @@
 .accordion {
-  width: 50%;
+  width: 100%;
 }
 .accordion-head {
-  background-color: #c79e61;
-  color: white;
   border-radius: 0.25rem;
 }
 .accordion-head:hover {
@@ -19,4 +17,10 @@
 .apanel input {
   background-color: black !important ;
   color: white;
+}
+.tasks-content {
+  width: 50%;
+}
+.tasks-btngrp, .tasks-search {
+  width: 100%;
 }

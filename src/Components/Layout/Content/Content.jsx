@@ -34,10 +34,26 @@ export class Content extends React.Component {
         ) : (
           <Redirect exact from="/" to="/home" />
         )}
-        <ProtectedRoute exact path="/home" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={SignUp} />
-        <ProtectedRoute exact path="/tasks" component={TaskPage} />
+        <ProtectedRoute
+          exact
+          path="/home"
+          component={Home}
+        />
+        <Route
+          exact
+          path="/login"
+          component={Login}
+        />
+        <Route
+          exact
+          path="/signup"
+          component={SignUp}
+        />
+        <ProtectedRoute
+          exact
+          path="/tasks"
+          component={TaskPage}
+        />
         <ProtectedRoute
           exact
           path="/questions"
@@ -45,13 +61,19 @@ export class Content extends React.Component {
         />
         <ProtectedRoute
           exact
-          path="/questions/newquestion"
+          path="/questions/new"
           component={NewQuestion}
         />
-        <ProtectedRoute path="/tasks/newTask">
-          <NewTask />
-        </ProtectedRoute>
-        <ProtectedRoute exact path="/policies" component={PoliciesPage} />
+        <ProtectedRoute
+          exact
+          path="/tasks/new"
+          component={NewTask}
+        />
+        <ProtectedRoute
+          exact
+          path="/policies"
+          component={PoliciesPage}
+        />
         {/* <Route render={() => <Heading as="h1">404? Four Oh For!</Heading>} /> */}
       </div>
     );

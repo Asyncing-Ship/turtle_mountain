@@ -5,12 +5,12 @@ const bodyParser = require("body-parser");
 const sessionMiddleware = require("./modules/session-middleware");
 
 // model imports
-const User = require("./models/user.model");
-const Question = require("./models/question.model");
-const Task = require("./models/task.model");
-const Policy = require("./models/policy.model");
+// const User = require("./models/user.model");
+// const Question = require("./models/question.model");
+// const Task = require("./models/task.model");
+// const Policy = require("./models/policy.model");
 // const Question_Response = require("./models/question.response.model");
-const Task_Response = require("./models/task.response.model");
+// const Task_Response = require("./models/task.response.model");
 
 const app = express();
 const passport = require("./strategies/user.strategy");
