@@ -1,21 +1,24 @@
 import React, { Component } from "react";
-import { Input, Button } from "@chakra-ui/core";
+import { Input, Button, FormControl } from "@chakra-ui/core";
 import { Textarea } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+
 class NewTask extends Component {
   state = {
     title: "",
     content: "",
   };
+
   handleChange = (event, value) => {
     this.setState({
       [value]: event.target.value,
     });
   };
+
   render() {
     return (
-      <form
+      <FormControl
         onSubmit={async (event) => {
           event.preventDefault();
           await this.props.dispatch({
@@ -41,11 +44,13 @@ class NewTask extends Component {
         />
         <Input placeholder="Tag other users!" />
         <Button type="submit">Add Task</Button>
-      </form>
+      </FormControl>
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return { user: state.user };
 };
+
 export default withRouter(connect(mapStateToProps)(NewTask));
