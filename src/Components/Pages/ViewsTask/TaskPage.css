@@ -1,10 +1,11 @@
 .accordion {
-  width: 50%;
+  width: 100%;
 }
-.accordion-head {
-  background-color: #c79e61;
-  color: white;
+.accordion-head[aria-expanded="false"] {
   border-radius: 0.25rem;
+}
+.accordion-head[aria-expanded="true"] {
+  border-radius: 0.25rem 0.25rem 0 0;
 }
 .accordion-head:hover {
   background-color: #c79e61 !important;
@@ -14,9 +15,21 @@
   color: black;
 }
 .apanel {
+  text-align: justify;
+  border-radius: 0 0 0.25rem 0.25rem;
+  color: #f5fffa;
   background-color: #2f2e2e !important ;
 }
 .apanel input {
   background-color: black !important ;
   color: white;
+}
+.tasks-content {
+  width: 50%;
+}
+.tasks-btngrp, .tasks-search {
+  width: 100%;
+}
+.tasks-nav-active Button {
+  border-bottom: ridge;
 }

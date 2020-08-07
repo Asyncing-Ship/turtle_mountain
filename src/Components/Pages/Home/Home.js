@@ -40,7 +40,7 @@ class Home extends Component {
           onClick={() => history.push("/questions")}
         >
           <Icon name="question" size="3.5rem" color="yellow.300" />
-          <div className="btn-text">q&amp;a</div>
+          <div className="btn-text">questions</div>
         </Button>
         <br />
         <Button

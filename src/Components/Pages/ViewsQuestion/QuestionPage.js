@@ -108,7 +108,7 @@ class QuestionPage extends Component {
               ))}
           </Accordion>
         )}
-        <Link to="/questions/newquestion">
+        <Link to="/questions/new">
           <Button>New Question</Button>
         </Link>
       </div>

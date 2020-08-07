@@ -14,7 +14,6 @@ import QuestionPage from "../../Pages/ViewsQuestion/QuestionPage";
 import PoliciesPage from "../../Pages/Policies/PoliciesPage";
 import Login from "../../Pages/Login/Login.jsx";
 import SignUp from "../../Pages/SignUp/SignUp.jsx";
-import NewTask from "../../Pages/ViewsTask/NewTask";
 import NewQuestion from "../../Pages/ViewsQuestion/NewQuestion";
 // CSS Import:
 import "../../App/App.css";
@@ -34,10 +33,26 @@ export class Content extends React.Component {
         ) : (
           <Redirect exact from="/" to="/home" />
         )}
-        <ProtectedRoute exact path="/home" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={SignUp} />
-        <ProtectedRoute exact path="/tasks" component={TaskPage} />
+        <ProtectedRoute
+          exact
+          path="/home"
+          component={Home}
+        />
+        <Route
+          exact
+          path="/login"
+          component={Login}
+        />
+        <Route
+          exact
+          path="/signup"
+          component={SignUp}
+        />
+        <ProtectedRoute
+          exact
+          path="/tasks"
+          component={TaskPage}
+        />
         <ProtectedRoute
           exact
           path="/questions"
@@ -45,13 +60,14 @@ export class Content extends React.Component {
         />
         <ProtectedRoute
           exact
-          path="/questions/newquestion"
+          path="/questions/new"
           component={NewQuestion}
         />
-        <ProtectedRoute path="/tasks/newTask">
-          <NewTask />
-        </ProtectedRoute>
-        <ProtectedRoute exact path="/policies" component={PoliciesPage} />
+        <ProtectedRoute
+          exact
+          path="/policies"
+          component={PoliciesPage}
+        />
         {/* <Route render={() => <Heading as="h1">404? Four Oh For!</Heading>} /> */}
       </div>
     );

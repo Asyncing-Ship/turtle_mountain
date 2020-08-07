@@ -14,7 +14,7 @@ import "../../App/App.css";
 // ----- End of imports -----
 
 const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+  <Text mt={{ base: 4, md: 0 }} mr={1} display="block">
     {children}
   </Text>
 );
@@ -44,12 +44,11 @@ export class Navbar extends React.Component {
         align="center"
         justify="space-between"
         wrap="wrap"
-        padding="1rem"
+        padding="0.25rem"
         bg="tmarBlack.800"
-        color="white"
-        // direction="row"
+        color="#f5fffe"
       >
-        <Flex align="center" mr={5}>
+        <Flex align="center" ml={3} mr={5}>
           <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
             Turtle Mountain Connect
           </Heading>
