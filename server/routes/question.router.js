@@ -5,7 +5,7 @@ const User = require("../models/user.model");
 
 const router = express.Router();
 
-// This route *should* return the logged in users pets
+// This route *should* return the logged in users questions
 router.get("/", (req, res) => {
   console.log("GET questions");
   Question.findAll({
@@ -22,6 +22,7 @@ router.get("/", (req, res) => {
     });
 });
 
+// This route will get a single question based on the id passed
 router.get("/:id", (req, res) => {
   let questionId = req.params.id;
   console.log(`GET request for question ${questionId}`);
@@ -42,6 +43,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// This route will post a question based on the req body provided
 router.post("/", (req, res) => {
   const questionTitle = req.body.title;
   const questionContent = req.body.content;
@@ -66,6 +68,7 @@ router.post("/", (req, res) => {
     });
 });
 
+// This is a route for editing the content of a question
 router.put("/:id", (req, res) => {
   let questionId = req.params.id;
   let questionContent = req.body.content;
@@ -83,6 +86,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
+// This route will delete a question based on id provided
 router.delete("/:id", (req, res) => {
   let questionId = req.params.id;
   console.log(`DELETE request for question ${questionId}`, req.body);
