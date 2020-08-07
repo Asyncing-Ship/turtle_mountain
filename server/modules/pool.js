@@ -22,7 +22,7 @@ if (process.env.DATABASE_URL) {
   config = {
     host: "localhost", // Server hosting the postgres database
     port: 5432, // env var: PGPORT
-    database: "turtle_mountain_connect_development", // Database name
+    database: process.env.DB_NAME, // Database name
     max: 10, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
   };
@@ -36,6 +36,10 @@ const pool = new pg.Pool(config);
 pool.on("error", (err) => {
   console.log("Unexpected error on idle client", err);
   process.exit(-1);
+});
+
+pool.on("connect", () => {
+  console.log("database connection established");
 });
 
 module.exports = pool;

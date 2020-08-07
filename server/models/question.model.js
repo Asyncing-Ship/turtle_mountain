@@ -4,11 +4,12 @@ const sequelize = require("../modules/orm.config");
 const config = {
   freezeTableName: true, // Don't use plural for table names
   underscored: true, // Use snake_case not camelCase for attributes
+  timestamps: false,
 };
 
 // Model for an album - assumes table name is plural or 'albums'
 const Question = sequelize.define(
-  "question",
+  "questions",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -37,10 +38,6 @@ const Question = sequelize.define(
       type: Sequelize.DATE,
       allowNull: false,
       defaultValue: Sequelize.fn("now"),
-    },
-    asked_by: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
     },
   },
   config

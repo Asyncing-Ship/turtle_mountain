@@ -4,11 +4,12 @@ const sequelize = require("../modules/orm.config");
 const config = {
   freezeTableName: true, // Don't use plural for table names
   underscored: true, // Use snake_case not camelCase for attributes
+  timestamps: false,
 };
 
 // Model for an Response - assumes table name is plural or 'responses'
-const Question_Response = sequelize.define(
-  "question_response",
+const Task_Response = sequelize.define(
+  "task_response",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -37,20 +38,19 @@ const Question_Response = sequelize.define(
 );
 
 const User = require("./user.model");
-Quesiton_Response.belongsTo(User, {
+Task_Response.belongsTo(User, {
   foreignKey: {
     allowNull: false,
   },
   onDelete: "CASCADE",
 });
 
-const Question = require("./question.model");
-Question_Response.belongsTo(Question, {
+const Task = require("./task.model");
+Task_Response.belongsTo(Task, {
   foreignKey: {
     allowNull: false,
   },
   onDelete: "CASCADE",
 });
 
-
-module.exports = Question_Response;
+module.exports = Task_Response;

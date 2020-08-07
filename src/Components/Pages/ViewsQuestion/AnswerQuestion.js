@@ -1,13 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Input, Button } from "@chakra-ui/core";
+import { connect } from "react-redux";
 
 class AnswerQuestion extends Component {
+  state = { answer: "" };
+  handleChange = (event, value) => {
+    this.setState({
+      [value]: event.target.value,
+    });
+  };
+
   render() {
     return (
-      <>
-        Answer the selected question here:
-      </>
-    )
+      <div>
+        <Input
+          value={this.state.answer}
+          placeholder="Your answer"
+          onChange={(event) => this.handleChange(event, "answer")}
+        ></Input>
+        <Button
+          onClick={() =>
+            this.props.dispatch({
+              type: "ANSWER_QUESTION",
+              payload: { id: this.props.question.id },
+            })
+          }
+        ></Button>
+      </div>
+    );
   }
 }
 
-export default AnswerQuestion;
+export default connect()(AnswerQuestion);

@@ -4,6 +4,7 @@ const sequelize = require("../modules/orm.config");
 const config = {
   freezeTableName: true, // Don't use plural for table names
   underscored: true, // Use snake_case not camelCase for attributes
+  timestamps: false,
 };
 
 // Model for an album - assumes table name is plural or 'albums'

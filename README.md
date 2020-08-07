@@ -1,3 +1,4 @@
+[![codecov](https://codecov.io/gh/Asyncing-Ship/turtle_mountain/branch/develop/graph/badge.svg)](https://codecov.io/gh/Asyncing-Ship/turtle_mountain)
 # Asyncing Ship Git Workflow
 
 ## Pushing changes
