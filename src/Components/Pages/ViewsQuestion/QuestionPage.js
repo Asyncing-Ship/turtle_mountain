@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import AnswerQuestion from "./AnswerQuestion";
+import Response from "./Response";
 class QuestionPage extends Component {
   state = {
     filter: 1,
@@ -18,6 +19,12 @@ class QuestionPage extends Component {
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_QUESTIONS" });
   }
+  setQuestion = (id) => {
+    this.props.dispatch({
+      type: "FETCH_QUESTION_RESPONSES",
+      payload: { question_id: id },
+    });
+  };
   render() {
     return (
       <div>
@@ -56,13 +63,19 @@ class QuestionPage extends Component {
           }}
         />
         {this.state.filter === 1 && (
-          <Accordion>
+          <Accordion defaultIndex={[-1]} allowToggle>
             {this.props.questions.map((x) => (
-              <AccordionItem defaultIsOpen="False">
+              <AccordionItem
+                defaultIsOpen="False"
+                onClick={() => this.setQuestion(x.id)}
+              >
                 <AccordionHeader className="accordionHead">
                   {x.title}
                 </AccordionHeader>
                 <AccordionPanel>
+                  {this.props.response.map((x) => (
+                    <Response content={x} />
+                  ))}
                   {x.content}
                   <AnswerQuestion />
                 </AccordionPanel>
@@ -71,15 +84,21 @@ class QuestionPage extends Component {
           </Accordion>
         )}
         {this.state.filter === 2 && (
-          <Accordion>
+          <Accordion defaultIndex={[-1]} allowToggle>
             {this.props.questions
               .filter((x) => !x.is_answered)
               .map((x) => (
-                <AccordionItem defaultIsOpen="False">
+                <AccordionItem
+                  defaultIsOpen="False"
+                  onClick={() => this.setQuestion(x.id)}
+                >
                   <AccordionHeader className="accordionHead">
                     {x.title}
                   </AccordionHeader>
                   <AccordionPanel>
+                    {this.props.response.map((x) => (
+                      <Response content={x} />
+                    ))}
                     {x.content}
                     <AnswerQuestion />
                   </AccordionPanel>
@@ -88,7 +107,7 @@ class QuestionPage extends Component {
           </Accordion>
         )}
         {this.state.filter === 3 && (
-          <Accordion>
+          <Accordion defaultIndex={[-1]} allowToggle>
             {this.props.questions
               .filter(
                 (x) =>
@@ -96,11 +115,17 @@ class QuestionPage extends Component {
                   x.title.includes(this.state.searchText)
               )
               .map((x) => (
-                <AccordionItem defaultIsOpen="False">
+                <AccordionItem
+                  defaultIsOpen="False"
+                  onClick={() => this.setQuestion(x.id)}
+                >
                   <AccordionHeader className="accordionHead">
                     {x.title}
                   </AccordionHeader>
                   <AccordionPanel>
+                    {this.props.response.map((x) => (
+                      <Response content={x} />
+                    ))}
                     {x.content}
                     <AnswerQuestion />
                   </AccordionPanel>
@@ -118,6 +143,7 @@ class QuestionPage extends Component {
 const mapStateToProps = (state) => {
   return {
     questions: state.questions.questions || [],
+    response: state.questions.current_answers || [Math.random(), Math.random()],
   };
 };
 export default connect(mapStateToProps)(QuestionPage);
