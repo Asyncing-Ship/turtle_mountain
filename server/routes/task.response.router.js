@@ -1,6 +1,6 @@
 const express = require("express");
 const Task = require("../models/task.model");
-const Task_Response = require("../models/task.response.model");
+const Task_Response = require("../models/task_response.model");
 const User = require("../models/user.model");
 
 const router = express.Router();
@@ -44,14 +44,14 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const responseContent = req.body.content;
   const responseVerified = false; // req.body.verified; TODO FIX THIS
-  const askedBy = req.body.askedBy;
+  const userId = req.user.id;
 
   console.log(`POST task response adding response`, req.body);
 
   let newTaskResponse = Task_Response.build({
     content: responseContent,
     verified: responseVerified,
-    asked_by: askedBy,
+    userId: userId,
   });
   // Save to database
   newTaskResponse
