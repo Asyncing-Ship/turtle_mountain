@@ -86,6 +86,23 @@ router.put("/:id", (req, res) => {
     });
 });
 
+// This is a route for marking a question as answered
+router.put("/verify/:id", (req, res) => {
+  let questionId = req.params.id;
+  console.log(`PUT request update question ${questionId}`, req.body);
+  let updates = {
+    is_answered: true,
+  };
+  Question.update(updates, { where: { id: questionId } })
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error updating question with id ${questionId}`, error);
+      res.sendStatus(500);
+    });
+});
+
 // This route will delete a question based on id provided
 router.delete("/:id", (req, res) => {
   let questionId = req.params.id;
