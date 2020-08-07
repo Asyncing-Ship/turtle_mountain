@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Input } from "@chakra-ui/core";
+import { Input, Button } from "@chakra-ui/core";
+import { connect } from "react-redux";
 
 class AnswerQuestion extends Component {
   state = { answer: "" };
@@ -11,13 +12,23 @@ class AnswerQuestion extends Component {
 
   render() {
     return (
-      <Input
-        value={this.state.answer}
-        placeholder="Your answer"
-        onChange={(event) => this.handleChange(event, "answer")}
-      ></Input>
+      <div>
+        <Input
+          value={this.state.answer}
+          placeholder="Your answer"
+          onChange={(event) => this.handleChange(event, "answer")}
+        ></Input>
+        <Button
+          onClick={() =>
+            this.props.dispatch({
+              type: "ANSWER_QUESTION",
+              payload: { id: this.props.question.id },
+            })
+          }
+        ></Button>
+      </div>
     );
   }
 }
 
-export default AnswerQuestion;
+export default connect()(AnswerQuestion);

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { Input, Button } from "@chakra-ui/core";
 import { Textarea } from "@chakra-ui/core";
+import { connect } from "react-redux";
 class NewQuestion extends Component {
   state = {
     title: "",
@@ -22,7 +23,6 @@ class NewQuestion extends Component {
             payload: {
               title: this.state.title,
               content: this.state.content,
-              user: this.props.user.id,
             },
           });
           await this.props.history.push("/questions");
@@ -45,4 +45,4 @@ class NewQuestion extends Component {
   }
 }
 
-export default NewQuestion;
+export default connect()(NewQuestion);

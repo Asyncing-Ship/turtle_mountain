@@ -70,10 +70,13 @@ function* fetchCurrentQuestion(action) {
     alert("Unable to fetch current Question");
   }
 }
-function* acceptQuestion(action) {
+function* answerQuestion(action) {
   //Update the question
   try {
-    yield Axios.put(`/api/question/accept/${action.payload.question_id}`);
+    yield Axios.put(
+      `/api/question/${action.payload.id}`,
+      action.payload.answer
+    );
     yield put({ type: "FETCH_QUESTIONS" });
   } catch (error) {
     alert("Unable to update Question on server", error);
@@ -102,7 +105,7 @@ function* addQuestionLike(action) {
 function* questionsSaga() {
   yield takeEvery("FETCH_QUESTIONS", fetchQuestions);
   yield takeEvery("FETCH_QUESTION_DETAIL", fetchQuestionDetail);
-  yield takeEvery("ACCEPT_QUESTION", acceptQuestion);
+  yield takeEvery("ACCEPT_QUESTION", answerQuestion);
   yield takeEvery("FETCH_CURRENT_QUESTION", fetchCurrentQuestion);
   yield takeEvery("ADD_QUESTION", addQuestion);
   yield takeEvery("DELETE_QUESTION", deleteQuestion);
