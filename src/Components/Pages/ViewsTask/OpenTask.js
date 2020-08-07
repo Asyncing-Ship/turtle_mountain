@@ -22,8 +22,8 @@ class OpenTask extends Component {
         <Accordion m={3} className="accordion" allowMultiple>
           {this.props.tasks
             .filter((x) => x.status === "open")
-            .map((x) => (
-              <AccordionItem defaultIsOpen="False">
+            .map((x, i) => (
+              <AccordionItem key={i} defaultIsOpen="False">
                 {({ isExpanded }) => (
                   <>
                     <AccordionHeader
