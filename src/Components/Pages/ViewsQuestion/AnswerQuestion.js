@@ -22,10 +22,15 @@ class AnswerQuestion extends Component {
           onClick={() =>
             this.props.dispatch({
               type: "ANSWER_QUESTION",
-              payload: { id: this.props.question.id },
+              payload: {
+                id: this.props.question.id,
+                answer: this.state.answer,
+              },
             })
           }
-        ></Button>
+        >
+          Submit Answer
+        </Button>
       </div>
     );
   }
