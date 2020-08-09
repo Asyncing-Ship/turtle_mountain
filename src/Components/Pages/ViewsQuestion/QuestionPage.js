@@ -143,7 +143,10 @@ class QuestionPage extends Component {
 const mapStateToProps = (state) => {
   return {
     questions: state.questions.questions || [],
-    response: state.questions.current_answers || [Math.random(), Math.random()],
+    response: state.questions.questionsResponse || [
+      Math.random(),
+      Math.random(),
+    ],
   };
 };
 export default connect(mapStateToProps)(QuestionPage);
