@@ -1,8 +1,8 @@
 // ----- Start of imports -----
 // React Import:
 import React, { Component } from "react";
+// React Redux Import:
 import { connect } from "react-redux";
-
 // Chakra UI Imports:
 import {
   Box,
@@ -58,6 +58,7 @@ class SignUp extends Component {
     } else {
       this.props.dispatch({ type: "REGISTRATION_INPUT_ERROR" });
     }
+    this.props.history.push("/home");
   }; // end registerUser
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -146,7 +147,6 @@ class SignUp extends Component {
             </Stack>
             <ButtonGroup spacing={4} mt={4}>
               <Button
-                // isLoading={submitting}
                 loadingText="Submitting"
                 variantColor="teal"
                 type="submit"
@@ -160,8 +160,6 @@ class SignUp extends Component {
                 variant="outline"
                 color="#f5fffa"
                 onClick={this.registerUser}
-                // onClick={form.reset}
-                // isDisabled={submitting || pristine}
               >
                 Sign Up
               </Button>
