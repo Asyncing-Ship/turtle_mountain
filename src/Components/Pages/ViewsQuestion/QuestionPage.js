@@ -65,15 +65,19 @@ class QuestionPage extends Component {
         {this.state.filter === 1 && (
           <Accordion defaultIndex={[-1]} allowToggle>
             {this.props.questions.map((x) => (
-              <AccordionItem
-                defaultIsOpen="False"
-                onClick={() => this.setQuestion(x.id)}
-              >
-                <AccordionHeader className="accordionHead">
+              <AccordionItem defaultIsOpen="False">
+                <AccordionHeader
+                  className="accordionHead"
+                  onClick={() => this.setQuestion(x.id)}
+                >
                   {x.title}
                 </AccordionHeader>
                 <AccordionPanel>
                   {x.content}
+                  <br />
+                  <br />
+                  <h3>Responses</h3>
+                  <br />
                   {this.props.response[0] &&
                     this.props.response.map((x) => <Response question={x} />)}
                   <AnswerQuestion question={x} />
@@ -87,15 +91,19 @@ class QuestionPage extends Component {
             {this.props.questions
               .filter((x) => !x.is_answered)
               .map((x) => (
-                <AccordionItem
-                  defaultIsOpen="False"
-                  onClick={() => this.setQuestion(x.id)}
-                >
-                  <AccordionHeader className="accordionHead">
+                <AccordionItem defaultIsOpen="False">
+                  <AccordionHeader
+                    className="accordionHead"
+                    onClick={() => this.setQuestion(x.id)}
+                  >
                     {x.title}
                   </AccordionHeader>
                   <AccordionPanel>
                     {x.content}
+                    <br />
+                    <br />
+                    <h3>Responses</h3>
+                    <br />
                     {this.props.response.map((x) => (
                       <Response question={x} />
                     ))}
@@ -114,15 +122,19 @@ class QuestionPage extends Component {
                   x.title.includes(this.state.searchText)
               )
               .map((x) => (
-                <AccordionItem
-                  defaultIsOpen="False"
-                  onClick={() => this.setQuestion(x.id)}
-                >
-                  <AccordionHeader className="accordionHead">
+                <AccordionItem defaultIsOpen="False">
+                  <AccordionHeader
+                    className="accordionHead"
+                    onClick={() => this.setQuestion(x.id)}
+                  >
                     {x.title}
                   </AccordionHeader>
                   <AccordionPanel>
                     {x.content}
+                    <br />
+                    <br />
+                    <h3>Responses</h3>
+                    <br />
                     {this.props.response.map((x) => (
                       <Response question={x} />
                     ))}
