@@ -58,7 +58,7 @@ function* promoteUser(action) {
   //Update the question response as verified
   try {
     yield Axios.put(`/api/user/promote/${action.payload}`);
-    yield put({ type: "FETCH_ALL_USERS", payload: action.payload });
+    yield put({ type: "FETCH_ALL_USERS" });
   } catch (error) {
     alert("Unable to promote user on server", error);
   }
