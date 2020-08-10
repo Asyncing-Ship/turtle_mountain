@@ -2,13 +2,9 @@
 // React Import:
 import React from "react";
 // React Router DOM Imports:
-import {
-  NavLink,
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 // Chakra UI Imports:
-import {
-  Button,
-} from "@chakra-ui/core";
+import { Button } from "@chakra-ui/core";
 // CSS Import:
 import "./404.css";
 // ----- End of imports -----
@@ -42,8 +38,8 @@ const fourOhFour = () => {
           Oops. The page you're looking for doesn't exist.
         </div>
         <NavLink to="/home">
-          <Button variant="solid" variantColor="green" m={9} p={9}>
-            Back Home
+          <Button leftIcon="arrow-left" variantColor="green" m={9} p={9}>
+            Home
           </Button>
         </NavLink>
       </div>
@@ -53,12 +49,13 @@ const fourOhFour = () => {
           className="byLink"
           href="https://dribbble.com/shots/3965778-Cezan-404-Page-Not-Found"
           target="_blank"
+          rel="noopener noreferrer"
         >
           Masoud Ardestani
         </a>
       </div>
     </>
   );
-}
+};
 
 export default fourOhFour;
