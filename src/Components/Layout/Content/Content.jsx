@@ -18,6 +18,7 @@ import NewQuestion from "../../Pages/ViewsQuestion/NewQuestion";
 import FourOhFour from "../../Pages/404/404";
 // CSS Import:
 import "../../App/App.css";
+import AdminPage from "../../Pages/Admin/AdminPage";
 // ----- End of imports -----
 
 export class Content extends React.Component {
@@ -40,6 +41,7 @@ export class Content extends React.Component {
           <Route exact path="/signup" component={SignUp} />
           <ProtectedRoute exact path="/tasks" component={TaskPage} />
           <ProtectedRoute exact path="/questions" component={QuestionPage} />
+          <ProtectedRoute exact path="/admin" component={AdminPage} />
           <ProtectedRoute exact path="/questions/new" component={NewQuestion} />
           <ProtectedRoute exact path="/policies" component={PoliciesPage} />
           <Route render={() => <FourOhFour />} />
