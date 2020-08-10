@@ -7,7 +7,8 @@ function* fetchPolicies() {
 }
 
 function* uploadPolicy(action) {
-  yield Axios.post("/api/policy", action.payload);
+  yield Axios.post("/api/policy/new", action.payload);
+  yield put({ type: 'FETCH_POLICIES' });
 }
 
 function* policySaga() {
