@@ -45,6 +45,7 @@ router.post("/", (req, res) => {
   const responseContent = req.body.content;
   const responseVerified = false; // req.body.verified; TODO FIX THIS
   const userId = req.user.id;
+  const taskId = req.body.task_id;
 
   console.log(`POST task response adding response`, req.body);
 
@@ -52,6 +53,7 @@ router.post("/", (req, res) => {
     content: responseContent,
     verified: responseVerified,
     userId: userId,
+    taskId: taskId,
   });
   // Save to database
   newTaskResponse
