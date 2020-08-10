@@ -48,6 +48,7 @@ router.post("/", (req, res) => {
   const responseContent = req.body.content;
   const responseVerified = false; // req.body.verified; TODO FIX THIS
   const userId = req.user.id;
+  const questionId = req.body.question_id;
 
   console.log(`POST question response adding response`, req.body);
 
@@ -55,6 +56,7 @@ router.post("/", (req, res) => {
     content: responseContent,
     verified: responseVerified,
     userId: userId,
+    questionId: questionId,
   });
   // Save to database
   newQuestionResponse
