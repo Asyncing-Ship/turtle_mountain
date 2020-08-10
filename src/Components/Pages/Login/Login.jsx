@@ -131,12 +131,8 @@ class Login extends Component {
                 Sign Up
               </Button>
               {/* <Text fontSize="md">Sign in with Facebook</Text> */}
-              <Button variantColor="blue" variant="solid">
-                <a
-                  href={`${process.env.REACT_APP_SERVER_URL}/api/auth/facebook/`}
-                >
-                  Login With Facebook
-                </a>
+              <Button as="a" href={`${process.env.REACT_APP_SERVER_URL}/api/auth/facebook/`} variantColor="blue" variant="solid">
+                Login With Facebook
               </Button>
             </Stack>
           </Box>
