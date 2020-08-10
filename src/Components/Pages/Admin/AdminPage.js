@@ -3,6 +3,7 @@ import { Grid, Button } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import Incoming from "./Incoming";
 import Approved from "./Approved";
+import ForeOhThree from "../403/403";
 
 class AdminPage extends Component {
   state = {
@@ -14,38 +15,44 @@ class AdminPage extends Component {
   render() {
     return (
       <div>
-        <Button
-          onClick={() => {
-            this.setState({ sortBy: "incoming" });
-          }}
-        >
-          User Requests
-        </Button>
-        <Button
-          onClick={() => {
-            this.setState({ sortBy: "approved" });
-          }}
-        >
-          Approved Users
-        </Button>
-        This is the admin page!
-        {this.state.sortBy === "incoming" && (
-          <Grid templateColumns="repeat(1, 1fr)" gap={3}>
-            {this.props.users
-              .filter((x) => !x.is_approved)
-              .map((x) => (
-                <Incoming user={x} />
-              ))}
-          </Grid>
-        )}
-        {this.state.sortBy === "approved" && (
-          <Grid templateColumns="repeat(1, 1fr)" gap={3}>
-            {this.props.users
-              .filter((x) => x.is_approved)
-              .map((x) => (
-                <Approved user={x} />
-              ))}
-          </Grid>
+        {this.props.user.is_admin ? (
+          <div>
+            <Button
+              onClick={() => {
+                this.setState({ sortBy: "incoming" });
+              }}
+            >
+              User Requests
+            </Button>
+            <Button
+              onClick={() => {
+                this.setState({ sortBy: "approved" });
+              }}
+            >
+              Approved Users
+            </Button>
+            This is the admin page!
+            {this.state.sortBy === "incoming" && (
+              <Grid templateColumns="repeat(1, 1fr)" gap={3}>
+                {this.props.users
+                  .filter((x) => !x.is_approved)
+                  .map((x) => (
+                    <Incoming user={x} />
+                  ))}
+              </Grid>
+            )}
+            {this.state.sortBy === "approved" && (
+              <Grid templateColumns="repeat(1, 1fr)" gap={3}>
+                {this.props.users
+                  .filter((x) => x.is_approved)
+                  .map((x) => (
+                    <Approved user={x} />
+                  ))}
+              </Grid>
+            )}
+          </div>
+        ) : (
+          <ForeOhThree />
         )}
       </div>
     );
@@ -53,6 +60,7 @@ class AdminPage extends Component {
 }
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     users: state.users || [
       {
         first_name: "Carrie",

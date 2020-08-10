@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:700");
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background-color: dark-grey;
+  font-family: "Roboto Condensed";
+  text-transform: uppercase;
+  overflow: hidden;
+}
+.page {
+  background-color: darkslategray;
+}
+.police-tape {
+  background-color: yellow;
+  background: linear-gradient(
+    180deg,
+    lighten(yellow, 20%) 0%,
+    yellow 5%,
+    yellow 90%,
+    lighten(yellow, 5%) 95%,
+    darken(yellow, 50%) 100%
+  );
+  padding: 0.125em;
+  font-size: 3em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.police-tape--1 {
+  transform: rotate(10deg);
+  position: absolute;
+  top: 40%;
+  left: -5%;
+  right: -5%;
+  z-index: 2;
+  margin-top: 0;
+}
+.police-tape--2 {
+  transform: rotate(-8deg);
+  position: absolute;
+  top: 50%;
+  left: -5%;
+  right: -5%;
+}
+
+.ghost {
+  display: flex;
+  justify-content: stretch;
+  flex-direction: column;
+  height: 100vh;
+}
+.ghost--columns {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 200px;
+  align-content: stretch;
+}
+
+.ghost--navbar {
+  flex: 0 0 60px;
+  background: linear-gradient(0deg, gray 0px, lightgrey 10px, transparent 10px);
+  border-bottom: 2px solid darkgrey;
+}
+.ghost--column {
+  flex: 1 0 30%;
+  border-width: 0px;
+  border-style: solid;
+  border-color: lightgrey;
+  border-left-width: 10px;
+  background-color: darken(lightgrey, 6%);
+  transform: translateY(0px) rotate(rotation);
+  margin-left: spacing;
+}
+.ghost--main {
+  background-color: dark-grey;
+  border-top: 15px solid lighten(lighter-grey, 4%);
+  flex: 1 0 100px;
+}
+
+.code {
+  display: block;
+  width: 100px;
+  background-color: lighter-grey;
+  height: 1em;
+  margin: 1em;
+}
+.ghost--main .code {
+  height: 2em;
+  width: 200px;
+}
