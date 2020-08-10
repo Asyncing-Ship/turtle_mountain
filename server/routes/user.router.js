@@ -82,12 +82,16 @@ router.get("/all", (req, res) => {
 // route to approve a user
 router.put("/approve/:id", (req, res) => {
   const userId = req.params.id;
+  console.log("User id is: ", userId);
   console.log(`approving user with id ${userId}`);
   const queryText = `UPDATE users SET is_approved = true WHERE id = $1`;
   pool
-    .query(queryText[userId])
+    .query(queryText, [userId])
     .then(() => res.sendStatus(201))
-    .catch(() => sendStatus(500));
+    .catch((error) => {
+      console.log("Error approving user", error);
+      res.sendStatus(500);
+    });
 });
 
 // route to promote a user
@@ -96,9 +100,26 @@ router.put("/promote/:id", (req, res) => {
   console.log(`promoting user with id ${userId}`);
   const queryText = `UPDATE users SET is_admin = true WHERE id = $1`;
   pool
-    .query(queryText[userId])
+    .query(queryText, [userId])
     .then(() => res.sendStatus(201))
-    .catch(() => sendStatus(500));
+    .catch((error) => {
+      console.log("Error promoting user", error);
+      res.sendStatus(500);
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  let id = req.params.id;
+  console.log(`Deleting user with id of ${id}`);
+  let queryText = `
+    DELETE FROM users WHERE id = $1`;
+  pool
+    .query(queryText, [id])
+    .then(() => res.sendStatus(203))
+    .catch((error) => {
+      console.log("Error deleting user", error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
