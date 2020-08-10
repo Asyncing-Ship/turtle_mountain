@@ -71,8 +71,8 @@ class SignUp extends Component {
     return (
       <div>
         <Box w={500} p={4} m="20px auto">
-          <Heading as="h1" size="xl" textAlign="center">
-            This is the Sign Up Page.
+          <Heading as="h1" size="xl" textAlign="center" mb={6}>
+            Please Sign Up
           </Heading>
           <Box
             backgroundColor="#2f2e2e"
