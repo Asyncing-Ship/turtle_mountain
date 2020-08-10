@@ -30,7 +30,7 @@ class MyTask extends Component {
               return x.assigned_to === this.props.user.id;
             })
             .map((x, i) => (
-              <AccordionItem key={i} defaultIsOpen="False">
+              <AccordionItem className="accordion-item" key={i} defaultIsOpen="False">
                 {({ isExpanded }) => (
                   <>
                     <AccordionHeader

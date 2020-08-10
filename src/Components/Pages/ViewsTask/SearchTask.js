@@ -61,7 +61,11 @@ class SearchTask extends Component {
                 x.last_name.includes(this.state.searchString)
             )
             .map((x, i) => (
-              <AccordionItem key={i} defaultIsOpen="False">
+              <AccordionItem
+                className="accordion-item"
+                key={i}
+                defaultIsOpen="False"
+              >
                 {({ isExpanded }) => (
                   <>
                     <AccordionHeader
