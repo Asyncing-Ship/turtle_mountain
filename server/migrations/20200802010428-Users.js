@@ -39,6 +39,10 @@ module.exports = {
         allowNull: false,
         defaultValue: false,
       },
+      tagged_users: {
+        type: Sequelize.ARRAY(Sequelize.TEXT),
+        allowNull: true,
+      },
     });
   },
 
