@@ -13,7 +13,7 @@ const questions = (state = [], action) => {
 const questionsResponse = (state = [], action) => {
   switch (action.type) {
     case "SET_QUESTION_RESPONSES":
-      return action.payload;
+      return [action.payload];
     default:
       return state;
   }
