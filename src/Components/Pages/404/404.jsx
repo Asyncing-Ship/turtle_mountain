@@ -1,6 +1,14 @@
 // ----- Start of imports -----
 // React Import:
 import React from "react";
+// React Router DOM Imports:
+import {
+  NavLink,
+} from "react-router-dom";
+// Chakra UI Imports:
+import {
+  Button,
+} from "@chakra-ui/core";
 // CSS Import:
 import "./404.css";
 // ----- End of imports -----
@@ -30,10 +38,14 @@ const fourOhFour = () => {
           <div className="number">4</div>
         </div>
 
-        <div className="text">Oops. The page you're looking for doesn't exist.</div>
-        <a className="button" href="#">
-          Back Home
-        </a>
+        <div className="text">
+          Oops. The page you're looking for doesn't exist.
+        </div>
+        <NavLink to="/home">
+          <Button variant="solid" variantColor="green" m={9} p={9}>
+            Back Home
+          </Button>
+        </NavLink>
       </div>
       <div className="by">
         Illustration "Cezan - 404 Page Not Found" by{" "}
