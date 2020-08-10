@@ -62,7 +62,6 @@ class SignUp extends Component {
   }; // end registerUser
 
   handleInputChangeFor = (propertyName) => (event) => {
-    // console.log(`In change: ${propertyName}: ${event.target.value}`);
     this.setState({
       [propertyName]: event.target.value,
     });
@@ -82,7 +81,6 @@ class SignUp extends Component {
             borderWidth="1px"
             rounded="lg"
             shadow="1px 1px 3px rgba(0,0,0,0.3)"
-            // onSubmit={handleSubmit}
           >
             <Stack spacing={3}>
               <FormLabel p={0} htmlFor="first_name">
@@ -96,7 +94,6 @@ class SignUp extends Component {
                   onChange={this.handleInputChangeFor("first_name")}
                 />
               </FormLabel>
-
               <FormLabel p={0} htmlFor="last_name">
                 Last Name:
                 <Input
@@ -108,7 +105,6 @@ class SignUp extends Component {
                   onChange={this.handleInputChangeFor("last_name")}
                 />
               </FormLabel>
-
               <FormLabel p={0} htmlFor="email">
                 Email:
                 <Input
