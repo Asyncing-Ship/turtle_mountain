@@ -25,7 +25,9 @@ router.get("/", (req, res) => {
 
 router.get("/responses/:id", (req, res) => {
   console.log("GET question responses");
+  let questionId = req.params.id;
   QuestionResponse.findAll({
+    where: { question_id: questionId },
     include: [{ model: User }, { model: Question }],
   })
     .then((questions) => {
