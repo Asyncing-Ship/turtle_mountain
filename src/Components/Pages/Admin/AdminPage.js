@@ -53,7 +53,7 @@ class AdminPage extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    users: state.user.users || [
+    users: state.users || [
       {
         first_name: "Carrie",
         last_name: "Underwood",
