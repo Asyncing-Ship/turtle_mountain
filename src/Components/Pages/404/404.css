@@ -83,12 +83,13 @@ a {
 .paper::before {
     content: "";
     position: absolute;
-    top: -0.7rem;
-    right: -0.7rem;
+    top: -1.6rem;
+    right: 3rem;
     width: 1.4rem;
-    height: 1rem;
-    background-color: white;
+    height: 2rem;
+    background-color: transparent;
     border-bottom: 0.3rem solid #293b49;
+    border-radius: 100px;
     transform: rotate(45deg);
   }
 

@@ -11,7 +11,7 @@ const AcceptTask = (props) => {
       <Box textAlign="right">
         <Button
           size="sm"
-          rightIcon="download"
+          rightIcon="check"
           variantColor="green"
           className="new_class_goes_here"
           onClick={async () => {
