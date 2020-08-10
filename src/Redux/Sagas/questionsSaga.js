@@ -21,7 +21,7 @@ function* fetchQuestionResponses(action) {
   try {
     yield put({ type: "SET_QUESTION_RESPONSES", payload: [] });
     const response = yield Axios.get(
-      `/api/question_response/${action.payload.question_id}`
+      `/api/question/responses/${action.payload.question_id}`
     );
     console.log(`done with 'get'`, response);
     // const result = yield call(axios.get, '/question');
