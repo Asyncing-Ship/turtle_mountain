@@ -38,6 +38,7 @@ function* fetchAllUsers() {
 function* deleteUser(action) {
   try {
     yield Axios.delete(`/api/user/${action.payload}`);
+    yield put({ type: "FETCH_ALL_USERS" });
   } catch (error) {
     alert("unable to delete user from server");
   }
@@ -47,7 +48,7 @@ function* approveUser(action) {
   //Update the question response as verified
   try {
     yield Axios.put(`/api/user/approve/${action.payload}`);
-    yield put({ type: "FETCH_ALL_USERS", payload: action.payload });
+    yield put({ type: "FETCH_ALL_USERS" });
   } catch (error) {
     alert("Unable to approve user on server", error);
   }
