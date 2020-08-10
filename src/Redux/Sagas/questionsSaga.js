@@ -19,9 +19,11 @@ function* fetchQuestionResponses(action) {
   // yield axios
   // dispatch the result with put!
   try {
+    yield put({ type: "SET_QUESTION_RESPONSES", payload: [] });
     const response = yield Axios.get(
       `/api/question_response/${action.payload.question_id}`
     );
+    console.log(`done with 'get'`, response);
     // const result = yield call(axios.get, '/question');
     yield put({ type: "SET_QUESTION_RESPONSES", payload: response.data });
   } catch (error) {
@@ -36,7 +38,7 @@ function* addQuestion(action) {
   // dispatch the result with put!
   try {
     yield Axios.post("/api/question", action.payload);
-    yield put({ type: "FETCH_QUESTIONS", payload });
+    yield put({ type: "FETCH_QUESTIONS" });
   } catch (error) {
     // console.log('Error fetching Questions', error);
     alert("unable to add new Question response to server");
@@ -50,7 +52,7 @@ function* addQuestionResponse(action) {
   // dispatch the result with put!
   try {
     yield Axios.post("/api/question_response", action.payload);
-    yield put({ type: "FETCH_QUESTION_RESPONSES" });
+    yield put({ type: "FETCH_QUESTION_RESPONSES", payload: action.payload });
   } catch (error) {
     // console.log('Error fetching Question Response', error);
     alert("unable to add new Question Response to server");
@@ -149,7 +151,7 @@ function* markQuestionAnswered(action) {
   //update the question as answered
   try {
     yield Axios.put(`/api/question/answer/${action.payload.id}`);
-    yield put({ type: "FETCH_QUESTIONS", payload });
+    yield put({ type: "FETCH_QUESTIONS" });
   } catch (error) {
     alert("Unable to update question as answered", error);
   }
@@ -159,7 +161,7 @@ function* verifyQuestionResponse(action) {
   //Update the question response as verified
   try {
     yield Axios.put(`/api/question_response/verify/${action.payload.id}`);
-    yield put({ type: "FETCH_QUESTION_RESPONSE", payload });
+    yield put({ type: "FETCH_QUESTION_RESPONSE", payload: action.payload });
   } catch (error) {
     alert("Unable to update Question on server", error);
   }
@@ -168,7 +170,6 @@ function* verifyQuestionResponse(action) {
 function* questionsSaga() {
   yield takeEvery("FETCH_QUESTIONS", fetchQuestions);
   yield takeEvery("FETCH_QUESTION_DETAIL", fetchQuestionDetail);
-  yield takeEvery("ACCEPT_QUESTION", answerQuestion);
   yield takeEvery("FETCH_CURRENT_QUESTION", fetchCurrentQuestion);
   yield takeEvery("ADD_QUESTION", addQuestion);
   yield takeEvery("DELETE_QUESTION", deleteQuestion);

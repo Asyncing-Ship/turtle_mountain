@@ -73,10 +73,11 @@ class QuestionPage extends Component {
                   {x.title}
                 </AccordionHeader>
                 <AccordionPanel>
-                  {this.props.response.map((x) => (
-                    <Response content={x} />
-                  ))}
                   {x.content}
+                  {this.props.response[0] &&
+                    this.props.response.map((x) => (
+                      <Response content={x.content} />
+                    ))}
                   <AnswerQuestion />
                 </AccordionPanel>
               </AccordionItem>
@@ -96,10 +97,10 @@ class QuestionPage extends Component {
                     {x.title}
                   </AccordionHeader>
                   <AccordionPanel>
+                    {x.content}
                     {this.props.response.map((x) => (
                       <Response content={x} />
                     ))}
-                    {x.content}
                     <AnswerQuestion />
                   </AccordionPanel>
                 </AccordionItem>
@@ -123,10 +124,10 @@ class QuestionPage extends Component {
                     {x.title}
                   </AccordionHeader>
                   <AccordionPanel>
+                    {x.content}
                     {this.props.response.map((x) => (
                       <Response content={x} />
                     ))}
-                    {x.content}
                     <AnswerQuestion />
                   </AccordionPanel>
                 </AccordionItem>

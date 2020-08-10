@@ -3,10 +3,6 @@ import { Input, Button } from "@chakra-ui/core";
 import { Textarea } from "@chakra-ui/core";
 import { connect } from "react-redux";
 const NewQuestion = (props) => {
-  return (
-    <div>
-      <div>{props.content}</div>
-    </div>
-  );
+  return <div>{props.content}</div>;
 };
 export default connect()(NewQuestion);
