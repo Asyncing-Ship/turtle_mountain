@@ -1,6 +1,7 @@
 const express = require("express");
 const Question = require("../models/question.model");
 const User = require("../models/user.model");
+const QuestionResponse = require("../models/question_response.model");
 // const User_Question = require("../models/user.question.model");
 
 const router = express.Router();
@@ -10,6 +11,22 @@ router.get("/", (req, res) => {
   console.log("GET questions");
   Question.findAll({
     include: [{ model: User }],
+  })
+    .then((questions) => {
+      // question will be an array of all Question instances
+      // console.log('Found all questions', questions);
+      res.send(questions);
+    })
+    .catch((error) => {
+      console.log("Error getting all questions", error);
+      res.sendStatus(500);
+    });
+});
+
+router.get("/responses/:id", (req, res) => {
+  console.log("GET question responses");
+  QuestionResponse.findAll({
+    include: [{ model: User }, { model: Question }],
   })
     .then((questions) => {
       // question will be an array of all Question instances

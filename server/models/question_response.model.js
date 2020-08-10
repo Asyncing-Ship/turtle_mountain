@@ -23,15 +23,12 @@ const Question_Response = sequelize.define(
     verified: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
     },
     date_posted: {
       type: Sequelize.DATE,
       allowNull: false,
       defaultValue: Sequelize.fn("now"),
-    },
-    asked_by: {
-      type: Sequelize.INTEGER,
-      allowNull: true,
     },
   },
   config
