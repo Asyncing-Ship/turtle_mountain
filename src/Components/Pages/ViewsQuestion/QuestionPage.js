@@ -124,7 +124,7 @@ class QuestionPage extends Component {
                   <AccordionPanel>
                     {x.content}
                     {this.props.response.map((x) => (
-                      <Response content={x} />
+                      <Response question={x} />
                     ))}
                     <AnswerQuestion />
                   </AccordionPanel>
