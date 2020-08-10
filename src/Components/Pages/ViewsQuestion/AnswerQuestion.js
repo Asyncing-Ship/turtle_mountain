@@ -13,27 +13,28 @@ class AnswerQuestion extends Component {
   render() {
     return (
       <div>
-        <Input
-          value={this.state.answer}
-          placeholder="Your answer"
-          onChange={(event) => this.handleChange(event, "answer")}
-        ></Input>
-        <Button
-          onClick={() =>
-            this.props.dispatch({
-              type: "ANSWER_QUESTION",
+        <form
+          onSubmit={async (event) => {
+            event.preventDefault();
+            await this.props.dispatch({
+              type: "ADD_QUESTION_RESPONSE",
               payload: {
-                id: this.props.question.id,
-                answer: this.state.answer,
+                question_id: this.props.question.id,
+                content: this.state.answer,
               },
-            })
-          }
+            });
+            await this.setState({ answer: "" });
+          }}
         >
-          Submit Answer
-        </Button>
+          <Input
+            value={this.state.answer}
+            placeholder="Your answer"
+            onChange={(event) => this.handleChange(event, "answer")}
+          ></Input>
+          <Button type="submit">Submit Answer</Button>
+        </form>
       </div>
     );
   }
 }
-
 export default connect()(AnswerQuestion);
