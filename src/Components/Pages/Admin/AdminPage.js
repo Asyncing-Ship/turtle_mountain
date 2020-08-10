@@ -32,7 +32,7 @@ class AdminPage extends Component {
         {this.state.sortBy === "incoming" && (
           <Grid templateColumns="repeat(1, 1fr)" gap={3}>
             {this.props.users
-              .filter((x) => !x.isApproved)
+              .filter((x) => !x.is_approved)
               .map((x) => (
                 <Incoming user={x} />
               ))}
@@ -41,7 +41,7 @@ class AdminPage extends Component {
         {this.state.sortBy === "approved" && (
           <Grid templateColumns="repeat(1, 1fr)" gap={3}>
             {this.props.users
-              .filter((x) => x.isApproved)
+              .filter((x) => x.is_approved)
               .map((x) => (
                 <Approved user={x} />
               ))}
