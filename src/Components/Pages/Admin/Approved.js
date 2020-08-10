@@ -8,7 +8,7 @@ const Approved = (props) => {
       <Box as="span" verticalAlign="top" ml={3}>
         {props.user.first_name} {props.user.last_name}
       </Box>
-      {!props.user.isAdmin && (
+      {!props.user.is_admin && (
         <Box as="span" verticalAlign="top" ml={3}>
           <Button
             onClick={() => {
