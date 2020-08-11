@@ -5,42 +5,26 @@ const User = require("../models/user.model");
 
 const router = express.Router();
 
-// This route *should* return the logged in users pets
-router.get("/", (req, res) => {
-  console.log("GET all question tags");
-  Question_Tag.findAll({
-    include: [{ model: User }],
-    include: [{ model: Question }],
-  })
-    .then((responses) => {
-      // responses will be an array of all Question_Tag instances
-      // console.log('Found all tags', responses);
-      res.send(responses);
-    })
-    .catch((error) => {
-      console.log("Error getting all question tags", error);
-      res.sendStatus(500);
-    });
-});
-
+// route for getting all the question_tags for a certain question
 router.get("/:id", (req, res) => {
-  let tagId = req.params.id;
-  console.log(`GET request for question tags with id  ${tagId}`);
+  console.log("GET question tags");
+  let questionId = req.params.id;
   Question_Tag.findAll({
-    where: { id: tagId },
-    include: [{ model: User }],
-    include: [{ model: Question }],
+    where: { question_id: questionId },
+    include: [{ model: User }, { model: Question }],
   })
-    .then((responses) => {
-      console.log("Found question tags", responses);
-      res.send(responses[0] || []);
+    .then((questions) => {
+      // question will be an array of all Question instances
+      // console.log('Found all questions', questions);
+      res.send(questions);
     })
     .catch((error) => {
-      console.log(`Error getting question tags with id ${tagId}`, error);
+      console.log("Error getting all questions", error);
       res.sendStatus(500);
     });
 });
 
+// route to post a new question, will require you to have a userid and question id
 router.post("/", (req, res) => {
   const userId = req.body.user.id;
   const questionId = req.body.question_id;
