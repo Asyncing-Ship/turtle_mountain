@@ -9,7 +9,7 @@ const config = {
 
 // Model for an album - assumes table name is plural or 'albums'
 const Task = sequelize.define(
-  "task",
+  "tasks",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -23,10 +23,6 @@ const Task = sequelize.define(
     content: {
       type: Sequelize.STRING,
       allowNull: false,
-    },
-    added_by: {
-      type: Sequelize.INTEGER,
-      allowNull: true,
     },
     date_posted: {
       type: Sequelize.DATE,

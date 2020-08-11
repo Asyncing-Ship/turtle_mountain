@@ -19,6 +19,16 @@ const questionsResponse = (state = [], action) => {
   }
 };
 
+// reducer to hold our current question tags
+const questionTags = (state = [], action) => {
+  switch (action.type) {
+    case "SET_QUESTION_TAGS":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 // Used to store the detail of the question that is selected
 const questionDetail = (state = [], action) => {
   switch (action.type) {
@@ -67,4 +77,5 @@ export default combineReducers({
   currentQuestion,
   questionAuthor,
   questionsResponse,
+  questionTags,
 });
