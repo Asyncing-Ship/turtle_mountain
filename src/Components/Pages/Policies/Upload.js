@@ -60,6 +60,8 @@ const Upload = (props) => {
   return (
     <>
       <Button
+        rightIcon="add"
+        variantColor="green"
         onClick={async () => {
           await client.picker(options).open();
         }}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Upload from './Upload';
 import { connect } from 'react-redux';
 import { SimpleGrid, Box, Stack, Text, Button, ButtonGroup, Link } from '@chakra-ui/core';
+import PolicyModal from './PolicyModal';
 
 class PoliciesPage extends Component {
   componentDidMount() {
@@ -13,7 +14,9 @@ class PoliciesPage extends Component {
     return (
       <>
         <Stack>
-          <Upload />
+          <Box p={5}>
+            <Upload />
+          </Box>
           <SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }}>
             {
               policies.map((x, i) =>
@@ -27,13 +30,14 @@ class PoliciesPage extends Component {
                   <Stack>
                     <Text>{x.filename}</Text>
                     <ButtonGroup>
-                      <Link
+                      {/* <Link
                         target="_blank"
                         rel="noopener noreferrer"
                         href={`https://cdn.filestackcontent.com/${x.handle}`}
                       >
                         <Button rightIcon="view" size="sm" variantColor="blue">View</Button>
-                      </Link>
+                      </Link> */}
+                      <PolicyModal x={x} />
                       <Button rightIcon="download" size="sm" variantColor="purple">
                         <a
                           target="_blank"
