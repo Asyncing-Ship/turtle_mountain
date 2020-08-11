@@ -50,13 +50,7 @@ class NewTask extends Component {
           await this.props.history.push("/open");
         }}
       >
-        <FormControl
-          textAlign="left"
-          bg="#2f2e2e"
-          p={5}
-          rounded="lg"
-          isRequired
-        >
+        <FormControl textAlign="left" bg="#2f2e2e" p={5} rounded="lg">
           <Heading color="#f5fffe">New Task</Heading>
           <FormLabel htmlFor="task-title">Task Title</FormLabel>
           <Input
@@ -69,6 +63,7 @@ class NewTask extends Component {
             value={this.state.title}
             variant="filled"
             mb={5}
+            isRequired
           />
           <FormLabel htmlFor="task-body">Description</FormLabel>
           <Textarea
@@ -80,6 +75,7 @@ class NewTask extends Component {
             variant="filled"
             resize="vertical"
             mb={5}
+            isRequired
           />
           <Box style={{ backgroundColor: "white" }} mb={5}>
             TAGGED USERS
