@@ -21,13 +21,13 @@ const AcceptTask = (props) => {
             duration: 5000,
             isClosable: true,
           });
-          await props.dispatch({
-            type: "DELETE_TASK",
+          props.dispatch({
+            type: "COMPLETE_TASK",
             payload: {
               task_id: props.task.id,
             },
           });
-          await props.history.push("/tasks");
+          await props.history.push("/open");
         }}
       >
         Delete Task
