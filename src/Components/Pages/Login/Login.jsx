@@ -64,8 +64,8 @@ class Login extends Component {
     return (
       <div>
         <Box w={500} p={4} m="20px auto">
-          <Heading as="h1" size="xl" textAlign="center">
-            This is the Login Page.
+          <Heading as="h1" size="xl" textAlign="center" mb={6}>
+            Please Login
           </Heading>
           <Box
             backgroundColor="#2f2e2e"
@@ -74,7 +74,6 @@ class Login extends Component {
             borderWidth="1px"
             rounded="lg"
             shadow="1px 1px 3px rgba(0,0,0,0.3)"
-            // onSubmit={handleSubmit}
           >
             <Stack spacing={3}>
               <Text fontSize="md">Login with your email and password</Text>
@@ -110,7 +109,6 @@ class Login extends Component {
             </Stack>
             <Stack spacing={3} mt={4}>
               <Button
-                // isLoading={submitting}
                 loadingText="Submitting"
                 variantColor="teal"
                 type="submit"
@@ -125,12 +123,9 @@ class Login extends Component {
                 variant="outline"
                 color="#f5fffa"
                 onClick={() => this.props.history.push("/signup")}
-                // onClick={form.reset}
-                // isDisabled={submitting || pristine}
               >
                 Sign Up
               </Button>
-              {/* <Text fontSize="md">Sign in with Facebook</Text> */}
               <Button as="a" href={`${process.env.REACT_APP_SERVER_URL}/api/auth/facebook/`} variantColor="blue" variant="solid">
                 Login With Facebook
               </Button>
