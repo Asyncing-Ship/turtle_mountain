@@ -24,10 +24,6 @@ const Task = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
-    added_by: {
-      type: Sequelize.INTEGER,
-      allowNull: true,
-    },
     date_posted: {
       type: Sequelize.DATE,
       allowNull: false,
