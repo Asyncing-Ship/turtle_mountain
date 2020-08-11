@@ -48,11 +48,11 @@ router.post("/", rejectUnauthenticated, (req, res) => {
   const body = req.body.content;
   const user = req.user.id;
   const queryText = `
-    INSERT INTO tasks (title, content, added_by)
-    VALUES ($1, $2, $3)`;
+    INSERT INTO tasks (title, content, user_id)
+    VALUES ($1, $2, $3) returning id`;
   pool
     .query(queryText, [title, body, user])
-    .then(() => res.sendStatus(201))
+    .then((result) => res.send(result))
     .catch(() => res.sendStatus(500));
 });
 

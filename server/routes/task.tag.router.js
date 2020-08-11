@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
   const userId = req.body.user_id;
   const taskId = req.body.task_id;
   // console.log(`POST task tags, adding tags`, req.body);
-
+  console.log("posting task tag", req.body);
   let newTaskTag = Task_Tag.build({
     userId: userId,
     taskId: taskId,
