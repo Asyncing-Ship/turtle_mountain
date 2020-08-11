@@ -9,7 +9,7 @@ const config = {
 
 // Model for an album - assumes table name is plural or 'albums'
 const Task = sequelize.define(
-  "task",
+  "tasks",
   {
     id: {
       type: Sequelize.INTEGER,
