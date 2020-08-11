@@ -7,8 +7,6 @@ const router = express.Router();
 
 // route for getting all the task_tags for a certain task
 router.get("/:id", (req, res) => {
-  // console.log("GET task tags");
-  console.log("------------------------");
   let taskId = req.params.id;
   console.log("Task id is: ", taskId);
   Task_Tag.findAll({
@@ -27,9 +25,9 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const userId = req.body.user_id;
   const taskId = req.body.task_id;
-  // console.log(`POST task tags, adding tags`, req.body);
-  console.log("posting task tag", req.body);
+  const userIds = req.body.user_ids;
   let newTaskTag = Task_Tag.build({
+    tagged_users: userIds,
     userId: userId,
     taskId: taskId,
   });

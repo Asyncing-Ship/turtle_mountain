@@ -1,14 +1,15 @@
 import Axios from "axios";
-import { put, takeEvery } from "redux-saga/effects";
+import { put, takeEvery, delay, all } from "redux-saga/effects";
 // function to get Tasks
 function* fetchTasks(action) {
   // wrap it all in try/catch
   // yield axios
   // dispatch the result with put!
+  console.log("In fetch tasks");
   try {
     const response = yield Axios.get("/api/task");
-    // const result = yield call(axios.get, '/task');
-    yield put({ type: "SET_TASKS", payload: response.data });
+    yield put({ type: "SET_TASK_DETAIL", payload: response.data });
+    // yield put({ type: "ADD_TASK_TAGS", payload: action.payload });
   } catch (error) {
     alert("Error fetching Tasks", error);
   }
@@ -16,18 +17,17 @@ function* fetchTasks(action) {
 
 // function to add Tasks
 function* addTask(action) {
-  // wrap it all in try/catch
-  // yield axios
-  // dispatch the result with put!
   try {
-    console.log(action.payload);
+    console.log("add task", action.payload);
     const response = yield Axios.post("/api/task", {
       title: action.payload.title,
       content: action.payload.content,
-    }).data.rows[0].id;
+    });
+    let myId = response.data.rows[0].id;
+    let item = action.payload.user_ids;
     yield put({
       type: "ADD_TASK_TAGS",
-      payload: { user_id: action.payload.user_ids[0], task_id: response },
+      payload: { user_id: 1, user_ids: item, task_id: myId },
     });
     yield put({ type: "FETCH_TASKS" });
   } catch (error) {
