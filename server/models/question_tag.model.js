@@ -28,8 +28,8 @@ Question_Tag.belongsTo(User, {
   onDelete: "CASCADE",
 });
 
-const Task = require("./task.model");
-Question_Tag.belongsTo(Task, {
+const Question = require("./question.model");
+Question_Tag.belongsTo(Question, {
   foreignKey: {
     allowNull: false,
   },

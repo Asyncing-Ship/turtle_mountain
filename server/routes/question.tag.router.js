@@ -26,7 +26,7 @@ router.get("/:id", (req, res) => {
 
 // route to post a new question, will require you to have a userid and question id
 router.post("/", (req, res) => {
-  const userId = req.body.user.id;
+  const userId = req.body.user_id;
   const questionId = req.body.question_id;
   console.log(`POST question tags, adding tags`, req.body);
 
