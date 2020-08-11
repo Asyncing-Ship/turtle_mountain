@@ -25,7 +25,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const userId = req.body.user.id;
+  const userId = req.body.user_id;
   const taskId = req.body.task_id;
   // console.log(`POST task tags, adding tags`, req.body);
 
