@@ -5,38 +5,19 @@ const User = require("../models/user.model");
 
 const router = express.Router();
 
-// This route *should* return the logged in users pets
-router.get("/", (req, res) => {
-  console.log("GET all task tags");
-  Task_Tag.findAll({
-    include: [{ model: User }],
-    include: [{ model: Task }],
-  })
-    .then((responses) => {
-      // responses will be an array of all Task_Tag instances
-      // console.log('Found all tags', responses);
-      res.send(responses);
-    })
-    .catch((error) => {
-      console.log("Error getting all tasks tags", error);
-      res.sendStatus(500);
-    });
-});
-
+// route for getting all the task_tags for a certain task
 router.get("/:id", (req, res) => {
-  let tagId = req.params.id;
-  console.log(`GET request for tasks tags with id  ${tagId}`);
+  console.log("GET task tags");
+  let taskId = req.params.id;
   Task_Tag.findAll({
-    where: { id: tagId },
-    include: [{ model: User }],
-    include: [{ model: Task }],
+    where: { task_id: taskId },
+    include: [{ model: User }, { model: Task }],
   })
-    .then((responses) => {
-      console.log("Found task tags", responses);
-      res.send(responses[0] || []);
+    .then((tasks) => {
+      res.send(tasks);
     })
     .catch((error) => {
-      console.log(`Error getting task tags with id ${tagId}`, error);
+      console.log("Error getting all task tags", error);
       res.sendStatus(500);
     });
 });
