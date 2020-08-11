@@ -23,7 +23,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const userId = req.body.user_id;
+  const userId = req.user.id;
   const taskId = req.body.task_id;
   const userIds = req.body.user_ids;
   let newTaskTag = Task_Tag.build({

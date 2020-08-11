@@ -27,7 +27,7 @@ function* addTask(action) {
     let item = action.payload.user_ids;
     yield put({
       type: "ADD_TASK_TAGS",
-      payload: { user_id: 1, user_ids: item, task_id: myId },
+      payload: { user_ids: item, task_id: myId },
     });
     yield put({ type: "FETCH_TASKS" });
   } catch (error) {
