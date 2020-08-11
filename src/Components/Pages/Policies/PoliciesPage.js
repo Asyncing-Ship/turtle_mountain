@@ -13,7 +13,9 @@ class PoliciesPage extends Component {
     return (
       <>
         <Stack>
-          <Upload />
+          <Box p={5}>
+            <Upload />
+          </Box>
           <SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }}>
             {
               policies.map((x, i) =>
