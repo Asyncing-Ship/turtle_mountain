@@ -4,20 +4,21 @@ import {
   Button,
   FormControl,
   FormLabel,
-  InputGroup,
-  InputLeftElement,
-  Icon,
   Box,
-  Heading
+  Heading,
+  Textarea,
 } from "@chakra-ui/core";
-import { Textarea } from "@chakra-ui/core";
+
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import Select from "react-select";
+import { findAllByDisplayValue } from "@testing-library/react";
 
 class NewTask extends Component {
   state = {
     title: "",
     content: "",
+    select: [],
   };
 
   handleChange = (event, value) => {
@@ -26,6 +27,13 @@ class NewTask extends Component {
     });
   };
 
+  handleInputChange = async (event) => {
+    await console.log(event.value);
+    if (this.state.select.length < 8) {
+      await this.setState({ select: [...this.state.select, event.value] });
+    }
+    await console.log(this.state.select);
+  };
   render() {
     return (
       <form
@@ -37,12 +45,19 @@ class NewTask extends Component {
               title: this.state.title,
               content: this.state.content,
               user: this.props.user.id,
+              user_ids: this.state.select.map((x) => x.id),
             },
           });
           await this.props.history.push("/open");
         }}
       >
-        <FormControl textAlign="left" bg="#2f2e2e" p={5} rounded="lg" isRequired>
+        <FormControl
+          textAlign="left"
+          bg="#2f2e2e"
+          p={5}
+          rounded="lg"
+          isRequired
+        >
           <Heading color="#f5fffe">New Task</Heading>
           <FormLabel htmlFor="task-title">Task Title</FormLabel>
           <Input
@@ -67,28 +82,39 @@ class NewTask extends Component {
             resize="vertical"
             mb={5}
           />
-          <InputGroup>
-            <InputLeftElement
-              children={
-                <Icon
-                  name="at-sign"
-                  color="gray.400"
-                />
-              }
-            />
-            <Input
-              _focus={{ bg: "#f5fffe", border: "2px solid #3182ce" }}
-              variant="filled"
-              placeholder="Tag other users"
-              mb={5}
-            />
-          </InputGroup>
+          <Box style={{ backgroundColor: "white" }} mb={5}>
+            TAGGED USERS
+            {this.state.select.map((x) => (
+              <Box>{"@" + x.first_name + " " + x.last_name}</Box>
+            ))}
+          </Box>
+          <small style={{ color: "white" }}>Select User(s) to tag</small>
+          <Select
+            placeholder="SELECT A USER"
+            className="col-12 col-lg-3"
+            defaultValue={0}
+            options={this.props.users
+              .filter((x) => {
+                for (let user of this.state.select) {
+                  if (user === x) {
+                    return false;
+                  }
+                }
+                return true;
+              })
+              .map((x) => {
+                return {
+                  label: x.first_name + " " + x.last_name,
+                  value: x,
+                  key: x.id,
+                };
+              })}
+            onChange={(event) => {
+              this.handleInputChange(event);
+            }}
+          ></Select>
           <Box textAlign="right">
-            <Button
-              type="submit"
-              rightIcon="add"
-              variantColor="green"
-            >
+            <Button type="submit" rightIcon="add" variantColor="green">
               Add Task
             </Button>
           </Box>
@@ -99,7 +125,7 @@ class NewTask extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.user };
+  return { user: state.user, users: state.users };
 };
 
 export default withRouter(connect(mapStateToProps)(NewTask));
