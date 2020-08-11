@@ -44,7 +44,6 @@ class NewTask extends Component {
             payload: {
               title: this.state.title,
               content: this.state.content,
-              user: this.props.user.id,
               user_ids: this.state.select.map((x) => x.id),
             },
           });

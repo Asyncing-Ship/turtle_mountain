@@ -20,7 +20,15 @@ function* addTask(action) {
   // yield axios
   // dispatch the result with put!
   try {
-    yield Axios.post("/api/task", action.payload);
+    console.log(action.payload);
+    const response = yield Axios.post("/api/task", {
+      title: action.payload.title,
+      content: action.payload.content,
+    }).data.rows[0].id;
+    yield put({
+      type: "ADD_TASK_TAGS",
+      payload: { user_id: action.payload.user_ids[0], task_id: response },
+    });
     yield put({ type: "FETCH_TASKS" });
   } catch (error) {
     // console.log('Error fetching Tasks', error);
