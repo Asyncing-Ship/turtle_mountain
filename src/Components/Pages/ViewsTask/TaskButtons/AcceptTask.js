@@ -2,6 +2,8 @@ import React from "react";
 import { Button, useToast, Box } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import EditTask from "./EditTask";
+import DeleteTask from "./DeleteTask";
 
 const AcceptTask = (props) => {
   const toast = useToast();
@@ -33,6 +35,8 @@ const AcceptTask = (props) => {
         >
           Accept Task
         </Button>
+        <EditTask task={props.task} />
+        <DeleteTask task={props.task} />
       </Box>
     </div>
   );
