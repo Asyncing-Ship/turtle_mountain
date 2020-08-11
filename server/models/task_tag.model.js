@@ -16,6 +16,10 @@ const Task_Tag = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
+    tagged_users: {
+      type: Sequelize.ARRAY(Sequelize.INTEGER),
+      allowNull: true,
+    },
   },
   config
 );

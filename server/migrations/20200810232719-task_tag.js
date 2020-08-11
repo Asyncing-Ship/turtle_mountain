@@ -8,6 +8,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
+      tagged_users: {
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        allowNull: true,
+      },
       user_id: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",

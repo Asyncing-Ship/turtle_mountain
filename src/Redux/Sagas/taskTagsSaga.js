@@ -17,6 +17,8 @@ function* fetchTaskTags(action) {
 // function to add a Task tags
 function* addTaskTags(action) {
   try {
+    console.log("action", action);
+    console.log("action.payload", action.payload);
     yield Axios.post("/api/task_tag", action.payload);
     yield put({ type: "FETCH_TASK_TAGS", payload: action.payload });
   } catch (error) {
