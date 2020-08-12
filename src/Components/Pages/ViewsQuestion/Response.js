@@ -12,19 +12,24 @@ const NewQuestion = (props) => {
       </Box>
       <Box mb={3}>
         {props.question.content}
-        <Button
-          onClick={() => {
-            props.dispatch({
-              type: "MARK_AS_ANSWER",
-              payload: {
-                id: props.question.id,
-                question_id: props.question.question_id,
-              },
-            });
-          }}
-        >
-          <Icon name="check"></Icon>
-        </Button>
+        {!props.question.verified && (
+          <Button
+            onClick={() => {
+              console.log(props.question);
+              props.dispatch({
+                type: "MARK_AS_ANSWER",
+                payload: {
+                  id: props.question.id,
+                  question_id: props.question.questionId,
+                },
+              });
+            }}
+          >
+            Mark As Verified
+            <Icon name="check" />
+          </Button>
+        )}
+        {props.question.verified && <Icon name="check-circle"></Icon>}
       </Box>
     </div>
   );
