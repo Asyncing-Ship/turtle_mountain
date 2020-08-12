@@ -6,10 +6,11 @@ import { connect } from "react-redux";
 // React Router DOM Imports:
 import {
   withRouter,
-  HashRouter as RouterB,
+  HashRouter as RouterC,
   Switch,
   Redirect,
   NavLink,
+  Link,
 } from "react-router-dom";
 // Chakra-ui imports:
 import {
@@ -21,6 +22,11 @@ import {
   AccordionItem,
 } from "@chakra-ui/core";
 // Components Imports:
+import ProtectedRoute from "../../Utilities/ProtectedRoute/ProtectedRoute";
+import RecentQuestions from "./RecentQuestions"
+import UnansweredQuestions from "./UnansweredQuestions"
+import SearchQuestions from "./SearchQuestions"
+import NewQuestion from "./NewQuestion"
 import AnswerQuestion from "./AnswerQuestion";
 import Response from "./Response";
 // ----- End of imports -----
@@ -84,18 +90,18 @@ class QuestionPage extends Component {
                   Search
                 </Button>
               </NavLink>
-              <NavLink activeClassName="tasks-nav-active" to="/new-questions">
+              <NavLink activeClassName="tasks-nav-active" to="/new-question">
                 <Button
                   variant="outline"
                   variantColor="green"
                   rightIcon="add"
                   m={3}
                 >
-                  New Task
+                  New Question
                 </Button>
               </NavLink>
             </ButtonGroup>
-            <Redirect from="/" to="/open" />
+            <Redirect from="/" to="/RecentQuestions" />
             <Switch>
               <ProtectedRoute
                 exact
@@ -112,11 +118,15 @@ class QuestionPage extends Component {
                 path="/search-questions"
                 component={SearchQuestions}
               />
-              <ProtectedRoute exact path="/new-questions" component={NewQuestions} />
+              <ProtectedRoute
+                exact
+                path="/new-question"
+                component={NewQuestion}
+              />
             </Switch>
           </Stack>
         </RouterC>
-        {/* ---------------------------------------- */}
+        {/* --------------------------------------------------------------------------------- */}
         {/* Start of buttons */}
         <div>
           {/* Start of buttons */}
