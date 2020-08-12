@@ -31,7 +31,7 @@ class AnswerQuestion extends Component {
             placeholder="Your answer"
             onChange={(event) => this.handleChange(event, "answer")}
           ></Input>
-          <Button type="submit">Submit Answer</Button>
+          <Button mt={3} type="submit">Submit Answer</Button>
         </form>
       </div>
     );
