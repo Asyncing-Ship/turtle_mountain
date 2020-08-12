@@ -166,7 +166,6 @@ function* verifyQuestionResponse(action) {
   //Update the question response as verified
   try {
     yield Axios.put(`/api/question_response/verify/${action.payload.id}`);
-    yield put({ type: "FETCH_QUESTION_RESPONSE", payload: action.payload });
   } catch (error) {
     alert("Unable to update Question on server", error);
   }
