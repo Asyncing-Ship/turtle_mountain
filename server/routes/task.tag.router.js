@@ -14,7 +14,8 @@ router.get("/:id", (req, res) => {
     include: [{ model: User }, { model: Task }],
   })
     .then((tasks) => {
-      list = tasks[1].tagged_users;
+      console.log("tasks is: ", tasks);
+      list = tasks[0].tagged_users;
       User.findAll({
         where: { id: list },
         attributes: ["id", "first_name", "last_name"],
