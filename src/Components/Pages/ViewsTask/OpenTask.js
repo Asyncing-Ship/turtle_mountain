@@ -25,13 +25,23 @@ class OpenTask extends Component {
           {this.props.tasks
             .filter((x) => x.status === "open")
             .map((x, i) => (
-              <AccordionItem className="accordion-item" key={i} defaultIsOpen="False">
+              <AccordionItem
+                className="accordion-item"
+                key={i}
+                defaultIsOpen="False"
+              >
                 {({ isExpanded }) => (
                   <>
                     <AccordionHeader
                       className="accordion-head"
                       _expanded={{ bg: "#c79e61", color: "white" }}
                       _hover={{ bg: "#c79e61", color: "white" }}
+                      onClick={() =>
+                        this.props.dispatch({
+                          type: "FETCH_TASK_TAGS",
+                          payload: { task_id: x.id },
+                        })
+                      }
                     >
                       <Box flex="1" textAlign="left">
                         {x.title}

@@ -12,7 +12,6 @@ import {
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import Select from "react-select";
-import { findAllByDisplayValue } from "@testing-library/react";
 
 class NewTask extends Component {
   state = {
