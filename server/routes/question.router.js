@@ -107,6 +107,7 @@ router.put("/:id", (req, res) => {
 
 // This is a route for marking a question as answered
 router.put("/answer/:id", (req, res) => {
+  console.log("updating question at id", req.params.id);
   let questionId = req.params.id;
   console.log(`PUT request update question ${questionId}`, req.body);
   let updates = {
