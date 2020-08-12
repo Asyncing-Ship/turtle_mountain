@@ -8,7 +8,7 @@ function* fetchTasks(action) {
   console.log("In fetch tasks");
   try {
     const response = yield Axios.get("/api/task");
-    yield put({ type: "SET_TASK_DETAIL", payload: response.data });
+    yield put({ type: "SET_TASKS", payload: response.data });
     // yield put({ type: "ADD_TASK_TAGS", payload: action.payload });
   } catch (error) {
     alert("Error fetching Tasks", error);
