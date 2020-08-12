@@ -101,7 +101,7 @@ class QuestionPage extends Component {
                 </Button>
               </NavLink>
             </ButtonGroup>
-            <Redirect from="/" to="/RecentQuestions" />
+            <Redirect from="/" to="/recent-questions" />
             <Switch>
               <ProtectedRoute
                 exact
