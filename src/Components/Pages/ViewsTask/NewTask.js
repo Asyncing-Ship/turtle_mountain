@@ -82,7 +82,18 @@ class NewTask extends Component {
           <Box style={{ backgroundColor: "white" }} mb={5}>
             TAGGED USERS
             {this.state.select.map((x) => (
-              <Box>{"@" + x.first_name + " " + x.last_name}</Box>
+              <Box>
+                {"@" + x.first_name + " " + x.last_name}
+                <Button
+                  onClick={() =>
+                    this.setState({
+                      select: this.state.select.filter((y) => y.id != x.id),
+                    })
+                  }
+                >
+                  x
+                </Button>
+              </Box>
             ))}
           </Box>
           <small style={{ color: "white" }}>Select User(s) to tag</small>
