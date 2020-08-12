@@ -155,7 +155,7 @@ function* markAsAnswer(action) {
     yield put({ type: "FETCH_QUESTIONS" });
     yield put({
       type: "FETCH_QUESTION_RESPONSES",
-      payload: action.payload.question_id,
+      payload: { question_id: action.payload.question_id },
     });
   } catch (error) {
     alert("Unable to update question as answered", error);
