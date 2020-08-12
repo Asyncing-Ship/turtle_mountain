@@ -64,18 +64,32 @@ class NewQuestion extends Component {
             <Heading color="#f5fffe">New Question</Heading>
             <FormLabel htmlFor="task-title">Question Title</FormLabel>
             <Input
-              placeholder="Title"
+              _focus={{ bg: "#f5fffe", border: "2px solid #3182ce" }}
+              autoComplete="off"
+              id="task-title"
+              aria-required="true"
+              placeholder="Task Title"
               onChange={(event) => this.handleChange(event, "title")}
               value={this.state.title}
+              variant="filled"
+              mb={5}
+              isRequired
             />
+            <FormLabel htmlFor="task-body">Description</FormLabel>
             <Textarea
-              placeholder="Detailed Description"
+              _focus={{ bg: "#f5fffe", border: "2px solid #3182ce" }}
+              id="task-body"
+              placeholder="Describe the task..."
               onChange={(event) => this.handleChange(event, "content")}
               value={this.state.content}
+              variant="filled"
+              resize="vertical"
+              mb={5}
+              isRequired
             />
             <Box style={{ backgroundColor: "white" }} mb={5}>
               TAGGED USERS
-              {this.state.select.map((x, i) => (
+              {this.state.select.map((x) => (
                 <Box>
                   {"@" + x.first_name + " " + x.last_name}
                   <Button
