@@ -147,11 +147,16 @@ function* addQuestionLike(action) {
   }
 }
 
-function* markQuestionAnswered(action) {
+function* markAsAnswer(action) {
   //update the question as answered
   try {
-    yield Axios.put(`/api/question/answer/${action.payload.id}`);
+    yield Axios.put(`/api/question/answer/${action.payload.question_id}`);
+    yield Axios.put(`/api/question_response/verify/${action.payload.id}`);
     yield put({ type: "FETCH_QUESTIONS" });
+    yield put({
+      type: "FETCH_QUESTION_RESPONSES",
+      payload: { question_id: action.payload.question_id },
+    });
   } catch (error) {
     alert("Unable to update question as answered", error);
   }
@@ -161,7 +166,6 @@ function* verifyQuestionResponse(action) {
   //Update the question response as verified
   try {
     yield Axios.put(`/api/question_response/verify/${action.payload.id}`);
-    yield put({ type: "FETCH_QUESTION_RESPONSE", payload: action.payload });
   } catch (error) {
     alert("Unable to update Question on server", error);
   }
@@ -175,7 +179,7 @@ function* questionsSaga() {
   yield takeEvery("DELETE_QUESTION", deleteQuestion);
   yield takeEvery("FETCH_QUESTION_AUTHOR", fetchQuestionAuthor);
   yield takeEvery("ADD_QUESTION_LIKE", addQuestionLike);
-  yield takeEvery("MARK_QUESTION_ANSWERED", markQuestionAnswered); // only admin can
+  yield takeEvery("MARK_AS_ANSWER", markAsAnswer); // only admin can
   // QUESTION RESPONSES BELOW
   yield takeEvery("FETCH_QUESTION_RESPONSES", fetchQuestionResponses);
   yield takeEvery("ADD_QUESTION_RESPONSE", addQuestionResponse);
