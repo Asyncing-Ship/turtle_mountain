@@ -12,7 +12,6 @@ import {
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import Select from "react-select";
-import { findAllByDisplayValue } from "@testing-library/react";
 
 class NewTask extends Component {
   state = {
@@ -21,6 +20,9 @@ class NewTask extends Component {
     select: [],
   };
 
+  componentDidMount() {
+    this.props.dispatch({ type: "FETCH_ALL_USERS" });
+  }
   handleChange = (event, value) => {
     this.setState({
       [value]: event.target.value,

@@ -38,12 +38,15 @@ const AcceptTask = (props) => {
         <EditTask task={props.task} />
         <DeleteTask task={props.task} />
       </Box>
+      {props.tags[0] &&
+        props.tags[0].tagged_users &&
+        props.tags[0].tagged_users.map((x) => <span>@{x} </span>)}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  return { user: state.user };
+  return { user: state.user, tags: state.tasks.taskTags };
 };
 
 export default withRouter(connect(mapStateToProps)(AcceptTask));
