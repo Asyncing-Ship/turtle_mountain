@@ -1,5 +1,11 @@
+// ----- Start of imports -----
+// React Import:
 import React, { Component } from "react";
+// React Redux Imports:
 import { connect } from "react-redux";
+// React Router DOM Imports:
+import { Link } from "react-router-dom";
+// Chakra-ui imports:
 import {
   Input,
   Button,
@@ -8,9 +14,11 @@ import {
   AccordionPanel,
   AccordionItem,
 } from "@chakra-ui/core";
-import { Link } from "react-router-dom";
+// Components Imports:
 import AnswerQuestion from "./AnswerQuestion";
 import Response from "./Response";
+// ----- End of imports -----
+
 class QuestionPage extends Component {
   state = {
     filter: 1,
@@ -28,6 +36,7 @@ class QuestionPage extends Component {
   render() {
     return (
       <div>
+        {/* Start of buttons */}
         <Button
           m={3}
           onClick={() => {
@@ -50,6 +59,8 @@ class QuestionPage extends Component {
         >
           Unanswered
         </Button>
+        {/* End of buttons */}
+        {/* Start of search input */}
         <Input
           m={3}
           placeholder="Search For a Question"
@@ -62,6 +73,9 @@ class QuestionPage extends Component {
             this.setState({ searchText: event.target.value });
           }}
         />
+        {/* End of search input */}
+        {/* Start of Accordions Examples */}
+        {/* Start of Question area 1 */}
         {this.state.filter === 1 && (
           <Accordion defaultIndex={[-1]} allowToggle>
             {this.props.questions.map((x) => (
@@ -86,6 +100,8 @@ class QuestionPage extends Component {
             ))}
           </Accordion>
         )}
+        {/* End of Question area 1 */}
+        {/* Start of Question area 2 */}
         {this.state.filter === 2 && (
           <Accordion defaultIndex={[-1]} allowToggle>
             {this.props.questions
@@ -113,6 +129,8 @@ class QuestionPage extends Component {
               ))}
           </Accordion>
         )}
+        {/* End of Question area 2 */}
+        {/* Start of Question area 3 */}
         {this.state.filter === 3 && (
           <Accordion defaultIndex={[-1]} allowToggle>
             {this.props.questions
@@ -144,6 +162,8 @@ class QuestionPage extends Component {
               ))}
           </Accordion>
         )}
+        {/* End of Question area 3 */}
+        {/* Start of Accordions */}
         <Link to="/questions/new">
           <Button>New Question</Button>
         </Link>
