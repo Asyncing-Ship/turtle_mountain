@@ -14,7 +14,14 @@ router.get("/:id", (req, res) => {
     include: [{ model: User }, { model: Task }],
   })
     .then((tasks) => {
-      res.send(tasks);
+      list = tasks[1].tagged_users;
+      User.findAll({
+        where: { id: list },
+        attributes: ["id", "first_name", "last_name"],
+      }).then((results) => {
+        console.log("results is: ", results);
+        res.send(results);
+      });
     })
     .catch((error) => {
       console.log("Error getting all task tags", error);
