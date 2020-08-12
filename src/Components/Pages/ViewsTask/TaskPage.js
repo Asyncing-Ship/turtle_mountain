@@ -25,9 +25,6 @@ import "./TaskPage.css";
 // ----- This is the TaskPage component -----
 // This component is tha main page component for tasks that displays the task for the users.
 export class TaskPage extends Component {
-  componentDidMount() {
-    this.props.dispatch({ type: "FETCH_ALL_USERS" });
-  }
   render() {
     return (
       <RouterB>

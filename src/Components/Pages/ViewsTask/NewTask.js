@@ -21,6 +21,9 @@ class NewTask extends Component {
     select: [],
   };
 
+  componentDidMount() {
+    this.props.dispatch({ type: "FETCH_ALL_USERS" });
+  }
   handleChange = (event, value) => {
     this.setState({
       [value]: event.target.value,
