@@ -5,23 +5,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // React Router DOM Imports:
 import {
-  withRouter,
   HashRouter as RouterC,
   Switch,
   Redirect,
   NavLink,
-  Link,
 } from "react-router-dom";
 // Chakra-ui imports:
 import {
-  Input,
   Button,
   Stack,
   ButtonGroup,
-  Accordion,
-  AccordionHeader,
-  AccordionPanel,
-  AccordionItem,
 } from "@chakra-ui/core";
 // Components Imports:
 import ProtectedRoute from "../../Utilities/ProtectedRoute/ProtectedRoute";
@@ -29,8 +22,6 @@ import RecentQuestions from "./RecentQuestions";
 import UnansweredQuestions from "./UnansweredQuestions";
 import SearchQuestions from "./SearchQuestions";
 import NewQuestion from "./NewQuestion";
-import AnswerQuestion from "./AnswerQuestion";
-import Response from "./Response";
 // ----- End of imports -----
 
 class QuestionPage extends Component {
@@ -52,11 +43,11 @@ class QuestionPage extends Component {
       <RouterC>
         <Stack className="tasks-content">
           <ButtonGroup className="tasks-btngrp">
-            <NavLink activeClassName="tasks-nav-active" to="/recent-questions">
+            <NavLink activeClassName="tasks-nav-active" to="/recent">
               <Button
                 variant="outline"
                 variantColor="blue"
-                rightIcon="info"
+                rightIcon="time"
                 m={3}
               >
                 Most Recent
@@ -64,18 +55,18 @@ class QuestionPage extends Component {
             </NavLink>
             <NavLink
               activeClassName="tasks-nav-active"
-              to="/unanswered-questions"
+              to="/unanswered"
             >
               <Button
                 variant="outline"
                 variantColor="yellow"
-                rightIcon="star"
+                rightIcon="question"
                 m={3}
               >
                 Unanswered
               </Button>
             </NavLink>
-            <NavLink activeClassName="tasks-nav-active" to="/search-questions">
+            <NavLink activeClassName="tasks-nav-active" to="/search">
               <Button
                 variant="outline"
                 variantColor="purple"
@@ -85,7 +76,7 @@ class QuestionPage extends Component {
                 Search
               </Button>
             </NavLink>
-            <NavLink activeClassName="tasks-nav-active" to="/new-question">
+            <NavLink activeClassName="tasks-nav-active" to="/new">
               <Button
                 variant="outline"
                 variantColor="green"
@@ -96,26 +87,26 @@ class QuestionPage extends Component {
               </Button>
             </NavLink>
           </ButtonGroup>
-          <Redirect from="/" to="/recent-questions" />
+          <Redirect from="/" to="/recent" />
           <Switch>
             <ProtectedRoute
               exact
-              path="/recent-questions"
+              path="/recent"
               component={RecentQuestions}
             />
             <ProtectedRoute
               exact
-              path="/unanswered-questions"
+              path="/unanswered"
               component={UnansweredQuestions}
             />
             <ProtectedRoute
               exact
-              path="/search-questions"
+              path="/search"
               component={SearchQuestions}
             />
             <ProtectedRoute
               exact
-              path="/new-question"
+              path="/new"
               component={NewQuestion}
             />
           </Switch>
