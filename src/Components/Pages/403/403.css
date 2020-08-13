@@ -6,9 +6,7 @@ html {
 
 body {
   min-height: 100%;
-  background-color: dark-grey;
   font-family: "Roboto Condensed";
-  text-transform: uppercase;
   overflow-x: hidden;
 }
 .page {
