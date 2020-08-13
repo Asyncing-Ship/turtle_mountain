@@ -9,7 +9,7 @@ body {
   background-color: dark-grey;
   font-family: "Roboto Condensed";
   text-transform: uppercase;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .page {
   background-color: darkslategray;

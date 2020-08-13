@@ -81,17 +81,17 @@ a {
 }
 
 .paper::before {
-    content: "";
-    position: absolute;
-    top: -1.6rem;
-    right: 3rem;
-    width: 1.4rem;
-    height: 2rem;
-    background-color: transparent;
-    border-bottom: 0.3rem solid #293b49;
-    border-radius: 100px;
-    transform: rotate(45deg);
-  }
+  content: "";
+  position: absolute;
+  top: -1.6rem;
+  right: 3rem;
+  width: 1.4rem;
+  height: 2rem;
+  background-color: transparent;
+  border-bottom: 0.3rem solid #293b49;
+  border-radius: 100px;
+  transform: rotate(45deg);
+}
 
 .face {
   position: relative;
@@ -120,12 +120,12 @@ a {
 }
 
 .eye-left {
-    left: 0;
-  }
+  left: 0;
+}
 
 .eye-right {
-    right: 0;
-  }
+  right: 0;
+}
 
 @keyframes eye {
   0% {
@@ -155,12 +155,12 @@ a {
 }
 
 .rosyCheeks-left {
-    left: 1.4rem;
-  }
+  left: 1.4rem;
+}
 
 .rosyCheeks-right {
-    right: 1.4rem;
-  }
+  right: 1.4rem;
+}
 
 .mouth {
   position: absolute;
@@ -187,8 +187,8 @@ a {
 }
 
 .button:hover {
-    background-color: #01ac88;
-  }
+  background-color: #01ac88;
+}
 
 .by {
   position: absolute;
