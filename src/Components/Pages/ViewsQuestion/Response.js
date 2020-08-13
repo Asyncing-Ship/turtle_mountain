@@ -7,13 +7,13 @@ const NewQuestion = (props) => {
     <div>
       <Box>
         <u>
-          {props.question.user.first_name} {props.question.user.last_name}
+          {props.response.user.first_name} {props.response.user.last_name}
         </u>
       </Box>
       <Box mb={3}>
         {console.log(props.posted_by, props.user.id, props.user.is_admin)}
-        {props.question.content}
-        {!props.question.verified &&
+        {props.response.content}
+        {!props.response.verified &&
           !props.questionVerified &&
           (props.user.is_admin || props.posted_by == props.user.id) && (
             <Button
@@ -22,8 +22,8 @@ const NewQuestion = (props) => {
                 props.dispatch({
                   type: "MARK_AS_ANSWER",
                   payload: {
-                    id: props.question.id,
-                    question_id: props.question.questionId,
+                    id: props.response.id,
+                    question_id: props.response.questionId,
                   },
                 });
               }}
@@ -32,7 +32,7 @@ const NewQuestion = (props) => {
               <Icon name="check" />
             </Button>
           )}
-        {props.question.verified && <Icon name="check-circle"></Icon>}
+        {props.response.verified && <Icon name="check-circle"></Icon>}
       </Box>
     </div>
   );
