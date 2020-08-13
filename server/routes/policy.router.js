@@ -5,14 +5,14 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
 
-router.get("/", (req, res) => {
+router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("GET policies");
   Policy.findAll()
     .then((result) => res.send(result))
     .catch((error) => console.log(error));
 });
 
-router.post("/new", (req, res) => {
+router.post("/new", rejectUnauthenticated, (req, res) => {
   let NewPolicy = Policy.build({
     filename: req.body.filename,
     handle: req.body.handle,

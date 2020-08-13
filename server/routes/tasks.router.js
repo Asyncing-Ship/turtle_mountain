@@ -21,7 +21,7 @@ router.put("/complete/:id", rejectUnauthenticated, (req, res) => {
 /**
  * Get all of the tasks on the table
  */
-router.get("/", (req, res) => {
+router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("getting tasks");
   const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content,tasks.assigned_to, tasks.user_id FROM users
   JOIN tasks ON tasks.user_id = users.id
@@ -107,7 +107,7 @@ router.post("/comments", rejectUnauthenticated, (req, res) => {
     .catch(() => res.sendStatus(500));
 });
 
-router.get("/comments/:id", (req, res) => {
+router.get("/comments/:id", rejectUnauthenticated, (req, res) => {
   console.log("getting task comments", req.params);
   const taskID = req.params.id;
   const queryText = `SELECT task_comments.id, task_comments.user_id, task_comments.body, task_comments.task_id, users.id, users.first_name FROM task_comments
@@ -124,7 +124,7 @@ router.get("/comments/:id", (req, res) => {
     });
 });
 
-router.put("/likes", (req, res) => {
+router.put("/likes", rejectUnauthenticated, (req, res) => {
   console.log("adding task like to the database", req.params);
   const taskID = req.params.id;
   const queryText = `UPDATE tasks SET likes = likes + 1 WHERE id = $1`;

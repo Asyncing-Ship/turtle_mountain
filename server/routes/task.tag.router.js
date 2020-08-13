@@ -2,11 +2,14 @@ const express = require("express");
 const Task = require("../models/task.model");
 const Task_Tag = require("../models/task_tag.model");
 const User = require("../models/user.model");
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
 
 const router = express.Router();
 
 // route for getting all the task_tags for a certain task
-router.get("/:id", (req, res) => {
+router.get("/:id", rejectUnauthenticated, (req, res) => {
   let taskId = req.params.id;
   console.log("Task id is: ", taskId);
   Task_Tag.findAll({
@@ -30,7 +33,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", rejectUnauthenticated, (req, res) => {
   const userId = req.user.id;
   const taskId = req.body.task_id;
   const userIds = req.body.user_ids;
@@ -52,7 +55,7 @@ router.post("/", (req, res) => {
 });
 
 // Route to delete a tag
-router.delete("/:id", (req, res) => {
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
   let tagId = req.params.id;
   console.log(`DELETE request for task tag with id ${tagId}`, req.body);
   Task_Tag.destroy({ where: { id: tagId } })
