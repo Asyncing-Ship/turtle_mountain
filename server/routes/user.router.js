@@ -8,6 +8,8 @@ const userStrategy = require("../strategies/user.strategy");
 const { check, validationResult } = require("express-validator");
 
 const router = express.Router();
+const nodemailer = require("nodemailer");
+const { nanoid } = require('nanoid/non-secure');
 
 // Handles Ajax request for user information if user is authenticated
 router.get("/", rejectUnauthenticated, (req, res) => {
@@ -61,6 +63,96 @@ router.post("/logout", (req, res) => {
   // Use passport's built-in method to log out the user
   req.logout();
   res.sendStatus(200);
+});
+
+// -----------------
+
+// route to get all users
+router.get("/all", (req, res) => {
+  const queryText = `SELECT id, email, first_name, last_name, is_admin, location, is_approved FROM users`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log("Error making SELECT from users", error);
+      res.sendStatus(500);
+    });
+});
+
+// route to approve a user
+router.put("/approve/:id", (req, res) => {
+  const userId = req.params.id;
+  console.log("User id is: ", userId);
+  console.log(`approving user with id ${userId}`);
+  const queryText = `UPDATE users SET is_approved = true WHERE id = $1`;
+  pool
+    .query(queryText, [userId])
+    .then(() => res.sendStatus(201))
+    .catch((error) => {
+      console.log("Error approving user", error);
+      res.sendStatus(500);
+    });
+});
+
+// route to promote a user
+router.put("/promote/:id", (req, res) => {
+  const userId = req.params.id;
+  console.log(`promoting user with id ${userId}`);
+  const queryText = `UPDATE users SET is_admin = true WHERE id = $1`;
+  pool
+    .query(queryText, [userId])
+    .then(() => res.sendStatus(201))
+    .catch((error) => {
+      console.log("Error promoting user", error);
+      res.sendStatus(500);
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  let id = req.params.id;
+  console.log(`Deleting user with id of ${id}`);
+  let queryText = `
+    DELETE FROM users WHERE id = $1`;
+  pool
+    .query(queryText, [id])
+    .then(() => res.sendStatus(203))
+    .catch((error) => {
+      console.log("Error deleting user", error);
+      res.sendStatus(500);
+    });
+});
+
+router.post("/reset", (req, res) => {
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS
+    }
+  });
+
+  const url_ending = nanoid();
+  const mailOptions = {
+    from: `${req.user.email}`,
+    to: `${req.user.email}`,
+    subject: `${req.body.subject}`,
+    text: `${req.body.message} ${url_ending}`,
+    html: `
+      <p>${req.body.message}</p>
+      <em>${url_ending}</em>
+    `,
+    replyTo: `${req.user.email}`
+  }
+
+  transporter.sendMail(mailOptions, (err, res) => {
+    if (err) {
+      console.error('there was an error: ', err);
+    } else {
+      console.log('here is the res: ', res);
+    }
+  });
 });
 
 module.exports = router;

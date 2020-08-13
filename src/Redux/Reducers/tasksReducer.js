@@ -20,6 +20,16 @@ const taskDetail = (state = [], action) => {
   }
 };
 
+// reducer to hold our current task tags
+const taskTags = (state = [], action) => {
+  switch (action.type) {
+    case "SET_TASK_TAGS":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 // Used to store the current task that is selected
 const currentTask = (state = [], action) => {
   switch (action.type) {
@@ -57,4 +67,5 @@ export default combineReducers({
   currentTaskId,
   currentTask,
   taskAuthor,
+  taskTags,
 });

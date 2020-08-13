@@ -9,6 +9,12 @@ module.exports = {
         first_name: "First",
         last_name: "Last",
       },
+      {
+        email: "testing@testing.com",
+        password: "testing",
+        first_name: "First",
+        last_name: "Last",
+      },
     ]);
   },
   down: (queryInterface, Sequelize) => {

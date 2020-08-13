@@ -24,6 +24,7 @@ const TaskBadge = (props) => {
         <Icon
           size="13px"
           ml={1}
+          mb={0.5}
           name={
             (props.x.status === "Complete") ? (
               "check"

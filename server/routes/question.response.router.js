@@ -1,6 +1,6 @@
 const express = require("express");
 const Question = require("../models/question.model");
-const Question_Response = require("../models/question.response.model");
+const Question_Response = require("../models/question_response.model");
 const User = require("../models/user.model");
 
 const router = express.Router();
@@ -47,14 +47,16 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const responseContent = req.body.content;
   const responseVerified = false; // req.body.verified; TODO FIX THIS
-  const askedBy = req.body.askedBy;
+  const userId = req.user.id;
+  const questionId = req.body.question_id;
 
   console.log(`POST question response adding response`, req.body);
 
   let newQuestionResponse = Question_Response.build({
     content: responseContent,
     verified: responseVerified,
-    asked_by: askedBy,
+    userId: userId,
+    questionId: questionId,
   });
   // Save to database
   newQuestionResponse

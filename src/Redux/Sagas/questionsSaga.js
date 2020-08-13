@@ -14,6 +14,23 @@ function* fetchQuestions(action) {
   }
 }
 
+function* fetchQuestionResponses(action) {
+  // wrap it all in try/catch
+  // yield axios
+  // dispatch the result with put!
+  try {
+    yield put({ type: "SET_QUESTION_RESPONSES", payload: [] });
+    const response = yield Axios.get(
+      `/api/question/responses/${action.payload.question_id}`
+    );
+    console.log(`done with 'get'`, response);
+    // const result = yield call(axios.get, '/question');
+    yield put({ type: "SET_QUESTION_RESPONSES", payload: response.data });
+  } catch (error) {
+    alert("Error fetching Question Responses", error);
+  }
+}
+
 // function to add Questions
 function* addQuestion(action) {
   // wrap it all in try/catch
@@ -24,7 +41,21 @@ function* addQuestion(action) {
     yield put({ type: "FETCH_QUESTIONS" });
   } catch (error) {
     // console.log('Error fetching Questions', error);
-    alert("unable to add new Question to server");
+    alert("unable to add new Question response to server");
+  }
+}
+
+// function to add a Question Response
+function* addQuestionResponse(action) {
+  // wrap it all in try/catch
+  // yield axios
+  // dispatch the result with put!
+  try {
+    yield Axios.post("/api/question_response", action.payload);
+    yield put({ type: "FETCH_QUESTION_RESPONSES", payload: action.payload });
+  } catch (error) {
+    // console.log('Error fetching Question Response', error);
+    alert("unable to add new Question Response to server");
   }
 }
 
@@ -38,6 +69,19 @@ function* deleteQuestion(action) {
   } catch (error) {
     // console.log('Error fetching Questions', error);
     alert("unable to delete Question from server");
+  }
+}
+
+// function to delete a Questions response
+function* deleteQuestionResponse(action) {
+  // wrap it all in try/catch
+  // yield axios
+  // dispatch the result with put!
+  try {
+    yield Axios.delete(`/api/question_response/${action.payload}`);
+  } catch (error) {
+    // console.log('Error fetching Questions', error);
+    alert("unable to delete Question Response from server");
   }
 }
 
@@ -70,18 +114,19 @@ function* fetchCurrentQuestion(action) {
     alert("Unable to fetch current Question");
   }
 }
-function* answerQuestion(action) {
-  //Update the question
-  try {
-    yield Axios.put(
-      `/api/question/${action.payload.id}`,
-      action.payload.answer
-    );
-    yield put({ type: "FETCH_QUESTIONS" });
-  } catch (error) {
-    alert("Unable to update Question on server", error);
-  }
-}
+
+// function* answerQuestion(action) {
+//   //Update the question
+//   try {
+//     yield Axios.put(
+//       `/api/question/${action.payload.id}`,
+//       action.payload.answer
+//     );
+//     yield put({ type: "FETCH_QUESTIONS" });
+//   } catch (error) {
+//     alert("Unable to update Question on server", error);
+//   }
+// }
 
 function* fetchQuestionAuthor(action) {
   try {
@@ -102,15 +147,44 @@ function* addQuestionLike(action) {
   }
 }
 
+function* markAsAnswer(action) {
+  //update the question as answered
+  try {
+    yield Axios.put(`/api/question/answer/${action.payload.question_id}`);
+    yield Axios.put(`/api/question_response/verify/${action.payload.id}`);
+    yield put({ type: "FETCH_QUESTIONS" });
+    yield put({
+      type: "FETCH_QUESTION_RESPONSES",
+      payload: { question_id: action.payload.question_id },
+    });
+  } catch (error) {
+    alert("Unable to update question as answered", error);
+  }
+}
+
+function* verifyQuestionResponse(action) {
+  //Update the question response as verified
+  try {
+    yield Axios.put(`/api/question_response/verify/${action.payload.id}`);
+  } catch (error) {
+    alert("Unable to update Question on server", error);
+  }
+}
+
 function* questionsSaga() {
   yield takeEvery("FETCH_QUESTIONS", fetchQuestions);
   yield takeEvery("FETCH_QUESTION_DETAIL", fetchQuestionDetail);
-  yield takeEvery("ACCEPT_QUESTION", answerQuestion);
   yield takeEvery("FETCH_CURRENT_QUESTION", fetchCurrentQuestion);
   yield takeEvery("ADD_QUESTION", addQuestion);
   yield takeEvery("DELETE_QUESTION", deleteQuestion);
   yield takeEvery("FETCH_QUESTION_AUTHOR", fetchQuestionAuthor);
   yield takeEvery("ADD_QUESTION_LIKE", addQuestionLike);
+  yield takeEvery("MARK_AS_ANSWER", markAsAnswer); // only admin can
+  // QUESTION RESPONSES BELOW
+  yield takeEvery("FETCH_QUESTION_RESPONSES", fetchQuestionResponses);
+  yield takeEvery("ADD_QUESTION_RESPONSE", addQuestionResponse);
+  yield takeEvery("DELETE_QUESTION_RESPONSE", deleteQuestionResponse);
+  yield takeEvery("VERIFY_QUESTION_RESPONSE", verifyQuestionResponse);
 }
 
 export default questionsSaga;

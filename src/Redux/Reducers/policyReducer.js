@@ -1,5 +1,3 @@
-// import { combineReducers } from "redux";
-
 const policies = (state = [], action) => {
   switch (action.type) {
     case 'SET_POLICIES':

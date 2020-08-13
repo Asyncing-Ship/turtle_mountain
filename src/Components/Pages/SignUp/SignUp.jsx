@@ -1,8 +1,8 @@
 // ----- Start of imports -----
 // React Import:
 import React, { Component } from "react";
+// React Redux Import:
 import { connect } from "react-redux";
-
 // Chakra UI Imports:
 import {
   Box,
@@ -58,10 +58,10 @@ class SignUp extends Component {
     } else {
       this.props.dispatch({ type: "REGISTRATION_INPUT_ERROR" });
     }
+    this.props.history.push("/home");
   }; // end registerUser
 
   handleInputChangeFor = (propertyName) => (event) => {
-    // console.log(`In change: ${propertyName}: ${event.target.value}`);
     this.setState({
       [propertyName]: event.target.value,
     });
@@ -71,8 +71,8 @@ class SignUp extends Component {
     return (
       <div>
         <Box w={500} p={4} m="20px auto">
-          <Heading as="h1" size="xl" textAlign="center">
-            This is the Sign Up Page.
+          <Heading as="h1" size="xl" textAlign="center" mb={6}>
+            Please Sign Up
           </Heading>
           <Box
             backgroundColor="#2f2e2e"
@@ -81,7 +81,6 @@ class SignUp extends Component {
             borderWidth="1px"
             rounded="lg"
             shadow="1px 1px 3px rgba(0,0,0,0.3)"
-            // onSubmit={handleSubmit}
           >
             <Stack spacing={3}>
               <FormLabel p={0} htmlFor="first_name">
@@ -95,7 +94,6 @@ class SignUp extends Component {
                   onChange={this.handleInputChangeFor("first_name")}
                 />
               </FormLabel>
-
               <FormLabel p={0} htmlFor="last_name">
                 Last Name:
                 <Input
@@ -107,7 +105,6 @@ class SignUp extends Component {
                   onChange={this.handleInputChangeFor("last_name")}
                 />
               </FormLabel>
-
               <FormLabel p={0} htmlFor="email">
                 Email:
                 <Input
@@ -146,7 +143,6 @@ class SignUp extends Component {
             </Stack>
             <ButtonGroup spacing={4} mt={4}>
               <Button
-                // isLoading={submitting}
                 loadingText="Submitting"
                 variantColor="teal"
                 type="submit"
@@ -160,8 +156,6 @@ class SignUp extends Component {
                 variant="outline"
                 color="#f5fffa"
                 onClick={this.registerUser}
-                // onClick={form.reset}
-                // isDisabled={submitting || pristine}
               >
                 Sign Up
               </Button>

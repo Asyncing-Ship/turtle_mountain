@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   AccordionPanel,
   AccordionIcon,
@@ -9,10 +9,10 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Icon
-} from '@chakra-ui/core';
-import TaskBadge from './TaskBadge';
-import { connect } from 'react-redux';
+  Icon,
+} from "@chakra-ui/core";
+import TaskBadge from "./TaskBadge";
+import { connect } from "react-redux";
 
 class SearchTask extends Component {
   state = {
@@ -29,12 +29,7 @@ class SearchTask extends Component {
         {/* The input will be used to filter the tasks by matching results. it should do this without a button */}
         <InputGroup m={3} w="100%">
           <InputLeftElement
-            children={
-              <Icon
-                name="search"
-                color="gray.400"
-              />
-            }
+            children={<Icon name="search" color="gray.400" />}
           />
           <Input
             className="tasks-search"
@@ -51,7 +46,7 @@ class SearchTask extends Component {
             each task to an accordion item with the
             title being the task title. and the body being the content, 
             followed by the status of the task*/}
-        <Accordion m={3} className="accordion" allowMultiple>
+        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.tasks
             .filter(
               (x) =>
@@ -61,7 +56,11 @@ class SearchTask extends Component {
                 x.last_name.includes(this.state.searchString)
             )
             .map((x, i) => (
-              <AccordionItem key={i} defaultIsOpen="False">
+              <AccordionItem
+                className="accordion-item"
+                key={i}
+                defaultIsOpen="False"
+              >
                 {({ isExpanded }) => (
                   <>
                     <AccordionHeader
@@ -86,7 +85,7 @@ class SearchTask extends Component {
             ))}
         </Accordion>
       </>
-    )
+    );
   }
 }
 

@@ -44,6 +44,11 @@ const User = sequelize.define(
       type: Sequelize.STRING,
       allowNull: true, // NOT NULL
     },
+    is_approved: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   config
 );

@@ -23,8 +23,8 @@ router.put("/complete/:id", rejectUnauthenticated, (req, res) => {
  */
 router.get("/", (req, res) => {
   console.log("getting tasks");
-  const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content,tasks.assigned_to, tasks.added_by FROM users
-  JOIN tasks ON tasks.added_by = users.id
+  const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content,tasks.assigned_to, tasks.user_id FROM users
+  JOIN tasks ON tasks.user_id = users.id
   ORDER BY tasks.id DESC`;
   pool
     .query(queryText)
@@ -48,11 +48,11 @@ router.post("/", rejectUnauthenticated, (req, res) => {
   const body = req.body.content;
   const user = req.user.id;
   const queryText = `
-    INSERT INTO tasks (title, content, added_by)
-    VALUES ($1, $2, $3)`;
+    INSERT INTO tasks (title, content, user_id)
+    VALUES ($1, $2, $3) returning id`;
   pool
     .query(queryText, [title, body, user])
-    .then(() => res.sendStatus(201))
+    .then((result) => res.send(result))
     .catch(() => res.sendStatus(500));
 });
 

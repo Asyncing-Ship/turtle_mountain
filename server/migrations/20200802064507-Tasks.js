@@ -16,10 +16,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      added_by: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       date_posted: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -33,6 +29,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: "open",
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        references: {
+          model: "users",
+          key: "id",
+        },
       },
     });
   },

@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, useToast } from "@chakra-ui/core";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import * as filestack from "filestack-js";
 
 const client = filestack.init(`${process.env.REACT_APP_FILESTACK_KEY}`);
@@ -9,18 +8,9 @@ const client = filestack.init(`${process.env.REACT_APP_FILESTACK_KEY}`);
 const Upload = (props) => {
   const toast = useToast();
 
-  const saveUserData = (data) => {
-    return new Promise((resolve) => {
-      console.log(data);
-      resolve({
-        success: true,
-      });
-    });
-  };
-
   const uploadFiles = async (data) => {
-    await this.props.dispatch({
-      type: "UPLOAD_FILE",
+    await props.dispatch({
+      type: "UPLOAD_POLICY",
       payload: { filename: data.filename, handle: data.handle },
     });
   };
@@ -28,9 +18,9 @@ const Upload = (props) => {
   const options = {
     fromSources: ["local_file_system", "googledrive", "facebook"],
     onFileUploadFinished: (res) => {
-      saveUserData({
+      uploadFiles({
         filename: res.filename,
-        fileHandle: res.handle,
+        handle: res.handle,
       }).then((res) => {
         toast({
           title: "Uploaded!",
@@ -52,17 +42,28 @@ const Upload = (props) => {
         position: "bottom-right",
       });
     },
+    onFileUploadFailed: (res) => {
+      toast({
+        title: "Failed!",
+        description: `${res.filename} failed to upload.`,
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-right",
+      });
+    },
     minFiles: 1,
-    maxFiles: 3,
+    maxFiles: 5,
     maxSize: 1 * 1024 * 1024, // 1 MB file size limit
   };
 
   return (
     <>
-      This is the policy page!
       <Button
+        rightIcon="add"
+        variantColor="green"
         onClick={async () => {
-          await client.picker().open();
+          await client.picker(options).open();
         }}
       >
         Upload Policy

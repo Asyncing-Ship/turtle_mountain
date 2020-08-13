@@ -24,6 +24,8 @@ const questionResponseRouter = require("./routes/question.response.router");
 const userRouter = require("./routes/user.router");
 const oauthRouter = require("./routes/oauth.router");
 const policyRouter = require("./routes/policy.router");
+const questionTagRouter = require("./routes/question.tag.router");
+const taskTagRouter = require("./routes/task.tag.router");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -43,6 +45,8 @@ app.use("/api/task", taskRouter);
 app.use("/api/question_response", questionResponseRouter);
 app.use("/api/task_response", taskResponseRouter);
 app.use("/api/policy", policyRouter);
+app.use("/api/question_tag", questionTagRouter);
+app.use("/api/task_tag", taskTagRouter);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

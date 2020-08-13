@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import AcceptTask from "../../Components/Pages/ViewsTask/AcceptTask";
+import AcceptTask from "../../Components/Pages/ViewsTask/TaskButtons/AcceptTask";
 import CompleteTask from "../../Components/Pages/ViewsTask/CompleteTask";
 import NewTask from "../../Components/Pages/ViewsTask/NewTask";
 import TaskPage from "../../Components/Pages/ViewsTask/TaskPage";

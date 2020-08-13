@@ -8,37 +8,20 @@ const config = {
 };
 
 // Model for an Response - assumes table name is plural or 'responses'
-const Question_Response = sequelize.define(
-  "question_response",
+const Question_Tag = sequelize.define(
+  "question_tag",
   {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    content: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    verified: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-    },
-    date_posted: {
-      type: Sequelize.DATE,
-      allowNull: false,
-      defaultValue: Sequelize.fn("now"),
-    },
-    asked_by: {
-      type: Sequelize.INTEGER,
-      allowNull: true,
-    },
   },
   config
 );
 
 const User = require("./user.model");
-Question_Response.belongsTo(User, {
+Question_Tag.belongsTo(User, {
   foreignKey: {
     allowNull: false,
   },
@@ -46,11 +29,11 @@ Question_Response.belongsTo(User, {
 });
 
 const Question = require("./question.model");
-Question_Response.belongsTo(Question, {
+Question_Tag.belongsTo(Question, {
   foreignKey: {
     allowNull: false,
   },
   onDelete: "CASCADE",
 });
 
-module.exports = Question_Response;
+module.exports = Question_Tag;

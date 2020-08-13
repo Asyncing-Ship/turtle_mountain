@@ -49,9 +49,11 @@ export class Navbar extends React.Component {
         color="#f5fffe"
       >
         <Flex align="center" ml={3} mr={5}>
-          <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
-            Turtle Mountain Connect
-          </Heading>
+          <NavLink to="/home">
+            <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
+              Turtle Mountain Connect
+            </Heading>
+          </NavLink>
         </Flex>
 
         <Button
@@ -109,6 +111,16 @@ export class Navbar extends React.Component {
                 <MenuItems>
                   <NavLink to="/policies">
                     <Button m={2}>Policies</Button>
+                  </NavLink>
+                </MenuItems>
+                <MenuItems>
+                  <NavLink to="/alerts">
+                    <Button m={2}>Alerts</Button>
+                  </NavLink>
+                </MenuItems>
+                <MenuItems>
+                  <NavLink to="/profile">
+                    <Button m={2}>Profile</Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
