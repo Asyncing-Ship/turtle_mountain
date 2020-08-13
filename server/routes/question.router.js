@@ -14,6 +14,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("GET questions");
   Question.findAll({
     include: [{ model: User }],
+    order: [["date_posted", "DESC"]],
   })
     .then((questions) => {
       // question will be an array of all Question instances

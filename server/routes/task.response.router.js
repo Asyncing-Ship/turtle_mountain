@@ -14,6 +14,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   Task_Response.findAll({
     include: [{ model: User }],
     include: [{ model: Task }],
+    order: [["date_posted", "DESC"]],
   })
     .then((responses) => {
       // responses will be an array of all Task_Response instances
