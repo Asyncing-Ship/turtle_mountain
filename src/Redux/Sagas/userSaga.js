@@ -64,12 +64,22 @@ function* promoteUser(action) {
   }
 }
 
+function* sendEmail(action) {
+  try {
+    yield Axios.post('/api/user/reset', action.payload);
+  } catch (error) {
+    yield console.log(error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest("FETCH_USER", fetchUser);
   yield takeLatest("FETCH_ALL_USERS", fetchAllUsers);
   yield takeLatest("DELETE_USER", deleteUser);
   yield takeLatest("APPROVE_USER", approveUser);
   yield takeLatest("PROMOTE_USER", promoteUser);
+  
+  yield takeLatest("SEND_EMAIL", sendEmail);
 }
 
 export default userSaga;

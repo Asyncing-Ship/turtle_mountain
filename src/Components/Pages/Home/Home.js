@@ -17,7 +17,7 @@ class Home extends Component {
           <Icon name="warning" size="3.5rem" color="red.500" />
           <div className="btn-text">tasks</div>
         </Button>
-        <SimpleGrid columns={[1, null, 2,]} gap={24}>
+        <SimpleGrid columns={[1, null, 3]}>
           <Button
             m={2}
             className="CircleBtn"
@@ -26,15 +26,14 @@ class Home extends Component {
             <Icon name="info" size="3.5rem" color="blue.200" />
             <div className="btn-text">policy</div>
           </Button>
-          {/* <Button
-          m={2}
-          variantColor="transparent"
-          className="CircleBtn"
-          onClick={() => history.push("/chat")}
-        >
-          <Icon name="chat" size="3.5rem" color="green.300" />
-          <div className="btn-text">chat</div>
-        </Button> */}
+          <Button
+            m={2}
+            className="CircleBtn"
+            onClick={() => history.push("/profile")}
+          >
+            <Icon name="chat" size="3.5rem" color="green.300" />
+            <div className="btn-text">profile</div>
+          </Button>
           <Button
             m={2}
             className="CircleBtn"
