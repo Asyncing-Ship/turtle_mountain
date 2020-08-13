@@ -8,7 +8,7 @@ import DeleteTask from "./DeleteTask";
 const AcceptTask = (props) => {
   const toast = useToast();
 
-  if (props.task.user_id === props.user.id) {
+  if (props.task.user_id === props.user.id || props.user.is_admin) {
     return (
       <div>
         <h3>{props.task.content}</h3>
