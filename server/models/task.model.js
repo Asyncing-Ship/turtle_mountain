@@ -21,7 +21,7 @@ const Task = sequelize.define(
       allowNull: false,
     },
     content: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(1000),
       allowNull: false,
     },
     date_posted: {

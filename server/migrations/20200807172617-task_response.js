@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
       },
       content: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(160),
         allowNull: false,
       },
       date_posted: {
