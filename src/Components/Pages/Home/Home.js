@@ -24,7 +24,7 @@ class Home extends Component {
             onClick={() => history.push("/policies")}
           >
             <Icon name="info" size="3.5rem" color="blue.200" />
-            <div className="btn-text">policy</div>
+            <div className="btn-text">policies</div>
           </Button>
           <Button
             m={2}
