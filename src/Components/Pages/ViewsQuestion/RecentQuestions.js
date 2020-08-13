@@ -3,7 +3,6 @@
 import React, { Component } from "react";
 // React Redux Imports:
 import { connect } from "react-redux";
-import CompleteTask from "../ViewsTask/CompleteTask";
 import {
   AccordionPanel,
   AccordionIcon,
@@ -33,7 +32,7 @@ class RecentQuestions extends Component {
   render() {
     return (
       <>
-        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.questions.map((x, i) => (
             <AccordionItem
               className="accordion-item"
@@ -54,7 +53,7 @@ class RecentQuestions extends Component {
                     <TaskBadge x={x} />
                     <AccordionIcon />
                   </AccordionHeader>
-                  <AccordionPanel>
+                  <AccordionPanel className="apanel" wordBreak="break-word" pb={4}>
                     {x.content}
                     <Box m={3}>
                       <Heading as="h3">Responses</Heading>

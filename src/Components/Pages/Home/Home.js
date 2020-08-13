@@ -24,15 +24,15 @@ class Home extends Component {
             onClick={() => history.push("/policies")}
           >
             <Icon name="info" size="3.5rem" color="blue.200" />
-            <div className="btn-text">policy</div>
+            <div className="btn-text">policies</div>
           </Button>
           <Button
             m={2}
             className="CircleBtn"
-            onClick={() => history.push("/profile")}
+            onClick={() => history.push("/settings")}
           >
-            <Icon name="chat" size="3.5rem" color="green.300" />
-            <div className="btn-text">profile</div>
+            <Icon name="settings" size="3.5rem" color="green.300" />
+            <div className="btn-text">settings</div>
           </Button>
           <Button
             m={2}

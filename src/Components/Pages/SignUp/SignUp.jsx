@@ -14,6 +14,7 @@ import {
   InputRightElement,
   Stack,
   FormLabel,
+  Text,
 } from "@chakra-ui/core";
 // CSS Import:
 import "../Login/Login.css";
@@ -141,28 +142,29 @@ class SignUp extends Component {
                 </InputGroup>
               </FormLabel>
             </Stack>
-            <ButtonGroup spacing={4} mt={4}>
+            <Stack spacing={3} mt={4}>
               <Button
-                loadingText="Submitting"
-                variantColor="teal"
                 type="submit"
-                onClick={() => this.props.history.push("/login")}
-              >
-                Login
-              </Button>
-              <Button
-                className="btn-signup"
-                variantColor=""
-                variant="outline"
+                variantColor="teal"
                 color="#f5fffa"
                 onClick={this.registerUser}
               >
                 Sign Up
               </Button>
+              <Text>or</Text>
+              <Button
+                className="btn-signup"
+                variantColor=""
+                variant="outline"
+                color="#f5fffa"
+                onClick={() => this.props.history.push("/login")}
+              >
+                Return to Login
+              </Button>
               <Button variantColor="blue" variant="solid">
                 Facebook
               </Button>
-            </ButtonGroup>
+            </Stack>
           </Box>
         </Box>
       </div>

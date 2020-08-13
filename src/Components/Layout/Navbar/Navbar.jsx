@@ -119,8 +119,8 @@ export class Navbar extends React.Component {
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
-                  <NavLink to="/profile">
-                    <Button m={2}>Profile</Button>
+                  <NavLink to="/settings">
+                    <Button m={2}>Settings</Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>

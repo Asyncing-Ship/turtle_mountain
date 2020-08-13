@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Input, Textarea, FormControl } from '@chakra-ui/core';
 
-class Profile extends Component {
+class Settings extends Component {
   state = {
     subject: '',
     message: '',
@@ -49,4 +49,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(Settings);
