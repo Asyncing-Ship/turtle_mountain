@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Signin from "../../Pages/Login/Login";
 import Signup from "../../Pages/SignUp/SignUp";
+import ForeOhThree from "../../Pages/403/403";
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
@@ -28,9 +29,13 @@ export const ProtectedRoute = (props) => {
   let ComponentToShow;
 
   if (user.id) {
+    if (user.is_approved) {
+      ComponentToShow = ComponentToProtect;
+    } else {
+      ComponentToShow = ForeOhThree;
+    }
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
-    ComponentToShow = ComponentToProtect;
   } else if (loginMode === "login") {
     // if they are not logged in, check the loginMode on Redux State
     // if the mode is 'login', show the SigninPage
