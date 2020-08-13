@@ -7,31 +7,39 @@ const NewQuestion = (props) => {
     <div>
       <Box>
         <u>
-          {props.question.user.first_name} {props.question.user.last_name}
+          {props.response.user.first_name} {props.response.user.last_name}
         </u>
       </Box>
       <Box mb={3}>
-        {props.question.content}
-        {!props.question.verified && (
-          <Button
-            onClick={() => {
-              console.log(props.question);
-              props.dispatch({
-                type: "MARK_AS_ANSWER",
-                payload: {
-                  id: props.question.id,
-                  question_id: props.question.questionId,
-                },
-              });
-            }}
-          >
-            Mark As Verified
-            <Icon name="check" />
-          </Button>
-        )}
-        {props.question.verified && <Icon name="check-circle"></Icon>}
+        {console.log(props.posted_by, props.user.id, props.user.is_admin)}
+        {props.response.content}
+        {!props.response.verified &&
+          !props.questionVerified &&
+          (props.user.is_admin || props.posted_by == props.user.id) && (
+            <Button
+              onClick={() => {
+                console.log(props.question);
+                props.dispatch({
+                  type: "MARK_AS_ANSWER",
+                  payload: {
+                    id: props.response.id,
+                    question_id: props.response.questionId,
+                  },
+                });
+              }}
+            >
+              Mark As Verified
+              <Icon name="check" />
+            </Button>
+          )}
+        {props.response.verified && <Icon name="check-circle"></Icon>}
       </Box>
     </div>
   );
 };
-export default connect()(NewQuestion);
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+export default connect(mapStateToProps)(NewQuestion);

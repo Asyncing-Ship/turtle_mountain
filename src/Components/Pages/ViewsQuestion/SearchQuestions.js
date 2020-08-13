@@ -57,9 +57,7 @@ class SearchTask extends Component {
             .filter(
               (x) =>
                 x.title.includes(this.state.searchString) ||
-                x.content.includes(this.state.searchString) ||
-                x.first_name.includes(this.state.searchString) ||
-                x.last_name.includes(this.state.searchString)
+                x.content.includes(this.state.searchString)
             )
             .map((x, i) => (
               <AccordionItem
