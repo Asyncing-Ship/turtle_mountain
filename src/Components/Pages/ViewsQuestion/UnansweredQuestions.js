@@ -64,8 +64,12 @@ class UnansweredQuestions extends Component {
                         <Heading as="h3">Responses</Heading>
                       </Box>
                       <Box m={3}>
-                        {this.props.response.map((x) => (
-                          <Response question={x} />
+                        {this.props.response.map((y) => (
+                          <Response
+                            question={y}
+                            questionVerified={x.is_answered}
+                            posted_by={x.userId}
+                          />
                         ))}
                       </Box>
                       <Box m={3}>
