@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/core";
 import TaskBadge from "./TaskBadge";
 import { connect } from "react-redux";
+import moment from "moment";
 
 class SearchTask extends Component {
   state = {
@@ -83,6 +84,16 @@ class SearchTask extends Component {
                       <Box flex="1" textAlign="left">
                         {x.content}
                       </Box>
+                      <Box flex="1" textAlign="left">
+                        <small>
+                          <i>
+                            Posted at:{" "}
+                            {moment(x.date_posted).format("MM/DD/YY LT")} (By{" "}
+                            {x.first_name} {x.last_name})
+                          </i>
+                        </small>
+                      </Box>
+                      {console.log(x)}
                     </AccordionPanel>
                   </>
                 )}

@@ -1,12 +1,20 @@
 import React from "react";
 import { useToast, Button, Input, Box, Flex } from "@chakra-ui/core";
 import { connect } from "react-redux";
-
+import moment from "moment";
 const CompleteTask = (props) => {
   const toast = useToast();
   return (
     <div>
       <h3>{props.task.content}</h3>
+      <Box flex="1" textAlign="left">
+        <small>
+          <i>
+            Posted at: {moment(props.task.date_posted).format("MM/DD/YY LT")}{" "}
+            (By {props.task.first_name} {props.task.last_name})
+          </i>
+        </small>
+      </Box>
       <Flex>
         <Input flex="7" size="sm" mt={3} />
         <Box textAlign="right">

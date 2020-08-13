@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import EditTask from "./EditTask";
 import DeleteTask from "./DeleteTask";
-
+import moment from "moment";
 const AcceptTask = (props) => {
   const toast = useToast();
 
@@ -13,6 +13,14 @@ const AcceptTask = (props) => {
       <div>
         <h3>{props.task.content}</h3>
 
+        <Box flex="1" textAlign="left">
+          <small>
+            <i>
+              Posted at: {moment(props.task.date_posted).format("MM/DD/YY LT")}{" "}
+              (By {props.task.first_name} {props.task.last_name})
+            </i>
+          </small>
+        </Box>
         <Box textAlign="right">
           <Button
             size="sm"

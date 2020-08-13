@@ -1,6 +1,7 @@
 // ----- Start of imports -----
 // React Import:
 import React, { Component } from "react";
+import moment from "moment";
 // React Redux Imports:
 import { connect } from "react-redux";
 import {
@@ -57,8 +58,21 @@ class UnansweredQuestions extends Component {
                       <TaskBadge x={x} />
                       <AccordionIcon />
                     </AccordionHeader>
-                    <AccordionPanel className="apanel" wordBreak="break-word" pb={4}>
+                    <AccordionPanel
+                      className="apanel"
+                      wordBreak="break-word"
+                      pb={4}
+                    >
                       {x.content}
+                      <Box flex="1" textAlign="left">
+                        <small>
+                          <i>
+                            Posted at:{" "}
+                            {moment(x.date_posted).format("MM/DD/YY LT")} (By{" "}
+                            {x.user.first_name} {x.user.last_name})
+                          </i>
+                        </small>
+                      </Box>
                       <Box m={3}>
                         <Heading as="h3">Responses</Heading>
                       </Box>
