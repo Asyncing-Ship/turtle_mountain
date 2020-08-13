@@ -18,12 +18,12 @@ router.get(
 router.get(
   "/facebook/callback",
   passport.authenticate("facebook", {
-    failureRedirect: `${process.env.WEBAPP_ROOT_URL}/#/home`,
+    failureRedirect: `${process.env.WEBAPP_ROOT_URL}/login`,
   }),
   (req, res) => {
     // FB adds _=_ to the callback url, gross. Force it to be gone by appending /#/ to the end
     // so that React Router doesn't choke on it.
-    res.redirect(`${process.env.WEBAPP_ROOT_URL}/#/`); // successful redirect
+    res.redirect(`${process.env.WEBAPP_ROOT_URL}/home#/`); // successful redirect
   }
 );
 module.exports = router;
