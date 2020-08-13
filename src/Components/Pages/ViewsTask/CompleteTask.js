@@ -8,12 +8,7 @@ const CompleteTask = (props) => {
     <div>
       <h3>{props.task.content}</h3>
       <Flex>
-        <Input
-          flex="7"
-          size="sm"
-          mt={3}
-          value={props.task.status}
-        />
+        <Input flex="7" size="sm" mt={3} />
         <Box textAlign="right">
           <Button
             size="sm"
@@ -22,7 +17,7 @@ const CompleteTask = (props) => {
             mt={3}
             ml={3}
           >
-            Send Alert
+            Send Response
           </Button>
           <Button
             size="sm"

@@ -134,7 +134,7 @@ class NewQuestion extends Component {
                 ))}
               </Stack>
             </Box>
-            <small style={{ color: "white" }}>Select User(s) to tag</small>
+            <small style={{ color: "white" }}>Select Users to notify</small>
             <Select
               placeholder="SELECT A USER"
               className="col-12 col-lg-3"
