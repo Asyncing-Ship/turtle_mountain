@@ -35,7 +35,7 @@ class UnansweredQuestions extends Component {
     return (
       <>
         {/* I think there is a filter bug in here. I did not change it. When you answer it still appears. The original code was like that as well. - Jake */}
-        <Accordion m={3} className="accordion" allowMultiple>
+        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.questions
             .filter((x) => !x.is_answered)
             .map((x, i) => (
