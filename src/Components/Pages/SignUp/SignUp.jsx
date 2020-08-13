@@ -144,6 +144,7 @@ class SignUp extends Component {
             </Stack>
             <Stack spacing={3} mt={4}>
               <Button
+                type="submit"
                 variantColor="teal"
                 color="#f5fffa"
                 onClick={this.registerUser}
