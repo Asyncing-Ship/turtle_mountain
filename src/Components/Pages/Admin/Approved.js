@@ -23,7 +23,7 @@ import { connect } from "react-redux";
 const Approved = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isOpenAlert, setIsOpen] = React.useState();
-  const onCloseDelete = () => setIsOpen(false);
+  const onCloseAlert = () => setIsOpen(false);
   const cancelRef = React.useRef();
   return (
     <Box>
@@ -32,34 +32,21 @@ const Approved = (props) => {
       </Box>
       {!props.user.is_admin && (
         <Box as="span" verticalAlign="top" ml={3}>
-          <Button
-            onClick={() => setIsOpen(true)}
-            // onClick={() => {
-            //   props.dispatch({
-            //     type: "PROMOTE_USER",
-            //     payload: props.user.id,
-            //   });
-            // }}
-          >
+          <Button onClick={onOpen}>
             <Icon name="edit" size="16px" />
           </Button>
         </Box>
       )}
       <Box as="span" verticalAlign="top" ml={3}>
         <Button
-          onClick={onOpen}
-          // onClick={() => {
-          //   props.dispatch({
-          //     type: "DELETE_USER",
-          //     payload: props.user.id,
-          //   });
-          // }}
+          onClick={() => setIsOpen(true)}
+          // onClick={() => }
         >
           <Icon name="close" size="16px" />
         </Button>
       </Box>
 
-      {/* Delete User Alert */}
+      {/* Delete User Alert ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/}
 
       <>
         <AlertDialog
@@ -78,10 +65,22 @@ const Approved = (props) => {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onCloseDelete}>
+              <Button ref={cancelRef} onClick={onCloseAlert}>
                 Cancel
               </Button>
-              <Button variantColor="red" onClick={onCloseDelete} ml={3}>
+              <Button
+                variantColor="red"
+                onClick={
+                  (() => {
+                    props.dispatch({
+                      type: "DELETE_USER",
+                      payload: props.user.id,
+                    });
+                  },
+                  onCloseAlert)
+                }
+                ml={3}
+              >
                 Delete
               </Button>
             </AlertDialogFooter>
@@ -89,7 +88,7 @@ const Approved = (props) => {
         </AlertDialog>
       </>
 
-      {/* Promote User Modal */}
+      {/* Promote User Modal /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/}
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -111,7 +110,20 @@ const Approved = (props) => {
             <Button variantColor="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <Button
+              variant="ghost"
+              onClick={
+                (() => {
+                  props.dispatch({
+                    type: "PROMOTE_USER",
+                    payload: props.user.id,
+                  });
+                },
+                onClose)
+              }
+            >
+              Secondary Action
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
