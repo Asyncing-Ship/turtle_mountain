@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
       },
       title: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
         allowNull: false,
       },
       content: {
@@ -26,7 +26,7 @@ module.exports = {
         allowNull: true,
       },
       status: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING,
         allowNull: false,
         defaultValue: "open",
       },

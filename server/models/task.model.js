@@ -17,7 +17,7 @@ const Task = sequelize.define(
       primaryKey: true,
     },
     title: {
-      type: Sequelize.STRING(100),
+      type: Sequelize.STRING(50),
       allowNull: false,
     },
     content: {
