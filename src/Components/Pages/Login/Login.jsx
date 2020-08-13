@@ -116,7 +116,7 @@ class Login extends Component {
               >
                 Login
               </Button>
-              <Text fontSize="md">or</Text>
+              <Text>or</Text>
               <Button
                 className="btn-signup"
                 variantColor="teal"
