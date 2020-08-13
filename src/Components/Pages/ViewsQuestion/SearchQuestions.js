@@ -32,6 +32,8 @@ class SearchTask extends Component {
   render() {
     return (
       <>
+        <h3>This page contains an archive of all questions</h3>
+        <small>to find a question, start searching for it</small>
         {/* The input will be used to filter the tasks by matching results. it should do this without a button */}
         <InputGroup my={3} w="100%">
           <InputLeftElement

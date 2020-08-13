@@ -19,6 +19,11 @@ class MyTask extends Component {
   render() {
     return (
       <>
+        <h2>These are the tasks assigned to you</h2>
+        <small>
+          To ask for clarification, type your response, then click the 'send
+          response' button
+        </small>
         {/* the second button will give us this result,
             after filtering by tasks, assigned to the current user,
             we map each task to an accordion item with the title being the task title. 

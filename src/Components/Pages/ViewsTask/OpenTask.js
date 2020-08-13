@@ -21,6 +21,8 @@ class OpenTask extends Component {
   render() {
     return (
       <>
+        <h2>These tasks need to be accepted</h2>
+        <small>to see details, click on the task to expand it</small>
         <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.tasks
             .filter((x) => x.status === "open")
