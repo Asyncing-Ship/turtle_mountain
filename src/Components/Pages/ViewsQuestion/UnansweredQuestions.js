@@ -3,7 +3,6 @@
 import React, { Component } from "react";
 // React Redux Imports:
 import { connect } from "react-redux";
-import CompleteTask from "../ViewsTask/CompleteTask";
 import {
   AccordionPanel,
   AccordionIcon,
@@ -35,7 +34,7 @@ class UnansweredQuestions extends Component {
     return (
       <>
         {/* I think there is a filter bug in here. I did not change it. When you answer it still appears. The original code was like that as well. - Jake */}
-        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.questions
             .filter((x) => !x.is_answered)
             .map((x, i) => (
@@ -58,7 +57,7 @@ class UnansweredQuestions extends Component {
                       <TaskBadge x={x} />
                       <AccordionIcon />
                     </AccordionHeader>
-                    <AccordionPanel>
+                    <AccordionPanel className="apanel" wordBreak="break-word" pb={4}>
                       {x.content}
                       <Box m={3}>
                         <Heading as="h3">Responses</Heading>

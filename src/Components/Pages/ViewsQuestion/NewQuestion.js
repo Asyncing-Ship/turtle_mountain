@@ -10,6 +10,9 @@ import {
   Box,
   Heading,
   Textarea,
+  IconButton,
+  Tag,
+  Stack,
 } from "@chakra-ui/core";
 // React Redux Imports:
 import { connect } from "react-redux";
@@ -61,7 +64,7 @@ class NewQuestion extends Component {
                 user_ids: this.state.select.map((x) => x.id),
               },
             });
-            await this.props.history.push("/questions");
+            await this.props.history.push("/recent");
           }}
         >
           <FormControl textAlign="left" bg="#2f2e2e" p={5} rounded="lg">
@@ -105,22 +108,31 @@ class NewQuestion extends Component {
                 {this.state.maxCharsDesc}
               </small>
             </Box>
-            <Box style={{ backgroundColor: "white" }} mb={5}>
-              TAGGED USERS
-              {this.state.select.map((x) => (
-                <Box>
-                  {"@" + x.first_name + " " + x.last_name}
-                  <Button
-                    onClick={() =>
-                      this.setState({
-                        select: this.state.select.filter((y) => y.id != x.id),
-                      })
-                    }
+            <Box rounded="md" style={{ backgroundColor: "white" }} px={4} py={2} mb={3}>
+              Tagged Users
+              <Stack>
+                {this.state.select.map((x) => (
+                  <Tag
+                    w="fit-content"
+                    size="md"
+                    variantColor="blue"
+                    p={1}
                   >
-                    x
-                  </Button>
-                </Box>
-              ))}
+                    {"@" + x.first_name + " " + x.last_name}
+                    <IconButton
+                      variantColor="red"
+                      icon="close"
+                      size="xs"
+                      ml={3}
+                      onClick={() =>
+                        this.setState({
+                          select: this.state.select.filter((y) => y.id !== x.id),
+                        })
+                      }
+                    ></IconButton>
+                  </Tag>
+                ))}
+              </Stack>
             </Box>
             <small style={{ color: "white" }}>Select User(s) to tag</small>
             <Select

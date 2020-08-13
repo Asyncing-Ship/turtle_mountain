@@ -33,7 +33,7 @@ class SearchTask extends Component {
     return (
       <>
         {/* The input will be used to filter the tasks by matching results. it should do this without a button */}
-        <InputGroup m={3} w="100%">
+        <InputGroup my={3} w="100%">
           <InputLeftElement
             children={<Icon name="search" color="gray.400" />}
           />
@@ -52,7 +52,7 @@ class SearchTask extends Component {
             each task to an accordion item with the
             title being the task title. and the body being the content, 
             followed by the status of the task*/}
-        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.questions
             .filter(
               (x) =>
@@ -78,7 +78,7 @@ class SearchTask extends Component {
                       <TaskBadge x={x} />
                       <AccordionIcon />
                     </AccordionHeader>
-                    <AccordionPanel className="apanel" pb={4}>
+                    <AccordionPanel className="apanel" wordBreak="break-word" pb={4}>
                       <Box flex="1" textAlign="left">
                         {x.content}
                       </Box>
