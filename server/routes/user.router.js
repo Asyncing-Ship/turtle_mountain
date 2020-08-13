@@ -8,6 +8,8 @@ const userStrategy = require("../strategies/user.strategy");
 const { check, validationResult } = require("express-validator");
 
 const router = express.Router();
+const nodemailer = require("nodemailer");
+const { nanoid } = require('nanoid/non-secure');
 
 // Handles Ajax request for user information if user is authenticated
 router.get("/", rejectUnauthenticated, (req, res) => {
@@ -120,6 +122,37 @@ router.delete("/:id", (req, res) => {
       console.log("Error deleting user", error);
       res.sendStatus(500);
     });
+});
+
+router.post("/reset", (req, res) => {
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS
+    }
+  });
+
+  const url_ending = nanoid();
+  const mailOptions = {
+    from: `${req.user.email}`,
+    to: `${req.user.email}`,
+    subject: `${req.body.subject}`,
+    text: `${req.body.message} ${url_ending}`,
+    html: `
+      <p>${req.body.message}</p>
+      <em>${url_ending}</em>
+    `,
+    replyTo: `${req.user.email}`
+  }
+
+  transporter.sendMail(mailOptions, (err, res) => {
+    if (err) {
+      console.error('there was an error: ', err);
+    } else {
+      console.log('here is the res: ', res);
+    }
+  });
 });
 
 module.exports = router;
