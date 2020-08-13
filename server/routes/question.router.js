@@ -3,11 +3,14 @@ const Question = require("../models/question.model");
 const User = require("../models/user.model");
 const QuestionResponse = require("../models/question_response.model");
 // const User_Question = require("../models/user.question.model");
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
 
 const router = express.Router();
 
 // This route *should* return the logged in users questions
-router.get("/", (req, res) => {
+router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("GET questions");
   Question.findAll({
     include: [{ model: User }],
@@ -23,7 +26,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/responses/:id", (req, res) => {
+router.get("/responses/:id", rejectUnauthenticated, (req, res) => {
   console.log("GET question responses");
   let questionId = req.params.id;
   QuestionResponse.findAll({
@@ -42,7 +45,7 @@ router.get("/responses/:id", (req, res) => {
 });
 
 // This route will get a single question based on the id passed
-router.get("/:id", (req, res) => {
+router.get("/:id", rejectUnauthenticated, (req, res) => {
   let questionId = req.params.id;
   console.log(`GET request for question ${questionId}`);
   Question.findAll({
@@ -63,7 +66,7 @@ router.get("/:id", (req, res) => {
 });
 
 // This route will post a question based on the req body provided
-router.post("/", (req, res) => {
+router.post("/", rejectUnauthenticated, (req, res) => {
   const questionTitle = req.body.title;
   const questionContent = req.body.content;
   const userId = req.user.id;
@@ -88,7 +91,7 @@ router.post("/", (req, res) => {
 });
 
 // This is a route for editing the content of a question
-router.put("/:id", (req, res) => {
+router.put("/:id", rejectUnauthenticated, (req, res) => {
   let questionId = req.params.id;
   let questionContent = req.body.content;
   console.log(`PUT request update question ${questionId}`, req.body);
@@ -106,7 +109,7 @@ router.put("/:id", (req, res) => {
 });
 
 // This is a route for marking a question as answered
-router.put("/answer/:id", (req, res) => {
+router.put("/answer/:id", rejectUnauthenticated, (req, res) => {
   console.log("updating question at id", req.params.id);
   let questionId = req.params.id;
   console.log(`PUT request update question ${questionId}`, req.body);
@@ -124,7 +127,7 @@ router.put("/answer/:id", (req, res) => {
 });
 
 // This route will delete a question based on id provided
-router.delete("/:id", (req, res) => {
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
   let questionId = req.params.id;
   console.log(`DELETE request for question ${questionId}`, req.body);
   Question.destroy({ where: { id: questionId } })
