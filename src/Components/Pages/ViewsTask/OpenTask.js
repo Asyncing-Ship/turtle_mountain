@@ -24,6 +24,11 @@ class OpenTask extends Component {
         <h2>These tasks need to be accepted</h2>
         <small>to see details, click on the task to expand it</small>
         <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
+          {!this.props.tasks.filter((x) => x.status === "open")[0] && (
+            <h2>
+              <b>-no tasks to display-</b>
+            </h2>
+          )}
           {this.props.tasks
             .filter((x) => x.status === "open")
             .map((x, i) => (

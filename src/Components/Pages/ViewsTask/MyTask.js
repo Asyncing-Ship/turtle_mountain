@@ -24,6 +24,18 @@ class MyTask extends Component {
           To ask for clarification, type your response, then click the 'send
           response' button
         </small>
+        {!this.props.tasks.filter(
+          (x) => x.assigned_to,
+          this.props.user.id
+        )[0] && (
+          <h2>
+            <b>-no tasks to display-</b>
+          </h2>
+        )}
+        {this.props.tasks.filter((x) => {
+          console.log(x.assigned_to, this.props.user.id);
+          return x.assigned_to === this.props.user.id;
+        })}
         {/* the second button will give us this result,
             after filtering by tasks, assigned to the current user,
             we map each task to an accordion item with the title being the task title. 
