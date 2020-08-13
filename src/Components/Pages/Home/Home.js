@@ -29,10 +29,10 @@ class Home extends Component {
           <Button
             m={2}
             className="CircleBtn"
-            onClick={() => history.push("/profile")}
+            onClick={() => history.push("/settings")}
           >
-            <Icon name="chat" size="3.5rem" color="green.300" />
-            <div className="btn-text">profile</div>
+            <Icon name="settings" size="3.5rem" color="green.300" />
+            <div className="btn-text">settings</div>
           </Button>
           <Button
             m={2}
