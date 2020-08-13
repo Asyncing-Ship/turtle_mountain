@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import { Input, Button, Box, Icon } from "@chakra-ui/core";
-import { Textarea } from "@chakra-ui/core";
+import React from "react";
+import { Button, Box, Icon } from "@chakra-ui/core";
 import { connect } from "react-redux";
 const NewQuestion = (props) => {
   return (
@@ -15,7 +14,7 @@ const NewQuestion = (props) => {
         {props.response.content}
         {!props.response.verified &&
           !props.questionVerified &&
-          (props.user.is_admin || props.posted_by == props.user.id) && (
+          (props.user.is_admin || props.posted_by === props.user.id) && (
             <Button
               onClick={() => {
                 console.log(props.question);

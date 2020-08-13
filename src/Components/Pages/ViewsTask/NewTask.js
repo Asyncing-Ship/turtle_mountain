@@ -104,7 +104,7 @@ class NewTask extends Component {
                 <Button
                   onClick={() =>
                     this.setState({
-                      select: this.state.select.filter((y) => y.id != x.id),
+                      select: this.state.select.filter((y) => y.id !== x.id),
                     })
                   }
                 >
