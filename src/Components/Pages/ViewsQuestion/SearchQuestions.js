@@ -52,7 +52,7 @@ class SearchTask extends Component {
             each task to an accordion item with the
             title being the task title. and the body being the content, 
             followed by the status of the task*/}
-        <Accordion m={3} className="accordion" allowMultiple>
+        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.questions
             .filter(
               (x) =>
@@ -98,7 +98,7 @@ class SearchTask extends Component {
 // ----- Start of mapStateToProps function -----
 const mapStateToProps = (state) => {
   return {
-    questions: state.questions.questions
+    questions: state.questions.questions,
   };
 };
 // ----- End of mapStateToProps function -----

@@ -33,7 +33,7 @@ class RecentQuestions extends Component {
   render() {
     return (
       <>
-        <Accordion m={3} className="accordion" allowMultiple>
+        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.questions.map((x, i) => (
             <AccordionItem
               className="accordion-item"

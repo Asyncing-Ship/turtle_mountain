@@ -21,7 +21,7 @@ class OpenTask extends Component {
   render() {
     return (
       <>
-        <Accordion m={3} className="accordion" allowMultiple>
+        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.tasks
             .filter((x) => x.status === "open")
             .map((x, i) => (
