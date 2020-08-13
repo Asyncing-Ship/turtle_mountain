@@ -10,8 +10,6 @@ import {
 import TaskBadge from "./TaskBadge";
 import AcceptTask from "./TaskButtons/AcceptTask";
 import { connect } from "react-redux";
-import EditTask from "./TaskButtons/EditTask";
-import DeleteTask from "./TaskButtons/DeleteTask";
 
 class OpenTask extends Component {
   componentDidMount() {

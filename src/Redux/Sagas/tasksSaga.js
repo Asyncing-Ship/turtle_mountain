@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { put, takeEvery, delay, all } from "redux-saga/effects";
+import { put, takeEvery } from "redux-saga/effects";
 // function to get Tasks
 function* fetchTasks(action) {
   // wrap it all in try/catch

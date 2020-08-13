@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Icon, Box, Button } from "@chakra-ui/core";
 import { connect } from "react-redux";

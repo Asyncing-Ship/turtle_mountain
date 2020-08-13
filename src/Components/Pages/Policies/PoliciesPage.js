@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Upload from './Upload';
 import { connect } from 'react-redux';
-import { SimpleGrid, Box, Stack, Text, Button, ButtonGroup, Link } from '@chakra-ui/core';
+import { SimpleGrid, Box, Stack, Text, Button, ButtonGroup } from '@chakra-ui/core';
 import PolicyModal from './PolicyModal';
 
 class PoliciesPage extends Component {
