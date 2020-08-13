@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 // React Redux Imports:
 import { connect } from "react-redux";
+import moment from "moment";
 // Chakra-ui imports:
 import {
   Accordion,
@@ -74,15 +75,28 @@ class SearchTask extends Component {
                       _expanded={{ bg: "#c79e61", color: "white" }}
                       _hover={{ bg: "#c79e61", color: "white" }}
                     >
-                      <Box flex="1" textAlign="left">
+                      <Box flex="2" textAlign="left">
                         {x.title}
                       </Box>
                       <TaskBadge x={x} />
                       <AccordionIcon />
                     </AccordionHeader>
-                    <AccordionPanel className="apanel" wordBreak="break-word" pb={4}>
-                      <Box flex="1" textAlign="left">
+                    <AccordionPanel
+                      className="apanel"
+                      wordBreak="break-word"
+                      pb={4}
+                    >
+                      <Box flex="3" textAlign="left">
                         {x.content}
+                      </Box>
+                      <Box flex="1" textAlign="left">
+                        <small>
+                          <i>
+                            Posted at:{" "}
+                            {moment(x.date_posted).format("MM/DD/YY LT")} (By{" "}
+                            {x.user.first_name} {x.user.last_name})
+                          </i>
+                        </small>
                       </Box>
                     </AccordionPanel>
                   </>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Box, Icon } from "@chakra-ui/core";
 import { connect } from "react-redux";
+import moment from 'moment'
 const NewQuestion = (props) => {
   return (
     <div>
@@ -32,6 +33,15 @@ const NewQuestion = (props) => {
             </Button>
           )}
         {props.response.verified && <Icon name="check-circle"></Icon>}
+      </Box>
+      <Box flex="1" textAlign="left">
+        <small>
+          <i>
+            Posted at:{" "}
+            {moment(props.response.date_posted).format("MM/DD/YY LT")} (By{" "}
+            {props.response.user.first_name} {props.response.user.last_name})
+          </i>
+        </small>
       </Box>
     </div>
   );
