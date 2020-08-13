@@ -18,6 +18,9 @@ class AdminPage extends Component {
         {this.props.user.is_admin ? (
           <div>
             <Button
+              backgroundColor="black"
+              color="white"
+              m={2}
               onClick={() => {
                 this.setState({ sortBy: "incoming" });
               }}
@@ -25,13 +28,15 @@ class AdminPage extends Component {
               User Requests
             </Button>
             <Button
+              backgroundColor="black"
+              color="white"
+              m={2}
               onClick={() => {
                 this.setState({ sortBy: "approved" });
               }}
             >
               Approved Users
             </Button>
-            This is the admin page!
             {this.state.sortBy === "incoming" && (
               <Grid templateColumns="repeat(1, 1fr)" gap={3}>
                 {this.props.users
