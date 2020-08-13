@@ -18,15 +18,20 @@ class NewTask extends Component {
     title: "",
     content: "",
     select: [],
+    maxTitle: 50,
+    maxContent: 1000,
   };
 
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_ALL_USERS" });
   }
-  handleChange = (event, value) => {
-    this.setState({
-      [value]: event.target.value,
-    });
+
+  handleChange = (event, value, maxChars) => {
+    if (event.target.value.length <= maxChars) {
+      this.setState({
+        [value]: event.target.value,
+      });
+    }
   };
 
   handleInputChange = async (event) => {
@@ -61,24 +66,36 @@ class NewTask extends Component {
             id="task-title"
             aria-required="true"
             placeholder="Task Title"
-            onChange={(event) => this.handleChange(event, "title")}
+            onChange={(event) =>
+              this.handleChange(event, "title", this.state.maxTitle)
+            }
             value={this.state.title}
             variant="filled"
-            mb={5}
             isRequired
           />
+          <Box mb={5}>
+            <small style={{ color: "white" }}>
+              Characters: {this.state.title.length}/{this.state.maxTitle}
+            </small>
+          </Box>
           <FormLabel htmlFor="task-body">Description</FormLabel>
           <Textarea
             _focus={{ bg: "#f5fffe", border: "2px solid #3182ce" }}
             id="task-body"
             placeholder="Describe the task..."
-            onChange={(event) => this.handleChange(event, "content")}
+            onChange={(event) =>
+              this.handleChange(event, "content", this.state.maxContent)
+            }
             value={this.state.content}
             variant="filled"
             resize="vertical"
-            mb={5}
             isRequired
           />
+          <Box mb={5}>
+            <small style={{ color: "white" }}>
+              Characters: {this.state.content.length}/{this.state.maxContent}
+            </small>
+          </Box>
           <Box style={{ backgroundColor: "white" }} mb={5}>
             TAGGED USERS
             {this.state.select.map((x) => (
