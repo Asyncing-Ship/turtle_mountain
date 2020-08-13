@@ -26,7 +26,7 @@ module.exports = {
         allowNull: true,
       },
       status: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
         allowNull: false,
         defaultValue: "open",
       },
