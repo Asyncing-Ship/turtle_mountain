@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Button } from "@chakra-ui/core";
+import { Grid, Button, Heading } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import Incoming from "./Incoming";
 import Approved from "./Approved";
@@ -17,6 +17,7 @@ class AdminPage extends Component {
       <div>
         {this.props.user.is_admin ? (
           <div>
+            <Heading as="h2">Members</Heading>
             <Button
               backgroundColor="black"
               color="white"
