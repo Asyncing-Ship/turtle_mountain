@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Button } from "@chakra-ui/core";
+import { Grid, Button, Heading } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import Incoming from "./Incoming";
 import Approved from "./Approved";
@@ -17,7 +17,11 @@ class AdminPage extends Component {
       <div>
         {this.props.user.is_admin ? (
           <div>
+            <Heading as="h2">Members</Heading>
             <Button
+              backgroundColor="black"
+              color="white"
+              m={2}
               onClick={() => {
                 this.setState({ sortBy: "incoming" });
               }}
@@ -25,13 +29,15 @@ class AdminPage extends Component {
               User Requests
             </Button>
             <Button
+              backgroundColor="black"
+              color="white"
+              m={2}
               onClick={() => {
                 this.setState({ sortBy: "approved" });
               }}
             >
               Approved Users
             </Button>
-            This is the admin page!
             {this.state.sortBy === "incoming" && (
               <Grid templateColumns="repeat(1, 1fr)" gap={3}>
                 {this.props.users

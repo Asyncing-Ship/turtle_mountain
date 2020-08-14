@@ -4,9 +4,7 @@ import React from "react";
 // Redux Imports:
 import { connect } from "react-redux";
 // React Router DOM Imports:
-import {
-  NavLink,
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 // Chakra UI Imports:
 import { Box, Heading, Flex, Text, Button } from "@chakra-ui/core";
 // CSS Import:
