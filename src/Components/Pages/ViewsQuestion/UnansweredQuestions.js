@@ -11,7 +11,6 @@ import {
   AccordionHeader,
   AccordionItem,
   Accordion,
-  Heading,
 } from "@chakra-ui/core";
 import TaskBadge from "../ViewsTask/TaskBadge";
 // Components Imports:
@@ -74,7 +73,11 @@ class UnansweredQuestions extends Component {
                         </small>
                       </Box>
                       <Box m={3}>
-                        <Heading as="h3">Responses</Heading>
+                        <strong>Responses</strong>
+                      </Box>
+                      <Box textAlign="right" m={3}>
+                        {/* This is the button and input field */}
+                        <AnswerQuestion question={x} />
                       </Box>
                       <Box m={3}>
                         {this.props.response.map((y) => (
@@ -84,10 +87,6 @@ class UnansweredQuestions extends Component {
                             posted_by={x.userId}
                           />
                         ))}
-                      </Box>
-                      <Box m={3}>
-                        {/* This is the button and input field */}
-                        <AnswerQuestion question={x} />
                       </Box>
                     </AccordionPanel>
                   </>

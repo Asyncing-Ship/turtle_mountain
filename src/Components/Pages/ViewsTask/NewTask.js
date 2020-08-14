@@ -7,6 +7,9 @@ import {
   Box,
   Heading,
   Textarea,
+  Stack,
+  IconButton,
+  Tag,
 } from "@chakra-ui/core";
 
 import { connect } from "react-redux";
@@ -96,24 +99,35 @@ class NewTask extends Component {
               Characters: {this.state.content.length}/{this.state.maxContent}
             </small>
           </Box>
-          <Box style={{ backgroundColor: "white" }} mb={5}>
-            TAGGED USERS
-            {this.state.select.map((x) => (
-              <Box>
-                {"@" + x.first_name + " " + x.last_name}
-                <Button
-                  onClick={() =>
-                    this.setState({
-                      select: this.state.select.filter((y) => y.id !== x.id),
-                    })
-                  }
+          <Box rounded="md" style={{ backgroundColor: "white" }} px={4} py={2} mb={3}>
+            Tagged Users
+              <Stack w="fit-content">
+              {this.state.select.map((x) => (
+                <Tag
+                  w="auto"
+                  size="md"
+                  variantColor="purple"
+                  p={1}
                 >
-                  x
-                </Button>
-              </Box>
-            ))}
+                  @{x.first_name} {x.last_name}
+                  <Box flex={1} textAlign="right">
+                    <IconButton
+                      variantColor="red"
+                      icon="close"
+                      size="xs"
+                      ml={3}
+                      onClick={() =>
+                        this.setState({
+                          select: this.state.select.filter((y) => y.id !== x.id),
+                        })
+                      }
+                    />
+                  </Box>
+                </Tag>
+              ))}
+            </Stack>
           </Box>
-          <small style={{ color: "white" }}>Select Users to notify</small>
+          <small style={{ color: "#f5fffe" }}>Select Users to notify</small>
           <Select
             placeholder="SELECT A USER"
             className="col-12 col-lg-3"
@@ -139,7 +153,7 @@ class NewTask extends Component {
             }}
           ></Select>
           <Box textAlign="right">
-            <Button type="submit" rightIcon="add" variantColor="green">
+            <Button my={3} type="submit" rightIcon="add" variantColor="green">
               Add Task
             </Button>
           </Box>

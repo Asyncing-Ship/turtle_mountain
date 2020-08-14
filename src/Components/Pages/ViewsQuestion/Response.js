@@ -1,22 +1,30 @@
 import React from "react";
 import { Button, Box, Icon } from "@chakra-ui/core";
 import { connect } from "react-redux";
-import moment from 'moment'
 const NewQuestion = (props) => {
   return (
-    <div>
+    <Box
+      borderWidth="1px"
+      rounded="lg"
+      p={3}
+      my={3}
+      style={{ backgroundColor: 'black' }}
+    >
       <Box>
-        <u>
-          {props.response.user.first_name} {props.response.user.last_name}
-        </u>
+        <u>{props.response.user.first_name} {props.response.user.last_name}</u>
       </Box>
-      <Box mb={3}>
-        {console.log(props.posted_by, props.user.id, props.user.is_admin)}
+      <Box>
         {props.response.content}
+      </Box>
+      <Box textAlign="right">
+        {/* {console.log(props.posted_by, props.user.id, props.user.is_admin)} */}
         {!props.response.verified &&
           !props.questionVerified &&
           (props.user.is_admin || props.posted_by === props.user.id) && (
             <Button
+              size="sm"
+              variantColor="blue"
+              rightIcon="check-circle"
               onClick={() => {
                 console.log(props.question);
                 props.dispatch({
@@ -29,21 +37,11 @@ const NewQuestion = (props) => {
               }}
             >
               Mark As Verified
-              <Icon name="check" />
             </Button>
           )}
-        {props.response.verified && <Icon name="check-circle"></Icon>}
+        {props.response.verified && <Icon color="blue.400" name="check-circle"></Icon>}
       </Box>
-      <Box flex="1" textAlign="left">
-        <small>
-          <i>
-            Posted at:{" "}
-            {moment(props.response.date_posted).format("MM/DD/YY LT")} (By{" "}
-            {props.response.user.first_name} {props.response.user.last_name})
-          </i>
-        </small>
-      </Box>
-    </div>
+    </Box>
   );
 };
 const mapStateToProps = (state) => {

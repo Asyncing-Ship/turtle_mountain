@@ -11,7 +11,6 @@ import {
   AccordionHeader,
   AccordionItem,
   Accordion,
-  Heading,
 } from "@chakra-ui/core";
 import TaskBadge from "../ViewsTask/TaskBadge";
 // Components Imports:
@@ -44,8 +43,8 @@ class RecentQuestions extends Component {
                 <>
                   <AccordionHeader
                     className="accordion-head"
-                    _expanded={{ bg: "#c79e61", color: "white" }}
-                    _hover={{ bg: "#c79e61", color: "white" }}
+                    _expanded={{ bg: "#c79e61", color: "#f5fffe" }}
+                    _hover={{ bg: "#c79e61", color: "#f5fffe" }}
                     onClick={() => this.setQuestion(x.id)}
                   >
                     <Box flex="1" textAlign="left">
@@ -70,7 +69,11 @@ class RecentQuestions extends Component {
                       </small>
                     </Box>
                     <Box m={3}>
-                      <Heading as="h3">Responses</Heading>
+                      <strong>Responses</strong>
+                    </Box>
+                    <Box textAlign="right" m={3}>
+                      {/* This is the button and input field */}
+                      <AnswerQuestion question={x} />
                     </Box>
                     <Box m={3}>
                       {this.props.response.map((y) => (
@@ -80,10 +83,6 @@ class RecentQuestions extends Component {
                           posted_by={x.userId}
                         />
                       ))}
-                    </Box>
-                    <Box m={3}>
-                      {/* This is the button and input field */}
-                      <AnswerQuestion question={x} />
                     </Box>
                   </AccordionPanel>
                 </>

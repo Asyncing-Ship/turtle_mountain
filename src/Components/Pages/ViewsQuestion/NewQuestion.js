@@ -75,7 +75,7 @@ class NewQuestion extends Component {
               autoComplete="off"
               id="task-title"
               aria-required="true"
-              placeholder="Task Title"
+              placeholder="Question Title"
               onChange={(event) => {
                 this.handleChange(event, "title", this.state.maxCharsTitle);
               }}
@@ -93,7 +93,7 @@ class NewQuestion extends Component {
             <Textarea
               _focus={{ bg: "#f5fffe", border: "2px solid #3182ce" }}
               id="task-body"
-              placeholder="Describe the task..."
+              placeholder="Explain the question..."
               onChange={(event) => {
                 this.handleChange(event, "content", this.state.maxCharsDesc);
               }}
@@ -103,38 +103,40 @@ class NewQuestion extends Component {
               isRequired
             />
             <Box mb={5}>
-              <small style={{ color: "white" }}>
+              <small style={{ color: "#f5fffe" }}>
                 Characters: {this.state.content.length}/
                 {this.state.maxCharsDesc}
               </small>
             </Box>
-            <Box rounded="md" style={{ backgroundColor: "white" }} px={4} py={2} mb={3}>
+            <Box rounded="md" style={{ backgroundColor: "#f5fffe" }} px={4} py={2} mb={3}>
               Tagged Users
-              <Stack>
+              <Stack w="fit-content">
                 {this.state.select.map((x) => (
                   <Tag
-                    w="fit-content"
+                    w="auto"
                     size="md"
-                    variantColor="blue"
+                    variantColor="purple"
                     p={1}
                   >
-                    {"@" + x.first_name + " " + x.last_name}
-                    <IconButton
-                      variantColor="red"
-                      icon="close"
-                      size="xs"
-                      ml={3}
-                      onClick={() =>
-                        this.setState({
-                          select: this.state.select.filter((y) => y.id !== x.id),
-                        })
-                      }
-                    ></IconButton>
+                    @{x.first_name} {x.last_name}
+                    <Box flex={1} textAlign="right">
+                      <IconButton
+                        variantColor="red"
+                        icon="close"
+                        size="xs"
+                        ml={3}
+                        onClick={() =>
+                          this.setState({
+                            select: this.state.select.filter((y) => y.id !== x.id),
+                          })
+                        }
+                      />
+                    </Box>
                   </Tag>
                 ))}
               </Stack>
             </Box>
-            <small style={{ color: "white" }}>Select Users to notify</small>
+            <small style={{ color: "#f5fffe" }}>Select Users to notify</small>
             <Select
               placeholder="SELECT A USER"
               className="col-12 col-lg-3"
@@ -159,7 +161,7 @@ class NewQuestion extends Component {
                 this.handleInputChange(event);
               }}
             ></Select>
-            <Box textAlign="right">
+            <Box py={3} textAlign="right">
               <Button type="submit" rightIcon="add" variantColor="green">
                 Add Question
               </Button>
