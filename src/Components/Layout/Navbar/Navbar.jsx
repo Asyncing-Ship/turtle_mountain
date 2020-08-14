@@ -46,6 +46,7 @@ export class Navbar extends React.Component {
         bg="tmarBlack.800"
         color="#f5fffe"
       >
+        {/* Start of logo / title area */}
         <Flex align="center" ml={3} mr={5}>
           <NavLink to="/home">
             <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
@@ -53,9 +54,10 @@ export class Navbar extends React.Component {
             </Heading>
           </NavLink>
         </Flex>
-
+        {/* End of logo / title area */}
+        {/* Start of hamburger menu */}
         <Button
-          display={{ base: "block", md: "none" }}
+          display={{ base: "block", lg: "none" }}
           onClick={this.handleToggle}
         >
           <svg
@@ -68,10 +70,17 @@ export class Navbar extends React.Component {
             <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
           </svg>
         </Button>
+        {/* End of hamburger menu */}
+        {/* Start of button menu navbar area */}
         <Box
           justifyContent="flex-end"
-          display={{ sm: this.state.show ? "block" : "none", md: "flex" }}
-          width={{ sm: "full", md: "auto" }}
+          display={{
+            xs: this.state.show ? "block" : "none",
+            sm: this.state.show ? "block" : "none",
+            md: this.state.show ? "block" : "none",
+            lg: "flex",
+          }}
+          width={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
           alignItems="center"
           flexGrow={1}
         >
@@ -137,6 +146,7 @@ export class Navbar extends React.Component {
             )}
           </Flex>
         </Box>
+        {/* End of button menu navbar area */}
       </Flex>
     );
   }
