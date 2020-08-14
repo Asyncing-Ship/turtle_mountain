@@ -146,7 +146,7 @@ export class Navbar extends React.Component {
             )}
           </Flex>
         </Box>
-        {/* Start of button menu navbar area */}
+        {/* End of button menu navbar area */}
       </Flex>
     );
   }
