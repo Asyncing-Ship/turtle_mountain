@@ -25,6 +25,7 @@ const Approved = (props) => {
   const [isOpenAlert, setIsOpen] = React.useState();
   const onCloseAlert = () => setIsOpen(false);
   const cancelRef = React.useRef();
+
   return (
     <Box>
       <Box as="span" verticalAlign="top" ml={3}>
@@ -70,14 +71,11 @@ const Approved = (props) => {
               </Button>
               <Button
                 variantColor="red"
-                onClick={
-                  (() => {
-                    props.dispatch({
-                      type: "DELETE_USER",
-                      payload: props.user.id,
-                    });
-                  },
-                  onCloseAlert)
+                onClick={() =>
+                  props.dispatch({
+                    type: "DELETE_USER",
+                    payload: props.user.id,
+                  })
                 }
                 ml={3}
               >
@@ -96,14 +94,7 @@ const Approved = (props) => {
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-              perspiciatis iusto iste quam voluptatem consequuntur eos tempore
-              cupiditate velit qui, libero atque. Nam, corrupti cupiditate
-              fugiat eius consectetur error alias rem iste labore ipsa nesciunt
-              ipsam dolores aspernatur corporis debitis voluptatibus accusantium
-              delectus! Aspernatur enim, voluptas a tempora voluptatum deserunt.
-            </p>
+            <p>Modify User Role</p>
           </ModalBody>
 
           <ModalFooter>
@@ -112,15 +103,12 @@ const Approved = (props) => {
             </Button>
             <Button
               variant="ghost"
-              onClick={
-                (() => {
-                  props.dispatch({
-                    type: "PROMOTE_USER",
-                    payload: props.user.id,
-                  });
-                },
-                onClose)
-              }
+              onClick={async () => {
+                props.dispatch({
+                  type: "PROMOTE_USER",
+                  payload: props.user.id,
+                });
+              }}
             >
               Secondary Action
             </Button>
