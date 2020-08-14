@@ -118,7 +118,7 @@ class NewQuestion extends Component {
                     variantColor="purple"
                     p={1}
                   >
-                    {"@" + x.first_name + " " + x.last_name}
+                    @{x.first_name} {x.last_name}
                     <Box flex={1} textAlign="right">
                       <IconButton
                         variantColor="red"

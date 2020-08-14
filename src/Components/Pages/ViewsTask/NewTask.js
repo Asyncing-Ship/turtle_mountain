@@ -109,7 +109,7 @@ class NewTask extends Component {
                   variantColor="purple"
                   p={1}
                 >
-                  {"@" + x.first_name + " " + x.last_name}
+                  @{x.first_name} {x.last_name}
                   <Box flex={1} textAlign="right">
                     <IconButton
                       variantColor="red"
@@ -153,7 +153,7 @@ class NewTask extends Component {
             }}
           ></Select>
           <Box textAlign="right">
-            <Button type="submit" rightIcon="add" variantColor="green">
+            <Button my={3} type="submit" rightIcon="add" variantColor="green">
               Add Task
             </Button>
           </Box>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useToast, Button, Input, Box, Flex } from "@chakra-ui/core";
+import { useToast, Button, Input, Box } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import moment from "moment";
 const CompleteTask = (props) => {
@@ -15,44 +15,42 @@ const CompleteTask = (props) => {
           </i>
         </small>
       </Box>
-      <Flex>
-        <Input flex="7" size="sm" mt={3} />
-        <Box textAlign="right">
-          <Button
-            size="sm"
-            rightIcon="bell"
-            variantColor="yellow"
-            mt={3}
-            ml={3}
-          >
-            Send Response
-          </Button>
-          <Button
-            size="sm"
-            rightIcon="check"
-            variantColor="green"
-            mt={3}
-            ml={3}
-            onClick={async () => {
-              await toast({
-                title: "Task completed.",
-                description: "You completed this task",
-                status: "success",
-                duration: 5000,
-                isClosable: true,
-              });
-              await props.dispatch({
-                type: "COMPLETE_TASK",
-                payload: {
-                  task_id: props.task.id,
-                },
-              });
-            }}
-          >
-            Complete Task
-          </Button>
-        </Box>
-      </Flex>
+      <Box textAlign="right">
+        <Input size="sm" mt={3} />
+        <Button
+          size="sm"
+          rightIcon="bell"
+          variantColor="yellow"
+          mt={3}
+          ml={3}
+        >
+          Send Response
+        </Button>
+        <Button
+          size="sm"
+          rightIcon="check"
+          variantColor="green"
+          mt={3}
+          ml={3}
+          onClick={async () => {
+            await toast({
+              title: "Task completed.",
+              description: "You completed this task",
+              status: "success",
+              duration: 5000,
+              isClosable: true,
+            });
+            await props.dispatch({
+              type: "COMPLETE_TASK",
+              payload: {
+                task_id: props.task.id,
+              },
+            });
+          }}
+        >
+          Complete Task
+        </Button>
+      </Box>
     </div>
   );
 };

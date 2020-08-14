@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Button } from "@chakra-ui/core";
+import { Input, Button, FormControl } from "@chakra-ui/core";
 import { connect } from "react-redux";
 
 class AnswerQuestion extends Component {
@@ -12,7 +12,7 @@ class AnswerQuestion extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <form
           onSubmit={async (event) => {
             event.preventDefault();
@@ -26,14 +26,25 @@ class AnswerQuestion extends Component {
             await this.setState({ answer: "" });
           }}
         >
-          <Input
-            value={this.state.answer}
-            placeholder="Your answer"
-            onChange={(event) => this.handleChange(event, "answer")}
-          ></Input>
-          <Button mt={3} type="submit">Submit Answer</Button>
+          <FormControl isRequired>
+            <Input
+              size="sm"
+              value={this.state.answer}
+              placeholder="Enter your answer..."
+              onChange={(event) => this.handleChange(event, "answer")}
+            />
+            <Button
+              size="sm"
+              variantColor="green"
+              rightIcon="check"
+              mt={3}
+              type="submit"
+            >
+              Submit Answer
+          </Button>
+          </FormControl>
         </form>
-      </div>
+      </>
     );
   }
 }
