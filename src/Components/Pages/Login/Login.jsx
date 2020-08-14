@@ -14,6 +14,7 @@ import {
   Text,
   FormLabel,
   InputGroup,
+  FormControl,
 } from "@chakra-ui/core";
 // CSS Import:
 import "./Login.css";
@@ -63,6 +64,13 @@ class Login extends Component {
   render() {
     return (
       <div>
+        {this.props.errors.loginMessage && (
+          <Box w={500} p={4} m="20px auto" color="red">
+            <Heading as="h3" size="xs" textAlign="center" mb={6}>
+              {this.props.errors.loginMessage}
+            </Heading>
+          </Box>
+        )}
         <Box w={500} p={4} m="20px auto">
           <Heading as="h1" size="xl" textAlign="center" mb={6}>
             Please Login
@@ -75,61 +83,77 @@ class Login extends Component {
             rounded="lg"
             shadow="1px 1px 3px rgba(0,0,0,0.3)"
           >
-            <Stack spacing={3}>
-              <Text fontSize="md">Login with your email and password</Text>
-              <FormLabel p={0} htmlFor="email">
-                Email:
-                <Input
-                  variant="outline"
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleInputChangeFor("email")}
-                />
-              </FormLabel>
-              <FormLabel p={0} htmlFor="password">
-                Password:
-                <InputGroup>
-                  <Input
-                    pr="4.5rem"
-                    type={this.state.show ? "text" : "password"}
-                    placeholder="Enter password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleInputChangeFor("password")}
-                  />
-                  <InputRightElement width="4.5rem">
-                    <Button variantColor="gray" color="gray.800" h="1.75rem" size="sm" onClick={this.handleShowClick}>
-                      {this.state.show ? "Hide" : "Show"}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-              </FormLabel>
-            </Stack>
-            <Stack spacing={3} mt={4}>
-              <Button
-                loadingText="Submitting"
-                variantColor="teal"
-                type="submit"
-                onClick={this.login}
-              >
-                Login
-              </Button>
-              <Text>or</Text>
-              <Button
-                className="btn-signup"
-                variantColor="teal"
-                variant="outline"
-                color="#f5fffa"
-                onClick={() => this.props.history.push("/signup")}
-              >
-                Sign Up
-              </Button>
-              <Button as="a" href={`${process.env.REACT_APP_SERVER_URL}/api/auth/facebook/`} variantColor="blue" variant="solid">
-                Login With Facebook
-              </Button>
-            </Stack>
+            <form onSubmit={this.login}>
+              <FormControl>
+                <Stack spacing={3}>
+                  <Text fontSize="md">Login with your email and password</Text>
+                  <FormLabel p={0} htmlFor="email">
+                    Email:
+                    <Input
+                      isRequired
+                      variant="outline"
+                      placeholder="Email"
+                      type="email"
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.handleInputChangeFor("email")}
+                    />
+                  </FormLabel>
+                  <FormLabel p={0} htmlFor="password">
+                    Password:
+                    <InputGroup>
+                      <Input
+                        isRequired
+                        pr="4.5rem"
+                        type={this.state.show ? "text" : "password"}
+                        placeholder="Enter password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.handleInputChangeFor("password")}
+                      />
+                      <InputRightElement width="4.5rem">
+                        <Button
+                          variantColor="gray"
+                          color="gray.800"
+                          h="1.75rem"
+                          size="sm"
+                          onClick={this.handleShowClick}
+                        >
+                          {this.state.show ? "Hide" : "Show"}
+                        </Button>
+                      </InputRightElement>
+                    </InputGroup>
+                  </FormLabel>
+                </Stack>
+                <Stack spacing={3} mt={4}>
+                  <Button
+                    loadingText="Submitting"
+                    variantColor="teal"
+                    type="submit"
+                  >
+                    Login
+                  </Button>
+                  <Text>or</Text>
+                  <Button
+                    className="btn-signup"
+                    variantColor="teal"
+                    variant="outline"
+                    color="#f5fffa"
+                    onClick={() => this.props.history.push("/signup")}
+                  >
+                    Sign Up
+                  </Button>
+                  <Button
+                    as="a"
+                    href={`${process.env.REACT_APP_SERVER_URL}/api/auth/facebook/`}
+                    variantColor="blue"
+                    variant="solid"
+                  >
+                    Login With Facebook
+                  </Button>
+                </Stack>
+              </FormControl>
+            </form>
           </Box>
         </Box>
       </div>
