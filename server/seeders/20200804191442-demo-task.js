@@ -4,24 +4,28 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("tasks", [
       {
-        title: "This is an example",
-        content: "of a task",
+        title: "Update our Amazon Wishlist",
+        content:
+          "Can we get one of our team members to update our Amazon Wishlist, it is quite outdated!",
         user_id: 1,
       },
       {
-        title: "This is another example",
-        content: "of a task",
-        user_id: 1,
+        title: "Cleaning Supplies",
+        content:
+          "Can somebody order more cleaning supplies we are getting low.",
+        user_id: 2,
       },
       {
-        title: "And another example",
-        content: "of a task",
-        user_id: 1,
+        title: "Contact Board Members",
+        content:
+          "Can somebody contact our board members and update them on the status of this app?",
+        user_id: 3,
       },
       {
-        title: "Last example",
-        content: "of a task",
-        user_id: 1,
+        title: "Update Policies",
+        content:
+          "Erin it looks like the policies page is missing our new code of conduct, can you add it?",
+        user_id: 3,
       },
     ]);
   },
