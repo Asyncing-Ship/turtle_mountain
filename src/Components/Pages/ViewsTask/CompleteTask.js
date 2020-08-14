@@ -16,7 +16,12 @@ const CompleteTask = (props) => {
         </small>
       </Box>
       <Box textAlign="right">
-        <Input size="sm" mt={3} />
+        <Input
+          rounded="md"
+          size="sm"
+          mt={3}
+          placeholder="Enter your response..."
+        />
         <Button
           size="sm"
           rightIcon="bell"

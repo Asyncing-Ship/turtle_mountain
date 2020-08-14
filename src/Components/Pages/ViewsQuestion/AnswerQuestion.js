@@ -28,6 +28,7 @@ class AnswerQuestion extends Component {
         >
           <FormControl isRequired>
             <Input
+              rounded="md"
               size="sm"
               value={this.state.answer}
               placeholder="Enter your answer..."
