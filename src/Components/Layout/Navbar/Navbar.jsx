@@ -131,6 +131,13 @@ export class Navbar extends React.Component {
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
+                  {this.props.user.is_admin ? (
+                    <NavLink to="/admin">
+                      <Button m={2}>Admin</Button>
+                    </NavLink>
+                  ) : (
+                    <></>
+                  )}
                   <NavLink to="/login">
                     <Button
                       m={2}
