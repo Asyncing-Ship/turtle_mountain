@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Upload from './Upload';
 import { connect } from 'react-redux';
-import { SimpleGrid, Box, Stack, Text, Button, ButtonGroup } from '@chakra-ui/core';
+import { SimpleGrid, Box, Stack, Text, Button, ButtonGroup, IconButton } from '@chakra-ui/core';
 import PolicyModal from './PolicyModal';
 
 class PoliciesPage extends Component {
@@ -14,19 +14,22 @@ class PoliciesPage extends Component {
     return (
       <>
         <Stack>
+          <h3>This page lists Turtle Mountain Animal Rescue's general policies</h3>
+          <small>click view to see the policy</small>
+          <small>admins can upload new policies or delete current ones</small>
           <Box p={5}>
             <Upload />
           </Box>
           <SimpleGrid columns={{ sm: 2, md: 3, lg: 4 }}>
             {
-              policies.map((x, i) =>
+              policies.map((x) =>
                 <Box
                   color="#f5fffa"
                   rounded="lg"
                   p={3}
                   m={3}
                   bg="#2f2e2e"
-                  key={i}>
+                  key={x.id}>
                   <Stack>
                     <Text>{x.filename}</Text>
                     <ButtonGroup>
@@ -48,6 +51,14 @@ class PoliciesPage extends Component {
                           Download
                         </a>
                       </Button>
+                      <IconButton
+                        variantColor="red"
+                        icon="delete"
+                        size="sm"
+                        onClick={() => {
+                          this.props.dispatch({ type: 'DELETE_POLICY', payload: x.id });
+                        }}
+                      />
                     </ButtonGroup>
                   </Stack>
                 </Box>

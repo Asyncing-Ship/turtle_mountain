@@ -7,7 +7,8 @@ const {
 
 router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("GET policies");
-  Policy.findAll()
+  Policy
+    .findAll()
     .then((result) => res.send(result))
     .catch((error) => console.log(error));
 });
@@ -18,9 +19,21 @@ router.post("/new", rejectUnauthenticated, (req, res) => {
     handle: req.body.handle,
   });
 
-  NewPolicy.save()
+  NewPolicy
+    .save()
     .then((result) => res.sendStatus(200))
     .catch((error) => res.sendStatus(500));
+});
+
+router.delete("/delete/:id", rejectUnauthenticated, (req, res) => {
+  Policy
+    .destroy({
+      where: {
+        id: req.params.id,
+      }
+    })
+    .then(result => res.sendStatus(200))
+    .catch(error => res.sendStatus(500));
 });
 
 module.exports = router;

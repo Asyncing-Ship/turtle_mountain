@@ -19,7 +19,7 @@ const PolicyModal = (props) => {
   return (
     <>
       <Button
-        mr={3}
+        mr={2}
         rightIcon="view"
         size="sm"
         variantColor="blue"
