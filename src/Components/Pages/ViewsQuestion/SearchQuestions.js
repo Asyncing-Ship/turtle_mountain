@@ -18,7 +18,7 @@ import {
   InputLeftElement,
 } from "@chakra-ui/core";
 // Components Imports:
-import TaskBadge from "../ViewsTask/TaskBadge";
+import QuestionBadge from "./QuestionBadge";
 // ----- End of imports -----
 
 class SearchTask extends Component {
@@ -78,7 +78,7 @@ class SearchTask extends Component {
                       <Box flex="2" textAlign="left">
                         {x.title}
                       </Box>
-                      <TaskBadge x={x} />
+                      <QuestionBadge x={x} />
                       <AccordionIcon />
                     </AccordionHeader>
                     <AccordionPanel

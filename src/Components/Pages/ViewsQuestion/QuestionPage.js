@@ -15,6 +15,7 @@ import {
   Button,
   Stack,
   ButtonGroup,
+  Box,
 } from "@chakra-ui/core";
 // Components Imports:
 import ProtectedRoute from "../../Utilities/ProtectedRoute/ProtectedRoute";
@@ -22,6 +23,8 @@ import RecentQuestions from "./RecentQuestions";
 import UnansweredQuestions from "./UnansweredQuestions";
 import SearchQuestions from "./SearchQuestions";
 import NewQuestion from "./NewQuestion";
+// CSS Import:
+import './QuestionPage.css';
 // ----- End of imports -----
 
 class QuestionPage extends Component {
@@ -41,9 +44,9 @@ class QuestionPage extends Component {
   render() {
     return (
       <RouterC>
-        <Stack className="tasks-content">
-          <ButtonGroup className="tasks-btngrp">
-            <NavLink activeClassName="tasks-nav-active" to="/recent">
+        <Stack className="questions-content">
+          <ButtonGroup className="questions-btngrp">
+            <NavLink activeClassName="questions-nav-active" to="/recent">
               <Button
                 variant="outline"
                 variantColor="blue"
@@ -54,7 +57,7 @@ class QuestionPage extends Component {
               </Button>
             </NavLink>
             <NavLink
-              activeClassName="tasks-nav-active"
+              activeClassName="questions-nav-active"
               to="/unanswered"
             >
               <Button
@@ -66,7 +69,7 @@ class QuestionPage extends Component {
                 Unanswered
               </Button>
             </NavLink>
-            <NavLink activeClassName="tasks-nav-active" to="/search">
+            <NavLink activeClassName="questions-nav-active" to="/search">
               <Button
                 variant="outline"
                 variantColor="purple"
@@ -76,7 +79,7 @@ class QuestionPage extends Component {
                 Search
               </Button>
             </NavLink>
-            <NavLink activeClassName="tasks-nav-active" to="/new">
+            <NavLink activeClassName="questions-nav-active" to="/new">
               <Button
                 variant="outline"
                 variantColor="green"
@@ -87,29 +90,31 @@ class QuestionPage extends Component {
               </Button>
             </NavLink>
           </ButtonGroup>
-          <Redirect from="/" to="/recent" />
-          <Switch>
-            <ProtectedRoute
-              exact
-              path="/recent"
-              component={RecentQuestions}
-            />
-            <ProtectedRoute
-              exact
-              path="/unanswered"
-              component={UnansweredQuestions}
-            />
-            <ProtectedRoute
-              exact
-              path="/search"
-              component={SearchQuestions}
-            />
-            <ProtectedRoute
-              exact
-              path="/new"
-              component={NewQuestion}
-            />
-          </Switch>
+          <Box className="questions-routes">
+            <Redirect from="/" to="/recent" />
+            <Switch>
+              <ProtectedRoute
+                exact
+                path="/recent"
+                component={RecentQuestions}
+              />
+              <ProtectedRoute
+                exact
+                path="/unanswered"
+                component={UnansweredQuestions}
+              />
+              <ProtectedRoute
+                exact
+                path="/search"
+                component={SearchQuestions}
+              />
+              <ProtectedRoute
+                exact
+                path="/new"
+                component={NewQuestion}
+              />
+            </Switch>
+          </Box>
         </Stack>
       </RouterC>
     );

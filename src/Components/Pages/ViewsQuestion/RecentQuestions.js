@@ -12,10 +12,10 @@ import {
   AccordionItem,
   Accordion,
 } from "@chakra-ui/core";
-import TaskBadge from "../ViewsTask/TaskBadge";
 // Components Imports:
 import AnswerQuestion from "./AnswerQuestion";
 import Response from "./Response";
+import QuestionBadge from "./QuestionBadge";
 // ----- End of imports -----
 
 class RecentQuestions extends Component {
@@ -50,7 +50,7 @@ class RecentQuestions extends Component {
                     <Box flex="1" textAlign="left">
                       {x.title}
                     </Box>
-                    <TaskBadge x={x} />
+                    <QuestionBadge x={x} />
                     <AccordionIcon />
                   </AccordionHeader>
                   <AccordionPanel

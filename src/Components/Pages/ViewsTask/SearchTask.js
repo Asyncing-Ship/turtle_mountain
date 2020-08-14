@@ -38,7 +38,7 @@ class SearchTask extends Component {
             children={<Icon name="search" color="gray.400" />}
           />
           <Input
-            className="tasks-search"
+            className="questions-search"
             value={this.state.searchString}
             onChange={(event) =>
               this.setState({ searchString: event.target.value })

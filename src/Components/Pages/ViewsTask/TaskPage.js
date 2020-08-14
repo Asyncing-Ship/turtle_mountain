@@ -4,7 +4,7 @@ import React, { Component } from "react";
 // React Redux Imports:
 import { connect } from "react-redux";
 // Chakra UI Imports:
-import { Button, Stack, ButtonGroup } from "@chakra-ui/core";
+import { Button, Stack, ButtonGroup, Box } from "@chakra-ui/core";
 // React Router DOM Imports:
 import {
   withRouter,
@@ -71,14 +71,15 @@ export class TaskPage extends Component {
               </Button>
             </NavLink>
           </ButtonGroup>
-
-          <Redirect from="/" to="/open" />
-          <Switch>
-            <ProtectedRoute exact path="/open" component={OpenTask} />
-            <ProtectedRoute exact path="/my" component={MyTask} />
-            <ProtectedRoute exact path="/search" component={SearchTask} />
-            <ProtectedRoute exact path="/new" component={NewTask} />
-          </Switch>
+          <Box className="tasks-routes">
+            <Redirect from="/" to="/open" />
+            <Switch>
+              <ProtectedRoute exact path="/open" component={OpenTask} />
+              <ProtectedRoute exact path="/my" component={MyTask} />
+              <ProtectedRoute exact path="/search" component={SearchTask} />
+              <ProtectedRoute exact path="/new" component={NewTask} />
+            </Switch>
+          </Box>
         </Stack>
       </RouterB>
     );
