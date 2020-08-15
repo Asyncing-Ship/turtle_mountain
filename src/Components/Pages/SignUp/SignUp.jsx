@@ -72,13 +72,13 @@ class SignUp extends Component {
     return (
       <div>
         {this.props.errors.registrationMessage && (
-          <Box w={500} p={4} m="20px auto">
+          <Box width={[400, 500, 600]} p={4} m="20px auto">
             <Heading as="h3" size="xl" textAlign="center" mb={6}>
               {this.props.errors.registrationMessage}
             </Heading>
           </Box>
         )}
-        <Box w={500} p={4} m="20px auto">
+        <Box width={[400, 500, 600]} p={4} m="20px auto">
           <Heading as="h1" size="xl" textAlign="center" mb={6}>
             Please Sign Up
           </Heading>
