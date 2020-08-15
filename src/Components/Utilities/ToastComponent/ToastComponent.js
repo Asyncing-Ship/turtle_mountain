@@ -16,7 +16,7 @@ function Toast(status, message) {
     title: status,
     description: message,
     status: status,
-    duration: 9000,
+    duration: 5000,
     isClosable: true,
   });
 }
