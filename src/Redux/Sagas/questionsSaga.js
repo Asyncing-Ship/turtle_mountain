@@ -54,6 +54,7 @@ function* addQuestionResponse(action) {
     yield Axios.post("/api/question_response", action.payload);
     yield Axios.put(`/api/question/answer/${action.payload.question_id}`);
     yield put({ type: "FETCH_QUESTION_RESPONSES", payload: action.payload });
+    yield put({ type: "FETCH_QUESTIONS" });
   } catch (error) {
     // console.log('Error fetching Question Response', error);
     alert("unable to add new Question Response to server");

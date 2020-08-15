@@ -23,11 +23,6 @@ class AnswerQuestion extends Component {
                 content: this.state.answer,
               },
             });
-            await this.props.dispatch({ type: "FETCH_QUESTIONS" });
-            await this.props.dispatch({
-              type: "FETCH_QUESTION_RESPONSES",
-              payload: { question_id: this.props.question.id },
-            });
             await this.setState({ answer: "" });
           }}
         >
