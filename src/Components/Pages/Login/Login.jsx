@@ -1,7 +1,7 @@
 // ----- Start of imports -----
 // React Import:
 import React, { Component } from "react";
-
+// React Redux import:
 import { connect } from "react-redux";
 // Chakra UI Imports:
 import {
@@ -64,14 +64,17 @@ class Login extends Component {
   render() {
     return (
       <div>
+        {/* Start of log in message */}
         {this.props.errors.loginMessage && (
-          <Box w={500} p={4} m="20px auto" color="red">
+          <Box w={[400, 500, 600]} p={4} m="20px auto" color="red">
             <Heading as="h3" size="xs" textAlign="center" mb={6}>
               {this.props.errors.loginMessage}
             </Heading>
           </Box>
         )}
-        <Box w={500} p={4} m="20px auto">
+        {/* End of log in message */}
+        {/* Start of Log In Area */}
+        <Box w={[400, 500, 600]} p={4} m="20px auto">
           <Heading as="h1" size="xl" textAlign="center" mb={6}>
             Please Login
           </Heading>
@@ -83,6 +86,7 @@ class Login extends Component {
             rounded="lg"
             shadow="1px 1px 3px rgba(0,0,0,0.3)"
           >
+            {/* Start of Form Area */}
             <form onSubmit={this.login}>
               <FormControl>
                 <Stack spacing={3}>
@@ -154,8 +158,10 @@ class Login extends Component {
                 </Stack>
               </FormControl>
             </form>
+            {/* End of Form Area */}
           </Box>
         </Box>
+        {/* End of Log In Area */}
       </div>
     );
   }

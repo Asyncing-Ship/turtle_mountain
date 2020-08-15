@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { Box, Button, SimpleGrid, Text, Flex } from "@chakra-ui/core";
 import { Icon } from "@chakra-ui/core";
-// import "./Home.css";
 
 class Home extends Component {
   render() {
