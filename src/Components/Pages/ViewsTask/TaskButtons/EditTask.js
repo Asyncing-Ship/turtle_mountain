@@ -6,7 +6,7 @@ import { withRouter } from "react-router";
 const AcceptTask = (props) => {
   const toast = useToast();
   return (
-    <div>
+    <>
       <Button
         size="sm"
         rightIcon="edit"
@@ -31,7 +31,7 @@ const AcceptTask = (props) => {
       >
         Edit Task
       </Button>
-    </div>
+    </>
   );
 };
 

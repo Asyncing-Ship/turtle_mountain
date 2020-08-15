@@ -20,7 +20,7 @@ const NewQuestion = (props) => {
               variantColor="purple"
               mr={2}
             >
-              <TagIcon icon="star" />
+              <TagIcon icon="star" size="10px" />
               <TagLabel>{props.response.user.first_name} {props.response.user.last_name}</TagLabel>
             </Tag>
             :

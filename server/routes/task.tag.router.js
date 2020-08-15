@@ -18,10 +18,14 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
   })
     .then((tasks) => {
       console.log("tasks is: ", tasks);
-      list = tasks[0].tagged_users;
+      const list = tasks[0].tagged_users;
       User.findAll({
         where: { id: list },
-        attributes: ["id", "first_name", "last_name"],
+        attributes: ["id", "first_name", "last_name", "is_admin"],
+        order: [
+          ["is_admin", "DESC"],
+          ["first_name", "ASC"],
+        ],
       }).then((results) => {
         console.log("results is: ", results);
         res.send(results);
