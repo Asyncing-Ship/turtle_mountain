@@ -1,18 +1,45 @@
 import React from "react";
-import { Button, Box, Icon, Tag, TagLabel, TagIcon } from "@chakra-ui/core";
+import { Button, Box, Tag, TagLabel, TagIcon, Flex, Text } from "@chakra-ui/core";
 import { connect } from "react-redux";
+import moment from "moment";
 const NewQuestion = (props) => {
   return (
     <Box
       borderWidth="1px"
       rounded="lg"
-      p={3}
+      p={2}
       my={3}
       style={{ backgroundColor: 'black' }}
     >
-      <Box>
-        <u>{props.response.user.first_name} {props.response.user.last_name}</u>
-      </Box>
+      <Flex>
+        {
+          props.response.user.is_admin ?
+            <Tag
+              rounded="full"
+              size="sm"
+              variantColor="purple"
+              mr={2}
+            >
+              <TagIcon icon="star" size="10px" />
+              <TagLabel>{props.response.user.first_name} {props.response.user.last_name}</TagLabel>
+            </Tag>
+            :
+            <Tag
+              rounded="full"
+              size="sm"
+              variantColor="yellow"
+              mr={2}
+            >
+              <TagLabel>{props.response.user.first_name} {props.response.user.last_name}</TagLabel>
+            </Tag>
+        }
+        <Text fontSize="0.75rem">
+          <i style={{ verticalAlign: 'sub' }}>
+            at{" "}
+            {moment(props.response.date_posted).format("MM/DD/YY LT")}
+          </i>
+        </Text>
+      </Flex>
       <Box>
         {props.response.content}
       </Box>

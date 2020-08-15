@@ -17,7 +17,6 @@ import {
   AlertDialogHeader,
   AlertDialogBody,
   AlertDialogFooter,
-  Heading,
 } from "@chakra-ui/core";
 import { connect } from "react-redux";
 

@@ -6,9 +6,9 @@ import { withRouter } from "react-router";
 const AcceptTask = (props) => {
   const toast = useToast();
   return (
-    <div>
+    <>
       <Button
-        alignContent="right"
+        ml={2}
         size="sm"
         rightIcon="delete"
         variantColor="red"
@@ -32,7 +32,7 @@ const AcceptTask = (props) => {
       >
         Delete Task
       </Button>
-    </div>
+    </>
   );
 };
 
