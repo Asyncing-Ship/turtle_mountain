@@ -57,6 +57,7 @@ export class Navbar extends React.Component {
         {/* End of logo / title area */}
         {/* Start of hamburger menu */}
         <Button
+          mr={2}
           display={{ base: "block", lg: "none" }}
           onClick={this.handleToggle}
         >
@@ -84,17 +85,30 @@ export class Navbar extends React.Component {
           alignItems="center"
           flexGrow={1}
         >
-          <Flex direction={this.state.show ? "column" : "row"}>
+          <Flex
+            mr={{ xs: 3, sm: 3, md: 3, lg: "auto" }}
+            direction={this.state.show ? "column" : "row"}
+          >
             {!this.props.user.id ? (
               <>
                 <MenuItems>
                   <NavLink to="/login">
-                    <Button m={2}>Login</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Login
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
                   <NavLink to="/signup">
-                    <Button m={2}>Signup</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Signup
+                    </Button>
                   </NavLink>
                 </MenuItems>
               </>
@@ -102,44 +116,82 @@ export class Navbar extends React.Component {
               <>
                 <MenuItems>
                   <NavLink to="/home">
-                    <Button m={2}>Home</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Home
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
                   <NavLink to="/tasks">
-                    <Button m={2}>Tasks</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Tasks
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
                   <NavLink to="/questions">
-                    <Button m={2}>Questions</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Questions
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
                   <NavLink to="/policies">
-                    <Button m={2}>Policies</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Policies
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
                   <NavLink to="/alerts">
-                    <Button m={2}>Alerts</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Alerts
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
                   <NavLink to="/settings">
-                    <Button m={2}>Settings</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Settings
+                    </Button>
                   </NavLink>
                 </MenuItems>
-                <MenuItems>
-                  {this.props.user.is_admin ? (
+                {this.props.user.is_admin ? (
+                  <MenuItems>
                     <NavLink to="/admin">
-                      <Button m={2}>Admin</Button>
+                      <Button
+                        w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                        m={2}
+                      >
+                        Admin
+                      </Button>
                     </NavLink>
-                  ) : (
-                    <></>
-                  )}
+                  </MenuItems>
+                ) : (
+                  <></>
+                )}
+                <MenuItems>
                   <NavLink to="/login">
                     <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
                       m={2}
                       onClick={() => {
                         this.props.dispatch({ type: "LOGOUT" });
