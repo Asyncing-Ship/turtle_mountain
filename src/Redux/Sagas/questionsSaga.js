@@ -52,7 +52,9 @@ function* addQuestionResponse(action) {
   // dispatch the result with put!
   try {
     yield Axios.post("/api/question_response", action.payload);
+    yield Axios.put(`/api/question/answer/${action.payload.question_id}`);
     yield put({ type: "FETCH_QUESTION_RESPONSES", payload: action.payload });
+    yield put({ type: "FETCH_QUESTIONS" });
   } catch (error) {
     // console.log('Error fetching Question Response', error);
     alert("unable to add new Question Response to server");
@@ -150,8 +152,8 @@ function* addQuestionLike(action) {
 function* markAsAnswer(action) {
   //update the question as answered
   try {
-    yield Axios.put(`/api/question/answer/${action.payload.question_id}`);
     yield Axios.put(`/api/question_response/verify/${action.payload.id}`);
+    yield Axios.put(`/api/question/verify/${action.payload.question_id}`);
     yield put({ type: "FETCH_QUESTIONS" });
     yield put({
       type: "FETCH_QUESTION_RESPONSES",

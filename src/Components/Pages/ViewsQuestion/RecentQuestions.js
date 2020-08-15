@@ -76,10 +76,11 @@ class RecentQuestions extends Component {
                       <AnswerQuestion question={x} />
                     </Box>
                     <Box m={3}>
-                      {this.props.response.map((y) => (
+                      {this.props.response.map((y, j) => (
                         <Response
+                          key={j}
                           response={y}
-                          questionVerified={x.is_answered}
+                          questionVerified={x.is_verified}
                           posted_by={x.userId}
                         />
                       ))}

@@ -63,7 +63,7 @@ class QuestionPage extends Component {
               <Button
                 variant="outline"
                 variantColor="yellow"
-                rightIcon="question"
+                rightIcon="not-allowed"
                 m={3}
               >
                 Unanswered
