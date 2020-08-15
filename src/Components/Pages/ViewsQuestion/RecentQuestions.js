@@ -80,7 +80,7 @@ class RecentQuestions extends Component {
                         <Response
                           key={j}
                           response={y}
-                          questionVerified={x.is_answered}
+                          questionVerified={x.is_verified}
                           posted_by={x.userId}
                         />
                       ))}

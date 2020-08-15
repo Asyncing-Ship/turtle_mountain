@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Box, Icon } from "@chakra-ui/core";
+import { Button, Box, Icon, Tag, TagLabel, TagIcon } from "@chakra-ui/core";
 import { connect } from "react-redux";
 const NewQuestion = (props) => {
   return (
@@ -39,7 +39,17 @@ const NewQuestion = (props) => {
               Mark As Verified
             </Button>
           )}
-        {props.response.verified && <Icon color="blue.400" name="check-circle"></Icon>}
+        {
+          props.response.verified &&
+          <Tag
+            rounded="full"
+            size="sm"
+            variantColor="blue"
+          >
+            <TagLabel>Verified</TagLabel>
+            <TagIcon icon="check-circle" />
+          </Tag>
+        }
       </Box>
     </Box>
   );
