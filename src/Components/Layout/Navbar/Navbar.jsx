@@ -86,7 +86,7 @@ export class Navbar extends React.Component {
           flexGrow={1}
         >
           <Flex
-            mr={{ xs: 3, sm: 3, md: 3, lg: "auto" }}
+            mr={{ xs: 3, sm: 3, md: 3 }}
             direction={this.state.show ? "column" : "row"}
           >
             {!this.props.user.id ? (
