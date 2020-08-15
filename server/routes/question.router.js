@@ -14,7 +14,11 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("GET questions");
   Question.findAll({
     include: [{ model: User }],
-    order: [["date_posted", "DESC"]],
+    order: [
+      ["is_verified", "ASC"],
+      ["date_posted", "DESC"],
+      ["is_answered", "ASC"],
+    ],
   })
     .then((questions) => {
       // question will be an array of all Question instances
@@ -33,6 +37,9 @@ router.get("/responses/:id", rejectUnauthenticated, (req, res) => {
   QuestionResponse.findAll({
     where: { question_id: questionId },
     include: [{ model: User }, { model: Question }],
+    order: [
+      ["date_posted", "DESC"],
+    ],
   })
     .then((questions) => {
       // question will be an array of all Question instances
@@ -123,6 +130,23 @@ router.put("/answer/:id", rejectUnauthenticated, (req, res) => {
     })
     .catch((error) => {
       console.log(`Error updating question with id ${questionId}`, error);
+      res.sendStatus(500);
+    });
+});
+
+router.put("/verify/:id", rejectUnauthenticated, (req, res) => {
+  console.log("verifying question at id", req.params.id);
+  let questionId = req.params.id;
+  console.log(`PUT request update question ${questionId}`, req.body);
+  let updates = {
+    is_verified: true,
+  };
+  Question.update(updates, { where: { id: questionId } })
+    .then(result => {
+      res.sendStatus(200);
+    })
+    .catch(error => {
+      console.log(`Error verifying question with id ${questionId}`, error);
       res.sendStatus(500);
     });
 });
