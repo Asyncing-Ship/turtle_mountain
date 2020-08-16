@@ -21,6 +21,7 @@ import "../../App/App.css";
 import AdminPage from "../../Pages/Admin/AdminPage";
 import Alerts from "../../Pages/Alerts/Alerts";
 import Settings from "../../Pages/Settings/Settings";
+import ToastComponent from "../../Utilities/ToastComponent/ToastComponent";
 // ----- End of imports -----
 
 export class Content extends React.Component {
@@ -38,6 +39,7 @@ export class Content extends React.Component {
           ) : (
             <Redirect exact from="/" to="/home" />
           )}
+          <ToastComponent />
           <ProtectedRoute exact path="/home" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
