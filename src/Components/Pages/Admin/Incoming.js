@@ -1,27 +1,60 @@
 import React from "react";
 
-import { Icon, Box, Button } from "@chakra-ui/core";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Tag,
+  TagLabel,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure
+} from "@chakra-ui/core";
 import { connect } from "react-redux";
 const Incoming = (props) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isOpenAlert, setIsOpen] = React.useState();
+  const onCloseAlert = () => setIsOpen(false);
+  const cancelRef = React.useRef();
   return (
-    <Box>
-      <Box as="span" verticalAlign="top" ml={3}>
-        {props.user.first_name} {props.user.last_name}
-      </Box>
-      <Box as="span" verticalAlign="top" ml={3}>
-        <Button
-          onClick={() => {
-            props.dispatch({
-              type: "APPROVE_USER",
-              payload: props.user.id,
-            });
-          }}
+    <Box
+      textAlign="right"
+      rounded="lg"
+      borderWidth="1px"
+      p={2}
+    >
+      <Box
+        as="span"
+        textAlign="left"
+        verticalAlign="middle"
+        ml={3}
+      >
+        <Tag
+          rounded="full"
+          size="sm"
+          variantColor="gray"
+          mr={2}
         >
-          <Icon name="check" size="16px" />
-        </Button>
+          <TagLabel>{props.user.first_name} {props.user.last_name}</TagLabel>
+        </Tag>
       </Box>
-      <Box as="span" verticalAlign="top" ml={3}>
+      <ButtonGroup ml={3}>
         <Button
+          size="sm"
+          variantColor="green"
+          rightIcon="check"
+          onClick={onOpen}
+        >
+          Approve
+        </Button>
+        <Button
+          size="sm"
+          variantColor="red"
+          rightIcon="close"
           onClick={() => {
             props.dispatch({
               type: "DELETE_USER",
@@ -29,9 +62,52 @@ const Incoming = (props) => {
             });
           }}
         >
-          <Icon name="close" size="16px" />
+          Reject
         </Button>
-      </Box>
+      </ButtonGroup>
+
+      {/* Approve User Modal //////////////////////////////////////////////////////////////////////////////////////// */}
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent rounded="lg">
+          <ModalHeader>New User Detected</ModalHeader>
+          <ModalBody>
+            <p>
+              You are about to grant{" "}
+              <Tag
+                rounded="full"
+                size="sm"
+                variantColor="gray"
+                mr={2}
+              >
+                <TagLabel>{props.user.first_name} {props.user.last_name}</TagLabel>
+              </Tag>
+                regular access as a member.
+              </p>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button size="sm" mr={3} onClick={onClose}>
+              Cancel
+              </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              variantColor="green"
+              onClick={() => {
+                onClose();
+                props.dispatch({
+                  type: "APPROVE_USER",
+                  payload: props.user.id,
+                });
+              }}
+            >
+              Approve New Member
+              </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 };
