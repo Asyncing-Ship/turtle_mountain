@@ -4,13 +4,14 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("task_response", [
       {
-        content: "Task Response Demo",
-        user_id: 1,
+        content:
+          "I'll get our Amazon wishlist updated by the end of the week, thanks for the reminder.",
+        user_id: 3,
         task_id: 1,
       },
       {
-        content: "Task Response Demo",
-        user_id: 1,
+        content: "I can order more supplies.",
+        user_id: 2,
         task_id: 2,
       },
       {

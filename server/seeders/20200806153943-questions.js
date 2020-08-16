@@ -4,24 +4,27 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("questions", [
       {
-        title: "This is an example",
-        content: "of a question",
+        title: "Lucy Good With Kids?",
+        content:
+          "I was wondering if anyone knew whether Lucy the golden retriever in Belcourt, ND is good with kids?",
         user_id: 1,
       },
       {
-        title: "This is another example",
-        content: "of a question",
+        title: "Volunteers in California",
+        content: "Do we currently have any volunteers working in California?",
         user_id: 1,
       },
       {
-        title: "And another example",
-        content: "of a question",
-        user_id: 1,
+        title: "Any Cats Available Near Sioux Falls",
+        content:
+          "Do we have any cats in or near Sioux Falls at all? We have a client who's looking for one in that area!",
+        user_id: 2,
       },
       {
-        title: "Last example",
-        content: "of a question",
-        user_id: 1,
+        title: "Shift Change",
+        content:
+          "Can somebody take John's shift on August 27th? He has an event to attend and will not be able to work that day, thanks!",
+        user_id: 3,
       },
     ]);
   },
