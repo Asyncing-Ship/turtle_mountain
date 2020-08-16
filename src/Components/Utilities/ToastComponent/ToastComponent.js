@@ -19,6 +19,7 @@ function Toast(status, message) {
     duration: 5000,
     isClosable: true,
   });
+  this.props.dispatch({ type: "DELETE_TOAST" });
 }
 export const ToastComponent = (props) => {
   // Using destructuring, this takes ComponentToProtect from component
