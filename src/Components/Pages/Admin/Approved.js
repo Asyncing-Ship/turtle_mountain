@@ -2,13 +2,11 @@ import React from "react";
 import {
   Box,
   Button,
-  Icon,
   useDisclosure,
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalCloseButton,
   ModalBody,
   ModalFooter,
   AlertDialog,
@@ -17,6 +15,9 @@ import {
   AlertDialogHeader,
   AlertDialogBody,
   AlertDialogFooter,
+  Tag,
+  TagIcon,
+  TagLabel,
 } from "@chakra-ui/core";
 import { connect } from "react-redux";
 
@@ -27,35 +28,82 @@ const Approved = (props) => {
   const cancelRef = React.useRef();
 
   return (
-    <div>
-      <Box borderWidth="1px" rounded="lg" backgroundColor="gray">
-        <Box as="span" verticalAlign="top" ml={3}>
-          {props.user.first_name} {props.user.last_name}
-        </Box>
-        {!props.user.is_admin && (
-          <Box as="span" verticalAlign="top" ml={3}>
-            <Button onClick={onOpen}>
-              <Icon name="edit" size="16px" />
-            </Button>
-          </Box>
-        )}
+    <>
+      <Box
+        textAlign="right"
+        rounded="lg"
+        borderWidth="1px"
+        p={2}
+      >
         <Box
           as="span"
-          verticalAlign="top"
+          textAlign="left"
+          verticalAlign="middle"
+          ml={3}
+        >
+          {
+            props.user.is_admin ?
+              <Tag
+                rounded="full"
+                size="sm"
+                variantColor="purple"
+                mr={2}
+              >
+                <TagIcon icon="star" size="10px" />
+                <TagLabel>{props.user.first_name} {props.user.last_name}</TagLabel>
+              </Tag>
+              :
+              <Tag
+                rounded="full"
+                size="sm"
+                variantColor="yellow"
+                mr={2}
+              >
+                <TagLabel>{props.user.first_name} {props.user.last_name}</TagLabel>
+              </Tag>
+          }
+        </Box>
+        <Box as="span" verticalAlign="middle" ml={3}>
+          {!props.user.is_admin ? (
+            <Button
+              size="sm"
+              variantColor="purple"
+              rightIcon="star"
+              onClick={onOpen}
+            >
+              Promote
+            </Button>
+          ) : (
+              <Button
+                size="sm"
+                variantColor="yellow"
+                rightIcon="minus"
+              >
+                Demote
+              </Button>
+            )
+          }
+        </Box>
+        <Box
+          as="span"
+          verticalAlign="middle"
           ml={3}
           alignItems="right"
           justifyContent="right"
           textAlign="right"
         >
           <Button
+            size="sm"
+            variantColor="red"
+            rightIcon="close"
             onClick={() => setIsOpen(true)}
-            // onClick={() => }
+          // onClick={() => }
           >
-            <Icon name="close" size="16px" />
+            Remove
           </Button>
         </Box>
 
-        {/* Delete User Alert ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/}
+        {/* Delete User Alert /////////////////////////////////////////////////////////////////////////////////////////////*/}
 
         <>
           <AlertDialog
@@ -64,27 +112,56 @@ const Approved = (props) => {
             onClose={onClose}
           >
             <AlertDialogOverlay />
-            <AlertDialogContent>
+            <AlertDialogContent rounded="lg">
               <AlertDialogHeader fontSize="lg" fontWeight="bold">
                 Delete Member
               </AlertDialogHeader>
 
               <AlertDialogBody>
-                Are you sure? You can't undo this action afterwards.
+                You are about to remove member{" "}
+                {
+                  props.user.is_admin ?
+                    <Tag
+                      rounded="full"
+                      size="sm"
+                      variantColor="purple"
+                      mr={2}
+                    >
+                      <TagIcon icon="star" size="10px" />
+                      <TagLabel>{props.user.first_name} {props.user.last_name}</TagLabel>
+                    </Tag>
+                    :
+                    <Tag
+                      rounded="full"
+                      size="sm"
+                      variantColor="yellow"
+                      mr={2}
+                    >
+                      <TagLabel>{props.user.first_name} {props.user.last_name}</TagLabel>
+                    </Tag>
+                }
+                from Turtle Mountain Connect. This cannot be undone.
               </AlertDialogBody>
 
               <AlertDialogFooter>
-                <Button ref={cancelRef} onClick={onCloseAlert}>
+                <Button
+                  size="sm"
+                  ref={cancelRef}
+                  onClick={onCloseAlert}
+                >
                   Cancel
                 </Button>
                 <Button
+                  size="sm"
+                  variant="ghost"
                   variantColor="red"
-                  onClick={() =>
+                  onClick={() => {
+                    onCloseAlert();
                     props.dispatch({
                       type: "DELETE_USER",
                       payload: props.user.id,
-                    })
-                  }
+                    });
+                  }}
                   ml={3}
                 >
                   Delete Member
@@ -94,37 +171,50 @@ const Approved = (props) => {
           </AlertDialog>
         </>
 
-        {/* Promote User Modal /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/}
+        {/* Promote User Modal ////////////////////////////////////////////////////////////////////////////////////////////*/}
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent rounded="lg">
             <ModalHeader>Modify Role</ModalHeader>
-            <ModalCloseButton />
             <ModalBody>
-              <p>Grant Admin Privileges</p>
+              <p>
+                You are about to grant member{" "}
+                <Tag
+                  rounded="full"
+                  size="sm"
+                  variantColor="yellow"
+                  mr={2}
+                >
+                  <TagLabel>{props.user.first_name} {props.user.last_name}</TagLabel>
+                </Tag>
+                all admin privileges.
+              </p>
             </ModalBody>
 
             <ModalFooter>
-              <Button variantColor="blue" mr={3} onClick={onClose}>
+              <Button size="sm" mr={3} onClick={onClose}>
                 Cancel
               </Button>
               <Button
+                size="sm"
                 variant="ghost"
-                onClick={async () => {
+                variantColor="purple"
+                onClick={() => {
+                  onClose();
                   props.dispatch({
                     type: "PROMOTE_USER",
                     payload: props.user.id,
                   });
                 }}
               >
-                Assign Admin
+                Promote to Admin
               </Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
       </Box>
-    </div>
+    </>
   );
 };
 

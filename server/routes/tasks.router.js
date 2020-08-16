@@ -131,7 +131,7 @@ router.put("/likes", rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText[taskID])
     .then(() => res.sendStatus(201))
-    .catch(() => sendStatus(500));
+    .catch(() => res.sendStatus(500));
 });
 
 /**

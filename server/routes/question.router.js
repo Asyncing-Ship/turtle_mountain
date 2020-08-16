@@ -36,8 +36,12 @@ router.get("/responses/:id", rejectUnauthenticated, (req, res) => {
   let questionId = req.params.id;
   QuestionResponse.findAll({
     where: { question_id: questionId },
-    include: [{ model: User }, { model: Question }],
+    include: [
+      { model: User },
+      { model: Question }
+    ],
     order: [
+      ["verified", "DESC"],
       ["date_posted", "DESC"],
     ],
   })

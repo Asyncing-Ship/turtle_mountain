@@ -8,13 +8,13 @@ const {
 
 const router = express.Router();
 
-// This route *should* return the logged in users pets
 router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("GET all question responses");
   Question_Response.findAll({
-    include: [{ model: User }],
-    include: [{ model: Question }],
-    order: [["date_posted", "DESC"]],
+    include: [
+      { model: User },
+      { model: Question },
+    ],
   })
     .then((responses) => {
       // responses will be an array of all Question_Responses instances
@@ -32,8 +32,10 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
   console.log(`GET request for question response with id  ${responseId}`);
   Question_Response.findAll({
     where: { id: responseId },
-    include: [{ model: User }],
-    include: [{ model: Question }],
+    include: [
+      { model: User },
+      { model: Question },
+    ],
   })
     .then((responses) => {
       console.log("Found question response", responses);
