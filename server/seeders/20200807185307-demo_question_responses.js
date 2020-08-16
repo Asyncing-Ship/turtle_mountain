@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert("question_response", [
       {
         content: "Yes Lucy is great around kids!",
-        user_id: 1,
+        user_id: 2,
         question_id: 1,
       },
       {
@@ -17,7 +17,7 @@ module.exports = {
       {
         content:
           "We currently have 2 cats available there, with another one waiting for shots who will be ready for adoption soon.",
-        user_id: 2,
+        user_id: 3,
         question_id: 3,
       },
       {
