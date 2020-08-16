@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Button, Heading } from "@chakra-ui/core";
+import { Grid, Button, Heading, Stack, ButtonGroup } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import Incoming from "./Incoming";
 import Approved from "./Approved";
@@ -14,30 +14,32 @@ class AdminPage extends Component {
   }
   render() {
     return (
-      <div>
+      <Stack>
+        <h3>This page allows admins to onboard new volunteers.</h3>
+        <small>Admins may also reject, remove, and promote users.</small>
         {this.props.user.is_admin ? (
-          <div>
+          <>
             <Heading as="h2">Members</Heading>
-            <Button
-              backgroundColor="black"
-              color="white"
-              m={2}
-              onClick={() => {
-                this.setState({ sortBy: "incoming" });
-              }}
-            >
-              User Requests
-            </Button>
-            <Button
-              backgroundColor="black"
-              color="white"
-              m={2}
-              onClick={() => {
-                this.setState({ sortBy: "approved" });
-              }}
-            >
-              Approved Users
-            </Button>
+            <ButtonGroup>
+              <Button
+                variantColor="blue"
+                m={2}
+                onClick={() => {
+                  this.setState({ sortBy: "incoming" });
+                }}
+              >
+                User Requests
+              </Button>
+              <Button
+                variantColor="blue"
+                m={2}
+                onClick={() => {
+                  this.setState({ sortBy: "approved" });
+                }}
+              >
+                Approved Users
+              </Button>
+            </ButtonGroup>
             {this.state.sortBy === "incoming" && (
               <Grid templateColumns="repeat(1, 1fr)" gap={3}>
                 {this.props.users
@@ -56,11 +58,11 @@ class AdminPage extends Component {
                   ))}
               </Grid>
             )}
-          </div>
+          </>
         ) : (
-          <ForeOhThree />
-        )}
-      </div>
+            <ForeOhThree />
+          )}
+      </Stack>
     );
   }
 }
