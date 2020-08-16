@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Button, Heading, Stack, ButtonGroup } from "@chakra-ui/core";
+import { Grid, Stack, Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import Incoming from "./Incoming";
 import Approved from "./Approved";
@@ -19,45 +19,33 @@ class AdminPage extends Component {
         <small>Admins may also reject, remove, and promote users.</small>
         {this.props.user.is_admin ? (
           <>
-            <Heading as="h2">Members</Heading>
-            <ButtonGroup>
-              <Button
-                variantColor="blue"
-                m={2}
-                onClick={() => {
-                  this.setState({ sortBy: "incoming" });
-                }}
-              >
-                User Requests
-              </Button>
-              <Button
-                variantColor="blue"
-                m={2}
-                onClick={() => {
-                  this.setState({ sortBy: "approved" });
-                }}
-              >
-                Approved Users
-              </Button>
-            </ButtonGroup>
-            {this.state.sortBy === "incoming" && (
-              <Grid templateColumns="repeat(1, 1fr)" gap={3}>
-                {this.props.users
-                  .filter((x) => !x.is_approved)
-                  .map((x) => (
-                    <Incoming user={x} />
-                  ))}
-              </Grid>
-            )}
-            {this.state.sortBy === "approved" && (
-              <Grid templateColumns="repeat(1, 1fr)" gap={3}>
-                {this.props.users
-                  .filter((x) => x.is_approved)
-                  .map((x) => (
-                    <Approved user={x} />
-                  ))}
-              </Grid>
-            )}
+            {/* <Heading as="h2">Members</Heading> */}
+            <Tabs mt={5} isFitted variant="line">
+              <TabList mb={3}>
+                <Tab>User Requests</Tab>
+                <Tab>Approved Users</Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  <Grid templateColumns="repeat(1, 1fr)" gap={3}>
+                    {this.props.users
+                      .filter((x) => !x.is_approved)
+                      .map((x) => (
+                        <Incoming user={x} />
+                      ))}
+                  </Grid>
+                </TabPanel>
+                <TabPanel>
+                  <Grid templateColumns="repeat(1, 1fr)" gap={3}>
+                    {this.props.users
+                      .filter((x) => x.is_approved)
+                      .map((x) => (
+                        <Approved user={x} />
+                      ))}
+                  </Grid>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
           </>
         ) : (
             <ForeOhThree />
