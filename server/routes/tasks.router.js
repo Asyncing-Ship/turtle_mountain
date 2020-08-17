@@ -23,7 +23,7 @@ router.put("/complete/:id", rejectUnauthenticated, (req, res) => {
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("getting tasks");
-  const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content,tasks.assigned_to, tasks.user_id FROM users
+  const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content,tasks.assigned_to, tasks.user_id, tasks.date_posted FROM users
   JOIN tasks ON tasks.user_id = users.id
   ORDER BY status DESC, date_posted DESC`;
   pool
