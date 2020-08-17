@@ -16,9 +16,14 @@ const Notification = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    type: {
+    preview: {
       type: Sequelize.STRING,
       allowNull: true,
+    },
+    date_posted: {
+      type: Sequelize.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.fn("now"),
     },
   },
   config
