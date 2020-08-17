@@ -56,10 +56,17 @@ router.post("/", rejectUnauthenticated, (req, res) => {
   const userId = req.user.id;
   const type = req.body.type;
   const preview = req.body.preview;
+  const first_name = req.body.first_name;
+  const last_name = req.body.last_name;
+  const is_admin = req.body.is_admin;
   let newNotification = Notification.build({
     type: type,
     userId: userId,
     preview: preview,
+    first_name: first_name,
+    last_name: last_name,
+    is_admin: is_admin
+
   });
   // Save to database
   newNotification
