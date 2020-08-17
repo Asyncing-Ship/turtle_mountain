@@ -32,6 +32,11 @@ class RecentQuestions extends Component {
   render() {
     return (
       <>
+        <h3>Most Recently Asked Questions</h3>
+        <h4>
+          These are the questions that were most recently asked. whether
+          answered or not, they will appear here
+        </h4>
         <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.questions.map((x, i) => (
             <AccordionItem

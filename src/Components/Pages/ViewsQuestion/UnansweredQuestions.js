@@ -33,6 +33,10 @@ class UnansweredQuestions extends Component {
   render() {
     return (
       <>
+        <h3>
+          These questions are unanswered, and ordered from newest to oldest
+        </h3>
+
         {/* I think there is a filter bug in here. I did not change it. When you answer it still appears. The original code was like that as well. - Jake */}
         <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.questions
