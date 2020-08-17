@@ -13,12 +13,12 @@ const AcceptTask = (props) => {
         className="new_class_goes_here"
         onClick={async () => {
           await props.dispatch({
-            type: "EDIT_TASK",
+            type: "SET_TASK_DETAIL",
             payload: {
-              task_id: props.task.id,
+              taskDetail: props.task,
             },
           });
-          await props.history.push("/edit");
+          await props.history.push("/edit-task");
         }}
       >
         Edit Task

@@ -124,14 +124,18 @@ router.get("/comments/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put("/likes", rejectUnauthenticated, (req, res) => {
-  console.log("adding task like to the database", req.params);
-  const taskID = req.params.id;
-  const queryText = `UPDATE tasks SET likes = likes + 1 WHERE id = $1`;
+router.put("/update/:id", rejectUnauthenticated, (req, res) => {
+  console.log("updating task on database");
+  console.log(req.body);
+  console.log(req.params.id);
+  const id = req.params.id;
+  const title = req.body.title;
+  const content = req.body.content;
+  const queryText = `UPDATE tasks SET title = $1, content = $2 WHERE id = $3`;
   pool
-    .query(queryText[taskID])
-    .then(() => res.sendStatus(201))
-    .catch(() => res.sendStatus(500));
+    .query(queryText, [title, content, id])
+    .then(() => res.sendStatus(204))
+    .catch((error) => res.status(500).send(error));
 });
 
 /**
