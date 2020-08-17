@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
       },
       preview: {
+        type: Sequelize.STRING(160),
+        allowNull: true,
+      },
+      type: {
         type: Sequelize.STRING,
         allowNull: true,
       },
