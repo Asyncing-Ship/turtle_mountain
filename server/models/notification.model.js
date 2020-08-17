@@ -38,36 +38,4 @@ Notification.belongsTo(User, {
   onDelete: "CASCADE",
 });
 
-const Question = require("./question.model");
-Notification.belongsTo(Question, {
-  foreignKey: {
-    allowNull: true, // doing this for now because doesnt HAVE to belong to question
-  },
-  onDelete: "CASCADE",
-});
-
-const Task = require("./task.model");
-Notification.belongsTo(Task, {
-  foreignKey: {
-    allowNull: true, // doing this for now because doesnt HAVE to belong to task
-  },
-  onDelete: "CASCADE",
-});
-
-const Question_Response = require("./question_response.model");
-Notification.belongsTo(Question_Response, {
-  foreignKey: {
-    allowNull: true, // doing this for now because doesnt HAVE to belong to question_response
-  },
-  onDelete: "CASCADE",
-});
-
-const Task_Response = require("./Task_response.model");
-Notification.belongsTo(Task_Response, {
-  foreignKey: {
-    allowNull: true, // doing this for now because doesnt HAVE to belong to task_response
-  },
-  onDelete: "CASCADE",
-});
-
 module.exports = Notification;

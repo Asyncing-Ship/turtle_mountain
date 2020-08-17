@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert("policies", [
       {
         filename: "Spay Clinic Application Form.pdf",
-        handle: "Hytph0vtRwSU4GhwJ6dJ!",
+        handle: "Hytph0vtRwSU4GhwJ6dJ",
       },
       {
         filename: "Fundraising_Event_Request.pdf",

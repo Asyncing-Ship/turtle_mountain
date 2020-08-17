@@ -3,10 +3,6 @@ const Notification = require("../models/notification.model");
 const User = require("../models/user.model");
 
 // potential imports
-const Task = require("../models/task.model");
-const Question = require("../models/question.model");
-const Question_Response = require("../models/question_response.model");
-const Task_Response = require("../models/task_response.model");
 
 const {
   rejectUnauthenticated,
@@ -15,17 +11,11 @@ const {
 const router = express.Router();
 
 // route for getting all the notifications for a certain id
-rrouter.get("/:id", rejectUnauthenticated, (req, res) => {
+router.get("/:id", rejectUnauthenticated, (req, res) => {
   let notiId = req.params.id;
-  Notificaiton.findAll({
+  Notification.findAll({
     where: { id: notiId },
-    include: [
-      { model: User },
-      { model: Question },
-      { model: Task },
-      { model: Question_Response },
-      { model: Task_Response },
-    ],
+    include: [{ model: User }],
     order: [["date_posted", "DESC"]],
   })
     .then((noti) => {
