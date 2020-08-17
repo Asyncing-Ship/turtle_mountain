@@ -17,9 +17,6 @@ import {
 import { connect } from "react-redux";
 const Incoming = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isOpenAlert, setIsOpen] = React.useState();
-  const onCloseAlert = () => setIsOpen(false);
-  const cancelRef = React.useRef();
   return (
     <Box
       textAlign="right"
