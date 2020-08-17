@@ -94,10 +94,10 @@ function* addQuestionResponse(action) {
 // function to delete Questions
 function* deleteQuestion(action) {
   // wrap it all in try/catch
-  // yield axios
   // dispatch the result with put!
   try {
-    yield Axios.delete(`/api/questions/${action.payload}`);
+    yield Axios.delete(`/api/question/${action.payload.question_id}`);
+    yield put({ type: "FETCH_QUESTIONS" });
     yield put({
       type: "ADD_TOAST",
       payload: { status: "success", message: "question deleted" },
