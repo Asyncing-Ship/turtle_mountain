@@ -97,7 +97,8 @@ function* deleteQuestion(action) {
   // yield axios
   // dispatch the result with put!
   try {
-    yield Axios.delete(`/api/questions/${action.payload}`);
+    yield Axios.delete(`/api/question/${action.payload.question_id}`);
+    yield put({ type: "FETCH_QUESTIONS" });
     yield put({
       type: "ADD_TOAST",
       payload: { status: "success", message: "question deleted" },

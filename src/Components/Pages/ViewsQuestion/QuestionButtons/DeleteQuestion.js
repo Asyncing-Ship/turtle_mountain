@@ -5,7 +5,6 @@ import { withRouter } from "react-router";
 import Swal from "sweetalert2";
 
 const AcceptTask = (props) => {
-  const toast = useToast();
   return (
     <>
       <Button
@@ -17,7 +16,7 @@ const AcceptTask = (props) => {
         onClick={async () => {
           Swal.fire({
             title: "Confirm",
-            text: "Are you 100% committed to deleting this task?",
+            text: "Are you 100% committed to deleting this question?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -26,17 +25,17 @@ const AcceptTask = (props) => {
           }).then((result) => {
             if (result.value) {
               props.dispatch({
-                type: "COMPLETE_TASK",
+                type: "DELETE_QUESTION",
                 payload: {
-                  task_id: props.task.id,
+                  question_id: props.question.id,
                 },
               });
-              props.history.push("/open");
+              props.history.push("/recent");
             }
           });
         }}
       >
-        Delete Task
+        Delete Question
       </Button>
     </>
   );

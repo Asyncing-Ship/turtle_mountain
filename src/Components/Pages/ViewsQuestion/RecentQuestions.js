@@ -16,6 +16,7 @@ import {
 import AnswerQuestion from "./AnswerQuestion";
 import Response from "./Response";
 import QuestionBadge from "./QuestionBadge";
+import DeleteQuestion from "./QuestionButtons/DeleteQuestion";
 // ----- End of imports -----
 
 class RecentQuestions extends Component {
@@ -73,6 +74,9 @@ class RecentQuestions extends Component {
                         </i>
                       </small>
                     </Box>
+                    {this.props.user.id === x.user.id && (
+                      <DeleteQuestion question={x} />
+                    )}
                     <Box m={3}>
                       <strong>Responses</strong>
                     </Box>
@@ -104,6 +108,7 @@ class RecentQuestions extends Component {
 // ----- Start of mapStateToProps function -----
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     questions: state.questions.questions,
     response: state.questions.questionsResponse,
   };
