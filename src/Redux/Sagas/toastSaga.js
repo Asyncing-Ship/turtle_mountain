@@ -1,4 +1,3 @@
-import Axios from "axios";
 import { put, takeEvery } from "redux-saga/effects";
 // function to get Tasks
 function* addToast(action) {

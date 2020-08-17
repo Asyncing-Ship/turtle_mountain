@@ -1,10 +1,8 @@
 // ----- Start of imports -----
 // React Import:
 import React from "react";
-// React Router DOM Imports:
-import { NavLink } from "react-router-dom";
 // Chakra UI Imports:
-import { Button, Box, Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/core";
+import { Box, Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/core";
 // ----- End of imports -----
 
 const Unapproved = () => {
@@ -18,10 +16,11 @@ const Unapproved = () => {
           flexDirection="column"
           justifyContent="center"
           textAlign="center"
+          py={10}
           my={5}
         >
           <AlertIcon size="40px" mr={0} />
-          <AlertTitle mt={4} mb={1} fontSize="lg">
+          <AlertTitle my={4} fontSize="lg">
             Awaiting Approval
           </AlertTitle>
           <AlertDescription maxW="md">
