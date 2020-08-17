@@ -8,7 +8,6 @@ import {
   TagLabel,
   Stack,
   IconButton,
-  Text,
   Box,
   Flex,
 } from '@chakra-ui/core';
