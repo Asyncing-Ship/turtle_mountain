@@ -10,24 +10,20 @@ import { useToast } from "@chakra-ui/core";
 // so your server-side route must implement real security
 // by checking req.isAuthenticated for authentication
 // and by checking req.user for authorization
-function Toast(status, message) {
+const ToastComponent = (props) => {
   const toast = useToast();
-  toast({
-    title: status,
-    description: message,
-    status: status,
-    duration: 5000,
-    isClosable: true,
-  });
-  this.props.dispatch({ type: "DELETE_TOAST" });
-}
-export const ToastComponent = (props) => {
-  // Using destructuring, this takes ComponentToProtect from component
-  // prop and grabs all other props to pass them along to Route
   return (
     <div>
       {props.toast.status !== "null" &&
-        (() => Toast(props.toast.status, props.toast.message))}
+        toast({
+          title: props.toast.status,
+          description: props.toast.message,
+          status: props.toast.status,
+          duration: 5000,
+          isClosable: true,
+        }) &&
+        props.dispatch({ type: "DELETE_TOAST" }) &&
+        console.log("fuuuuuck")}
     </div>
   );
 };

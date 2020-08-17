@@ -39,7 +39,6 @@ export class Content extends React.Component {
           ) : (
             <Redirect exact from="/" to="/home" />
           )}
-          <ToastComponent />
           <ProtectedRoute exact path="/home" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />

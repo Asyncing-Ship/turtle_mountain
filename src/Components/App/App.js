@@ -14,6 +14,7 @@ import Navbar from "../Layout/Navbar/Navbar";
 import Content from "../Layout/Content/Content";
 // CSS Import:
 import "./App.css";
+import ToastComponent from "../Utilities/ToastComponent/ToastComponent";
 // ----- End of imports -----
 
 export class App extends React.Component {
@@ -28,6 +29,7 @@ export class App extends React.Component {
         <CSSReset />
         <Router>
           <div className="App">
+            <ToastComponent />
             <Navbar />
             <Content />
           </div>
