@@ -11,7 +11,7 @@ const {
 const router = express.Router();
 
 router.get("/:id", rejectUnauthenticated, (req, res) => {
-  const toId = req.params.id;
+  const toId = req.user.id;
   const fromId = req.params.id;
   Notification.findAll({
     where: { user_id: toId },
