@@ -25,7 +25,7 @@ const app = express();
 const passport = require("./strategies/user.strategy");
 require("./strategies/facebook.strategy");
 
-// router imports
+// Router imports
 const questionRouter = require("./routes/question.router");
 const taskRouter = require("./routes/tasks.router");
 const taskResponseRouter = require("./routes/task.response.router");
@@ -49,7 +49,7 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
-//  API Paths to routers
+// API Paths to routers
 app.use("/api/user", userRouter);
 app.use("/api/auth", oauthRouter);
 app.use("/api/question", questionRouter);
