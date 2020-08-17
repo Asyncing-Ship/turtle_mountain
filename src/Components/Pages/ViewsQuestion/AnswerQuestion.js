@@ -23,6 +23,16 @@ class AnswerQuestion extends Component {
                 content: this.state.answer,
               },
             });
+            await this.props.dispatch({
+              type: "ADD_NOTIFICATIONS",
+              payload: {
+                type: "Question Response",
+                preview: this.props.question.title,
+                first_name: this.props.user.first_name,
+                last_name: this.props.user.last_name,
+                is_admin: this.props.user.is_admin,
+              },
+            });
             await this.setState({ answer: "" });
           }}
         >
@@ -49,4 +59,11 @@ class AnswerQuestion extends Component {
     );
   }
 }
-export default connect()(AnswerQuestion);
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  }
+}
+
+export default connect(mapStateToProps)(AnswerQuestion);

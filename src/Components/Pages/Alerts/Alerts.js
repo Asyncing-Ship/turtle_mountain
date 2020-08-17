@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Box, Alert, AlertIcon, Tag, TagIcon, TagLabel, Stack, CloseButton, IconButton } from '@chakra-ui/core';
+import {
+  Alert,
+  AlertIcon,
+  Tag,
+  TagIcon,
+  TagLabel,
+  Stack,
+  IconButton,
+  Text,
+  Box,
+  Flex,
+} from '@chakra-ui/core';
+import moment from 'moment';
 
 class Alerts extends Component {
   componentDidMount() {
@@ -10,34 +22,39 @@ class Alerts extends Component {
   render() {
     return (
       <>
-        <Stack my={5} w="50%">
+        <Stack my={5} w={["100%", "100%", "85%", "65%"]}>
           {this.props.notis.map((x, i) =>
-            <Alert rounded="full" key={i} status="info" variant="subtle">
+            <Alert my={2} key={i} w="100%" rounded="full" status="info" variant="subtle">
               <AlertIcon />
-              {x.type} from
-              {
-                x.is_admin ?
-                  <Tag
-                    rounded="full"
-                    size="sm"
-                    variantColor="purple"
-                    mx={2}
-                  >
-                    <TagIcon icon="star" size="10px" />
-                    <TagLabel>{x.first_name} {x.last_name}</TagLabel>
-                  </Tag>
-                  :
-                  <Tag
-                    rounded="full"
-                    size="sm"
-                    variantColor="yellow"
-                    mx={2}
-                  >
-                    <TagLabel>{x.first_name} {x.last_name}</TagLabel>
-                  </Tag>
-              }
-              : {x.preview}
+              <Flex>
+                {
+                  x.is_admin ?
+                    <Tag
+                      rounded="full"
+                      size="sm"
+                      variantColor="purple"
+                      mr={2}
+                    >
+                      <TagIcon icon="star" size="10px" />
+                      <TagLabel>{x.first_name} {x.last_name}</TagLabel>
+                    </Tag>
+                    :
+                    <Tag
+                      rounded="full"
+                      size="sm"
+                      variantColor="yellow"
+                      mr={2}
+                    >
+                      <TagLabel>{x.first_name} {x.last_name}</TagLabel>
+                    </Tag>
+                }
+                at {moment(x.date_posted).format("MM/DD/YY LT")} —
+                <Box>
+                  <b>{x.preview}</b>
+                </Box>
+              </Flex>
               <IconButton
+                flex={1}
                 icon="close"
                 rounded="full"
                 position="absolute"
