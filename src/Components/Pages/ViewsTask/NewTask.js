@@ -60,7 +60,7 @@ class NewTask extends Component {
           await this.props.dispatch({
             type: "ADD_NOTIFICATIONS",
             payload: {
-              type: "Task",
+              type: "tagged you in a task",
               preview: this.state.title,
               first_name: this.props.user.first_name,
               last_name: this.props.user.last_name,

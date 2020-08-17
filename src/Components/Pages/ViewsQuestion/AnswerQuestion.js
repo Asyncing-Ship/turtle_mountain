@@ -26,7 +26,7 @@ class AnswerQuestion extends Component {
             await this.props.dispatch({
               type: "ADD_NOTIFICATIONS",
               payload: {
-                type: "Question Response",
+                type: "answered a question you created",
                 preview: this.props.question.title,
                 first_name: this.props.user.first_name,
                 last_name: this.props.user.last_name,

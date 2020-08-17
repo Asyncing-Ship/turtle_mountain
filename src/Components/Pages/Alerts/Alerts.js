@@ -26,7 +26,6 @@ class Alerts extends Component {
           {this.props.notis.map((x, i) =>
             <Alert my={2} key={i} w="100%" rounded="full" status="info" variant="subtle">
               <AlertIcon />
-              <Badge mr={2} variant="subtle">{x.type}</Badge> from
               <Flex>
                 {
                   x.is_admin ?
@@ -51,7 +50,9 @@ class Alerts extends Component {
                 }
                 {/* at {moment(x.date_posted).format("MM/DD/YY LT")} */}
                 <Box>
-                  on <b>{x.preview}</b> at {moment(x.date_posted).format("MM/DD/YY LT")}
+                  {x.type}.
+                  <Badge mx={2} variant="subtle">{x.preview}</Badge>
+                  at {moment(x.date_posted).format("MM/DD/YY LT")}
                 </Box>
               </Flex>
               <IconButton
