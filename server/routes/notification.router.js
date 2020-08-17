@@ -10,6 +10,22 @@ const {
 
 const router = express.Router();
 
+router.get("/", rejectUnauthenticated, (req, res) => {
+  // console.log("GET notifications");
+  Notification.findAll({
+    where: { user_id: req.user.id },
+    include: [{ model: User }],
+    order: [["date_posted", "DESC"]],
+  })
+    .then((notis) => {
+      res.send(notis);
+    })
+    .catch((error) => {
+      console.log("Error getting all notifications", error);
+      res.sendStatus(500);
+    });
+});
+
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   const toId = req.user.id;
   const fromId = req.params.id;

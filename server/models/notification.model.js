@@ -29,6 +29,14 @@ const Notification = sequelize.define(
       allowNull: false,
       defaultValue: Sequelize.fn("now"),
     },
+    first_name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    last_name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
   },
   config
 );
