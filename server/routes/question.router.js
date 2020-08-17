@@ -11,7 +11,7 @@ const router = express.Router();
 
 // This route *should* return the logged in users questions
 router.get("/", rejectUnauthenticated, (req, res) => {
-  console.log("GET questions");
+  // console.log("GET questions");
   Question.findAll({
     include: [{ model: User }],
     order: [
@@ -32,14 +32,11 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 router.get("/responses/:id", rejectUnauthenticated, (req, res) => {
-  console.log("GET question responses");
+  // console.log("GET question responses");
   let questionId = req.params.id;
   QuestionResponse.findAll({
     where: { question_id: questionId },
-    include: [
-      { model: User },
-      { model: Question }
-    ],
+    include: [{ model: User }, { model: Question }],
     order: [
       ["verified", "DESC"],
       ["date_posted", "DESC"],
@@ -59,13 +56,13 @@ router.get("/responses/:id", rejectUnauthenticated, (req, res) => {
 // This route will get a single question based on the id passed
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   let questionId = req.params.id;
-  console.log(`GET request for question ${questionId}`);
+  // console.log(`GET request for question ${questionId}`);
   Question.findAll({
     where: { id: questionId },
     include: [{ model: User }],
   })
     .then((questions) => {
-      console.log("Found question", questions);
+      // console.log("Found question", questions);
       res.send(questions[0] || []);
     })
     .catch((error) => {
@@ -83,7 +80,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
   const questionContent = req.body.content;
   const userId = req.user.id;
 
-  console.log(`POST request add question`, req.body);
+  // console.log(`POST request add question`, req.body);
 
   let newQuestion = Question.build({
     title: questionTitle,
@@ -106,7 +103,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 router.put("/:id", rejectUnauthenticated, (req, res) => {
   let questionId = req.params.id;
   let questionContent = req.body.content;
-  console.log(`PUT request update question ${questionId}`, req.body);
+  // console.log(`PUT request update question ${questionId}`, req.body);
   let updates = {
     content: questionContent,
   };
@@ -122,9 +119,9 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
 
 // This is a route for marking a question as answered
 router.put("/answer/:id", rejectUnauthenticated, (req, res) => {
-  console.log("updating question at id", req.params.id);
+  // console.log("updating question at id", req.params.id);
   let questionId = req.params.id;
-  console.log(`PUT request update question ${questionId}`, req.body);
+  // console.log(`PUT request update question ${questionId}`, req.body);
   let updates = {
     is_answered: true,
   };
@@ -139,17 +136,17 @@ router.put("/answer/:id", rejectUnauthenticated, (req, res) => {
 });
 
 router.put("/verify/:id", rejectUnauthenticated, (req, res) => {
-  console.log("verifying question at id", req.params.id);
+  // console.log("verifying question at id", req.params.id);
   let questionId = req.params.id;
-  console.log(`PUT request update question ${questionId}`, req.body);
+  // console.log(`PUT request update question ${questionId}`, req.body);
   let updates = {
     is_verified: true,
   };
   Question.update(updates, { where: { id: questionId } })
-    .then(result => {
+    .then((result) => {
       res.sendStatus(200);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(`Error verifying question with id ${questionId}`, error);
       res.sendStatus(500);
     });
@@ -158,7 +155,7 @@ router.put("/verify/:id", rejectUnauthenticated, (req, res) => {
 // This route will delete a question based on id provided
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   let questionId = req.params.id;
-  console.log(`DELETE request for question ${questionId}`, req.body);
+  // console.log(`DELETE request for question ${questionId}`, req.body);
   Question.destroy({ where: { id: questionId } })
     .then((questions) => {
       res.sendStatus(200);

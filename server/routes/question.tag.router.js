@@ -10,7 +10,7 @@ const router = express.Router();
 
 // route for getting all the question_tags for a certain question
 router.get("/:id", rejectUnauthenticated, (req, res) => {
-  console.log("GET question tags");
+  // console.log("GET question tags");
   let questionId = req.params.id;
   Question_Tag.findAll({
     where: { question_id: questionId },
@@ -31,7 +31,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 router.post("/", rejectUnauthenticated, (req, res) => {
   const userId = req.body.user_id;
   const questionId = req.body.question_id;
-  console.log(`POST question tags, adding tags`, req.body);
+  // console.log(`POST question tags, adding tags`, req.body);
 
   let newQuestionTag = Question_Tag.build({
     userId: userId,
@@ -52,7 +52,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 // Route to delete a tag
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   let tagId = req.params.id;
-  console.log(`DELETE request for question tag with id ${tagId}`, req.body);
+  // console.log(`DELETE request for question tag with id ${tagId}`, req.body);
   Question_Tag.destroy({ where: { id: tagId } })
     .then((responses) => {
       res.sendStatus(200);

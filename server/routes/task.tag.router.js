@@ -11,13 +11,13 @@ const router = express.Router();
 // route for getting all the task_tags for a certain task
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   let taskId = req.params.id;
-  console.log("Task id is: ", taskId);
+  // console.log("Task id is: ", taskId);
   Task_Tag.findAll({
     where: { task_id: taskId },
     include: [{ model: User }, { model: Task }],
   })
     .then((tasks) => {
-      console.log("tasks is: ", tasks);
+      // console.log("tasks is: ", tasks);
       const list = tasks[0].tagged_users;
       User.findAll({
         where: { id: list },
@@ -61,7 +61,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 // Route to delete a tag
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   let tagId = req.params.id;
-  console.log(`DELETE request for task tag with id ${tagId}`, req.body);
+  // console.log(`DELETE request for task tag with id ${tagId}`, req.body);
   Task_Tag.destroy({ where: { id: tagId } })
     .then((responses) => {
       res.sendStatus(200);

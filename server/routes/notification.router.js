@@ -10,18 +10,28 @@ const {
 
 const router = express.Router();
 
-// route for getting all the notifications for a certain user_id
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/:id", rejectUnauthenticated, (req, res) => {
+  const toId = req.params.id;
+  const fromId = req.params.id;
   Notification.findAll({
-    where: { user_id: req.user.id },
+    where: { user_id: toId },
     include: [{ model: User }],
-    order: [["date_posted", "DESC"]],
   })
-    .then((noti) => {
-      res.send(noti);
+    .then((notis) => {
+      // console.log("notifications are: ", notis);
+      User.findAll({
+        where: { id: fromId },
+        attributes: ["first_name", "last_name", "is_admin"],
+      }).then((results) => {
+        // console.log("results is: ", results);
+        // console.log("notis are: ", notis);
+        const newArray = [notis, results];
+        console.log("Combined array: ", newArray);
+        res.send(newArray);
+      });
     })
     .catch((error) => {
-      console.log("Error getting all notifications", error);
+      console.log("Error getting all task tags", error);
       res.sendStatus(500);
     });
 });
