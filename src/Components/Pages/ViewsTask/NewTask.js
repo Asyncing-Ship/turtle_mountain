@@ -99,16 +99,17 @@ class NewTask extends Component {
               Characters: {this.state.content.length}/{this.state.maxContent}
             </small>
           </Box>
-          <Box rounded="md" style={{ backgroundColor: "white" }} px={4} py={2} mb={3}>
-            Tagged Users
-              <Stack w="fit-content">
+          <Box
+            rounded="md"
+            style={{ backgroundColor: "white" }}
+            px={4}
+            py={2}
+            mb={3}
+          >
+            Users to notify
+            <Stack w="fit-content">
               {this.state.select.map((x) => (
-                <Tag
-                  w="auto"
-                  size="md"
-                  variantColor="purple"
-                  p={1}
-                >
+                <Tag w="auto" size="md" variantColor="purple" p={1}>
                   @{x.first_name} {x.last_name}
                   <Box flex={1} textAlign="right">
                     <IconButton
@@ -118,7 +119,9 @@ class NewTask extends Component {
                       ml={3}
                       onClick={() =>
                         this.setState({
-                          select: this.state.select.filter((y) => y.id !== x.id),
+                          select: this.state.select.filter(
+                            (y) => y.id !== x.id
+                          ),
                         })
                       }
                     />
