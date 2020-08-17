@@ -21,6 +21,14 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
       },
+      first_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      last_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       user_id: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
