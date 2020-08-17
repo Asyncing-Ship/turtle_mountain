@@ -28,8 +28,10 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 
 router.post("/", rejectUnauthenticated, (req, res) => {
   const userId = req.user.id;
+  const type = req.body.type;
   const preview = req.body.preview;
   let newNotification = Notification.build({
+    type: type,
     userId: userId,
     preview: preview,
   });
