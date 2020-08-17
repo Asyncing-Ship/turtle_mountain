@@ -64,6 +64,16 @@ class NewQuestion extends Component {
                 user_ids: this.state.select.map((x) => x.id),
               },
             });
+            await this.props.dispatch({
+              type: "ADD_NOTIFICATIONS",
+              payload: {
+                type: "Question",
+                preview: this.state.title,
+                first_name: this.props.user.first_name,
+                last_name: this.props.user.last_name,
+                is_admin: this.props.user.is_admin,
+              },
+            });
             await this.props.history.push("/recent");
           }}
         >
