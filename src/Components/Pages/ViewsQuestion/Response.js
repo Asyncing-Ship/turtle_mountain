@@ -1,7 +1,16 @@
 import React from "react";
-import { Button, Box, Tag, TagLabel, TagIcon, Flex, Text } from "@chakra-ui/core";
+import {
+  Button,
+  Box,
+  Tag,
+  TagLabel,
+  TagIcon,
+  Flex,
+  Text,
+} from "@chakra-ui/core";
 import { connect } from "react-redux";
 import moment from "moment";
+import Swal from "sweetalert2";
 const NewQuestion = (props) => {
   return (
     <Box
@@ -9,40 +18,30 @@ const NewQuestion = (props) => {
       rounded="lg"
       p={2}
       my={3}
-      style={{ backgroundColor: 'black' }}
+      style={{ backgroundColor: "black" }}
     >
       <Flex>
-        {
-          props.response.user.is_admin ?
-            <Tag
-              rounded="full"
-              size="sm"
-              variantColor="purple"
-              mr={2}
-            >
-              <TagIcon icon="star" size="10px" />
-              <TagLabel>{props.response.user.first_name} {props.response.user.last_name}</TagLabel>
-            </Tag>
-            :
-            <Tag
-              rounded="full"
-              size="sm"
-              variantColor="yellow"
-              mr={2}
-            >
-              <TagLabel>{props.response.user.first_name} {props.response.user.last_name}</TagLabel>
-            </Tag>
-        }
+        {props.response.user.is_admin ? (
+          <Tag rounded="full" size="sm" variantColor="purple" mr={2}>
+            <TagIcon icon="star" size="10px" />
+            <TagLabel>
+              {props.response.user.first_name} {props.response.user.last_name}
+            </TagLabel>
+          </Tag>
+        ) : (
+          <Tag rounded="full" size="sm" variantColor="yellow" mr={2}>
+            <TagLabel>
+              {props.response.user.first_name} {props.response.user.last_name}
+            </TagLabel>
+          </Tag>
+        )}
         <Text fontSize="0.75rem">
-          <i style={{ verticalAlign: 'sub' }}>
-            at{" "}
-            {moment(props.response.date_posted).format("MM/DD/YY LT")}
+          <i style={{ verticalAlign: "sub" }}>
+            at {moment(props.response.date_posted).format("MM/DD/YY LT")}
           </i>
         </Text>
       </Flex>
-      <Box>
-        {props.response.content}
-      </Box>
+      <Box>{props.response.content}</Box>
       <Box textAlign="right">
         {/* {console.log(props.posted_by, props.user.id, props.user.is_admin)} */}
         {!props.response.verified &&
@@ -53,30 +52,37 @@ const NewQuestion = (props) => {
               variantColor="blue"
               rightIcon="check-circle"
               onClick={() => {
-                console.log(props.question);
-                props.dispatch({
-                  type: "MARK_AS_ANSWER",
-                  payload: {
-                    id: props.response.id,
-                    question_id: props.response.questionId,
-                  },
+                Swal.fire({
+                  title: "Confirm",
+                  text:
+                    "Are you 100% commited to marking this answer as verified?",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes, verify it!",
+                }).then((result) => {
+                  if (result.value) {
+                    props.dispatch({
+                      type: "MARK_AS_ANSWER",
+                      payload: {
+                        id: props.response.id,
+                        question_id: props.response.questionId,
+                      },
+                    });
+                  }
                 });
               }}
             >
               Mark As Verified
             </Button>
           )}
-        {
-          props.response.verified &&
-          <Tag
-            rounded="full"
-            size="sm"
-            variantColor="blue"
-          >
+        {props.response.verified && (
+          <Tag rounded="full" size="sm" variantColor="blue">
             <TagLabel>Verified</TagLabel>
             <TagIcon icon="check-circle" />
           </Tag>
-        }
+        )}
       </Box>
     </Box>
   );
