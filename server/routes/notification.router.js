@@ -80,7 +80,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-// Route to delete a tag
+// Route to delete a notification
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   let notiId = req.params.id;
   console.log(`DELETE request for notification with id ${notiId}`, req.body);
