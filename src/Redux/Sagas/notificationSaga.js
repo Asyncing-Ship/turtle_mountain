@@ -5,7 +5,7 @@ import { put, takeEvery } from "redux-saga/effects";
 function* fetchNotifications(action) {
   try {
     yield put({ type: "SET_NOTIFICATIONS", payload: [] });
-    const response = yield Axios.get(`/api/notification/${action.payload}`);
+    const response = yield Axios.get(`/api/notification`);
     yield put({ type: "SET_NOTIFICATIONS", payload: response.data });
   } catch (error) {
     alert("Error fetching notifications", error);
