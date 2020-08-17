@@ -10,6 +10,7 @@ module.exports = {
         user_id: 1,
         first_name: "Robert",
         last_name: "Smith",
+        is_admin: false,
       },
       {
         type: "Question Response",
@@ -17,6 +18,7 @@ module.exports = {
         user_id: 1,
         first_name: "Erin",
         last_name: "Swanson",
+        is_admin: true,
       },
       {
         type: "Question Response",
@@ -24,6 +26,7 @@ module.exports = {
         user_id: 2,
         first_name: "Erin",
         last_name: "Swanson",
+        is_admin: true,
       },
       {
         type: "Question Response",
@@ -31,6 +34,7 @@ module.exports = {
         user_id: 3,
         first_name: "Robert",
         last_name: "Smith",
+        is_admin: false,
       },
       // notificaitons on task responses
       {
@@ -39,6 +43,7 @@ module.exports = {
         user_id: 1,
         first_name: "Erin",
         last_name: "Swanson",
+        is_admin: true,
       },
       {
         type: "Task Response",
@@ -46,6 +51,7 @@ module.exports = {
         user_id: 2,
         first_name: "Robert",
         last_name: "Smith",
+        is_admin: false,
       },
       {
         type: "Task Response",
@@ -53,6 +59,7 @@ module.exports = {
         user_id: 3,
         first_name: "John",
         last_name: "Doe",
+        is_admin: false,
       },
       {
         type: "Task Response",
@@ -60,6 +67,7 @@ module.exports = {
         user_id: 3,
         first_name: "John",
         last_name: "Doe",
+        is_admin: false,
       },
     ]);
   },
