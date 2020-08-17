@@ -108,16 +108,17 @@ class NewQuestion extends Component {
                 {this.state.maxCharsDesc}
               </small>
             </Box>
-            <Box rounded="md" style={{ backgroundColor: "#f5fffe" }} px={4} py={2} mb={3}>
-              Tagged Users
+            <Box
+              rounded="md"
+              style={{ backgroundColor: "#f5fffe" }}
+              px={4}
+              py={2}
+              mb={3}
+            >
+              Users To Notify
               <Stack w="fit-content">
                 {this.state.select.map((x) => (
-                  <Tag
-                    w="auto"
-                    size="md"
-                    variantColor="purple"
-                    p={1}
-                  >
+                  <Tag w="auto" size="md" variantColor="purple" p={1}>
                     @{x.first_name} {x.last_name}
                     <Box flex={1} textAlign="right">
                       <IconButton
@@ -127,7 +128,9 @@ class NewQuestion extends Component {
                         ml={3}
                         onClick={() =>
                           this.setState({
-                            select: this.state.select.filter((y) => y.id !== x.id),
+                            select: this.state.select.filter(
+                              (y) => y.id !== x.id
+                            ),
                           })
                         }
                       />
