@@ -11,7 +11,7 @@ const {
 router.put("/complete/:id", rejectUnauthenticated, (req, res) => {
   let id = req.params.id;
   const queryText = `
-    UPDATE tasks SET status='Complete', assigned_to = null 
+    UPDATE tasks SET status='Complete'
     WHERE id = $1`;
   pool
     .query(queryText, [id])
@@ -25,7 +25,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("getting tasks");
   const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content,tasks.assigned_to, tasks.user_id FROM users
   JOIN tasks ON tasks.user_id = users.id
-  ORDER BY date_posted DESC`;
+  ORDER BY status DESC, date_posted DESC`;
   pool
     .query(queryText)
     .then((result) => {

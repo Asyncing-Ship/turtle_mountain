@@ -12,8 +12,10 @@ const router = express.Router();
 router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("GET all task responses");
   Task_Response.findAll({
-    include: [{ model: User }],
-    include: [{ model: Task }],
+    include: [
+      { model: User },
+      { model: Task },
+    ],
     order: [["date_posted", "DESC"]],
   })
     .then((responses) => {
@@ -32,8 +34,10 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
   console.log(`GET request for task response with id  ${responseId}`);
   Task_Response.findAll({
     where: { id: responseId },
-    include: [{ model: User }],
-    include: [{ model: Task }],
+    include: [
+      { model: User },
+      { model: Task },
+    ],
   })
     .then((responses) => {
       console.log("Found Task Response", responses);
