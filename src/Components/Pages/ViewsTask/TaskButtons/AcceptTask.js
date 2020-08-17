@@ -1,13 +1,18 @@
 import React, { Fragment } from "react";
-import { Button, useToast, Box, Tag, TagIcon, TagLabel, ButtonGroup } from "@chakra-ui/core";
+import {
+  Button,
+  Box,
+  Tag,
+  TagIcon,
+  TagLabel,
+  ButtonGroup,
+} from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import EditTask from "./EditTask";
 import DeleteTask from "./DeleteTask";
 import moment from "moment";
 const AcceptTask = (props) => {
-  const toast = useToast();
-
   if (props.task.user_id === props.user.id || props.user.is_admin) {
     return (
       <>
@@ -17,7 +22,11 @@ const AcceptTask = (props) => {
           <small>
             <i>
               Posted at: {moment(props.task.date_posted).format("MM/DD/YY LT")}{" "}
-              (By <u>{props.task.first_name} {props.task.last_name}</u>)
+              (By{" "}
+              <u>
+                {props.task.first_name} {props.task.last_name}
+              </u>
+              )
             </i>
           </small>
         </Box>
@@ -27,36 +36,24 @@ const AcceptTask = (props) => {
         <Box my={3}>
           {props.tags.map((x, i) => (
             <Fragment key={i}>
-              {
-                x.is_admin ?
-                  <Tag
-                    rounded="full"
-                    size="sm"
-                    variantColor="purple"
-                    mr={2}
-                  >
-                    <TagIcon icon="star" size="10px" />
-                    <TagLabel>{x.first_name} {x.last_name}</TagLabel>
-                  </Tag>
-                  :
-                  <Tag
-                    rounded="full"
-                    size="sm"
-                    variantColor="yellow"
-                    mr={2}
-                  >
-                    <TagLabel>{x.first_name} {x.last_name}</TagLabel>
-                  </Tag>
-              }
+              {x.is_admin ? (
+                <Tag rounded="full" size="sm" variantColor="purple" mr={2}>
+                  <TagIcon icon="star" size="10px" />
+                  <TagLabel>
+                    {x.first_name} {x.last_name}
+                  </TagLabel>
+                </Tag>
+              ) : (
+                <Tag rounded="full" size="sm" variantColor="yellow" mr={2}>
+                  <TagLabel>
+                    {x.first_name} {x.last_name}
+                  </TagLabel>
+                </Tag>
+              )}
             </Fragment>
           ))}
         </Box>
-        <Box
-          textAlign="right"
-          borderTop="1px solid #f5fffe"
-          pt={3}
-          mt={3}
-        >
+        <Box textAlign="right" borderTop="1px solid #f5fffe" pt={3} mt={3}>
           <ButtonGroup>
             <Button
               size="sm"
@@ -64,13 +61,6 @@ const AcceptTask = (props) => {
               variantColor="green"
               className="new_class_goes_here"
               onClick={async () => {
-                await toast({
-                  title: "Task accepted.",
-                  description: "You accepted this task",
-                  status: "success",
-                  duration: 5000,
-                  isClosable: true,
-                });
                 await props.dispatch({
                   type: "ACCEPT_TASK",
                   payload: {
@@ -101,13 +91,6 @@ const AcceptTask = (props) => {
             variantColor="green"
             className="new_class_goes_here"
             onClick={async () => {
-              await toast({
-                title: "Task accepted.",
-                description: "You accepted this task",
-                status: "success",
-                duration: 5000,
-                isClosable: true,
-              });
               await props.dispatch({
                 type: "ACCEPT_TASK",
                 payload: {
@@ -126,27 +109,20 @@ const AcceptTask = (props) => {
         <Box>
           {props.tags.map((x) => (
             <>
-              {
-                x.is_admin ?
-                  <Tag
-                    rounded="full"
-                    size="sm"
-                    variantColor="purple"
-                    mr={2}
-                  >
-                    <TagIcon icon="star" />
-                    <TagLabel>{x.first_name} {x.last_name}</TagLabel>
-                  </Tag>
-                  :
-                  <Tag
-                    rounded="full"
-                    size="sm"
-                    variantColor="yellow"
-                    mr={2}
-                  >
-                    <TagLabel>{x.first_name} {x.last_name}</TagLabel>
-                  </Tag>
-              }
+              {x.is_admin ? (
+                <Tag rounded="full" size="sm" variantColor="purple" mr={2}>
+                  <TagIcon icon="star" />
+                  <TagLabel>
+                    {x.first_name} {x.last_name}
+                  </TagLabel>
+                </Tag>
+              ) : (
+                <Tag rounded="full" size="sm" variantColor="yellow" mr={2}>
+                  <TagLabel>
+                    {x.first_name} {x.last_name}
+                  </TagLabel>
+                </Tag>
+              )}
             </>
           ))}
         </Box>

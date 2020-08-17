@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, useToast } from "@chakra-ui/core";
+import { Button } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import Swal from "sweetalert2";

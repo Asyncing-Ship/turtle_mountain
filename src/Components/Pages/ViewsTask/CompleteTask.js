@@ -1,9 +1,8 @@
 import React from "react";
-import { useToast, Button, Input, Box } from "@chakra-ui/core";
+import { Button, Input, Box } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import moment from "moment";
 const CompleteTask = (props) => {
-  const toast = useToast();
   return (
     <div>
       <h3>{props.task.content}</h3>
@@ -22,13 +21,7 @@ const CompleteTask = (props) => {
           mt={3}
           placeholder="Enter your response..."
         />
-        <Button
-          size="sm"
-          rightIcon="bell"
-          variantColor="yellow"
-          mt={3}
-          ml={3}
-        >
+        <Button size="sm" rightIcon="bell" variantColor="yellow" mt={3} ml={3}>
           Send Response
         </Button>
         <Button
@@ -38,13 +31,6 @@ const CompleteTask = (props) => {
           mt={3}
           ml={3}
           onClick={async () => {
-            await toast({
-              title: "Task completed.",
-              description: "You completed this task",
-              status: "success",
-              duration: 5000,
-              isClosable: true,
-            });
             await props.dispatch({
               type: "COMPLETE_TASK",
               payload: {

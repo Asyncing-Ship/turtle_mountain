@@ -1,10 +1,9 @@
 import React from "react";
-import { Button, useToast } from "@chakra-ui/core";
+import { Button } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 const AcceptTask = (props) => {
-  const toast = useToast();
   return (
     <>
       <Button
@@ -13,13 +12,6 @@ const AcceptTask = (props) => {
         variantColor="yellow"
         className="new_class_goes_here"
         onClick={async () => {
-          await toast({
-            title: "Task edit.",
-            description: "Edit this task",
-            status: "edit",
-            duration: 5000,
-            isClosable: true,
-          });
           await props.dispatch({
             type: "EDIT_TASK",
             payload: {
