@@ -14,20 +14,25 @@ const AcceptTask = (props) => {
         variantColor="red"
         className="new_class_goes_here"
         onClick={async () => {
-          await toast({
-            title: "Delete task.",
-            description: "Delete this task",
-            status: "delete",
-            duration: 5000,
-            isClosable: true,
+          Swal.fire({
+            title: "Confirm",
+            text: "Are you 100% committed to deleting this task?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+          }).then((result) => {
+            if (result.value) {
+              props.dispatch({
+                type: "COMPLETE_TASK",
+                payload: {
+                  task_id: props.task.id,
+                },
+              });
+              await props.history.push("/open");
+            }
           });
-          props.dispatch({
-            type: "COMPLETE_TASK",
-            payload: {
-              task_id: props.task.id,
-            },
-          });
-          await props.history.push("/open");
         }}
       >
         Delete Task
