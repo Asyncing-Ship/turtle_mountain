@@ -17,8 +17,12 @@ const Notification = sequelize.define(
       primaryKey: true,
     },
     preview: {
+      type: Sequelize.STRING(160),
+      allowNull: false,
+    },
+    type: {
       type: Sequelize.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     date_posted: {
       type: Sequelize.DATE,

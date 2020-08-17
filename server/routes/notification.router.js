@@ -10,11 +10,10 @@ const {
 
 const router = express.Router();
 
-// route for getting all the notifications for a certain id
-router.get("/:id", rejectUnauthenticated, (req, res) => {
-  let notiId = req.params.id;
+// route for getting all the notifications for a certain user_id
+router.get("/", rejectUnauthenticated, (req, res) => {
   Notification.findAll({
-    where: { id: notiId },
+    where: { user_id: req.user.id },
     include: [{ model: User }],
     order: [["date_posted", "DESC"]],
   })
