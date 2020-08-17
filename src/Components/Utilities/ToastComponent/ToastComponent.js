@@ -14,7 +14,7 @@ const ToastComponent = (props) => {
   const toast = useToast();
   return (
     <div>
-      {props.toast.status !== "null" &&
+      {props.toast.status &&
         toast({
           title: props.toast.status,
           description: props.toast.message,
