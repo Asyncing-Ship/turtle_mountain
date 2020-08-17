@@ -17,8 +17,15 @@ function* registerUser(action) {
     // set to 'login' mode so they see the login screen
     // after registration or after they log out
     yield put({ type: "SET_TO_LOGIN_MODE" });
+    yield put({
+      type: "ADD_TOAST",
+      payload: { status: "success", message: "succeessfully registered user" },
+    });
   } catch (error) {
-    console.log("Error with user registration:", error);
+    yield put({
+      type: "ADD_TOAST",
+      payload: { status: "error", message: "failed to register user" },
+    });
     yield put({ type: "REGISTRATION_FAILED" });
   }
 }

@@ -4,18 +4,17 @@ import React from "react";
 // Redux Imports:
 import { connect } from "react-redux";
 // React Router DOM Imports:
-import {
-  BrowserRouter as Router,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 // Chakra UI Imports:
 import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 // Custom Chakra theme import:
 import customTheme from "../../style/theme";
 // Components Imports:
-import Navbar from "../Layout/Navbar/Navbar"
+import Navbar from "../Layout/Navbar/Navbar";
 import Content from "../Layout/Content/Content";
 // CSS Import:
 import "./App.css";
+import ToastComponent from "../Utilities/ToastComponent/ToastComponent";
 // ----- End of imports -----
 
 export class App extends React.Component {
@@ -30,6 +29,7 @@ export class App extends React.Component {
         <CSSReset />
         <Router>
           <div className="App">
+            <ToastComponent />
             <Navbar />
             <Content />
           </div>
