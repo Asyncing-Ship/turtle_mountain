@@ -15,6 +15,8 @@ import {
   FormLabel,
   InputGroup,
   FormControl,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/core";
 // CSS Import:
 import "./Login.css";
@@ -66,11 +68,24 @@ class Login extends Component {
       <div>
         {/* Start of log in message */}
         {this.props.errors.loginMessage && (
-          <Box w={[400, 500, 600]} p={4} m="20px auto" color="red">
-            <Heading as="h3" size="xs" textAlign="center" mb={6}>
-              {this.props.errors.loginMessage}
-            </Heading>
-          </Box>
+          <Alert
+            maxW="80%"
+            minW="80%"
+            ml="auto"
+            mr="auto"
+            my={3}
+            rounded="full"
+            status="error"
+          >
+            <AlertIcon />
+            {this.props.errors.loginMessage}
+            {/* <CloseButton
+              rounded="full"
+              position="absolute"
+              right="8px"
+              top="8px"
+            /> */}
+          </Alert>
         )}
         {/* End of log in message */}
         {/* Start of Log In Area */}
