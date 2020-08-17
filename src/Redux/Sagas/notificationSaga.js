@@ -25,7 +25,8 @@ function* addNotifications(action) {
 // function to delete a notification
 function* deleteNotifications(action) {
   try {
-    yield Axios.delete(`/api/notification/${action.payload.id}`);
+    yield Axios.delete(`/api/notification/${action.payload}`);
+    yield put({ type: 'FETCH_NOTIFICATIONS' });
   } catch (error) {
     alert("unable to delete Task Tag from server");
   }

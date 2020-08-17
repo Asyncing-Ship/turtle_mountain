@@ -10,6 +10,7 @@ import {
   IconButton,
   Box,
   Flex,
+  Badge,
 } from '@chakra-ui/core';
 import moment from 'moment';
 
@@ -25,6 +26,7 @@ class Alerts extends Component {
           {this.props.notis.map((x, i) =>
             <Alert my={2} key={i} w="100%" rounded="full" status="info" variant="subtle">
               <AlertIcon />
+              <Badge mr={2} variant="subtle">{x.type}</Badge> from
               <Flex>
                 {
                   x.is_admin ?
@@ -32,7 +34,7 @@ class Alerts extends Component {
                       rounded="full"
                       size="sm"
                       variantColor="purple"
-                      mr={2}
+                      mx={2}
                     >
                       <TagIcon icon="star" size="10px" />
                       <TagLabel>{x.first_name} {x.last_name}</TagLabel>
@@ -42,14 +44,14 @@ class Alerts extends Component {
                       rounded="full"
                       size="sm"
                       variantColor="yellow"
-                      mr={2}
+                      mx={2}
                     >
                       <TagLabel>{x.first_name} {x.last_name}</TagLabel>
                     </Tag>
                 }
-                at {moment(x.date_posted).format("MM/DD/YY LT")} —
+                {/* at {moment(x.date_posted).format("MM/DD/YY LT")} */}
                 <Box>
-                  <b>{x.preview}</b>
+                  on <b>{x.preview}</b> at {moment(x.date_posted).format("MM/DD/YY LT")}
                 </Box>
               </Flex>
               <IconButton
@@ -60,6 +62,10 @@ class Alerts extends Component {
                 right="4px"
                 variant="ghost"
                 variantColor="red"
+                onClick={() => {
+                  console.log(x.id);
+                  this.props.dispatch({ type: 'DELETE_NOTIFICATIONS', payload: x.id });
+                }}
               />
             </Alert>
           )}
