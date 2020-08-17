@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Signin from "../../Pages/Login/Login";
 import Signup from "../../Pages/SignUp/SignUp";
-import ForeOhThree from "../../Pages/403/403";
+import Unapproved from "../../Pages/Unapproved/Unapproved";
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
@@ -32,7 +32,7 @@ export const ProtectedRoute = (props) => {
     if (user.is_approved) {
       ComponentToShow = ComponentToProtect;
     } else {
-      ComponentToShow = ForeOhThree;
+      ComponentToShow = Unapproved;
     }
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
