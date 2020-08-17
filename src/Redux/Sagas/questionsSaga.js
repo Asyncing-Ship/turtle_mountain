@@ -197,12 +197,9 @@ function* verifyQuestionResponse(action) {
 
 function* questionsSaga() {
   yield takeEvery("FETCH_QUESTIONS", fetchQuestions);
-  yield takeEvery("FETCH_QUESTION_DETAIL", fetchQuestionDetail);
   yield takeEvery("FETCH_CURRENT_QUESTION", fetchCurrentQuestion);
   yield takeEvery("ADD_QUESTION", addQuestion);
   yield takeEvery("DELETE_QUESTION", deleteQuestion);
-  yield takeEvery("FETCH_QUESTION_AUTHOR", fetchQuestionAuthor);
-  yield takeEvery("ADD_QUESTION_LIKE", addQuestionLike);
   yield takeEvery("MARK_AS_ANSWER", markAsAnswer); // only admin can
   // QUESTION RESPONSES BELOW
   yield takeEvery("FETCH_QUESTION_RESPONSES", fetchQuestionResponses);
