@@ -34,6 +34,14 @@ class OpenTask extends Component {
                 className="accordion-item"
                 key={i}
                 defaultIsOpen="False"
+                onClick={() =>
+                  this.props.dispatch({
+                    type: "SET_TASK_DETAIL",
+                    payload: {
+                      taskDetail: x,
+                    },
+                  })
+                }
               >
                 {({ isExpanded }) => (
                   <>

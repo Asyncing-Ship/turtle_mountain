@@ -12,13 +12,13 @@ const AcceptTask = (props) => {
         variantColor="yellow"
         className="new_class_goes_here"
         onClick={async () => {
-          await props.dispatch({
-            type: "SET_TASK_DETAIL",
-            payload: {
-              taskDetail: props.task,
-            },
-          });
-          await props.history.push("/edit-task");
+          // await props.dispatch({
+          //   type: "SET_TASK_DETAIL",
+          //   payload: {
+          //     taskDetail: props.task,
+          //   },
+          // });
+          await props.history.push("/edit");
         }}
       >
         Edit Task

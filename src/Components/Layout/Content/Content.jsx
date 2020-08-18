@@ -50,7 +50,6 @@ export class Content extends React.Component {
           <ProtectedRoute exact path="/alerts" component={Alerts} />
           <ProtectedRoute exact path="/info" component={Info} />
           <ProtectedRoute exact path="/settings" component={Settings} />
-          <ProtectedRoute exact path="/edit-task" component={TaskEdit} />
           <Route render={() => <FourOhFour />} />
         </Switch>
       </div>

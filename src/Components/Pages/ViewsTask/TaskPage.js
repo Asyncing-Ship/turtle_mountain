@@ -19,6 +19,7 @@ import OpenTask from "./OpenTask";
 import MyTask from "./MyTask";
 import SearchTask from "./SearchTask";
 import NewTask from "./NewTask";
+import TaskEditView from "./TaskEditView";
 // CSS Import:
 import "./TaskPage.css";
 
@@ -78,6 +79,7 @@ export class TaskPage extends Component {
               <ProtectedRoute exact path="/my" component={MyTask} />
               <ProtectedRoute exact path="/search" component={SearchTask} />
               <ProtectedRoute exact path="/new" component={NewTask} />
+              <ProtectedRoute exact path="/edit" component={TaskEditView} />
             </Switch>
           </Box>
         </Stack>
