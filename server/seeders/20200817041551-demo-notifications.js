@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert("notifications", [
       // Notifications on question responses
       {
-        type: "Question Response",
+        type: "responded to a question you created",
         preview: "Lucy Good With Kids?",
         user_id: 1,
         first_name: "Robert",
@@ -13,7 +13,7 @@ module.exports = {
         is_admin: false,
       },
       {
-        type: "Question Response",
+        type: "responded to a question you created",
         preview: "Volunteers in California",
         user_id: 1,
         first_name: "Erin",
@@ -21,7 +21,7 @@ module.exports = {
         is_admin: true,
       },
       {
-        type: "Question Response",
+        type: "responded to a question you created",
         preview: "Any Cats Available Near Sioux Falls",
         user_id: 2,
         first_name: "Erin",
@@ -29,7 +29,7 @@ module.exports = {
         is_admin: true,
       },
       {
-        type: "Question Response",
+        type: "responded to a question you created",
         preview: "Shift Change",
         user_id: 3,
         first_name: "Robert",
@@ -38,7 +38,7 @@ module.exports = {
       },
       // notificaitons on task responses
       {
-        type: "Task Response",
+        type: "accepted a task you created",
         preview: "Update our Amazon Wishlist",
         user_id: 1,
         first_name: "Erin",
@@ -46,7 +46,7 @@ module.exports = {
         is_admin: true,
       },
       {
-        type: "Task Response",
+        type: "accepted a task you created",
         preview: "Cleaning Supplies",
         user_id: 2,
         first_name: "Robert",
@@ -54,7 +54,7 @@ module.exports = {
         is_admin: false,
       },
       {
-        type: "Task Response",
+        type: "accepted a task you created",
         preview: "Contact Board Members",
         user_id: 3,
         first_name: "John",
@@ -62,7 +62,7 @@ module.exports = {
         is_admin: false,
       },
       {
-        type: "Task Response",
+        type: "accepted a task you created",
         preview: "Update Policies",
         user_id: 3,
         first_name: "John",
@@ -72,7 +72,7 @@ module.exports = {
       // Task Tags {23} {13} {12} {12}
       // john doe, robert smith, erin swanson
       {
-        type: "Task Tag",
+        type: "tagged you in a task",
         preview: "Update our Amazon Wishlist",
         user_id: 1,
         first_name: "Robert",
@@ -80,7 +80,7 @@ module.exports = {
         is_admin: false,
       },
       {
-        type: "Task Tag",
+        type: "tagged you in a task",
         preview: "Update our Amazon Wishlist",
         user_id: 1,
         first_name: "Erin",
@@ -88,7 +88,7 @@ module.exports = {
         is_admin: true,
       },
       {
-        type: "Task Tag",
+        type: "tagged you in a task",
         preview: "Cleaning Supplies",
         user_id: 2,
         first_name: "John",
@@ -96,7 +96,7 @@ module.exports = {
         is_admin: false,
       },
       {
-        type: "Task Tag",
+        type: "tagged you in a task",
         preview: "Cleaning Supplies",
         user_id: 2,
         first_name: "Erin",
@@ -104,7 +104,7 @@ module.exports = {
         is_admin: true,
       },
       {
-        type: "Task Tag",
+        type: "tagged you in a task",
         preview: "Contact Board Members",
         user_id: 3,
         first_name: "John",
@@ -112,7 +112,7 @@ module.exports = {
         is_admin: false,
       },
       {
-        type: "Task Tag",
+        type: "tagged you in a task",
         preview: "Contact Board Members",
         user_id: 3,
         first_name: "Robert",
@@ -120,7 +120,7 @@ module.exports = {
         is_admin: false,
       },
       {
-        type: "Task Tag",
+        type: "tagged you in a task",
         preview: "Update Policies",
         user_id: 3,
         first_name: "John",
@@ -128,7 +128,7 @@ module.exports = {
         is_admin: false,
       },
       {
-        type: "Task Tag",
+        type: "tagged you in a task",
         preview: "Update Policies",
         user_id: 3,
         first_name: "Robert",

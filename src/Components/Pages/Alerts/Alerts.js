@@ -10,6 +10,7 @@ import {
   IconButton,
   Box,
   Flex,
+  Badge,
 } from '@chakra-ui/core';
 import moment from 'moment';
 
@@ -32,7 +33,7 @@ class Alerts extends Component {
                       rounded="full"
                       size="sm"
                       variantColor="purple"
-                      mr={2}
+                      mx={2}
                     >
                       <TagIcon icon="star" size="10px" />
                       <TagLabel>{x.first_name} {x.last_name}</TagLabel>
@@ -42,14 +43,16 @@ class Alerts extends Component {
                       rounded="full"
                       size="sm"
                       variantColor="yellow"
-                      mr={2}
+                      mx={2}
                     >
                       <TagLabel>{x.first_name} {x.last_name}</TagLabel>
                     </Tag>
                 }
-                at {moment(x.date_posted).format("MM/DD/YY LT")} —
+                {/* at {moment(x.date_posted).format("MM/DD/YY LT")} */}
                 <Box>
-                  <b>{x.preview}</b>
+                  {x.type}.
+                  <Badge mx={2} variant="subtle">{x.preview}</Badge>
+                  at {moment(x.date_posted).format("MM/DD/YY LT")}
                 </Box>
               </Flex>
               <IconButton
@@ -60,6 +63,10 @@ class Alerts extends Component {
                 right="4px"
                 variant="ghost"
                 variantColor="red"
+                onClick={() => {
+                  console.log(x.id);
+                  this.props.dispatch({ type: 'DELETE_NOTIFICATIONS', payload: x.id });
+                }}
               />
             </Alert>
           )}
