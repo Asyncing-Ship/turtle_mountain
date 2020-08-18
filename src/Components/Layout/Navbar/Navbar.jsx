@@ -165,12 +165,12 @@ export class Navbar extends React.Component {
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
-                  <NavLink to="/settings">
+                  <NavLink to="/info">
                     <Button
                       w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
                       m={2}
                     >
-                      Settings
+                      Info
                     </Button>
                   </NavLink>
                 </MenuItems>

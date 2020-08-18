@@ -77,7 +77,7 @@ class Home extends Component {
               variant="solid"
               variantColor="tmarBlack"
               bg="tmarBlack.800"
-              onClick={() => history.push("/settings")}
+              onClick={() => history.push("/info")}
             >
               <Flex
                 justifyContent="center"
@@ -89,7 +89,7 @@ class Home extends Component {
                 </Box>
                 <Box>
                   <Text as="h4" color="white" textTransform="uppercase" mt={4}>
-                    settings
+                    Info
                   </Text>
                 </Box>
               </Flex>
