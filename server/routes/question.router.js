@@ -91,7 +91,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
   newQuestion
     .save()
     .then((question) => {
-      res.sendStatus(200);
+      res.sendStatus(201);
     })
     .catch((error) => {
       console.log("Error adding question ", error);
@@ -113,6 +113,26 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
     })
     .catch((error) => {
       console.log(`Error updating question with id ${questionId}`, error);
+      res.sendStatus(500);
+    });
+});
+
+// This is a route for marking a quesiton as frequent
+router.put("/frequent/:id", rejectUnauthenticated, (req, res) => {
+  let questionId = req.params.id;
+  // console.log(`PUT request update question ${questionId}`, req.body);
+  let updates = {
+    is_frequent: true,
+  };
+  Question.update(updates, { where: { id: questionId } })
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(
+        `Error updating question(frequent) with id ${questionId}`,
+        error
+      );
       res.sendStatus(500);
     });
 });
