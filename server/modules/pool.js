@@ -15,16 +15,16 @@ if (process.env.DATABASE_URL) {
     port: params.port,
     database: params.pathname.split("/")[1],
     ssl: { rejectUnauthorized: false },
-    max: 10, // max number of clients in the pool
-    idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+    max: 100, // max number of clients in the pool
+    idleTimeoutMillis: 300000, // how long a client is allowed to remain idle before being closed
   };
 } else {
   config = {
     host: "localhost", // Server hosting the postgres database
     port: 5432, // env var: PGPORT
     database: process.env.DB_NAME, // Database name
-    max: 10, // max number of clients in the pool
-    idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+    max: 100, // max number of clients in the pool
+    idleTimeoutMillis: 300000, // how long a client is allowed to remain idle before being closed
   };
 }
 
