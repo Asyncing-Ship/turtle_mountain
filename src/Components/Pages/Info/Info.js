@@ -11,6 +11,15 @@ import {
   AccordionHeader,
   AccordionPanel,
   AccordionItem,
+  Alert,
+  AlertIcon,
+  Tag,
+  TagIcon,
+  TagLabel,
+  IconButton,
+  Flex,
+  Box,
+  Badge,
 } from "@chakra-ui/core";
 import Response from "./Response";
 import Swal from "sweetalert2";
@@ -34,7 +43,7 @@ export class InfoPage extends Component {
     Swal.fire({
       title: "Welcome",
       text:
-        "This is our page for you to try out various components of our app. As you click through, you will discover various features of the app. If you want to reset the info page to default values, just refresh the page or leave and come back",
+        "This is our page for you to try out various components of our app. As you click through, you will discover various features of the app. None of what you do on this page will be sent to the server, so feel free to click buttons and send responses. They'll all disappear when you leave the Info Page",
       icon: "info",
       confirmButtonColor: "#3085d6",
       confirmButtonText: "OK!",
@@ -156,6 +165,63 @@ export class InfoPage extends Component {
               </form>
             </AccordionPanel>
           </AccordionItem>
+          <Alert my={2} w="100%" rounded="full" status="info" variant="subtle">
+            <AlertIcon
+              onClick={() => {
+                Swal.fire({
+                  title: "Notification",
+                  text:
+                    "You will get a notification when someone responds to your question, accepts your task, or responds to your task.",
+                  icon: "info",
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "OK!",
+                });
+              }}
+            />
+            <Flex
+              onClick={() => {
+                Swal.fire({
+                  title: "Notification",
+                  text:
+                    "You will get a notification when someone responds to your question, accepts your task, or responds to your task.",
+                  icon: "info",
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "OK!",
+                });
+              }}
+            >
+              <Tag rounded="full" size="sm" variantColor="purple" mx={2}>
+                <TagIcon icon="star" size="10px" />
+                <TagLabel>Jamie Hendricks</TagLabel>
+              </Tag>
+              <Box>
+                Question Response
+                <Badge mx={2} variant="subtle">
+                  Is Jamie Lazy or is it just me?
+                </Badge>
+                <small>{moment().format("MM/DD/YY LT")}</small>
+              </Box>
+            </Flex>
+            <IconButton
+              flex={1}
+              icon="close"
+              rounded="full"
+              position="absolute"
+              right="4px"
+              variant="ghost"
+              variantColor="red"
+              onClick={() => {
+                Swal.fire({
+                  title: "Delete Notification",
+                  text:
+                    "Once you delete a notification, it cannot be undone. be careful",
+                  icon: "info",
+                  confirmButtonColor: "#3085d6",
+                  confirmButtonText: "OK!",
+                });
+              }}
+            />
+          </Alert>
         </Accordion>
       </div>
     );
