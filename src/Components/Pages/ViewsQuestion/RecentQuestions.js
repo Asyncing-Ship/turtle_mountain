@@ -11,6 +11,7 @@ import {
   AccordionHeader,
   AccordionItem,
   Accordion,
+  Button,
 } from "@chakra-ui/core";
 // Components Imports:
 import AnswerQuestion from "./AnswerQuestion";
@@ -74,6 +75,34 @@ class RecentQuestions extends Component {
                         </i>
                       </small>
                     </Box>
+                    {this.props.user.is_admin &&
+                      (!x.is_frequent ? (
+                        <Box flex="1" textAlign="left">
+                          <Button
+                            onClick={() => {
+                              this.props.dispatch({
+                                type: "MARK_AS_FREQUENT",
+                                payload: { question_id: x.id },
+                              });
+                            }}
+                          >
+                            Mark as frequent
+                          </Button>
+                        </Box>
+                      ) : (
+                        <Box flex="1" textAlign="left">
+                          <Button
+                            onClick={() => {
+                              this.props.dispatch({
+                                type: "MARK_AS_FREQUENT",
+                                payload: { question_id: x.id },
+                              });
+                            }}
+                          >
+                            Remove from frequent
+                          </Button>
+                        </Box>
+                      ))}
                     {this.props.user.id === x.user.id && (
                       <DeleteQuestion question={x} />
                     )}

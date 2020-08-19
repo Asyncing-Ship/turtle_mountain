@@ -17,6 +17,7 @@ import {
 import AnswerQuestion from "./AnswerQuestion";
 import Response from "./Response";
 import QuestionBadge from "./QuestionBadge";
+import DeleteQuestion from "./QuestionButtons/DeleteQuestion";
 // ----- End of imports -----
 
 class UnansweredQuestions extends Component {
@@ -105,6 +106,9 @@ class UnansweredQuestions extends Component {
                             </Button>
                           </Box>
                         ))}
+                      {this.props.user.id === x.user.id && (
+                        <DeleteQuestion question={x} />
+                      )}
                       <Box m={3}>
                         <strong>Responses</strong>
                       </Box>
