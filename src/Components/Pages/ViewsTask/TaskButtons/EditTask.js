@@ -12,12 +12,12 @@ const AcceptTask = (props) => {
         variantColor="yellow"
         className="new_class_goes_here"
         onClick={async () => {
-          await props.dispatch({
-            type: "EDIT_TASK",
-            payload: {
-              task_id: props.task.id,
-            },
-          });
+          // await props.dispatch({
+          //   type: "SET_TASK_DETAIL",
+          //   payload: {
+          //     taskDetail: props.task,
+          //   },
+          // });
           await props.history.push("/edit");
         }}
       >

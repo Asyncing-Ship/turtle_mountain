@@ -97,6 +97,14 @@ function* acceptTask(action) {
     });
   }
 }
+function* updateTask(action) {
+  //Update the task
+  try {
+    yield Axios.put(`/api/task/update/${action.payload.id}`, action.payload);
+  } catch (error) {
+    console.log("Unable to edit task on server", error);
+  }
+}
 
 function* tasksSaga() {
   yield takeEvery("FETCH_TASKS", fetchTasks);
@@ -104,6 +112,7 @@ function* tasksSaga() {
   yield takeEvery("FETCH_CURRENT_TASK", fetchCurrentTask);
   yield takeEvery("ADD_TASK", addTask);
   yield takeEvery("COMPLETE_TASK", completeTask);
+  yield takeEvery("UPDATE_TASK", updateTask);
 }
 
 export default tasksSaga;

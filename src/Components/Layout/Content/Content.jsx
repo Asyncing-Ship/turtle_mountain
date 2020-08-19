@@ -21,6 +21,7 @@ import "../../App/App.css";
 import AdminPage from "../../Pages/Admin/AdminPage";
 import Alerts from "../../Pages/Alerts/Alerts";
 import Info from "../../Pages/Info/Info";
+
 // ----- End of imports -----
 
 export class Content extends React.Component {
@@ -48,6 +49,7 @@ export class Content extends React.Component {
           <ProtectedRoute exact path="/policies" component={PoliciesPage} />
           <ProtectedRoute exact path="/alerts" component={Alerts} />
           <ProtectedRoute exact path="/info" component={Info} />
+          <ProtectedRoute exact path="/settings" component={Settings} />
           <Route render={() => <FourOhFour />} />
         </Switch>
       </div>
