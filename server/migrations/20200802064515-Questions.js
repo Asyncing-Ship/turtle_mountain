@@ -36,6 +36,11 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
       },
+      is_frequent: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
       user_id: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
