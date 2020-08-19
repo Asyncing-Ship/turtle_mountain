@@ -20,7 +20,7 @@ import FourOhFour from "../../Pages/404/404";
 import "../../App/App.css";
 import AdminPage from "../../Pages/Admin/AdminPage";
 import Alerts from "../../Pages/Alerts/Alerts";
-import Settings from "../../Pages/Settings/Settings";
+import Info from "../../Pages/Info/Info";
 // ----- End of imports -----
 
 export class Content extends React.Component {
@@ -47,7 +47,7 @@ export class Content extends React.Component {
           <ProtectedRoute exact path="/questions/new" component={NewQuestion} />
           <ProtectedRoute exact path="/policies" component={PoliciesPage} />
           <ProtectedRoute exact path="/alerts" component={Alerts} />
-          <ProtectedRoute exact path="/settings" component={Settings} />
+          <ProtectedRoute exact path="/info" component={Info} />
           <Route render={() => <FourOhFour />} />
         </Switch>
       </div>
