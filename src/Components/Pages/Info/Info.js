@@ -30,6 +30,16 @@ export class InfoPage extends Component {
       [value]: event.target.value,
     });
   };
+  componentDidMount() {
+    Swal.fire({
+      title: "Welcome",
+      text:
+        "This is our page for you to try out various components of our app. As you click through, you will discover various features of the app. If you want to reset the info page to default values, just refresh the page or leave and come back",
+      icon: "info",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "OK!",
+    });
+  }
   setVerified = () => {
     this.setState({
       answers: [
@@ -70,9 +80,8 @@ export class InfoPage extends Component {
               Question Example
             </AccordionHeader>
             <AccordionPanel className="apanel" wordBreak="break-word" pb={4}>
-              This is an example of a question. Question will be formatted like
-              this. Click on a button or text field to get information about
-              what it does
+              This is an example of a question. Questions will be formatted like
+              this
               {this.state.answers.map((x, i) => (
                 <Response
                   setVerified={this.setVerified}
@@ -97,7 +106,18 @@ export class InfoPage extends Component {
                     answer: "",
                   });
                 }}
-              ></form>
+              >
+                <Input
+                  isRequired
+                  value={this.state.answer}
+                  onChange={(event) => {
+                    this.setState({ answer: event.target.value });
+                  }}
+                ></Input>
+                <Button variantColor="green" type="submit">
+                  Submit response
+                </Button>
+              </form>
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem>

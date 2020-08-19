@@ -19,7 +19,6 @@ const NewQuestion = (props) => {
       my={3}
       style={{ backgroundColor: "black" }}
     >
-      {console.log(props)}
       <Flex>
         {props.response.user.is_admin ? (
           <Tag rounded="full" size="sm" variantColor="purple" mr={2}>
@@ -58,7 +57,6 @@ const NewQuestion = (props) => {
       </Flex>
       <Box>{props.response.content}</Box>
       <Box textAlign="right">
-        {/* {console.log(props.posted_by, props.user.id, props.user.is_admin)} */}
         {!props.verified && !props.questionVerified && (
           <Button
             size="sm"
