@@ -1,9 +1,17 @@
 import React, { Component } from "react";
-import { Grid, Stack, Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/core";
+import {
+  Grid,
+  Stack,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
+} from "@chakra-ui/core";
 import { connect } from "react-redux";
 import Incoming from "./Incoming";
 import Approved from "./Approved";
-import ForeOhThree from "../403/403";
+import ForeOhThree from "../../Utilities/403/403";
 
 class AdminPage extends Component {
   state = {
@@ -48,8 +56,8 @@ class AdminPage extends Component {
             </Tabs>
           </>
         ) : (
-            <ForeOhThree />
-          )}
+          <ForeOhThree />
+        )}
       </Stack>
     );
   }
