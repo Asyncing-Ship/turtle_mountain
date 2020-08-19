@@ -42,7 +42,7 @@ class UnansweredQuestions extends Component {
         <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {console.log(this.props.questions)}
           {this.props.questions
-            .filter((x) => !x.is_verified)
+            .filter((x) => x.is_frequent)
             .map((x, i) => (
               <AccordionItem
                 className="accordion-item"
