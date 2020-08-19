@@ -44,6 +44,11 @@ const Question = sequelize.define(
       allowNull: false,
       defaultValue: Sequelize.fn("now"),
     },
+    is_frequent: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   config
 );
