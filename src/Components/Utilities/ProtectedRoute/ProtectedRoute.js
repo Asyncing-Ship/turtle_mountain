@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Signin from "../../Pages/Login/Login";
 import Signup from "../../Pages/SignUp/SignUp";
-import Unapproved from "../../Pages/Unapproved/Unapproved";
+import Unapproved from "../Unapproved/Unapproved";
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component

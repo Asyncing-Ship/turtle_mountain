@@ -15,7 +15,7 @@ import PoliciesPage from "../../Pages/Policies/PoliciesPage";
 import Login from "../../Pages/Login/Login.jsx";
 import SignUp from "../../Pages/SignUp/SignUp.jsx";
 import NewQuestion from "../../Pages/ViewsQuestion/NewQuestion";
-import FourOhFour from "../../Pages/404/404";
+import FourOhFour from "../../Utilities/404/404";
 // CSS Import:
 import "../../App/App.css";
 import AdminPage from "../../Pages/Admin/AdminPage";
