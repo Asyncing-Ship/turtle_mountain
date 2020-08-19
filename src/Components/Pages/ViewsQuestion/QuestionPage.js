@@ -11,12 +11,7 @@ import {
   NavLink,
 } from "react-router-dom";
 // Chakra-ui imports:
-import {
-  Button,
-  Stack,
-  ButtonGroup,
-  Box,
-} from "@chakra-ui/core";
+import { Button, Stack, ButtonGroup, Box } from "@chakra-ui/core";
 // Components Imports:
 import ProtectedRoute from "../../Utilities/ProtectedRoute/ProtectedRoute";
 import RecentQuestions from "./RecentQuestions";
@@ -24,7 +19,8 @@ import UnansweredQuestions from "./UnansweredQuestions";
 import SearchQuestions from "./SearchQuestions";
 import NewQuestion from "./NewQuestion";
 // CSS Import:
-import './QuestionPage.css';
+import "./QuestionPage.css";
+import FrequentlyAsked from "./FrequentlyAsked";
 // ----- End of imports -----
 
 class QuestionPage extends Component {
@@ -46,6 +42,16 @@ class QuestionPage extends Component {
       <RouterC>
         <Stack className="questions-content">
           <ButtonGroup className="questions-btngrp">
+            <NavLink activeClassName="questions-nav-active" to="/FAQ">
+              <Button
+                variant="outline"
+                variantColor="orange"
+                rightIcon="question-outline"
+                m={3}
+              >
+                Most Frequent
+              </Button>
+            </NavLink>
             <NavLink activeClassName="questions-nav-active" to="/recent">
               <Button
                 variant="outline"
@@ -56,10 +62,7 @@ class QuestionPage extends Component {
                 Most Recent
               </Button>
             </NavLink>
-            <NavLink
-              activeClassName="questions-nav-active"
-              to="/unanswered"
-            >
+            <NavLink activeClassName="questions-nav-active" to="/unanswered">
               <Button
                 variant="outline"
                 variantColor="yellow"
@@ -93,6 +96,7 @@ class QuestionPage extends Component {
           <Box className="questions-routes">
             <Redirect from="/" to="/recent" />
             <Switch>
+              <ProtectedRoute exact path="/FAQ" component={FrequentlyAsked} />
               <ProtectedRoute
                 exact
                 path="/recent"
@@ -108,11 +112,7 @@ class QuestionPage extends Component {
                 path="/search"
                 component={SearchQuestions}
               />
-              <ProtectedRoute
-                exact
-                path="/new"
-                component={NewQuestion}
-              />
+              <ProtectedRoute exact path="/new" component={NewQuestion} />
             </Switch>
           </Box>
         </Stack>

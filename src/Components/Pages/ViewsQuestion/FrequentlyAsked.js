@@ -11,7 +11,6 @@ import {
   AccordionHeader,
   AccordionItem,
   Accordion,
-  Button,
 } from "@chakra-ui/core";
 // Components Imports:
 import AnswerQuestion from "./AnswerQuestion";
@@ -41,7 +40,7 @@ class UnansweredQuestions extends Component {
         <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {console.log(this.props.questions)}
           {this.props.questions
-            .filter((x) => !x.is_verified)
+            .filter((x) => x.is_frequent)
             .map((x, i) => (
               <AccordionItem
                 className="accordion-item"
@@ -77,34 +76,6 @@ class UnansweredQuestions extends Component {
                           </i>
                         </small>
                       </Box>
-                      {this.props.user.is_admin &&
-                        (!x.is_frequent ? (
-                          <Box flex="1" textAlign="left">
-                            <Button
-                              onClick={() => {
-                                this.props.dispatch({
-                                  type: "MARK_AS_FREQUENT",
-                                  payload: { question_id: x.id },
-                                });
-                              }}
-                            >
-                              Mark as frequent
-                            </Button>
-                          </Box>
-                        ) : (
-                          <Box flex="1" textAlign="left">
-                            <Button
-                              onClick={() => {
-                                this.props.dispatch({
-                                  type: "MARK_AS_FREQUENT",
-                                  payload: { question_id: x.id },
-                                });
-                              }}
-                            >
-                              Remove from frequent
-                            </Button>
-                          </Box>
-                        ))}
                       <Box m={3}>
                         <strong>Responses</strong>
                       </Box>
