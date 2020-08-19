@@ -119,9 +119,7 @@ export class InfoPage extends Component {
               Task Example
             </AccordionHeader>
             <AccordionPanel className="apanel" wordBreak="break-word" pb={4}>
-              This is an example of a task. Question will be formatted like
-              this. Click on a button or text field to get information about
-              what it does
+              This is an example of a task.
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
