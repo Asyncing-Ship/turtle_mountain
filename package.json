@@ -47,8 +47,8 @@
     "sweetalert2": "^9.17.1"
   },
   "scripts": {
-    "start": "react-scripts --max_old_space_size=4096 start && node server/server.js",
-    "build": "react-scripts --max_old_space_size=4096 build",
+    "start": "react-scripts start && node server/server.js",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "react-scripts start",
