@@ -1,8 +1,11 @@
 {
   "name": "turtle-mountain",
-  "version": "10.19.0",
+  "version": "1.0.0",
   "proxy": "http://localhost:5000",
   "private": true,
+  "engines": {
+    "node": "10.19.0"
+  },
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.28",
