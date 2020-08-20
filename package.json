@@ -62,7 +62,8 @@
     "db:rollback:all": "node_modules/.bin/sequelize db:migrate:undo:all",
     "db:drop": "node_modules/.bin/sequelize db:drop",
     "db:reset": "yarn run db:drop && yarn run db:create && yarn run db:migrate",
-    "db:seed": "node_modules/.bin/sequelize db:seed:all"
+    "db:seed": "node_modules/.bin/sequelize db:seed:all",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "devDependencies": {
     "enzyme": "^3.11.0",
