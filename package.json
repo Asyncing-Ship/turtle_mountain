@@ -51,7 +51,7 @@
   },
   "scripts": {
     "start": "node server/server.js",
-    "build": "npm install && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "react-scripts start",
