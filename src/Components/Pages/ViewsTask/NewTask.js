@@ -67,7 +67,7 @@ class NewTask extends Component {
               is_admin: this.props.user.is_admin,
             },
           });
-          await this.props.history.push("/open");
+          await this.props.history.push("/tasks/open");
         }}
       >
         <FormControl textAlign="left" bg="#2f2e2e" p={5} rounded="lg">
