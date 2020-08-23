@@ -42,8 +42,8 @@ export class Content extends React.Component {
           <ProtectedRoute exact path="/home" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
-          <ProtectedRoute exact path="/tasks" component={TaskPage} />
-          <ProtectedRoute exact path="/questions" component={QuestionPage} />
+          <ProtectedRoute path="/tasks" component={TaskPage} />
+          <ProtectedRoute path="/questions" component={QuestionPage} />
           <ProtectedRoute exact path="/admin" component={AdminPage} />
           <ProtectedRoute exact path="/questions/new" component={NewQuestion} />
           <ProtectedRoute exact path="/policies" component={PoliciesPage} />
