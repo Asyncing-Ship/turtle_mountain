@@ -5,12 +5,13 @@ const QuestionResponse = require("../models/question_response.model");
 // const User_Question = require("../models/user.question.model");
 const {
   rejectUnauthenticated,
+  rejectUnapproved,
 } = require("../modules/authentication-middleware");
 
 const router = express.Router();
 
 // This route *should* return the logged in users questions
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/", rejectUnapproved, (req, res) => {
   // console.log("GET questions");
   Question.findAll({
     include: [{ model: User }],
@@ -31,7 +32,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.get("/responses/:id", rejectUnauthenticated, (req, res) => {
+router.get("/responses/:id", rejectUnapproved, (req, res) => {
   // console.log("GET question responses");
   let questionId = req.params.id;
   QuestionResponse.findAll({
@@ -54,7 +55,7 @@ router.get("/responses/:id", rejectUnauthenticated, (req, res) => {
 });
 
 // This route will get a single question based on the id passed
-router.get("/:id", rejectUnauthenticated, (req, res) => {
+router.get("/:id", rejectUnapproved, (req, res) => {
   let questionId = req.params.id;
   // console.log(`GET request for question ${questionId}`);
   Question.findAll({
@@ -75,7 +76,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 // This route will post a question based on the req body provided
-router.post("/", rejectUnauthenticated, (req, res) => {
+router.post("/", rejectUnapproved, (req, res) => {
   const questionTitle = req.body.title;
   const questionContent = req.body.content;
   const userId = req.user.id;
@@ -100,7 +101,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 // This is a route for editing the content of a question
-router.put("/:id", rejectUnauthenticated, (req, res) => {
+router.put("/:id", rejectUnapproved, (req, res) => {
   let questionId = req.params.id;
   let questionContent = req.body.content;
   // console.log(`PUT request update question ${questionId}`, req.body);
@@ -118,7 +119,7 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 // This is a route for marking a quesiton as frequent
-router.put("/frequent/:id", rejectUnauthenticated, (req, res) => {
+router.put("/frequent/:id", rejectUnapproved, (req, res) => {
   let questionId = req.params.id;
   // console.log(`PUT request update question ${questionId}`, req.body);
   let updates = {
@@ -137,7 +138,7 @@ router.put("/frequent/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put("/infrequent/:id", rejectUnauthenticated, (req, res) => {
+router.put("/infrequent/:id", rejectUnapproved, (req, res) => {
   let questionId = req.params.id;
   // console.log(`PUT request update question ${questionId}`, req.body);
   let updates = {
@@ -156,7 +157,7 @@ router.put("/infrequent/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 // This is a route for marking a question as answered
-router.put("/answer/:id", rejectUnauthenticated, (req, res) => {
+router.put("/answer/:id", rejectUnapproved, (req, res) => {
   // console.log("updating question at id", req.params.id);
   let questionId = req.params.id;
   // console.log(`PUT request update question ${questionId}`, req.body);
@@ -173,7 +174,7 @@ router.put("/answer/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put("/verify/:id", rejectUnauthenticated, (req, res) => {
+router.put("/verify/:id", rejectUnapproved, (req, res) => {
   // console.log("verifying question at id", req.params.id);
   let questionId = req.params.id;
   // console.log(`PUT request update question ${questionId}`, req.body);
@@ -191,7 +192,7 @@ router.put("/verify/:id", rejectUnauthenticated, (req, res) => {
 });
 
 // This route will delete a question based on id provided
-router.delete("/:id", rejectUnauthenticated, (req, res) => {
+router.delete("/:id", rejectUnapproved, (req, res) => {
   let questionId = req.params.id;
   // console.log(`DELETE request for question ${questionId}`, req.body);
   Question.destroy({ where: { id: questionId } })
