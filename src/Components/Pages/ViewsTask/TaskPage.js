@@ -31,7 +31,7 @@ export class TaskPage extends Component {
       <RouterB>
         <Stack className="tasks-content">
           <ButtonGroup className="tasks-btngrp">
-            <NavLink activeClassName="tasks-nav-active" to="/open">
+            <NavLink activeClassName="tasks-nav-active" to="/tasks/open">
               <Button
                 variant="outline"
                 variantColor="blue"
@@ -41,7 +41,7 @@ export class TaskPage extends Component {
                 Open Tasks
               </Button>
             </NavLink>
-            <NavLink activeClassName="tasks-nav-active" to="/my">
+            <NavLink activeClassName="tasks-nav-active" to="/tasks/my">
               <Button
                 variant="outline"
                 variantColor="yellow"
@@ -51,7 +51,7 @@ export class TaskPage extends Component {
                 My Tasks
               </Button>
             </NavLink>
-            <NavLink activeClassName="tasks-nav-active" to="/search">
+            <NavLink activeClassName="tasks-nav-active" to="/tasks/search">
               <Button
                 variant="outline"
                 variantColor="purple"
@@ -61,7 +61,7 @@ export class TaskPage extends Component {
                 Search
               </Button>
             </NavLink>
-            <NavLink activeClassName="tasks-nav-active" to="/new">
+            <NavLink activeClassName="tasks-nav-active" to="/tasks/new">
               <Button
                 variant="outline"
                 variantColor="green"
@@ -73,16 +73,25 @@ export class TaskPage extends Component {
             </NavLink>
           </ButtonGroup>
           <Box className="tasks-routes">
-            <Redirect from="/" to="/open" />
+            <Redirect from="/tasks" to="/tasks/open" />
             <Switch>
-              <ProtectedRoute exact path="/open" component={OpenTask} />
-              <ProtectedRoute exact path="/my" component={MyTask} />
-              <ProtectedRoute exact path="/search" component={SearchTask} />
-              <ProtectedRoute exact path="/new" component={NewTask} />
-              <ProtectedRoute exact path="/edit" component={TaskEditView} />
+              <ProtectedRoute exact path="/tasks/open" component={OpenTask} />
+              <ProtectedRoute exact path="/tasks/my" component={MyTask} />
+              <ProtectedRoute
+                exact
+                path="/tasks/search"
+                component={SearchTask}
+              />
+              <ProtectedRoute exact path="/tasks/new" component={NewTask} />
+              <ProtectedRoute
+                exact
+                path="/tasks/edit"
+                component={TaskEditView}
+              />
             </Switch>
           </Box>
         </Stack>
+        {/*  */}
       </RouterB>
     );
   }

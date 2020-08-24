@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 const sessionMiddleware = require("./modules/session-middleware");
 
 //  ----- These are test requires -----
-// Uncomment code for testing 
+// Uncomment code for testing
 // model imports
 // const User = require("./models/user.model");
 // const Question = require("./models/question.model");
@@ -37,10 +37,10 @@ const questionTagRouter = require("./routes/question.tag.router");
 const taskTagRouter = require("./routes/task.tag.router");
 const notificationRouter = require("./routes/notification.router");
 
-// Middleware 
+// Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static("server/public"));
+app.use(express.static("build/"));
 
 // Passport Session Configuration
 app.use(sessionMiddleware);

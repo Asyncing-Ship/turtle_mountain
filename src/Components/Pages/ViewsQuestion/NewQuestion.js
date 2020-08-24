@@ -74,7 +74,7 @@ class NewQuestion extends Component {
                 is_admin: this.props.user.is_admin,
               },
             });
-            await this.props.history.push("/recent");
+            await this.props.history.push("/questions/recent");
           }}
         >
           <FormControl textAlign="left" bg="#2f2e2e" p={5} rounded="lg">
@@ -189,6 +189,7 @@ class NewQuestion extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     users: state.users,
   };
 };

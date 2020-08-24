@@ -4,7 +4,7 @@ import React from "react";
 // Redux Imports:
 import { connect } from "react-redux";
 // React Router DOM Imports:
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 // Chakra UI Imports:
 import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 // Custom Chakra theme import:

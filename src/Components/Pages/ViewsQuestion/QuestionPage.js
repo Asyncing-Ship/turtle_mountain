@@ -42,7 +42,7 @@ class QuestionPage extends Component {
       <RouterC>
         <Stack className="questions-content">
           <ButtonGroup className="questions-btngrp">
-            <NavLink activeClassName="questions-nav-active" to="/FAQ">
+            <NavLink activeClassName="questions-nav-active" to="/questions/FAQ">
               <Button
                 variant="outline"
                 variantColor="orange"
@@ -52,7 +52,10 @@ class QuestionPage extends Component {
                 Most Frequent
               </Button>
             </NavLink>
-            <NavLink activeClassName="questions-nav-active" to="/recent">
+            <NavLink
+              activeClassName="questions-nav-active"
+              to="/questions/recent"
+            >
               <Button
                 variant="outline"
                 variantColor="blue"
@@ -62,7 +65,10 @@ class QuestionPage extends Component {
                 Most Recent
               </Button>
             </NavLink>
-            <NavLink activeClassName="questions-nav-active" to="/unanswered">
+            <NavLink
+              activeClassName="questions-nav-active"
+              to="/questions/unanswered"
+            >
               <Button
                 variant="outline"
                 variantColor="yellow"
@@ -72,7 +78,10 @@ class QuestionPage extends Component {
                 Unanswered
               </Button>
             </NavLink>
-            <NavLink activeClassName="questions-nav-active" to="/search">
+            <NavLink
+              activeClassName="questions-nav-active"
+              to="/questions/search"
+            >
               <Button
                 variant="outline"
                 variantColor="purple"
@@ -82,7 +91,7 @@ class QuestionPage extends Component {
                 Search
               </Button>
             </NavLink>
-            <NavLink activeClassName="questions-nav-active" to="/new">
+            <NavLink activeClassName="questions-nav-active" to="/questions/new">
               <Button
                 variant="outline"
                 variantColor="green"
@@ -94,25 +103,33 @@ class QuestionPage extends Component {
             </NavLink>
           </ButtonGroup>
           <Box className="questions-routes">
-            <Redirect from="/" to="/recent" />
+            <Redirect from="/questions" to="/questions/FAQ" />
             <Switch>
-              <ProtectedRoute exact path="/FAQ" component={FrequentlyAsked} />
               <ProtectedRoute
                 exact
-                path="/recent"
+                path="/questions/FAQ"
+                component={FrequentlyAsked}
+              />
+              <ProtectedRoute
+                exact
+                path="/questions/recent"
                 component={RecentQuestions}
               />
               <ProtectedRoute
                 exact
-                path="/unanswered"
+                path="/questions/unanswered"
                 component={UnansweredQuestions}
               />
               <ProtectedRoute
                 exact
-                path="/search"
+                path="/questions/search"
                 component={SearchQuestions}
               />
-              <ProtectedRoute exact path="/new" component={NewQuestion} />
+              <ProtectedRoute
+                exact
+                path="/questions/new"
+                component={NewQuestion}
+              />
             </Switch>
           </Box>
         </Stack>

@@ -67,7 +67,7 @@ const AcceptTask = (props) => {
                     task_id: props.task.id,
                   },
                 });
-                await props.history.push("/my");
+                await props.history.push("/tasks/my");
               }}
             >
               Accept Task
@@ -98,9 +98,9 @@ const AcceptTask = (props) => {
                 },
               });
               await props.dispatch({
-                type: 'ADD_NOTIFICATIONS',
+                type: "ADD_NOTIFICATIONS",
                 payload: {
-                  type: 'accepted a task you created',
+                  type: "accepted a task you created",
                   preview: props.task.content,
                   first_name: props.user.first_name,
                   last_name: props.user.last_name,
