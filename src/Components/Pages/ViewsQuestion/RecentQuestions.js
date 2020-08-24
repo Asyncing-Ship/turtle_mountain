@@ -1,7 +1,6 @@
 // ----- Start of imports -----
 // React Import:
 import React, { Component } from "react";
-import moment from "moment";
 // React Redux Imports:
 import { connect } from "react-redux";
 import {
@@ -11,13 +10,9 @@ import {
   AccordionHeader,
   AccordionItem,
   Accordion,
-  Button,
 } from "@chakra-ui/core";
 // Components Imports:
-import AnswerQuestion from "./AnswerQuestion";
-import Response from "./Response";
 import QuestionBadge from "./QuestionBadge";
-import DeleteQuestion from "./QuestionButtons/DeleteQuestion";
 import QuestionObj from "./QuestionObj";
 // ----- End of imports -----
 
