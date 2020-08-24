@@ -137,6 +137,24 @@ router.put("/frequent/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.put("/infrequent/:id", rejectUnauthenticated, (req, res) => {
+  let questionId = req.params.id;
+  // console.log(`PUT request update question ${questionId}`, req.body);
+  let updates = {
+    is_frequent: false,
+  };
+  Question.update(updates, { where: { id: questionId } })
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(
+        `Error updating question(infrequent) with id ${questionId}`,
+        error
+      );
+      res.sendStatus(500);
+    });
+});
 // This is a route for marking a question as answered
 router.put("/answer/:id", rejectUnauthenticated, (req, res) => {
   // console.log("updating question at id", req.params.id);
