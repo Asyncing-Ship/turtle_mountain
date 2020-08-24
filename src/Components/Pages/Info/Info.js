@@ -3,10 +3,10 @@
 import React, { Component } from "react";
 import moment from "moment";
 // React Redux Imports:
+// Components Imports:
 import {
   Button,
   Input,
-  FormControl,
   Accordion,
   AccordionHeader,
   AccordionPanel,
@@ -24,13 +24,13 @@ import {
 import Response from "./Response";
 import Swal from "sweetalert2";
 import AcceptTask from "./AcceptTask";
-// Components Imports:
 // CSS Import:
 // ----- End of imports -----
 
 export class InfoPage extends Component {
   state = {
     answer: "",
+    // 'answer' is the response currently being typed. 'answers' are the responses from the server
     answers: [{ content: "this is an example response", verified: false }],
     questionVerified: false,
   };

@@ -70,6 +70,7 @@ const NewQuestion = (props) => {
                         question_id: props.response.questionId,
                       },
                     });
+                    props.resetIndex();
                   }
                 });
               }}

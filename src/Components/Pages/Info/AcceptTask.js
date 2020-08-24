@@ -8,8 +8,6 @@ import {
   ButtonGroup,
   Input,
 } from "@chakra-ui/core";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import moment from "moment";
 import Swal from "sweetalert2";
 class AcceptTask extends React.Component {
@@ -116,7 +114,7 @@ class AcceptTask extends React.Component {
               </Button>
             </ButtonGroup>
           ) : (
-            this.state.completed == false && (
+            this.state.completed === false && (
               <Box textAlign="right">
                 <Input
                   rounded="md"

@@ -1,7 +1,6 @@
 // ----- Start of imports -----
 // React Import:
 import React, { Component } from "react";
-import moment from "moment";
 // React Redux Imports:
 import { connect } from "react-redux";
 import {
@@ -11,16 +10,16 @@ import {
   AccordionHeader,
   AccordionItem,
   Accordion,
-  Button,
 } from "@chakra-ui/core";
 // Components Imports:
-import AnswerQuestion from "./AnswerQuestion";
-import Response from "./Response";
 import QuestionBadge from "./QuestionBadge";
-import DeleteQuestion from "./QuestionButtons/DeleteQuestion";
+import QuestionObj from "./QuestionObj";
 // ----- End of imports -----
 
 class RecentQuestions extends Component {
+  state = {
+    index: -1,
+  };
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_QUESTIONS" });
   }
@@ -30,7 +29,9 @@ class RecentQuestions extends Component {
       payload: { question_id: id },
     });
   };
-
+  resetIndex = () => {
+    this.setState({ index: -1 });
+  };
   render() {
     return (
       <>
@@ -39,12 +40,20 @@ class RecentQuestions extends Component {
           These are the questions that were most recently asked. whether
           answered or not, they will appear here
         </h4>
-        <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <Accordion
+          my={3}
+          className="accordion"
+          allowToggle
+          index={this.state.index}
+        >
           {this.props.questions.map((x, i) => (
             <AccordionItem
               className="accordion-item"
               key={i}
               defaultIsOpen="False"
+              onClick={() => {
+                this.setState({ index: i });
+              }}
             >
               {({ isExpanded }) => (
                 <>
@@ -65,64 +74,7 @@ class RecentQuestions extends Component {
                     wordBreak="break-word"
                     pb={4}
                   >
-                    {x.content}
-                    <Box flex="1" textAlign="left">
-                      <small>
-                        <i>
-                          Posted at:{" "}
-                          {moment(x.date_posted).format("MM/DD/YY LT")} (By{" "}
-                          {x.user.first_name} {x.user.last_name})
-                        </i>
-                      </small>
-                    </Box>
-                    {this.props.user.is_admin &&
-                      (!x.is_frequent ? (
-                        <Box flex="1" textAlign="left">
-                          <Button
-                            onClick={() => {
-                              this.props.dispatch({
-                                type: "MARK_AS_FREQUENT",
-                                payload: { question_id: x.id },
-                              });
-                            }}
-                          >
-                            Mark as frequent
-                          </Button>
-                        </Box>
-                      ) : (
-                        <Box flex="1" textAlign="left">
-                          <Button
-                            onClick={() => {
-                              this.props.dispatch({
-                                type: "MARK_AS_FREQUENT",
-                                payload: { question_id: x.id },
-                              });
-                            }}
-                          >
-                            Remove from frequent
-                          </Button>
-                        </Box>
-                      ))}
-                    {this.props.user.id === x.user.id && (
-                      <DeleteQuestion question={x} />
-                    )}
-                    <Box m={3}>
-                      <strong>Responses</strong>
-                    </Box>
-                    <Box textAlign="right" m={3}>
-                      {/* This is the button and input field */}
-                      <AnswerQuestion question={x} />
-                    </Box>
-                    <Box m={3}>
-                      {this.props.response.map((y, j) => (
-                        <Response
-                          key={j}
-                          response={y}
-                          questionVerified={x.is_verified}
-                          posted_by={x.userId}
-                        />
-                      ))}
-                    </Box>
+                    <QuestionObj x={x} resetIndex={this.resetIndex} />
                   </AccordionPanel>
                 </>
               )}

@@ -51,8 +51,6 @@ class EditTaskView extends Component {
     await console.log(this.state.select);
   };
   render() {
-    const { tasks } = this.props;
-
     return (
       <form
         onSubmit={async (event) => {
@@ -75,7 +73,6 @@ class EditTaskView extends Component {
             _focus={{ bg: "#f5fffe", border: "2px solid #3182ce" }}
             autoComplete="off"
             id="task-title"
-            aria-required="true"
             value={this.state.title}
             onChange={(event) =>
               this.handleChange(event, "title", this.state.maxTitle)

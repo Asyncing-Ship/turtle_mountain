@@ -3,7 +3,6 @@
 import React, { Component } from "react";
 // React Redux Imports:
 import { connect } from "react-redux";
-import moment from "moment";
 // Chakra-ui imports:
 import {
   Accordion,
@@ -19,14 +18,27 @@ import {
 } from "@chakra-ui/core";
 // Components Imports:
 import QuestionBadge from "./QuestionBadge";
+import QuestionObj from "./QuestionObj";
 // ----- End of imports -----
 
 class SearchTask extends Component {
   state = {
     searchString: "",
+    index: -1,
   };
 
+  setQuestion = (id) => {
+    //get the responses for the selected question
+    this.props.dispatch({
+      type: "FETCH_QUESTION_RESPONSES",
+      payload: { question_id: id },
+    });
+  };
+  resetIndex = () => {
+    this.setState({ index: -1 });
+  };
   componentDidMount() {
+    //get questions from the server when we switch to this page
     this.props.dispatch({ type: "FETCH_QUESTIONS" });
   }
 
@@ -43,9 +55,9 @@ class SearchTask extends Component {
           <Input
             className="tasks-search"
             value={this.state.searchString}
-            onChange={(event) =>
-              this.setState({ searchString: event.target.value })
-            }
+            onChange={(event) => {
+              this.setState({ searchString: event.target.value, index: -1 });
+            }}
             variant="filled"
             placeholder="Search"
           />
@@ -55,7 +67,12 @@ class SearchTask extends Component {
             each task to an accordion item with the
             title being the task title. and the body being the content, 
             followed by the status of the task*/}
-        <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <Accordion
+          my={3}
+          className="accordion"
+          allowToggle
+          index={this.state.index}
+        >
           {this.props.questions
             .filter(
               (x) =>
@@ -71,6 +88,11 @@ class SearchTask extends Component {
                 {({ isExpanded }) => (
                   <>
                     <AccordionHeader
+                      onClick={() => {
+                        //change the current question (to get its responses), set the index to the clicked accordion item, so it opens
+                        this.setQuestion(x.id);
+                        this.setState({ index: i });
+                      }}
                       className="accordion-head"
                       _expanded={{ bg: "#c79e61", color: "white" }}
                       _hover={{ bg: "#c79e61", color: "white" }}
@@ -86,18 +108,7 @@ class SearchTask extends Component {
                       wordBreak="break-word"
                       pb={4}
                     >
-                      <Box flex="3" textAlign="left">
-                        {x.content}
-                      </Box>
-                      <Box flex="1" textAlign="left">
-                        <small>
-                          <i>
-                            Posted at:{" "}
-                            {moment(x.date_posted).format("MM/DD/YY LT")} (By{" "}
-                            {x.user.first_name} {x.user.last_name})
-                          </i>
-                        </small>
-                      </Box>
+                      <QuestionObj x={x} resetIndex={this.resetIndex} />
                     </AccordionPanel>
                   </>
                 )}

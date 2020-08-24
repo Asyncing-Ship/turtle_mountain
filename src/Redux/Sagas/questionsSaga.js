@@ -195,6 +195,25 @@ function* verifyQuestionResponse(action) {
   }
 }
 
+function* markAsInfrequent(action) {
+  //update the question as frequent
+  try {
+    yield Axios.put(`/api/question/infrequent/${action.payload.question_id}`);
+    yield put({ type: "FETCH_QUESTIONS" });
+    yield put({
+      type: "ADD_TOAST",
+      payload: { status: "success", message: "Set as infrequent question" },
+    });
+  } catch (error) {
+    yield put({
+      type: "ADD_TOAST",
+      payload: {
+        status: "error",
+        message: "Unable to mark as infrequent question",
+      },
+    });
+  }
+}
 function* markAsFrequent(action) {
   //update the question as frequent
   try {
@@ -222,6 +241,7 @@ function* questionsSaga() {
   yield takeEvery("DELETE_QUESTION", deleteQuestion);
   yield takeEvery("MARK_AS_ANSWER", markAsAnswer); // only admin can
   yield takeEvery("MARK_AS_FREQUENT", markAsFrequent);
+  yield takeEvery("MARK_AS_INFREQUENT", markAsInfrequent);
   // QUESTION RESPONSES BELOW
   yield takeEvery("FETCH_QUESTION_RESPONSES", fetchQuestionResponses);
   yield takeEvery("ADD_QUESTION_RESPONSE", addQuestionResponse);

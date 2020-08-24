@@ -12,7 +12,11 @@ import AcceptTask from "./TaskButtons/AcceptTask";
 import { connect } from "react-redux";
 
 class OpenTask extends Component {
+  state = {
+    index: -1,
+  };
   componentDidMount() {
+    //update tasks on component mount
     this.props.dispatch({ type: "FETCH_TASKS" });
   }
 
@@ -22,6 +26,7 @@ class OpenTask extends Component {
         <h2>These tasks need to be accepted</h2>
         <small>to see details, click on the task to expand it</small>
         <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
+          {/* default accordion is closed */}
           {!this.props.tasks.filter((x) => x.status === "open")[0] && (
             <h2>
               <b>-no tasks to display-</b>
@@ -49,12 +54,13 @@ class OpenTask extends Component {
                       className="accordion-head"
                       _expanded={{ bg: "#c79e61", color: "white" }}
                       _hover={{ bg: "#c79e61", color: "white" }}
-                      onClick={() =>
+                      onClick={() => {
                         this.props.dispatch({
                           type: "FETCH_TASK_TAGS",
                           payload: { task_id: x.id },
-                        })
-                      }
+                        });
+                        this.setState({ index: i });
+                      }}
                     >
                       <Box flex="1" textAlign="left">
                         {x.title}

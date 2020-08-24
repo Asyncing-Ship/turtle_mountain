@@ -1,7 +1,6 @@
 // ----- Start of imports -----
 // React Import:
 import React, { Component } from "react";
-import moment from "moment";
 // React Redux Imports:
 import { connect } from "react-redux";
 import {
@@ -11,33 +10,44 @@ import {
   AccordionHeader,
   AccordionItem,
   Accordion,
-  Button,
 } from "@chakra-ui/core";
 // Components Imports:
-import AnswerQuestion from "./AnswerQuestion";
-import Response from "./Response";
 import QuestionBadge from "./QuestionBadge";
-import DeleteQuestion from "./QuestionButtons/DeleteQuestion";
+import QuestionObj from "./QuestionObj";
 // ----- End of imports -----
 
 class UnansweredQuestions extends Component {
-  componentWillMount() {
+  //index determines which accordion item is open at a given time
+  state = {
+    index: -1,
+  };
+  //when the component mounts, refresh the questions
+  componentDidMount() {
     this.props.dispatch({ type: "FETCH_QUESTIONS" });
   }
-
+  // change the selected question so you can get its responses from redux state
   setQuestion = (id) => {
     this.props.dispatch({
       type: "FETCH_QUESTION_RESPONSES",
       payload: { question_id: id },
     });
   };
-
+  // this function will run when a component is marked as verified.
+  //it should close any currently open accordion
+  resetIndex = () => {
+    this.setState({ index: -1 });
+  };
   render() {
     return (
       <>
         <h3>These Are the most frequently asked questions</h3>
         {/* I think there is a filter bug in here. I did not change it. When you answer it still appears. The original code was like that as well. - Jake */}
-        <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <Accordion
+          my={3}
+          className="accordion"
+          allowToggle
+          index={[this.state.index]}
+        >
           {console.log(this.props.questions)}
           {this.props.questions
             .filter((x) => x.is_frequent)
@@ -53,7 +63,11 @@ class UnansweredQuestions extends Component {
                       className="accordion-head"
                       _expanded={{ bg: "#c79e61", color: "white" }}
                       _hover={{ bg: "#c79e61", color: "white" }}
-                      onClick={() => this.setQuestion(x.id)}
+                      onClick={() => {
+                        //change the current question (to get its responses), set the index to the clicked accordion item, so it opens
+                        this.setQuestion(x.id);
+                        this.setState({ index: i });
+                      }}
                     >
                       <Box flex="1" textAlign="left">
                         {x.title}
@@ -66,64 +80,7 @@ class UnansweredQuestions extends Component {
                       wordBreak="break-word"
                       pb={4}
                     >
-                      {x.content}
-                      <Box flex="1" textAlign="left">
-                        <small>
-                          <i>
-                            Posted at:{" "}
-                            {moment(x.date_posted).format("MM/DD/YY LT")} (By{" "}
-                            {x.user.first_name} {x.user.last_name})
-                          </i>
-                        </small>
-                      </Box>
-                      {this.props.user.is_admin &&
-                        (!x.is_frequent ? (
-                          <Box flex="1" textAlign="left">
-                            <Button
-                              onClick={() => {
-                                this.props.dispatch({
-                                  type: "MARK_AS_FREQUENT",
-                                  payload: { question_id: x.id },
-                                });
-                              }}
-                            >
-                              Mark as frequent
-                            </Button>
-                          </Box>
-                        ) : (
-                          <Box flex="1" textAlign="left">
-                            <Button
-                              onClick={() => {
-                                this.props.dispatch({
-                                  type: "MARK_AS_FREQUENT",
-                                  payload: { question_id: x.id },
-                                });
-                              }}
-                            >
-                              Remove from frequent
-                            </Button>
-                          </Box>
-                        ))}
-                      {this.props.user.id === x.user.id && (
-                        <DeleteQuestion question={x} />
-                      )}
-                      <Box m={3}>
-                        <strong>Responses</strong>
-                      </Box>
-                      <Box textAlign="right" m={3}>
-                        {/* This is the button and input field */}
-                        <AnswerQuestion question={x} />
-                      </Box>
-                      <Box m={3}>
-                        {this.props.response.map((y, j) => (
-                          <Response
-                            key={j}
-                            response={y}
-                            questionVerified={x.is_verified}
-                            posted_by={x.userId}
-                          />
-                        ))}
-                      </Box>
+                      <QuestionObj x={x} resetIndex={this.resetIndex} />
                     </AccordionPanel>
                   </>
                 )}

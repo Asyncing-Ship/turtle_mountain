@@ -2,13 +2,11 @@ const express = require("express");
 const Question = require("../models/question.model");
 const Question_Response = require("../models/question_response.model");
 const User = require("../models/user.model");
-const {
-  rejectUnauthenticated,
-} = require("../modules/authentication-middleware");
+const { rejectUnapproved } = require("../modules/authentication-middleware");
 
 const router = express.Router();
 
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/", rejectUnapproved, (req, res) => {
   // console.log("GET all question responses");
   Question_Response.findAll({
     include: [{ model: User }, { model: Question }],
@@ -24,7 +22,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.get("/:id", rejectUnauthenticated, (req, res) => {
+router.get("/:id", rejectUnapproved, (req, res) => {
   let responseId = req.params.id;
   // console.log(`GET request for question response with id  ${responseId}`);
   Question_Response.findAll({
@@ -44,7 +42,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.post("/", rejectUnauthenticated, (req, res) => {
+router.post("/", rejectUnapproved, (req, res) => {
   const responseContent = req.body.content;
   const responseVerified = false; // req.body.verified; TODO FIX THIS
   const userId = req.user.id;
@@ -71,7 +69,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 // Route to update the content of the response
-router.put("/:id", rejectUnauthenticated, (req, res) => {
+router.put("/:id", rejectUnapproved, (req, res) => {
   let responseId = req.params.id;
   let responseContent = req.body.content;
   // console.log(`PUT request update content for ${responseId}`, req.body);
@@ -92,7 +90,7 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 // Route to verify a response
-router.put("/verify/:id", rejectUnauthenticated, (req, res) => {
+router.put("/verify/:id", rejectUnapproved, (req, res) => {
   let responseId = req.params.id;
   // console.log(
   //   `PUT request verify question response for id ${responseId}`,
@@ -111,7 +109,7 @@ router.put("/verify/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.delete("/:id", rejectUnauthenticated, (req, res) => {
+router.delete("/:id", rejectUnapproved, (req, res) => {
   let responseId = req.params.id;
   // console.log(
   //   `DELETE request for question response with id ${responseId}`,
