@@ -25,7 +25,7 @@ router.get("/:id", rejectUnapproved, (req, res) => {
           ["first_name", "ASC"],
         ],
       }).then((results) => {
-        console.log("results is: ", results);
+        // console.log("results is: ", results);
         res.send(results);
       });
     })
