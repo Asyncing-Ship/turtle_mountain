@@ -12,10 +12,15 @@ import TaskBadge from "./TaskBadge";
 import { connect } from "react-redux";
 
 class MyTask extends Component {
+  state = {
+    index: -1,
+  };
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_TASKS" });
   }
-
+  resetIndex = () => {
+    this.setState({ index: -1 });
+  };
   render() {
     return (
       <>
@@ -35,7 +40,12 @@ class MyTask extends Component {
             after filtering by tasks, assigned to the current user,
             we map each task to an accordion item with the title being the task title. 
             then feed each task into its own completeTask component*/}
-        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <Accordion
+          m={3}
+          className="accordion"
+          allowToggle
+          index={this.state.index}
+        >
           {this.props.tasks
             .filter((x) => {
               console.log(x.assigned_to, this.props.user.id);
@@ -53,6 +63,7 @@ class MyTask extends Component {
                       className="accordion-head"
                       _expanded={{ bg: "#c79e61", color: "white" }}
                       _hover={{ bg: "#c79e61", color: "white" }}
+                      onClick={() => this.setState({ index: i })}
                     >
                       <Box flex="1" textAlign="left">
                         {x.title}
@@ -61,7 +72,7 @@ class MyTask extends Component {
                       <AccordionIcon />
                     </AccordionHeader>
                     <AccordionPanel className="apanel" pb={4}>
-                      <CompleteTask task={x} />
+                      <CompleteTask task={x} resetIndex={this.resetIndex} />
                     </AccordionPanel>
                   </>
                 )}

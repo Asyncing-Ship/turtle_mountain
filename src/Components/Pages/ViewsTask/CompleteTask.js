@@ -37,6 +37,7 @@ const CompleteTask = (props) => {
                 task_id: props.task.id,
               },
             });
+            await props.resetIndex();
           }}
         >
           Complete Task

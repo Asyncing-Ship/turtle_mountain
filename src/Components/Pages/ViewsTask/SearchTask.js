@@ -18,6 +18,7 @@ import moment from "moment";
 class SearchTask extends Component {
   state = {
     searchString: "",
+    index: -1,
   };
 
   componentDidMount() {
@@ -41,7 +42,7 @@ class SearchTask extends Component {
             className="questions-search"
             value={this.state.searchString}
             onChange={(event) =>
-              this.setState({ searchString: event.target.value })
+              this.setState({ searchString: event.target.value, index: -1 })
             }
             variant="filled"
             placeholder="Search"
@@ -52,7 +53,12 @@ class SearchTask extends Component {
             each task to an accordion item with the
             title being the task title. and the body being the content, 
             followed by the status of the task*/}
-        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <Accordion
+          m={3}
+          className="accordion"
+          allowToggle
+          index={this.state.index}
+        >
           {this.props.tasks
             .filter(
               (x) =>
@@ -73,6 +79,7 @@ class SearchTask extends Component {
                       className="accordion-head"
                       _expanded={{ bg: "#c79e61", color: "white" }}
                       _hover={{ bg: "#c79e61", color: "white" }}
+                      onClick={() => this.setState({ index: i })}
                     >
                       <Box flex="1" textAlign="left">
                         {x.title}
