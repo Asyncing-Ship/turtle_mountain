@@ -17,11 +17,17 @@ import QuestionObj from "./QuestionObj";
 // ----- End of imports -----
 
 class UnansweredQuestions extends Component {
+  state = {
+    index: -1,
+  };
   componentWillMount() {
     //get questions from the server when we switch to this page
     this.props.dispatch({ type: "FETCH_QUESTIONS" });
   }
 
+  resetIndex = () => {
+    this.setState({ index: -1 });
+  };
   setQuestion = (id) => {
     //get the responses for the selected question
     this.props.dispatch({
@@ -37,7 +43,12 @@ class UnansweredQuestions extends Component {
           These questions are unanswered, and ordered from newest to oldest
         </h3>
         {/* I think there is a filter bug in here. I did not change it. When you answer it still appears. The original code was like that as well. - Jake */}
-        <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <Accordion
+          my={3}
+          className="accordion"
+          allowToggle
+          index={this.state.index}
+        >
           {console.log(this.props.questions)}
           {this.props.questions
             .filter((x) => !x.is_verified)
@@ -54,7 +65,10 @@ class UnansweredQuestions extends Component {
                       className="accordion-head"
                       _expanded={{ bg: "#c79e61", color: "white" }}
                       _hover={{ bg: "#c79e61", color: "white" }}
-                      onClick={() => this.setQuestion(x.id)}
+                      onClick={() => {
+                        this.setQuestion(x.id);
+                        this.setState({ index: i });
+                      }}
                     >
                       <Box flex="1" textAlign="left">
                         {x.title}
@@ -68,7 +82,7 @@ class UnansweredQuestions extends Component {
                       pb={4}
                     >
                       {/* the Accordion body contains our Question Object. */}
-                      <QuestionObj x={x} />
+                      <QuestionObj x={x} resetIndex={this.resetIndex} />
                     </AccordionPanel>
                   </>
                 )}
