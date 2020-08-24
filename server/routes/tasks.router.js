@@ -11,7 +11,7 @@ const {
 router.put("/complete/:id", rejectUnauthenticated, (req, res) => {
   let id = req.params.id;
   const queryText = `
-    UPDATE tasks SET status='Complete', assigned_to = null 
+    UPDATE tasks SET status='Complete'
     WHERE id = $1`;
   pool
     .query(queryText, [id])
@@ -21,11 +21,11 @@ router.put("/complete/:id", rejectUnauthenticated, (req, res) => {
 /**
  * Get all of the tasks on the table
  */
-router.get("/", (req, res) => {
+router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("getting tasks");
-  const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content,tasks.assigned_to, tasks.user_id FROM users
+  const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content,tasks.assigned_to, tasks.user_id, tasks.date_posted FROM users
   JOIN tasks ON tasks.user_id = users.id
-  ORDER BY tasks.id DESC`;
+  ORDER BY status DESC, date_posted DESC`;
   pool
     .query(queryText)
     .then((result) => {
@@ -107,7 +107,7 @@ router.post("/comments", rejectUnauthenticated, (req, res) => {
     .catch(() => res.sendStatus(500));
 });
 
-router.get("/comments/:id", (req, res) => {
+router.get("/comments/:id", rejectUnauthenticated, (req, res) => {
   console.log("getting task comments", req.params);
   const taskID = req.params.id;
   const queryText = `SELECT task_comments.id, task_comments.user_id, task_comments.body, task_comments.task_id, users.id, users.first_name FROM task_comments
@@ -124,14 +124,18 @@ router.get("/comments/:id", (req, res) => {
     });
 });
 
-router.put("/likes", (req, res) => {
-  console.log("adding task like to the database", req.params);
-  const taskID = req.params.id;
-  const queryText = `UPDATE tasks SET likes = likes + 1 WHERE id = $1`;
+router.put("/update/:id", rejectUnauthenticated, (req, res) => {
+  console.log("updating task on database");
+  console.log(req.body);
+  console.log(req.params.id);
+  const id = req.params.id;
+  const title = req.body.title;
+  const content = req.body.content;
+  const queryText = `UPDATE tasks SET title = $1, content = $2 WHERE id = $3`;
   pool
-    .query(queryText[taskID])
-    .then(() => res.sendStatus(201))
-    .catch(() => sendStatus(500));
+    .query(queryText, [title, content, id])
+    .then(() => res.sendStatus(204))
+    .catch((error) => res.status(500).send(error));
 });
 
 /**

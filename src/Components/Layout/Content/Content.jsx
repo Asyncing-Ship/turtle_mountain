@@ -15,12 +15,13 @@ import PoliciesPage from "../../Pages/Policies/PoliciesPage";
 import Login from "../../Pages/Login/Login.jsx";
 import SignUp from "../../Pages/SignUp/SignUp.jsx";
 import NewQuestion from "../../Pages/ViewsQuestion/NewQuestion";
-import FourOhFour from "../../Pages/404/404";
+import FourOhFour from "../../Utilities/404/404";
 // CSS Import:
 import "../../App/App.css";
 import AdminPage from "../../Pages/Admin/AdminPage";
 import Alerts from "../../Pages/Alerts/Alerts";
-import Profile from "../../Pages/Profile/Profile";
+import Info from "../../Pages/Info/Info";
+
 // ----- End of imports -----
 
 export class Content extends React.Component {
@@ -41,13 +42,13 @@ export class Content extends React.Component {
           <ProtectedRoute exact path="/home" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
-          <ProtectedRoute exact path="/tasks" component={TaskPage} />
-          <ProtectedRoute exact path="/questions" component={QuestionPage} />
+          <ProtectedRoute path="/tasks" component={TaskPage} />
+          <ProtectedRoute path="/questions" component={QuestionPage} />
           <ProtectedRoute exact path="/admin" component={AdminPage} />
           <ProtectedRoute exact path="/questions/new" component={NewQuestion} />
           <ProtectedRoute exact path="/policies" component={PoliciesPage} />
           <ProtectedRoute exact path="/alerts" component={Alerts} />
-          <ProtectedRoute exact path="/profile" component={Profile} />
+          <ProtectedRoute exact path="/info" component={Info} />
           <Route render={() => <FourOhFour />} />
         </Switch>
       </div>

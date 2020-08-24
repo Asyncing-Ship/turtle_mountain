@@ -3,14 +3,22 @@ const Question = require("../models/question.model");
 const User = require("../models/user.model");
 const QuestionResponse = require("../models/question_response.model");
 // const User_Question = require("../models/user.question.model");
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
 
 const router = express.Router();
 
 // This route *should* return the logged in users questions
-router.get("/", (req, res) => {
-  console.log("GET questions");
+router.get("/", rejectUnauthenticated, (req, res) => {
+  // console.log("GET questions");
   Question.findAll({
     include: [{ model: User }],
+    order: [
+      ["is_verified", "ASC"],
+      ["date_posted", "DESC"],
+      ["is_answered", "ASC"],
+    ],
   })
     .then((questions) => {
       // question will be an array of all Question instances
@@ -23,12 +31,16 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/responses/:id", (req, res) => {
-  console.log("GET question responses");
+router.get("/responses/:id", rejectUnauthenticated, (req, res) => {
+  // console.log("GET question responses");
   let questionId = req.params.id;
   QuestionResponse.findAll({
     where: { question_id: questionId },
     include: [{ model: User }, { model: Question }],
+    order: [
+      ["verified", "DESC"],
+      ["date_posted", "DESC"],
+    ],
   })
     .then((questions) => {
       // question will be an array of all Question instances
@@ -42,15 +54,15 @@ router.get("/responses/:id", (req, res) => {
 });
 
 // This route will get a single question based on the id passed
-router.get("/:id", (req, res) => {
+router.get("/:id", rejectUnauthenticated, (req, res) => {
   let questionId = req.params.id;
-  console.log(`GET request for question ${questionId}`);
+  // console.log(`GET request for question ${questionId}`);
   Question.findAll({
     where: { id: questionId },
     include: [{ model: User }],
   })
     .then((questions) => {
-      console.log("Found question", questions);
+      // console.log("Found question", questions);
       res.send(questions[0] || []);
     })
     .catch((error) => {
@@ -63,12 +75,12 @@ router.get("/:id", (req, res) => {
 });
 
 // This route will post a question based on the req body provided
-router.post("/", (req, res) => {
+router.post("/", rejectUnauthenticated, (req, res) => {
   const questionTitle = req.body.title;
   const questionContent = req.body.content;
   const userId = req.user.id;
 
-  console.log(`POST request add question`, req.body);
+  // console.log(`POST request add question`, req.body);
 
   let newQuestion = Question.build({
     title: questionTitle,
@@ -79,7 +91,7 @@ router.post("/", (req, res) => {
   newQuestion
     .save()
     .then((question) => {
-      res.sendStatus(200);
+      res.sendStatus(201);
     })
     .catch((error) => {
       console.log("Error adding question ", error);
@@ -88,10 +100,10 @@ router.post("/", (req, res) => {
 });
 
 // This is a route for editing the content of a question
-router.put("/:id", (req, res) => {
+router.put("/:id", rejectUnauthenticated, (req, res) => {
   let questionId = req.params.id;
   let questionContent = req.body.content;
-  console.log(`PUT request update question ${questionId}`, req.body);
+  // console.log(`PUT request update question ${questionId}`, req.body);
   let updates = {
     content: questionContent,
   };
@@ -105,11 +117,31 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// This is a route for marking a question as answered
-router.put("/answer/:id", (req, res) => {
-  console.log("updating question at id", req.params.id);
+// This is a route for marking a quesiton as frequent
+router.put("/frequent/:id", rejectUnauthenticated, (req, res) => {
   let questionId = req.params.id;
-  console.log(`PUT request update question ${questionId}`, req.body);
+  // console.log(`PUT request update question ${questionId}`, req.body);
+  let updates = {
+    is_frequent: true,
+  };
+  Question.update(updates, { where: { id: questionId } })
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(
+        `Error updating question(frequent) with id ${questionId}`,
+        error
+      );
+      res.sendStatus(500);
+    });
+});
+
+// This is a route for marking a question as answered
+router.put("/answer/:id", rejectUnauthenticated, (req, res) => {
+  // console.log("updating question at id", req.params.id);
+  let questionId = req.params.id;
+  // console.log(`PUT request update question ${questionId}`, req.body);
   let updates = {
     is_answered: true,
   };
@@ -123,10 +155,27 @@ router.put("/answer/:id", (req, res) => {
     });
 });
 
-// This route will delete a question based on id provided
-router.delete("/:id", (req, res) => {
+router.put("/verify/:id", rejectUnauthenticated, (req, res) => {
+  // console.log("verifying question at id", req.params.id);
   let questionId = req.params.id;
-  console.log(`DELETE request for question ${questionId}`, req.body);
+  // console.log(`PUT request update question ${questionId}`, req.body);
+  let updates = {
+    is_verified: true,
+  };
+  Question.update(updates, { where: { id: questionId } })
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error verifying question with id ${questionId}`, error);
+      res.sendStatus(500);
+    });
+});
+
+// This route will delete a question based on id provided
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
+  let questionId = req.params.id;
+  // console.log(`DELETE request for question ${questionId}`, req.body);
   Question.destroy({ where: { id: questionId } })
     .then((questions) => {
       res.sendStatus(200);

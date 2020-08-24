@@ -29,12 +29,17 @@
   background-color: black !important ;
   color: #f5fffa;
 }
-.tasks-content {
-  width: 50%;
-}
-.tasks-btngrp, .tasks-search {
+.questions-content {
   width: 100%;
 }
-.tasks-nav-active Button {
+.questions-routes {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.questions-btngrp, .questions-search {
+  width: 100%;
+}
+.questions-nav-active Button {
   border-bottom: ridge;
 }

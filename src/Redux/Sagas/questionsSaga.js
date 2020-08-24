@@ -10,7 +10,13 @@ function* fetchQuestions(action) {
     // const result = yield call(axios.get, '/question');
     yield put({ type: "SET_QUESTIONS", payload: response.data });
   } catch (error) {
-    alert("Error fetching Questions", error);
+    yield put({
+      type: "ADD_TOAST",
+      payload: {
+        status: "error",
+        message: "error getting questions",
+      },
+    });
   }
 }
 
@@ -27,7 +33,13 @@ function* fetchQuestionResponses(action) {
     // const result = yield call(axios.get, '/question');
     yield put({ type: "SET_QUESTION_RESPONSES", payload: response.data });
   } catch (error) {
-    alert("Error fetching Question Responses", error);
+    yield put({
+      type: "ADD_TOAST",
+      payload: {
+        status: "error",
+        message: "error getting responses",
+      },
+    });
   }
 }
 
@@ -39,9 +51,18 @@ function* addQuestion(action) {
   try {
     yield Axios.post("/api/question", action.payload);
     yield put({ type: "FETCH_QUESTIONS" });
+    yield put({
+      type: "ADD_TOAST",
+      payload: { status: "success", message: "question added" },
+    });
   } catch (error) {
-    // console.log('Error fetching Questions', error);
-    alert("unable to add new Question response to server");
+    yield put({
+      type: "ADD_TOAST",
+      payload: {
+        status: "error",
+        message: "error adding your Question",
+      },
+    });
   }
 }
 
@@ -52,23 +73,43 @@ function* addQuestionResponse(action) {
   // dispatch the result with put!
   try {
     yield Axios.post("/api/question_response", action.payload);
+    yield Axios.put(`/api/question/answer/${action.payload.question_id}`);
     yield put({ type: "FETCH_QUESTION_RESPONSES", payload: action.payload });
+    yield put({
+      type: "ADD_TOAST",
+      payload: { status: "success", message: "response added" },
+    });
+    yield put({ type: "FETCH_QUESTIONS" });
   } catch (error) {
-    // console.log('Error fetching Question Response', error);
-    alert("unable to add new Question Response to server");
+    yield put({
+      type: "ADD_TOAST",
+      payload: {
+        status: "error",
+        message: "unable to add new Question Response to server",
+      },
+    });
   }
 }
 
 // function to delete Questions
 function* deleteQuestion(action) {
   // wrap it all in try/catch
-  // yield axios
   // dispatch the result with put!
   try {
-    yield Axios.delete(`/api/questions/${action.payload}`);
+    yield Axios.delete(`/api/question/${action.payload.question_id}`);
+    yield put({ type: "FETCH_QUESTIONS" });
+    yield put({
+      type: "ADD_TOAST",
+      payload: { status: "success", message: "question deleted" },
+    });
   } catch (error) {
-    // console.log('Error fetching Questions', error);
-    alert("unable to delete Question from server");
+    yield put({
+      type: "ADD_TOAST",
+      payload: {
+        status: "error",
+        message: "unable to delete Question from server",
+      },
+    });
   }
 }
 
@@ -79,24 +120,18 @@ function* deleteQuestionResponse(action) {
   // dispatch the result with put!
   try {
     yield Axios.delete(`/api/question_response/${action.payload}`);
+    yield put({
+      type: "ADD_TOAST",
+      payload: { status: "success", message: "response deleted" },
+    });
   } catch (error) {
-    // console.log('Error fetching Questions', error);
-    alert("unable to delete Question Response from server");
-  }
-}
-
-// function to get current Question
-function* fetchQuestionDetail(action) {
-  // wrap it all in try/catch
-  // yield axios
-  // dispatch the result with put!
-  try {
-    const response = yield Axios.get(`/api/detail/${action.payload}`);
-    // const result = yield call(axios.get, '/question');
-    yield put({ type: "SET_QUESTION_DETAIL", payload: response.data });
-  } catch (error) {
-    // console.log('Error fetching questions', error);
-    alert("Unable to get detail from server");
+    yield put({
+      type: "ADD_TOAST",
+      payload: {
+        status: "error",
+        message: "unable to delete Question Response from server",
+      },
+    });
   }
 }
 
@@ -110,55 +145,38 @@ function* fetchCurrentQuestion(action) {
     // const result = yield call(axios.get, '/question');
     yield put({ type: "SET_CURRENT_QUESTION", payload: response.data });
   } catch (error) {
-    // console.log('Error fetching questions', error);
-    alert("Unable to fetch current Question");
-  }
-}
-
-// function* answerQuestion(action) {
-//   //Update the question
-//   try {
-//     yield Axios.put(
-//       `/api/question/${action.payload.id}`,
-//       action.payload.answer
-//     );
-//     yield put({ type: "FETCH_QUESTIONS" });
-//   } catch (error) {
-//     alert("Unable to update Question on server", error);
-//   }
-// }
-
-function* fetchQuestionAuthor(action) {
-  try {
-    const response = Axios.get(`/api/members/${action.payload}`);
-    console.log(response.data);
-
-    yield put({ type: "SET_QUESTION_AUTHOR", payload: response.data });
-  } catch (error) {
-    // alert("Unable to get question author on server", error);
-  }
-}
-
-function* addQuestionLike(action) {
-  try {
-    yield Axios.put("api/likes/questions", action.payload);
-  } catch (error) {
-    alert("unable to add question like to server");
+    yield put({
+      type: "ADD_TOAST",
+      payload: {
+        status: "error",
+        message: "Unable to fetch current Question",
+      },
+    });
   }
 }
 
 function* markAsAnswer(action) {
   //update the question as answered
   try {
-    yield Axios.put(`/api/question/answer/${action.payload.question_id}`);
     yield Axios.put(`/api/question_response/verify/${action.payload.id}`);
+    yield Axios.put(`/api/question/verify/${action.payload.question_id}`);
     yield put({ type: "FETCH_QUESTIONS" });
     yield put({
       type: "FETCH_QUESTION_RESPONSES",
       payload: { question_id: action.payload.question_id },
     });
+    yield put({
+      type: "ADD_TOAST",
+      payload: { status: "success", message: "Set as verified answer" },
+    });
   } catch (error) {
-    alert("Unable to update question as answered", error);
+    yield put({
+      type: "ADD_TOAST",
+      payload: {
+        status: "error",
+        message: "Unable to mark as answered",
+      },
+    });
   }
 }
 
@@ -167,19 +185,43 @@ function* verifyQuestionResponse(action) {
   try {
     yield Axios.put(`/api/question_response/verify/${action.payload.id}`);
   } catch (error) {
-    alert("Unable to update Question on server", error);
+    yield put({
+      type: "ADD_TOAST",
+      payload: {
+        status: "error",
+        message: "Unable to verify response",
+      },
+    });
+  }
+}
+
+function* markAsFrequent(action) {
+  //update the question as frequent
+  try {
+    yield Axios.put(`/api/question/frequent/${action.payload.question_id}`);
+    yield put({ type: "FETCH_QUESTIONS" });
+    yield put({
+      type: "ADD_TOAST",
+      payload: { status: "success", message: "Set as frequent question" },
+    });
+  } catch (error) {
+    yield put({
+      type: "ADD_TOAST",
+      payload: {
+        status: "error",
+        message: "Unable to mark as frequent question",
+      },
+    });
   }
 }
 
 function* questionsSaga() {
   yield takeEvery("FETCH_QUESTIONS", fetchQuestions);
-  yield takeEvery("FETCH_QUESTION_DETAIL", fetchQuestionDetail);
   yield takeEvery("FETCH_CURRENT_QUESTION", fetchCurrentQuestion);
   yield takeEvery("ADD_QUESTION", addQuestion);
   yield takeEvery("DELETE_QUESTION", deleteQuestion);
-  yield takeEvery("FETCH_QUESTION_AUTHOR", fetchQuestionAuthor);
-  yield takeEvery("ADD_QUESTION_LIKE", addQuestionLike);
   yield takeEvery("MARK_AS_ANSWER", markAsAnswer); // only admin can
+  yield takeEvery("MARK_AS_FREQUENT", markAsFrequent);
   // QUESTION RESPONSES BELOW
   yield takeEvery("FETCH_QUESTION_RESPONSES", fetchQuestionResponses);
   yield takeEvery("ADD_QUESTION_RESPONSE", addQuestionResponse);

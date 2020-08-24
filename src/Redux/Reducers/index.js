@@ -6,7 +6,9 @@ import tasks from "./tasksReducer";
 import questions from "./questionsReducer";
 import policies from "./policyReducer";
 import users from "./usersReducer";
+import notis from "./notificationReducer";
 
+import toast from "./toastReducer";
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -21,6 +23,8 @@ const rootReducer = combineReducers({
   questions,
   policies,
   users,
+  toast,
+  notis,
 });
 
 export default rootReducer;

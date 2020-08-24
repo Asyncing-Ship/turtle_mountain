@@ -1,4 +1,4 @@
-.CircleBtn {
+/* .CircleBtn {
   border-radius: 50% !important;
   margin: 2.5rem !important;
   padding: 5rem;
@@ -13,11 +13,11 @@
 .CircleBtn:active {
   background-color: #c79e61 !important;
   filter: unset;
-}
+} */
 
-.btn-text {
+/* .btn-text {
   font-size: 1.375rem;
   position: absolute;
   bottom: 17%;
   font-variant: small-caps;
-}
+} */

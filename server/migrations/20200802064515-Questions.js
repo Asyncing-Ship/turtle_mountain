@@ -9,14 +9,19 @@ module.exports = {
         primaryKey: true,
       },
       title: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
         allowNull: false,
       },
       content: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       is_answered: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      is_verified: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false,
@@ -30,6 +35,11 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.fn("now"),
+      },
+      is_frequent: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
       },
       user_id: {
         type: Sequelize.INTEGER,

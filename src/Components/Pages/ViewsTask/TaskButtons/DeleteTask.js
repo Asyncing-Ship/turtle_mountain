@@ -1,38 +1,43 @@
 import React from "react";
-import { Button, useToast, Box } from "@chakra-ui/core";
+import { Button } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import Swal from "sweetalert2";
 
 const AcceptTask = (props) => {
-  const toast = useToast();
   return (
-    <div>
+    <>
       <Button
-        alignContent="right"
+        ml={2}
         size="sm"
         rightIcon="delete"
         variantColor="red"
         className="new_class_goes_here"
         onClick={async () => {
-          await toast({
-            title: "Delete task.",
-            description: "Delete this task",
-            status: "delete",
-            duration: 5000,
-            isClosable: true,
+          Swal.fire({
+            title: "Confirm",
+            text: "Are you 100% committed to deleting this task?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+          }).then((result) => {
+            if (result.value) {
+              props.dispatch({
+                type: "COMPLETE_TASK",
+                payload: {
+                  task_id: props.task.id,
+                },
+              });
+              props.history.push("/open");
+            }
           });
-          props.dispatch({
-            type: "COMPLETE_TASK",
-            payload: {
-              task_id: props.task.id,
-            },
-          });
-          await props.history.push("/open");
         }}
       >
         Delete Task
       </Button>
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Button } from "@chakra-ui/core";
+import { Input, Button, FormControl } from "@chakra-ui/core";
 import { connect } from "react-redux";
 
 class AnswerQuestion extends Component {
@@ -12,7 +12,7 @@ class AnswerQuestion extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <form
           onSubmit={async (event) => {
             event.preventDefault();
@@ -23,18 +23,47 @@ class AnswerQuestion extends Component {
                 content: this.state.answer,
               },
             });
+            await this.props.dispatch({
+              type: "ADD_NOTIFICATIONS",
+              payload: {
+                type: "answered a question you created",
+                preview: this.props.question.title,
+                first_name: this.props.user.first_name,
+                last_name: this.props.user.last_name,
+                is_admin: this.props.user.is_admin,
+              },
+            });
             await this.setState({ answer: "" });
           }}
         >
-          <Input
-            value={this.state.answer}
-            placeholder="Your answer"
-            onChange={(event) => this.handleChange(event, "answer")}
-          ></Input>
-          <Button mt={3} type="submit">Submit Answer</Button>
+          <FormControl isRequired>
+            <Input
+              rounded="md"
+              size="sm"
+              value={this.state.answer}
+              placeholder="Enter your answer..."
+              onChange={(event) => this.handleChange(event, "answer")}
+            />
+            <Button
+              size="sm"
+              variantColor="green"
+              rightIcon="check"
+              mt={3}
+              type="submit"
+            >
+              Submit Answer
+          </Button>
+          </FormControl>
         </form>
-      </div>
+      </>
     );
   }
 }
-export default connect()(AnswerQuestion);
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  }
+}
+
+export default connect(mapStateToProps)(AnswerQuestion);

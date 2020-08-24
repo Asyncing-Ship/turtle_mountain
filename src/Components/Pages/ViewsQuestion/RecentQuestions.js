@@ -1,9 +1,9 @@
 // ----- Start of imports -----
 // React Import:
 import React, { Component } from "react";
+import moment from "moment";
 // React Redux Imports:
 import { connect } from "react-redux";
-import CompleteTask from "../ViewsTask/CompleteTask";
 import {
   AccordionPanel,
   AccordionIcon,
@@ -11,12 +11,13 @@ import {
   AccordionHeader,
   AccordionItem,
   Accordion,
-  Heading,
+  Button,
 } from "@chakra-ui/core";
-import TaskBadge from "../ViewsTask/TaskBadge";
 // Components Imports:
 import AnswerQuestion from "./AnswerQuestion";
 import Response from "./Response";
+import QuestionBadge from "./QuestionBadge";
+import DeleteQuestion from "./QuestionButtons/DeleteQuestion";
 // ----- End of imports -----
 
 class RecentQuestions extends Component {
@@ -33,7 +34,12 @@ class RecentQuestions extends Component {
   render() {
     return (
       <>
-        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <h3>Most Recently Asked Questions</h3>
+        <h4>
+          These are the questions that were most recently asked. whether
+          answered or not, they will appear here
+        </h4>
+        <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
           {this.props.questions.map((x, i) => (
             <AccordionItem
               className="accordion-item"
@@ -44,29 +50,78 @@ class RecentQuestions extends Component {
                 <>
                   <AccordionHeader
                     className="accordion-head"
-                    _expanded={{ bg: "#c79e61", color: "white" }}
-                    _hover={{ bg: "#c79e61", color: "white" }}
+                    _expanded={{ bg: "#c79e61", color: "#f5fffe" }}
+                    _hover={{ bg: "#c79e61", color: "#f5fffe" }}
                     onClick={() => this.setQuestion(x.id)}
                   >
                     <Box flex="1" textAlign="left">
                       {x.title}
                     </Box>
-                    <TaskBadge x={x} />
+                    <QuestionBadge x={x} />
                     <AccordionIcon />
                   </AccordionHeader>
-                  <AccordionPanel>
+                  <AccordionPanel
+                    className="apanel"
+                    wordBreak="break-word"
+                    pb={4}
+                  >
                     {x.content}
-                    <Box m={3}>
-                      <Heading as="h3">Responses</Heading>
+                    <Box flex="1" textAlign="left">
+                      <small>
+                        <i>
+                          Posted at:{" "}
+                          {moment(x.date_posted).format("MM/DD/YY LT")} (By{" "}
+                          {x.user.first_name} {x.user.last_name})
+                        </i>
+                      </small>
                     </Box>
-                    <Box m={3}>
-                      {this.props.response.map((x) => (
-                        <Response question={x} />
+                    {this.props.user.is_admin &&
+                      (!x.is_frequent ? (
+                        <Box flex="1" textAlign="left">
+                          <Button
+                            onClick={() => {
+                              this.props.dispatch({
+                                type: "MARK_AS_FREQUENT",
+                                payload: { question_id: x.id },
+                              });
+                            }}
+                          >
+                            Mark as frequent
+                          </Button>
+                        </Box>
+                      ) : (
+                        <Box flex="1" textAlign="left">
+                          <Button
+                            onClick={() => {
+                              this.props.dispatch({
+                                type: "MARK_AS_FREQUENT",
+                                payload: { question_id: x.id },
+                              });
+                            }}
+                          >
+                            Remove from frequent
+                          </Button>
+                        </Box>
                       ))}
-                    </Box>
+                    {this.props.user.id === x.user.id && (
+                      <DeleteQuestion question={x} />
+                    )}
                     <Box m={3}>
+                      <strong>Responses</strong>
+                    </Box>
+                    <Box textAlign="right" m={3}>
                       {/* This is the button and input field */}
                       <AnswerQuestion question={x} />
+                    </Box>
+                    <Box m={3}>
+                      {this.props.response.map((y, j) => (
+                        <Response
+                          key={j}
+                          response={y}
+                          questionVerified={x.is_verified}
+                          posted_by={x.userId}
+                        />
+                      ))}
                     </Box>
                   </AccordionPanel>
                 </>
@@ -82,6 +137,7 @@ class RecentQuestions extends Component {
 // ----- Start of mapStateToProps function -----
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     questions: state.questions.questions,
     response: state.questions.questionsResponse,
   };

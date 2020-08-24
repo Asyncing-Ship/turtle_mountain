@@ -1,16 +1,19 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const Policy = require("../models/policy.model");
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
 
-router.get("/", (req, res) => {
+router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("GET policies");
   Policy
     .findAll()
-    .then(result => res.send(result))
-    .catch(error => console.log(error));
+    .then((result) => res.send(result))
+    .catch((error) => console.log(error));
 });
 
-router.post("/new", (req, res) => {
+router.post("/new", rejectUnauthenticated, (req, res) => {
   let NewPolicy = Policy.build({
     filename: req.body.filename,
     handle: req.body.handle,
@@ -18,6 +21,17 @@ router.post("/new", (req, res) => {
 
   NewPolicy
     .save()
+    .then((result) => res.sendStatus(200))
+    .catch((error) => res.sendStatus(500));
+});
+
+router.delete("/delete/:id", rejectUnauthenticated, (req, res) => {
+  Policy
+    .destroy({
+      where: {
+        id: req.params.id,
+      }
+    })
     .then(result => res.sendStatus(200))
     .catch(error => res.sendStatus(500));
 });

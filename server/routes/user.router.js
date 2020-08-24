@@ -9,7 +9,7 @@ const { check, validationResult } = require("express-validator");
 
 const router = express.Router();
 const nodemailer = require("nodemailer");
-const { nanoid } = require('nanoid/non-secure');
+const { nanoid } = require("nanoid/non-secure");
 
 // Handles Ajax request for user information if user is authenticated
 router.get("/", rejectUnauthenticated, (req, res) => {
@@ -37,9 +37,9 @@ router.post(
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const password = encryptLib.encryptPassword(req.body.password);
-    console.log(req.body);
-    console.log("first name is: ", first_name);
-    console.log("last name is: ", last_name);
+    // console.log(req.body);
+    // console.log("first name is: ", first_name);
+    // console.log("last name is: ", last_name);
     const queryText =
       'INSERT INTO "users" (email, password, first_name, last_name) VALUES ($1, $2, $3, $4) RETURNING id';
     console.log(`QueryText is: ${queryText}`);
@@ -69,7 +69,7 @@ router.post("/logout", (req, res) => {
 
 // route to get all users
 router.get("/all", (req, res) => {
-  const queryText = `SELECT id, email, first_name, last_name, is_admin, location, is_approved FROM users`;
+  const queryText = `SELECT id, email, first_name, last_name, is_admin, location, is_approved FROM users ORDER by first_name ASC`;
   pool
     .query(queryText)
     .then((result) => {
@@ -126,11 +126,11 @@ router.delete("/:id", (req, res) => {
 
 router.post("/reset", (req, res) => {
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: "smtp.gmail.com",
     auth: {
       user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS
-    }
+      pass: process.env.GMAIL_PASS,
+    },
   });
 
   const url_ending = nanoid();
@@ -143,14 +143,14 @@ router.post("/reset", (req, res) => {
       <p>${req.body.message}</p>
       <em>${url_ending}</em>
     `,
-    replyTo: `${req.user.email}`
-  }
+    replyTo: `${req.user.email}`,
+  };
 
   transporter.sendMail(mailOptions, (err, res) => {
     if (err) {
-      console.error('there was an error: ', err);
+      console.error("there was an error: ", err);
     } else {
-      console.log('here is the res: ', res);
+      console.log("here is the res: ", res);
     }
   });
 });

@@ -10,6 +10,9 @@ import {
   Box,
   Heading,
   Textarea,
+  IconButton,
+  Tag,
+  Stack,
 } from "@chakra-ui/core";
 // React Redux Imports:
 import { connect } from "react-redux";
@@ -22,16 +25,20 @@ class NewQuestion extends Component {
     title: "",
     content: "",
     select: [],
+    maxCharsTitle: 50,
+    maxCharsDesc: 1000,
   };
 
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_ALL_USERS" });
   }
 
-  handleChange = (event, value) => {
-    this.setState({
-      [value]: event.target.value,
-    });
+  handleChange = (event, value, maxChars) => {
+    if (event.target.value.length <= maxChars) {
+      this.setState({
+        [value]: event.target.value,
+      });
+    }
   };
 
   handleInputChange = async (event) => {
@@ -57,7 +64,17 @@ class NewQuestion extends Component {
                 user_ids: this.state.select.map((x) => x.id),
               },
             });
-            await this.props.history.push("/questions");
+            await this.props.dispatch({
+              type: "ADD_NOTIFICATIONS",
+              payload: {
+                type: "tagged you in a question",
+                preview: this.state.title,
+                first_name: this.props.user.first_name,
+                last_name: this.props.user.last_name,
+                is_admin: this.props.user.is_admin,
+              },
+            });
+            await this.props.history.push("/questions/recent");
           }}
         >
           <FormControl textAlign="left" bg="#2f2e2e" p={5} rounded="lg">
@@ -68,43 +85,71 @@ class NewQuestion extends Component {
               autoComplete="off"
               id="task-title"
               aria-required="true"
-              placeholder="Task Title"
-              onChange={(event) => this.handleChange(event, "title")}
+              placeholder="Question Title"
+              onChange={(event) => {
+                this.handleChange(event, "title", this.state.maxCharsTitle);
+              }}
               value={this.state.title}
               variant="filled"
-              mb={5}
               isRequired
             />
+
+            <Box mb={5}>
+              <small style={{ color: "white" }}>
+                Characters: {this.state.title.length}/{this.state.maxCharsTitle}
+              </small>
+            </Box>
             <FormLabel htmlFor="task-body">Description</FormLabel>
             <Textarea
               _focus={{ bg: "#f5fffe", border: "2px solid #3182ce" }}
               id="task-body"
-              placeholder="Describe the task..."
-              onChange={(event) => this.handleChange(event, "content")}
+              placeholder="Explain the question..."
+              onChange={(event) => {
+                this.handleChange(event, "content", this.state.maxCharsDesc);
+              }}
               value={this.state.content}
               variant="filled"
               resize="vertical"
-              mb={5}
               isRequired
             />
-            <Box style={{ backgroundColor: "white" }} mb={5}>
-              TAGGED USERS
-              {this.state.select.map((x) => (
-                <Box>
-                  {"@" + x.first_name + " " + x.last_name}
-                  <Button
-                    onClick={() =>
-                      this.setState({
-                        select: this.state.select.filter((y) => y.id != x.id),
-                      })
-                    }
-                  >
-                    x
-                  </Button>
-                </Box>
-              ))}
+            <Box mb={5}>
+              <small style={{ color: "#f5fffe" }}>
+                Characters: {this.state.content.length}/
+                {this.state.maxCharsDesc}
+              </small>
             </Box>
-            <small style={{ color: "white" }}>Select User(s) to tag</small>
+            <Box
+              rounded="md"
+              style={{ backgroundColor: "#f5fffe" }}
+              px={4}
+              py={2}
+              mb={3}
+            >
+              Users To Notify
+              <Stack w="fit-content">
+                {this.state.select.map((x) => (
+                  <Tag w="auto" size="md" variantColor="purple" p={1}>
+                    @{x.first_name} {x.last_name}
+                    <Box flex={1} textAlign="right">
+                      <IconButton
+                        variantColor="red"
+                        icon="close"
+                        size="xs"
+                        ml={3}
+                        onClick={() =>
+                          this.setState({
+                            select: this.state.select.filter(
+                              (y) => y.id !== x.id
+                            ),
+                          })
+                        }
+                      />
+                    </Box>
+                  </Tag>
+                ))}
+              </Stack>
+            </Box>
+            <small style={{ color: "#f5fffe" }}>Select Users to notify</small>
             <Select
               placeholder="SELECT A USER"
               className="col-12 col-lg-3"
@@ -129,7 +174,7 @@ class NewQuestion extends Component {
                 this.handleInputChange(event);
               }}
             ></Select>
-            <Box textAlign="right">
+            <Box py={3} textAlign="right">
               <Button type="submit" rightIcon="add" variantColor="green">
                 Add Question
               </Button>
@@ -144,6 +189,7 @@ class NewQuestion extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     users: state.users,
   };
 };

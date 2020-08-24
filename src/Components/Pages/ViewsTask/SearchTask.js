@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/core";
 import TaskBadge from "./TaskBadge";
 import { connect } from "react-redux";
+import moment from "moment";
 
 class SearchTask extends Component {
   state = {
@@ -26,13 +27,18 @@ class SearchTask extends Component {
   render() {
     return (
       <>
+        <h3>This page contains an archive of all Tasks</h3>
+        <small>
+          to find a task, start searching for it. You can search by title or
+          content
+        </small>
         {/* The input will be used to filter the tasks by matching results. it should do this without a button */}
         <InputGroup m={3} w="100%">
           <InputLeftElement
             children={<Icon name="search" color="gray.400" />}
           />
           <Input
-            className="tasks-search"
+            className="questions-search"
             value={this.state.searchString}
             onChange={(event) =>
               this.setState({ searchString: event.target.value })
@@ -78,6 +84,16 @@ class SearchTask extends Component {
                       <Box flex="1" textAlign="left">
                         {x.content}
                       </Box>
+                      <Box flex="1" textAlign="left">
+                        <small>
+                          <i>
+                            Posted at:{" "}
+                            {moment(x.date_posted).format("MM/DD/YY LT")} (By{" "}
+                            {x.first_name} {x.last_name})
+                          </i>
+                        </small>
+                      </Box>
+                      {console.log(x)}
                     </AccordionPanel>
                   </>
                 )}

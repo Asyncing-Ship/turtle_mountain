@@ -7,16 +7,16 @@ import { Provider } from "react-redux";
 
 const store = createStore(rootReducer);
 it("renders correctly", () => {
-  mount(
+  shallow(
     <Provider store={store}>
-      <App user={{ id: 1 }} />
+      <App user={{ id: 1 }} toast={{ status: "success", message: "test" }} />
     </Provider>
   );
 });
 it("renders correctly", () => {
-  mount(
+  shallow(
     <Provider store={store}>
-      <App user={{}} />
+      <App user={{}} toast={{ status: "success", message: "test" }} />
     </Provider>
   );
 });

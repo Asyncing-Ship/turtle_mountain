@@ -5,32 +5,22 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // React Router DOM Imports:
 import {
-  withRouter,
   HashRouter as RouterC,
   Switch,
   Redirect,
   NavLink,
-  Link,
 } from "react-router-dom";
 // Chakra-ui imports:
-import {
-  Input,
-  Button,
-  Stack,
-  ButtonGroup,
-  Accordion,
-  AccordionHeader,
-  AccordionPanel,
-  AccordionItem,
-} from "@chakra-ui/core";
+import { Button, Stack, ButtonGroup, Box } from "@chakra-ui/core";
 // Components Imports:
 import ProtectedRoute from "../../Utilities/ProtectedRoute/ProtectedRoute";
 import RecentQuestions from "./RecentQuestions";
 import UnansweredQuestions from "./UnansweredQuestions";
 import SearchQuestions from "./SearchQuestions";
 import NewQuestion from "./NewQuestion";
-import AnswerQuestion from "./AnswerQuestion";
-import Response from "./Response";
+// CSS Import:
+import "./QuestionPage.css";
+import FrequentlyAsked from "./FrequentlyAsked";
 // ----- End of imports -----
 
 class QuestionPage extends Component {
@@ -50,32 +40,48 @@ class QuestionPage extends Component {
   render() {
     return (
       <RouterC>
-        <Stack className="tasks-content">
-          <ButtonGroup className="tasks-btngrp">
-            <NavLink activeClassName="tasks-nav-active" to="/recent-questions">
+        <Stack className="questions-content">
+          <ButtonGroup className="questions-btngrp">
+            <NavLink activeClassName="questions-nav-active" to="/questions/FAQ">
+              <Button
+                variant="outline"
+                variantColor="orange"
+                rightIcon="question-outline"
+                m={3}
+              >
+                Most Frequent
+              </Button>
+            </NavLink>
+            <NavLink
+              activeClassName="questions-nav-active"
+              to="/questions/recent"
+            >
               <Button
                 variant="outline"
                 variantColor="blue"
-                rightIcon="info"
+                rightIcon="time"
                 m={3}
               >
                 Most Recent
               </Button>
             </NavLink>
             <NavLink
-              activeClassName="tasks-nav-active"
-              to="/unanswered-questions"
+              activeClassName="questions-nav-active"
+              to="/questions/unanswered"
             >
               <Button
                 variant="outline"
                 variantColor="yellow"
-                rightIcon="star"
+                rightIcon="not-allowed"
                 m={3}
               >
                 Unanswered
               </Button>
             </NavLink>
-            <NavLink activeClassName="tasks-nav-active" to="/search-questions">
+            <NavLink
+              activeClassName="questions-nav-active"
+              to="/questions/search"
+            >
               <Button
                 variant="outline"
                 variantColor="purple"
@@ -85,7 +91,7 @@ class QuestionPage extends Component {
                 Search
               </Button>
             </NavLink>
-            <NavLink activeClassName="tasks-nav-active" to="/new-question">
+            <NavLink activeClassName="questions-nav-active" to="/questions/new">
               <Button
                 variant="outline"
                 variantColor="green"
@@ -96,29 +102,36 @@ class QuestionPage extends Component {
               </Button>
             </NavLink>
           </ButtonGroup>
-          <Redirect from="/" to="/recent-questions" />
-          <Switch>
-            <ProtectedRoute
-              exact
-              path="/recent-questions"
-              component={RecentQuestions}
-            />
-            <ProtectedRoute
-              exact
-              path="/unanswered-questions"
-              component={UnansweredQuestions}
-            />
-            <ProtectedRoute
-              exact
-              path="/search-questions"
-              component={SearchQuestions}
-            />
-            <ProtectedRoute
-              exact
-              path="/new-question"
-              component={NewQuestion}
-            />
-          </Switch>
+          <Box className="questions-routes">
+            <Redirect from="/questions" to="/questions/FAQ" />
+            <Switch>
+              <ProtectedRoute
+                exact
+                path="/questions/FAQ"
+                component={FrequentlyAsked}
+              />
+              <ProtectedRoute
+                exact
+                path="/questions/recent"
+                component={RecentQuestions}
+              />
+              <ProtectedRoute
+                exact
+                path="/questions/unanswered"
+                component={UnansweredQuestions}
+              />
+              <ProtectedRoute
+                exact
+                path="/questions/search"
+                component={SearchQuestions}
+              />
+              <ProtectedRoute
+                exact
+                path="/questions/new"
+                component={NewQuestion}
+              />
+            </Switch>
+          </Box>
         </Stack>
       </RouterC>
     );

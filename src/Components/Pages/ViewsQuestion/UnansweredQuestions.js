@@ -1,9 +1,9 @@
 // ----- Start of imports -----
 // React Import:
 import React, { Component } from "react";
+import moment from "moment";
 // React Redux Imports:
 import { connect } from "react-redux";
-import CompleteTask from "../ViewsTask/CompleteTask";
 import {
   AccordionPanel,
   AccordionIcon,
@@ -11,12 +11,13 @@ import {
   AccordionHeader,
   AccordionItem,
   Accordion,
-  Heading,
+  Button,
 } from "@chakra-ui/core";
-import TaskBadge from "../ViewsTask/TaskBadge";
 // Components Imports:
 import AnswerQuestion from "./AnswerQuestion";
 import Response from "./Response";
+import QuestionBadge from "./QuestionBadge";
+import DeleteQuestion from "./QuestionButtons/DeleteQuestion";
 // ----- End of imports -----
 
 class UnansweredQuestions extends Component {
@@ -34,10 +35,14 @@ class UnansweredQuestions extends Component {
   render() {
     return (
       <>
+        <h3>
+          These questions are unanswered, and ordered from newest to oldest
+        </h3>
         {/* I think there is a filter bug in here. I did not change it. When you answer it still appears. The original code was like that as well. - Jake */}
-        <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
+          {console.log(this.props.questions)}
           {this.props.questions
-            .filter((x) => !x.is_answered)
+            .filter((x) => !x.is_verified)
             .map((x, i) => (
               <AccordionItem
                 className="accordion-item"
@@ -55,22 +60,71 @@ class UnansweredQuestions extends Component {
                       <Box flex="1" textAlign="left">
                         {x.title}
                       </Box>
-                      <TaskBadge x={x} />
+                      <QuestionBadge x={x} />
                       <AccordionIcon />
                     </AccordionHeader>
-                    <AccordionPanel>
+                    <AccordionPanel
+                      className="apanel"
+                      wordBreak="break-word"
+                      pb={4}
+                    >
                       {x.content}
-                      <Box m={3}>
-                        <Heading as="h3">Responses</Heading>
+                      <Box flex="1" textAlign="left">
+                        <small>
+                          <i>
+                            Posted at:{" "}
+                            {moment(x.date_posted).format("MM/DD/YY LT")} (By{" "}
+                            {x.user.first_name} {x.user.last_name})
+                          </i>
+                        </small>
                       </Box>
-                      <Box m={3}>
-                        {this.props.response.map((x) => (
-                          <Response question={x} />
+                      {this.props.user.is_admin &&
+                        (!x.is_frequent ? (
+                          <Box flex="1" textAlign="left">
+                            <Button
+                              onClick={() => {
+                                this.props.dispatch({
+                                  type: "MARK_AS_FREQUENT",
+                                  payload: { question_id: x.id },
+                                });
+                              }}
+                            >
+                              Mark as frequent
+                            </Button>
+                          </Box>
+                        ) : (
+                          <Box flex="1" textAlign="left">
+                            <Button
+                              onClick={() => {
+                                this.props.dispatch({
+                                  type: "MARK_AS_FREQUENT",
+                                  payload: { question_id: x.id },
+                                });
+                              }}
+                            >
+                              Remove from frequent
+                            </Button>
+                          </Box>
                         ))}
-                      </Box>
+                      {this.props.user.id === x.user.id && (
+                        <DeleteQuestion question={x} />
+                      )}
                       <Box m={3}>
+                        <strong>Responses</strong>
+                      </Box>
+                      <Box textAlign="right" m={3}>
                         {/* This is the button and input field */}
                         <AnswerQuestion question={x} />
+                      </Box>
+                      <Box m={3}>
+                        {this.props.response.map((y, j) => (
+                          <Response
+                            key={j}
+                            response={y}
+                            questionVerified={x.is_verified}
+                            posted_by={x.userId}
+                          />
+                        ))}
                       </Box>
                     </AccordionPanel>
                   </>

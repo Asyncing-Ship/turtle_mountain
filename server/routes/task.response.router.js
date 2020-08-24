@@ -2,15 +2,18 @@ const express = require("express");
 const Task = require("../models/task.model");
 const Task_Response = require("../models/task_response.model");
 const User = require("../models/user.model");
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
 
 const router = express.Router();
 
 // This route *should* return the logged in users pets
-router.get("/", (req, res) => {
-  console.log("GET all task responses");
+router.get("/", rejectUnauthenticated, (req, res) => {
+  // console.log("GET all task responses");
   Task_Response.findAll({
-    include: [{ model: User }],
-    include: [{ model: Task }],
+    include: [{ model: User }, { model: Task }],
+    order: [["date_posted", "DESC"]],
   })
     .then((responses) => {
       // responses will be an array of all Task_Response instances
@@ -23,13 +26,12 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", rejectUnauthenticated, (req, res) => {
   let responseId = req.params.id;
   console.log(`GET request for task response with id  ${responseId}`);
   Task_Response.findAll({
     where: { id: responseId },
-    include: [{ model: User }],
-    include: [{ model: Task }],
+    include: [{ model: User }, { model: Task }],
   })
     .then((responses) => {
       console.log("Found Task Response", responses);
@@ -41,13 +43,13 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", rejectUnauthenticated, (req, res) => {
   const responseContent = req.body.content;
   const responseVerified = false; // req.body.verified; TODO FIX THIS
   const userId = req.user.id;
   const taskId = req.body.task_id;
 
-  console.log(`POST task response adding response`, req.body);
+  // console.log(`POST task response adding response`, req.body);
 
   let newTaskResponse = Task_Response.build({
     content: responseContent,
@@ -68,13 +70,13 @@ router.post("/", (req, res) => {
 });
 
 // Route to update the content of the response
-router.put("/:id", (req, res) => {
+router.put("/:id", rejectUnauthenticated, (req, res) => {
   let responseId = req.params.id;
   let responseContent = req.body.content;
-  console.log(
-    `PUT request update content for task response with id ${responseId}`,
-    req.body
-  );
+  // console.log(
+  //   `PUT request update content for task response with id ${responseId}`,
+  //   req.body
+  // );
   let updates = {
     content: responseContent,
   };
@@ -89,12 +91,12 @@ router.put("/:id", (req, res) => {
 });
 
 // Route to verify a response
-router.put("/verify/:id", (req, res) => {
+router.put("/verify/:id", rejectUnauthenticated, (req, res) => {
   let responseId = req.params.id;
-  console.log(
-    `PUT request verify task response for id ${responseId}`,
-    req.body
-  );
+  // console.log(
+  //   `PUT request verify task response for id ${responseId}`,
+  //   req.body
+  // );
   let updates = {
     verified: true,
   };
@@ -108,9 +110,9 @@ router.put("/verify/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
   let responseId = req.params.id;
-  console.log(`DELETE request for response with id ${responseId}`, req.body);
+  // console.log(`DELETE request for response with id ${responseId}`, req.body);
   Task_Response.destroy({ where: { id: responseId } })
     .then((responses) => {
       res.sendStatus(200);

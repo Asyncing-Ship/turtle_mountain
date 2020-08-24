@@ -4,9 +4,7 @@ import React from "react";
 // Redux Imports:
 import { connect } from "react-redux";
 // React Router DOM Imports:
-import {
-  NavLink,
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 // Chakra UI Imports:
 import { Box, Heading, Flex, Text, Button } from "@chakra-ui/core";
 // CSS Import:
@@ -48,6 +46,7 @@ export class Navbar extends React.Component {
         bg="tmarBlack.800"
         color="#f5fffe"
       >
+        {/* Start of logo / title area */}
         <Flex align="center" ml={3} mr={5}>
           <NavLink to="/home">
             <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
@@ -55,9 +54,11 @@ export class Navbar extends React.Component {
             </Heading>
           </NavLink>
         </Flex>
-
+        {/* End of logo / title area */}
+        {/* Start of hamburger menu */}
         <Button
-          display={{ base: "block", md: "none" }}
+          mr={2}
+          display={{ base: "block", lg: "none" }}
           onClick={this.handleToggle}
         >
           <svg
@@ -70,24 +71,44 @@ export class Navbar extends React.Component {
             <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
           </svg>
         </Button>
+        {/* End of hamburger menu */}
+        {/* Start of button menu navbar area */}
         <Box
           justifyContent="flex-end"
-          display={{ sm: this.state.show ? "block" : "none", md: "flex" }}
-          width={{ sm: "full", md: "auto" }}
+          display={{
+            xs: this.state.show ? "block" : "none",
+            sm: this.state.show ? "block" : "none",
+            md: this.state.show ? "block" : "none",
+            lg: "flex",
+          }}
+          width={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
           alignItems="center"
           flexGrow={1}
         >
-          <Flex direction={this.state.show ? "column" : "row"}>
+          <Flex
+            mr={{ xs: 3, sm: 3, md: 3 }}
+            direction={this.state.show ? "column" : "row"}
+          >
             {!this.props.user.id ? (
               <>
                 <MenuItems>
                   <NavLink to="/login">
-                    <Button m={2}>Login</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Login
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
                   <NavLink to="/signup">
-                    <Button m={2}>Signup</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Signup
+                    </Button>
                   </NavLink>
                 </MenuItems>
               </>
@@ -95,37 +116,82 @@ export class Navbar extends React.Component {
               <>
                 <MenuItems>
                   <NavLink to="/home">
-                    <Button m={2}>Home</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Home
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
                   <NavLink to="/tasks">
-                    <Button m={2}>Tasks</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Tasks
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
                   <NavLink to="/questions">
-                    <Button m={2}>Questions</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Questions
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
                   <NavLink to="/policies">
-                    <Button m={2}>Policies</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Policies
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
                   <NavLink to="/alerts">
-                    <Button m={2}>Alerts</Button>
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Alerts
+                    </Button>
                   </NavLink>
                 </MenuItems>
                 <MenuItems>
-                  <NavLink to="/profile">
-                    <Button m={2}>Profile</Button>
+                  <NavLink to="/info">
+                    <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                      m={2}
+                    >
+                      Info
+                    </Button>
                   </NavLink>
                 </MenuItems>
+                {this.props.user.is_admin ? (
+                  <MenuItems>
+                    <NavLink to="/admin">
+                      <Button
+                        w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
+                        m={2}
+                      >
+                        Admin
+                      </Button>
+                    </NavLink>
+                  </MenuItems>
+                ) : (
+                  <></>
+                )}
                 <MenuItems>
                   <NavLink to="/login">
                     <Button
+                      w={{ xs: "full", sm: "full", md: "full", lg: "auto" }}
                       m={2}
                       onClick={() => {
                         this.props.dispatch({ type: "LOGOUT" });
@@ -139,6 +205,7 @@ export class Navbar extends React.Component {
             )}
           </Flex>
         </Box>
+        {/* End of button menu navbar area */}
       </Flex>
     );
   }

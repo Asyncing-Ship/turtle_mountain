@@ -10,8 +10,6 @@ import {
 import TaskBadge from "./TaskBadge";
 import AcceptTask from "./TaskButtons/AcceptTask";
 import { connect } from "react-redux";
-import EditTask from "./TaskButtons/EditTask";
-import DeleteTask from "./TaskButtons/DeleteTask";
 
 class OpenTask extends Component {
   componentDidMount() {
@@ -21,7 +19,14 @@ class OpenTask extends Component {
   render() {
     return (
       <>
+        <h2>These tasks need to be accepted</h2>
+        <small>to see details, click on the task to expand it</small>
         <Accordion m={3} className="accordion" allowToggle defaultIndex={[-1]}>
+          {!this.props.tasks.filter((x) => x.status === "open")[0] && (
+            <h2>
+              <b>-no tasks to display-</b>
+            </h2>
+          )}
           {this.props.tasks
             .filter((x) => x.status === "open")
             .map((x, i) => (
@@ -29,6 +34,14 @@ class OpenTask extends Component {
                 className="accordion-item"
                 key={i}
                 defaultIsOpen="False"
+                onClick={() =>
+                  this.props.dispatch({
+                    type: "SET_TASK_DETAIL",
+                    payload: {
+                      taskDetail: x,
+                    },
+                  })
+                }
               >
                 {({ isExpanded }) => (
                   <>

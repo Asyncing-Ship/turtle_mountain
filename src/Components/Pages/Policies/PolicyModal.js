@@ -5,11 +5,12 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalCloseButton,
   useDisclosure,
   Button,
   AspectRatioBox,
   Box,
+  IconButton,
+  Flex,
 } from '@chakra-ui/core';
 import { connect } from 'react-redux';
 
@@ -19,7 +20,7 @@ const PolicyModal = (props) => {
   return (
     <>
       <Button
-        mr={3}
+        mr={2}
         rightIcon="view"
         size="sm"
         variantColor="blue"
@@ -31,10 +32,27 @@ const PolicyModal = (props) => {
       <Modal onClose={onClose} size="full" isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent mb={0}>
-          <ModalHeader>{props.x.filename}</ModalHeader>
-          <ModalCloseButton />
+          <ModalHeader p={3}>
+            <Flex>
+              {props.x.filename}
+              <Box flex={1} textAlign="right">
+                <IconButton
+                  variantColor="red"
+                  variant="ghost"
+                  icon="close"
+                  onClick={onClose}
+                />
+              </Box>
+            </Flex>
+          </ModalHeader>
           <ModalBody>
-            <AspectRatioBox maxW="60%" mx="auto">
+            <AspectRatioBox
+              p={3}
+              rounded="lg"
+              border="1px solid #2f2e2e"
+              maxW="60%"
+              mx="auto"
+            >
               <Box
                 as="embed"
                 title={props.x.filename}

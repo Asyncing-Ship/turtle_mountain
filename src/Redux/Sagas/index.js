@@ -6,6 +6,8 @@ import tasksSaga from "./tasksSaga";
 import questionsSaga from "./questionsSaga";
 import policySaga from "./policySaga";
 import taskTagsSaga from "./taskTagsSaga";
+import toastSaga from "./toastSaga";
+import notisSaga from "./notificationSaga";
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +25,7 @@ export default function* rootSaga() {
     taskTagsSaga(),
     questionsSaga(),
     policySaga(),
+    toastSaga(),
+    notisSaga(),
   ]);
 }
