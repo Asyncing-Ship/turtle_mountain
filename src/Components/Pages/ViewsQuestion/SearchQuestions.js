@@ -27,6 +27,13 @@ class SearchTask extends Component {
     index: -1,
   };
 
+  setQuestion = (id) => {
+    //get the responses for the selected question
+    this.props.dispatch({
+      type: "FETCH_QUESTION_RESPONSES",
+      payload: { question_id: id },
+    });
+  };
   resetIndex = () => {
     this.setState({ index: -1 });
   };
@@ -81,6 +88,8 @@ class SearchTask extends Component {
                   <>
                     <AccordionHeader
                       onClick={() => {
+                        //change the current question (to get its responses), set the index to the clicked accordion item, so it opens
+                        this.setQuestion(x.id);
                         this.setState({ index: i });
                       }}
                       className="accordion-head"
