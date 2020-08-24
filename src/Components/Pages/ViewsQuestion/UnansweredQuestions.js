@@ -23,6 +23,7 @@ class UnansweredQuestions extends Component {
   }
 
   setQuestion = (id) => {
+    //get the responses for the selected question
     this.props.dispatch({
       type: "FETCH_QUESTION_RESPONSES",
       payload: { question_id: id },
@@ -41,6 +42,7 @@ class UnansweredQuestions extends Component {
           {this.props.questions
             .filter((x) => !x.is_verified)
             .map((x, i) => (
+              // Only 1 Item can be displayed at a time, and default to closed
               <AccordionItem
                 className="accordion-item"
                 key={i}
@@ -65,6 +67,7 @@ class UnansweredQuestions extends Component {
                       wordBreak="break-word"
                       pb={4}
                     >
+                      {/* the Accordion body contains our Question Object. */}
                       <QuestionObj x={x} />
                     </AccordionPanel>
                   </>
