@@ -3,7 +3,6 @@
 import React, { Component } from "react";
 // React Redux Imports:
 import { connect } from "react-redux";
-import moment from "moment";
 // Chakra-ui imports:
 import {
   Accordion,
