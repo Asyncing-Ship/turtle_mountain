@@ -38,6 +38,7 @@ class SearchTask extends Component {
     this.setState({ index: -1 });
   };
   componentDidMount() {
+    //get questions from the server when we switch to this page
     this.props.dispatch({ type: "FETCH_QUESTIONS" });
   }
 
