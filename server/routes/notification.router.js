@@ -4,13 +4,11 @@ const User = require("../models/user.model");
 
 // potential imports
 
-const {
-  rejectUnauthenticated,
-} = require("../modules/authentication-middleware");
+const { rejectUnapproved } = require("../modules/authentication-middleware");
 
 const router = express.Router();
 
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/", rejectUnapproved, (req, res) => {
   // console.log("GET notifications");
   Notification.findAll({
     where: { user_id: req.user.id },
@@ -26,7 +24,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.get("/:id", rejectUnauthenticated, (req, res) => {
+router.get("/:id", rejectUnapproved, (req, res) => {
   const toId = req.user.id;
   const fromId = req.params.id;
   Notification.findAll({
@@ -52,7 +50,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.post("/", rejectUnauthenticated, (req, res) => {
+router.post("/", rejectUnapproved, (req, res) => {
   const userId = req.user.id;
   const type = req.body.type;
   const preview = req.body.preview;
@@ -65,8 +63,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     preview: preview,
     first_name: first_name,
     last_name: last_name,
-    is_admin: is_admin
-
+    is_admin: is_admin,
   });
   // Save to database
   newNotification
@@ -81,7 +78,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 // Route to delete a notification
-router.delete("/:id", rejectUnauthenticated, (req, res) => {
+router.delete("/:id", rejectUnapproved, (req, res) => {
   let notiId = req.params.id;
   console.log(`DELETE request for notification with id ${notiId}`, req.body);
   Notification.destroy({ where: { id: notiId } })
