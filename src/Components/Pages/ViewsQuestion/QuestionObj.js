@@ -8,15 +8,20 @@ import moment from "moment";
 const QuestionObj = (props) => {
   return (
     <div>
+      {/* Question Body */}
       {props.x.content}
       <Box flex="1" textAlign="left">
         <small>
           <i>
-            Posted at: {moment(props.x.date_posted).format("MM/DD/YY LT")} (By{" "}
-            {props.x.user.first_name} {props.x.user.last_name})
+            {/* Timestamp of the question */}
+            Posted at: {moment(props.x.date_posted).format(
+              "MM/DD/YY LT"
+            )} (By {props.x.user.first_name} {props.x.user.last_name})
           </i>
         </small>
       </Box>
+      {/* Only allow the user to mark as Frequent or remove from frequent if that user is an administrator */}
+
       {props.user.is_admin &&
         (!props.x.is_frequent ? (
           <Box flex="1" textAlign="left">
