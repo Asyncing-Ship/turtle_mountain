@@ -147,6 +147,7 @@ class NewTask extends Component {
             defaultValue={0}
             options={this.props.users
               .filter((x) => {
+                if (!x.is_approved) return false;
                 for (let user of this.state.select) {
                   if (user === x) {
                     return false;
