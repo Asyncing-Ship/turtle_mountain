@@ -20,7 +20,7 @@ class UnansweredQuestions extends Component {
   state = {
     index: -1,
   };
-  componentWillMount() {
+  componentDidMount() {
     //get questions from the server when we switch to this page
     this.props.dispatch({ type: "FETCH_QUESTIONS" });
   }
@@ -66,6 +66,7 @@ class UnansweredQuestions extends Component {
                       _expanded={{ bg: "#c79e61", color: "white" }}
                       _hover={{ bg: "#c79e61", color: "white" }}
                       onClick={() => {
+                        //change the current question (to get its responses), set the index to the clicked accordion item, so it opens
                         this.setQuestion(x.id);
                         this.setState({ index: i });
                       }}
