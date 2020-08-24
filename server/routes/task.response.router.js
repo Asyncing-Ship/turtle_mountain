@@ -2,14 +2,12 @@ const express = require("express");
 const Task = require("../models/task.model");
 const Task_Response = require("../models/task_response.model");
 const User = require("../models/user.model");
-const {
-  rejectUnauthenticated,
-} = require("../modules/authentication-middleware");
+const { rejectUnapproved } = require("../modules/authentication-middleware");
 
 const router = express.Router();
 
 // This route *should* return the logged in users pets
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/", rejectUnapproved, (req, res) => {
   // console.log("GET all task responses");
   Task_Response.findAll({
     include: [{ model: User }, { model: Task }],
@@ -26,7 +24,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.get("/:id", rejectUnauthenticated, (req, res) => {
+router.get("/:id", rejectUnapproved, (req, res) => {
   let responseId = req.params.id;
   console.log(`GET request for task response with id  ${responseId}`);
   Task_Response.findAll({
@@ -43,7 +41,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.post("/", rejectUnauthenticated, (req, res) => {
+router.post("/", rejectUnapproved, (req, res) => {
   const responseContent = req.body.content;
   const responseVerified = false; // req.body.verified; TODO FIX THIS
   const userId = req.user.id;
@@ -70,7 +68,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 // Route to update the content of the response
-router.put("/:id", rejectUnauthenticated, (req, res) => {
+router.put("/:id", rejectUnapproved, (req, res) => {
   let responseId = req.params.id;
   let responseContent = req.body.content;
   // console.log(
@@ -91,7 +89,7 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 // Route to verify a response
-router.put("/verify/:id", rejectUnauthenticated, (req, res) => {
+router.put("/verify/:id", rejectUnapproved, (req, res) => {
   let responseId = req.params.id;
   // console.log(
   //   `PUT request verify task response for id ${responseId}`,
@@ -110,7 +108,7 @@ router.put("/verify/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.delete("/:id", rejectUnauthenticated, (req, res) => {
+router.delete("/:id", rejectUnapproved, (req, res) => {
   let responseId = req.params.id;
   // console.log(`DELETE request for response with id ${responseId}`, req.body);
   Task_Response.destroy({ where: { id: responseId } })
