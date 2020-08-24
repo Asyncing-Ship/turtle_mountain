@@ -12,6 +12,9 @@ import AcceptTask from "./TaskButtons/AcceptTask";
 import { connect } from "react-redux";
 
 class OpenTask extends Component {
+  state = {
+    index: -1,
+  };
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_TASKS" });
   }
@@ -49,12 +52,13 @@ class OpenTask extends Component {
                       className="accordion-head"
                       _expanded={{ bg: "#c79e61", color: "white" }}
                       _hover={{ bg: "#c79e61", color: "white" }}
-                      onClick={() =>
+                      onClick={() => {
                         this.props.dispatch({
                           type: "FETCH_TASK_TAGS",
                           payload: { task_id: x.id },
-                        })
-                      }
+                        });
+                        this.setState({ index: i });
+                      }}
                     >
                       <Box flex="1" textAlign="left">
                         {x.title}

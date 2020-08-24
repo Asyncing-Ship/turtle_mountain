@@ -65,6 +65,7 @@ const QuestionObj = (props) => {
       <Box m={3}>
         {props.response.map((y, j) => (
           <Response
+            resetIndex={props.resetIndex}
             key={j}
             response={y}
             questionVerified={props.x.is_verified}

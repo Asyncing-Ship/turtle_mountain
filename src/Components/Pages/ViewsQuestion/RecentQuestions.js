@@ -17,6 +17,9 @@ import QuestionObj from "./QuestionObj";
 // ----- End of imports -----
 
 class RecentQuestions extends Component {
+  state = {
+    index: -1,
+  };
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_QUESTIONS" });
   }
@@ -26,7 +29,9 @@ class RecentQuestions extends Component {
       payload: { question_id: id },
     });
   };
-
+  resetIndex = () => {
+    this.setState({ index: -1 });
+  };
   render() {
     return (
       <>
@@ -35,12 +40,20 @@ class RecentQuestions extends Component {
           These are the questions that were most recently asked. whether
           answered or not, they will appear here
         </h4>
-        <Accordion my={3} className="accordion" allowToggle defaultIndex={[-1]}>
+        <Accordion
+          my={3}
+          className="accordion"
+          allowToggle
+          index={this.state.index}
+        >
           {this.props.questions.map((x, i) => (
             <AccordionItem
               className="accordion-item"
               key={i}
               defaultIsOpen="False"
+              onClick={() => {
+                this.setState({ index: i });
+              }}
             >
               {({ isExpanded }) => (
                 <>
@@ -61,7 +74,7 @@ class RecentQuestions extends Component {
                     wordBreak="break-word"
                     pb={4}
                   >
-                    <QuestionObj x={x} />
+                    <QuestionObj x={x} resetIndex={this.resetIndex} />
                   </AccordionPanel>
                 </>
               )}
