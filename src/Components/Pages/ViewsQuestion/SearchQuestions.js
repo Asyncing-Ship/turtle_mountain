@@ -3,7 +3,6 @@
 import React, { Component } from "react";
 // React Redux Imports:
 import { connect } from "react-redux";
-import moment from "moment";
 // Chakra-ui imports:
 import {
   Accordion,
@@ -19,6 +18,7 @@ import {
 } from "@chakra-ui/core";
 // Components Imports:
 import QuestionBadge from "./QuestionBadge";
+import QuestionObj from "./QuestionObj";
 // ----- End of imports -----
 
 class SearchTask extends Component {
@@ -86,18 +86,7 @@ class SearchTask extends Component {
                       wordBreak="break-word"
                       pb={4}
                     >
-                      <Box flex="3" textAlign="left">
-                        {x.content}
-                      </Box>
-                      <Box flex="1" textAlign="left">
-                        <small>
-                          <i>
-                            Posted at:{" "}
-                            {moment(x.date_posted).format("MM/DD/YY LT")} (By{" "}
-                            {x.user.first_name} {x.user.last_name})
-                          </i>
-                        </small>
-                      </Box>
+                      <QuestionObj x={x} />
                     </AccordionPanel>
                   </>
                 )}

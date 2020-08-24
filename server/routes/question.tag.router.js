@@ -2,14 +2,12 @@ const express = require("express");
 const Question = require("../models/question.model");
 const Question_Tag = require("../models/question_tag.model");
 const User = require("../models/user.model");
-const {
-  rejectUnauthenticated,
-} = require("../modules/authentication-middleware");
+const { rejectUnapproved } = require("../modules/authentication-middleware");
 
 const router = express.Router();
 
 // route for getting all the question_tags for a certain question
-router.get("/:id", rejectUnauthenticated, (req, res) => {
+router.get("/:id", rejectUnapproved, (req, res) => {
   // console.log("GET question tags");
   let questionId = req.params.id;
   Question_Tag.findAll({
@@ -28,7 +26,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 // route to post a new question, will require you to have a userid and question id
-router.post("/", rejectUnauthenticated, (req, res) => {
+router.post("/", rejectUnapproved, (req, res) => {
   const userId = req.body.user_id;
   const questionId = req.body.question_id;
   // console.log(`POST question tags, adding tags`, req.body);
@@ -50,7 +48,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 // Route to delete a tag
-router.delete("/:id", rejectUnauthenticated, (req, res) => {
+router.delete("/:id", rejectUnapproved, (req, res) => {
   let tagId = req.params.id;
   // console.log(`DELETE request for question tag with id ${tagId}`, req.body);
   Question_Tag.destroy({ where: { id: tagId } })

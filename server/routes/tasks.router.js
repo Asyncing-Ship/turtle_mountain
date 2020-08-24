@@ -3,12 +3,10 @@ const pool = require("../modules/pool");
 const router = express.Router();
 //const userStrategy = require("../strategies/user.strategy");
 
-const {
-  rejectUnauthenticated,
-} = require("../modules/authentication-middleware");
+const { rejectUnapproved } = require("../modules/authentication-middleware");
 
 // JOIN task_comments ON task_comments.task_id = tasks.id
-router.put("/complete/:id", rejectUnauthenticated, (req, res) => {
+router.put("/complete/:id", rejectUnapproved, (req, res) => {
   let id = req.params.id;
   const queryText = `
     UPDATE tasks SET status='Complete'
@@ -21,7 +19,7 @@ router.put("/complete/:id", rejectUnauthenticated, (req, res) => {
 /**
  * Get all of the tasks on the table
  */
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/", rejectUnapproved, (req, res) => {
   console.log("getting tasks");
   const queryText = `SELECT first_name, last_name, tasks.id, tasks.title, tasks.status, tasks.content,tasks.assigned_to, tasks.user_id, tasks.date_posted FROM users
   JOIN tasks ON tasks.user_id = users.id
@@ -40,7 +38,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 /**
  * Add an tasks for the logged in user to the table
  */
-router.post("/", rejectUnauthenticated, (req, res) => {
+router.post("/", rejectUnapproved, (req, res) => {
   console.log("Adding task to the database");
   console.log(req.body);
 
@@ -59,7 +57,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 /**
  * Delete an tasks if it's something the logged in user added
  */
-router.delete("/:id", rejectUnauthenticated, (req, res) => {
+router.delete("/:id", rejectUnapproved, (req, res) => {
   let id = req.params.id;
   let user_id = req.user.id;
   console.log(`ID from params: ${id}`);
@@ -76,7 +74,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 /**
  * Update an tasks if it's something the logged in user added
  */
-router.put("/accept/:id", rejectUnauthenticated, (req, res) => {
+router.put("/accept/:id", rejectUnapproved, (req, res) => {
   let assigned_to = req.user.id;
   let id = req.params.id;
   const queryText = `
@@ -91,7 +89,7 @@ router.put("/accept/:id", rejectUnauthenticated, (req, res) => {
 /**
  * Add an tasks for the logged in user to the table
  */
-router.post("/comments", rejectUnauthenticated, (req, res) => {
+router.post("/comments", rejectUnapproved, (req, res) => {
   console.log("Adding task comment to the database");
   console.log(req);
 
@@ -107,7 +105,7 @@ router.post("/comments", rejectUnauthenticated, (req, res) => {
     .catch(() => res.sendStatus(500));
 });
 
-router.get("/comments/:id", rejectUnauthenticated, (req, res) => {
+router.get("/comments/:id", rejectUnapproved, (req, res) => {
   console.log("getting task comments", req.params);
   const taskID = req.params.id;
   const queryText = `SELECT task_comments.id, task_comments.user_id, task_comments.body, task_comments.task_id, users.id, users.first_name FROM task_comments
@@ -124,7 +122,7 @@ router.get("/comments/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put("/update/:id", rejectUnauthenticated, (req, res) => {
+router.put("/update/:id", rejectUnapproved, (req, res) => {
   console.log("updating task on database");
   console.log(req.body);
   console.log(req.params.id);

@@ -1,7 +1,6 @@
 // ----- Start of imports -----
 // React Import:
 import React, { Component } from "react";
-import moment from "moment";
 // React Redux Imports:
 import { connect } from "react-redux";
 import {
@@ -11,21 +10,20 @@ import {
   AccordionHeader,
   AccordionItem,
   Accordion,
-  Button,
 } from "@chakra-ui/core";
 // Components Imports:
-import AnswerQuestion from "./AnswerQuestion";
-import Response from "./Response";
 import QuestionBadge from "./QuestionBadge";
-import DeleteQuestion from "./QuestionButtons/DeleteQuestion";
+import QuestionObj from "./QuestionObj";
 // ----- End of imports -----
 
 class UnansweredQuestions extends Component {
   componentWillMount() {
+    //get questions from the server when we switch to this page
     this.props.dispatch({ type: "FETCH_QUESTIONS" });
   }
 
   setQuestion = (id) => {
+    //get the responses for the selected question
     this.props.dispatch({
       type: "FETCH_QUESTION_RESPONSES",
       payload: { question_id: id },
@@ -44,6 +42,7 @@ class UnansweredQuestions extends Component {
           {this.props.questions
             .filter((x) => !x.is_verified)
             .map((x, i) => (
+              // Only 1 Item can be displayed at a time, and default to closed
               <AccordionItem
                 className="accordion-item"
                 key={i}
@@ -68,64 +67,8 @@ class UnansweredQuestions extends Component {
                       wordBreak="break-word"
                       pb={4}
                     >
-                      {x.content}
-                      <Box flex="1" textAlign="left">
-                        <small>
-                          <i>
-                            Posted at:{" "}
-                            {moment(x.date_posted).format("MM/DD/YY LT")} (By{" "}
-                            {x.user.first_name} {x.user.last_name})
-                          </i>
-                        </small>
-                      </Box>
-                      {this.props.user.is_admin &&
-                        (!x.is_frequent ? (
-                          <Box flex="1" textAlign="left">
-                            <Button
-                              onClick={() => {
-                                this.props.dispatch({
-                                  type: "MARK_AS_FREQUENT",
-                                  payload: { question_id: x.id },
-                                });
-                              }}
-                            >
-                              Mark as frequent
-                            </Button>
-                          </Box>
-                        ) : (
-                          <Box flex="1" textAlign="left">
-                            <Button
-                              onClick={() => {
-                                this.props.dispatch({
-                                  type: "MARK_AS_FREQUENT",
-                                  payload: { question_id: x.id },
-                                });
-                              }}
-                            >
-                              Remove from frequent
-                            </Button>
-                          </Box>
-                        ))}
-                      {this.props.user.id === x.user.id && (
-                        <DeleteQuestion question={x} />
-                      )}
-                      <Box m={3}>
-                        <strong>Responses</strong>
-                      </Box>
-                      <Box textAlign="right" m={3}>
-                        {/* This is the button and input field */}
-                        <AnswerQuestion question={x} />
-                      </Box>
-                      <Box m={3}>
-                        {this.props.response.map((y, j) => (
-                          <Response
-                            key={j}
-                            response={y}
-                            questionVerified={x.is_verified}
-                            posted_by={x.userId}
-                          />
-                        ))}
-                      </Box>
+                      {/* the Accordion body contains our Question Object. */}
+                      <QuestionObj x={x} />
                     </AccordionPanel>
                   </>
                 )}
