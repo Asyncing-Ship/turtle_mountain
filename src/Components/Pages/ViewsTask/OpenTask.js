@@ -57,8 +57,8 @@ class OpenTask extends Component {
                           type: "FETCH_TASK_TAGS",
                           payload: { task_id: x.id },
                         });
+                        this.setState({ index: i });
                       }}
-                      onClick={() => this.setState({ index: i })}
                     >
                       <Box flex="1" textAlign="left">
                         {x.title}
