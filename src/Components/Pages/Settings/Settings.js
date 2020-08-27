@@ -1,12 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Heading, Text, Stack, Button, Input, Textarea, FormControl } from '@chakra-ui/core';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import {
+  Heading,
+  Text,
+  Stack,
+  Button,
+  Input,
+  Textarea,
+  FormControl,
+} from "@chakra-ui/core";
 
 class Settings extends Component {
   state = {
-    subject: '',
-    message: '',
-  }
+    subject: "",
+    message: "",
+  };
 
   render() {
     return (
@@ -18,7 +26,6 @@ class Settings extends Component {
             {this.props.user.last_name}
           </Heading>
           <Text as="p">{this.props.user.email}</Text>
-
           <FormControl>
             <Input
               value={this.state.subject}
@@ -26,7 +33,7 @@ class Settings extends Component {
               placeholder="Email subject..."
             />
             <Textarea
-            mt={3}
+              mt={3}
               value={this.state.message}
               onChange={(e) => this.setState({ message: e.target.value })}
               placeholder="Email body..."
@@ -59,7 +66,7 @@ class Settings extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(Settings);
