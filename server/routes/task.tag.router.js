@@ -17,6 +17,7 @@ router.get("/:id", rejectUnapproved, (req, res) => {
     .then((tasks) => {
       // console.log("tasks is: ", tasks);
       const list = tasks[0].tagged_users;
+      // we will then find all users that are tagged
       User.findAll({
         where: { id: list },
         attributes: ["id", "first_name", "last_name", "is_admin"],
@@ -35,6 +36,7 @@ router.get("/:id", rejectUnapproved, (req, res) => {
     });
 });
 
+// route to post a task tag
 router.post("/", rejectUnapproved, (req, res) => {
   const userId = req.user.id;
   const taskId = req.body.task_id;
