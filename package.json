@@ -61,7 +61,7 @@
     "db:rollback": "node_modules/.bin/sequelize db:migrate:undo",
     "db:rollback:all": "node_modules/.bin/sequelize db:migrate:undo:all",
     "db:drop": "node_modules/.bin/sequelize db:drop",
-    "db:reset": "yarn run db:drop && yarn run db:create && yarn run db:migrate",
+    "db:reset": "npm run db:drop && npm run db:create && npm run db:migrate",
     "db:seed": "node_modules/.bin/sequelize db:seed:all"
   },
   "devDependencies": {
