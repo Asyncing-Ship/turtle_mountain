@@ -1,3 +1,4 @@
+// this reducer will store our notifications
 const notifications = (state = [], action) => {
   switch (action.type) {
     case "SET_NOTIFICATIONS":

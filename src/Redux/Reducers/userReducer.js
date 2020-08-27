@@ -1,3 +1,4 @@
+// this reducer sets our current user
 const userReducer = (state = {}, action) => {
   switch (action.type) {
     case "SET_USER":

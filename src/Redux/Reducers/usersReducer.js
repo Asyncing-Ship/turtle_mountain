@@ -1,3 +1,4 @@
+// This stores all of our users
 const usersReducer = (state = [], action) => {
   switch (action.type) {
     case "SET_ALL_USERS":
