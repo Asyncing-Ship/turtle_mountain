@@ -7,7 +7,7 @@ const config = {
   timestamps: false,
 };
 
-// Model for an Response - assumes table name is plural or 'responses'
+// Model for an Response
 const Task_Response = sequelize.define(
   "task_response",
   {
@@ -17,7 +17,7 @@ const Task_Response = sequelize.define(
       primaryKey: true,
     },
     content: {
-      type: Sequelize.STRING(160),
+      type: Sequelize.STRING(160), // limits response to 160 characters
       allowNull: false,
     },
     date_posted: {
@@ -28,7 +28,7 @@ const Task_Response = sequelize.define(
   },
   config
 );
-
+// task_response will belong to a user as well as a task
 const User = require("./user.model");
 Task_Response.belongsTo(User, {
   foreignKey: {

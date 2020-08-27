@@ -7,7 +7,7 @@ const config = {
   timestamps: false,
 };
 
-// Model for an album - assumes table name is plural or 'albums'
+// Model for a task - assumes table name is plural or 'tasks'
 const Task = sequelize.define(
   "tasks",
   {

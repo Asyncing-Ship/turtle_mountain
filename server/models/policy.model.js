@@ -7,7 +7,7 @@ const config = {
   timestamps: false, // Disable timestamps
 };
 
-// Model for an album - assumes table name is plural or 'albums'
+// Model for a policy - assumes table name is plural or 'policies'
 const Policy = sequelize.define(
   "policies",
   {

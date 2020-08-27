@@ -7,7 +7,7 @@ const config = {
   timestamps: false,
 };
 
-// Model for an album - assumes table name is plural or 'albums'
+// Model for a question - assumes table name is plural or 'questions'
 const Question = sequelize.define(
   "questions",
   {
@@ -17,11 +17,11 @@ const Question = sequelize.define(
       primaryKey: true,
     },
     title: {
-      type: Sequelize.STRING(50),
+      type: Sequelize.STRING(50), // limits title to 50 characters
       allowNull: false,
     },
     content: {
-      type: Sequelize.STRING(1000),
+      type: Sequelize.STRING(1000), // limits content to 1000 characters
       allowNull: false,
     },
     is_answered: {
@@ -35,6 +35,9 @@ const Question = sequelize.define(
       defaultValue: false,
     },
     times_asked: {
+      // future feature that will need to be implemented
+      // with keeping track of how many times a question is asked
+      // we could automatically set it as 'frequent' at a certain amount
       type: Sequelize.INTEGER,
       allowNull: false,
       defaultValue: 0,

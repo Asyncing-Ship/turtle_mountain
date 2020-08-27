@@ -2,6 +2,8 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 
+// This route would be used for google auth
+// Currently not implemented
 router.get("/google/", passport.authenticate("google", { scope: ["email"] }));
 router.get(
   "/google/callback",
@@ -11,6 +13,7 @@ router.get(
   (req, res) => res.redirect(process.env.WEBAPP_ROOT_URL) // successful redirect
 );
 
+// this is necessary for oauth login with facebook
 router.get(
   "/facebook/",
   passport.authenticate("facebook", { scope: ["email"] })

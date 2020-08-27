@@ -7,7 +7,7 @@ const config = {
   timestamps: false,
 };
 
-// Model for an Response - assumes table name is plural or 'responses'
+// Model for an notification - assumes table name is plural or 'notifications'
 const Notification = sequelize.define(
   "notifications",
   {

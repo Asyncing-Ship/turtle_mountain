@@ -1,7 +1,9 @@
 "use strict";
-
+// These are migrations that will setup our database
+// They will be automatically called by the CLI with Sequelize
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    // the up function will create a table
     await queryInterface.createTable("users", {
       id: {
         type: Sequelize.INTEGER,
@@ -28,21 +30,22 @@ module.exports = {
       is_admin: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: false,
+        defaultValue: false, // Will default a user to a non-admin
       },
       location: {
         type: Sequelize.STRING,
-        allowNull: true, // NOT NULL
+        allowNull: true, // future feature to add locations
       },
       is_approved: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: false,
+        defaultValue: false, // a new registration will start as unapproved
       },
     });
   },
 
   down: async (queryInterface, Sequelize) => {
+    // down function drops table in db
     await queryInterface.dropTable("users");
   },
 };
