@@ -2,14 +2,15 @@ const express = require("express");
 const Notification = require("../models/notification.model");
 const User = require("../models/user.model");
 
-// potential imports
-
-const { rejectUnapproved } = require("../modules/authentication-middleware");
+// RejectUnathenticated prevents not logged in users from getting info
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
 
 const router = express.Router();
 
-router.get("/", rejectUnapproved, (req, res) => {
-  // console.log("GET notifications");
+// This is a route to get all notifications
+router.get("/", rejectUnauthenticated, (req, res) => {
   Notification.findAll({
     where: { user_id: req.user.id },
     include: [{ model: User }],
@@ -24,7 +25,8 @@ router.get("/", rejectUnapproved, (req, res) => {
     });
 });
 
-router.get("/:id", rejectUnapproved, (req, res) => {
+// This is a route to get a specific notification based on id sent
+router.get("/:id", rejectUnauthenticated, (req, res) => {
   const toId = req.user.id;
   const fromId = req.params.id;
   Notification.findAll({
@@ -32,13 +34,11 @@ router.get("/:id", rejectUnapproved, (req, res) => {
     include: [{ model: User }],
   })
     .then((notis) => {
-      // console.log("notifications are: ", notis);
+      // After getting all notifications, then combine all users for those notifications
       User.findAll({
         where: { id: fromId },
-        attributes: ["first_name", "last_name", "is_admin"],
+        attributes: ["first_name", "last_name", "is_admin"], // all we need on the front end
       }).then((results) => {
-        // console.log("results is: ", results);
-        // console.log("notis are: ", notis);
         const newArray = [notis, results];
         console.log("Combined array: ", newArray);
         res.send(newArray);
@@ -50,7 +50,8 @@ router.get("/:id", rejectUnapproved, (req, res) => {
     });
 });
 
-router.post("/", rejectUnapproved, (req, res) => {
+// This is a route to create a new notificaiton
+router.post("/", rejectUnauthenticated, (req, res) => {
   const userId = req.user.id;
   const type = req.body.type;
   const preview = req.body.preview;
@@ -78,9 +79,9 @@ router.post("/", rejectUnapproved, (req, res) => {
 });
 
 // Route to delete a notification
-router.delete("/:id", rejectUnapproved, (req, res) => {
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
   let notiId = req.params.id;
-  console.log(`DELETE request for notification with id ${notiId}`, req.body);
+  // console.log(`DELETE request for notification with id ${notiId}`, req.body);
   Notification.destroy({ where: { id: notiId } })
     .then((responses) => {
       res.sendStatus(200);

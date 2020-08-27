@@ -6,7 +6,7 @@ const { rejectUnapproved } = require("../modules/authentication-middleware");
 
 const router = express.Router();
 
-// This route *should* return the logged in users pets
+// This route should return all task responses
 router.get("/", rejectUnapproved, (req, res) => {
   // console.log("GET all task responses");
   Task_Response.findAll({
@@ -24,15 +24,16 @@ router.get("/", rejectUnapproved, (req, res) => {
     });
 });
 
+// route to get a single task response based on id
 router.get("/:id", rejectUnapproved, (req, res) => {
   let responseId = req.params.id;
-  console.log(`GET request for task response with id  ${responseId}`);
+  // console.log(`GET request for task response with id  ${responseId}`);
   Task_Response.findAll({
     where: { id: responseId },
     include: [{ model: User }, { model: Task }],
   })
     .then((responses) => {
-      console.log("Found Task Response", responses);
+      // console.log("Found Task Response", responses);
       res.send(responses[0] || []);
     })
     .catch((error) => {
@@ -41,6 +42,7 @@ router.get("/:id", rejectUnapproved, (req, res) => {
     });
 });
 
+// route to post a task response
 router.post("/", rejectUnapproved, (req, res) => {
   const responseContent = req.body.content;
   const responseVerified = false; // req.body.verified; TODO FIX THIS
@@ -108,6 +110,7 @@ router.put("/verify/:id", rejectUnapproved, (req, res) => {
     });
 });
 
+// route to delete a task response based on id
 router.delete("/:id", rejectUnapproved, (req, res) => {
   let responseId = req.params.id;
   // console.log(`DELETE request for response with id ${responseId}`, req.body);

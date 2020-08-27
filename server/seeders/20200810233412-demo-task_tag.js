@@ -1,4 +1,5 @@
 "use strict";
+// all seeders are a feature of sequelize so you can input test data in the database
 
 module.exports = {
   up: (queryInterface, Sequelize) => {

@@ -3,6 +3,7 @@ const router = express.Router();
 const Policy = require("../models/policy.model");
 const { rejectUnapproved } = require("../modules/authentication-middleware");
 
+// route to get all policies
 router.get("/", rejectUnapproved, (req, res) => {
   console.log("GET policies");
   Policy.findAll()
@@ -10,6 +11,7 @@ router.get("/", rejectUnapproved, (req, res) => {
     .catch((error) => console.log(error));
 });
 
+// route to post a new policy
 router.post("/new", rejectUnapproved, (req, res) => {
   let NewPolicy = Policy.build({
     filename: req.body.filename,
@@ -21,6 +23,7 @@ router.post("/new", rejectUnapproved, (req, res) => {
     .catch((error) => res.sendStatus(500));
 });
 
+// route to delete a policy based on id
 router.delete("/delete/:id", rejectUnapproved, (req, res) => {
   Policy.destroy({
     where: {

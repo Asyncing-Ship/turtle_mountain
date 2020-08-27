@@ -7,7 +7,7 @@ const config = {
   timestamps: false,
 };
 
-// Model for an Response - assumes table name is plural or 'responses'
+// Model for a question_tag
 const Question_Tag = sequelize.define(
   "question_tag",
   {

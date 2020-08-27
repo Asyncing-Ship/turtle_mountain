@@ -7,7 +7,7 @@ const config = {
   timestamps: false,
 };
 
-// Model for an Response - assumes table name is plural or 'responses'
+// Model for task tag
 const Task_Tag = sequelize.define(
   "task_tag",
   {

@@ -7,7 +7,6 @@ const config = {
   timestamps: false,
 };
 
-// Model for an Response - assumes table name is plural or 'responses'
 const Question_Response = sequelize.define(
   "question_response",
   {
@@ -17,7 +16,7 @@ const Question_Response = sequelize.define(
       primaryKey: true,
     },
     content: {
-      type: Sequelize.STRING(160),
+      type: Sequelize.STRING(160), // this will limit the response to 160 characters
       allowNull: false,
     },
     verified: {
