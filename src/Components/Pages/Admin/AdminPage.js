@@ -27,7 +27,7 @@ class AdminPage extends Component {
         <small>Admins may also reject, remove, and promote users.</small>
         {this.props.user.is_admin ? (
           <>
-            {/* <Heading as="h2">Members</Heading> */}
+            {/* if the user is an admin display the page. otherwise display the 403 page */}
             <Tabs mt={5} isFitted variant="line">
               <TabList mb={3}>
                 <Tab>User Requests</Tab>

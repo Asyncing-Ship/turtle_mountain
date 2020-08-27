@@ -39,6 +39,7 @@ export class Content extends React.Component {
           ) : (
             <Redirect exact from="/" to="/home" />
           )}
+          {/* protectedRoute everywhere except for login and sign up */}
           <ProtectedRoute exact path="/home" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />

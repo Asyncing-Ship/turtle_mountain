@@ -36,6 +36,7 @@ export class Navbar extends React.Component {
   };
 
   render() {
+    //this navigation bar should always be at the top of the page,
     return (
       <Flex
         as="nav"

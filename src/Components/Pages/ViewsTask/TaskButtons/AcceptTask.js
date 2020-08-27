@@ -13,6 +13,7 @@ import EditTask from "./EditTask";
 import DeleteTask from "./DeleteTask";
 import moment from "moment";
 const AcceptTask = (props) => {
+  //this should allow people to accept, edit,or delete a task
   if (props.task.user_id === props.user.id || props.user.is_admin) {
     return (
       <>

@@ -21,6 +21,7 @@ class AcceptTask extends React.Component {
     ],
   };
   render() {
+    //this allows you to accept an open task.
     return (
       <>
         <h3>{this.state.task.content}</h3>

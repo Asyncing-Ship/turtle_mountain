@@ -12,31 +12,19 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  useDisclosure
+  useDisclosure,
 } from "@chakra-ui/core";
 import { connect } from "react-redux";
 const Incoming = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  //this returns all unapproved users with functionality to delete or approve a request
   return (
-    <Box
-      textAlign="right"
-      rounded="lg"
-      borderWidth="1px"
-      p={2}
-    >
-      <Box
-        as="span"
-        textAlign="left"
-        verticalAlign="middle"
-        ml={3}
-      >
-        <Tag
-          rounded="full"
-          size="sm"
-          variantColor="gray"
-          mr={2}
-        >
-          <TagLabel>{props.user.first_name} {props.user.last_name}</TagLabel>
+    <Box textAlign="right" rounded="lg" borderWidth="1px" p={2}>
+      <Box as="span" textAlign="left" verticalAlign="middle" ml={3}>
+        <Tag rounded="full" size="sm" variantColor="gray" mr={2}>
+          <TagLabel>
+            {props.user.first_name} {props.user.last_name}
+          </TagLabel>
         </Tag>
       </Box>
       <ButtonGroup ml={3}>
@@ -72,22 +60,19 @@ const Incoming = (props) => {
           <ModalBody>
             <p>
               You are about to grant{" "}
-              <Tag
-                rounded="full"
-                size="sm"
-                variantColor="gray"
-                mr={2}
-              >
-                <TagLabel>{props.user.first_name} {props.user.last_name}</TagLabel>
+              <Tag rounded="full" size="sm" variantColor="gray" mr={2}>
+                <TagLabel>
+                  {props.user.first_name} {props.user.last_name}
+                </TagLabel>
               </Tag>
-                regular access as a member.
-              </p>
+              regular access as a member.
+            </p>
           </ModalBody>
 
           <ModalFooter>
             <Button size="sm" mr={3} onClick={onClose}>
               Cancel
-              </Button>
+            </Button>
             <Button
               size="sm"
               variant="ghost"
@@ -101,7 +86,7 @@ const Incoming = (props) => {
               }}
             >
               Approve New Member
-              </Button>
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
