@@ -1,5 +1,5 @@
 "use strict";
-
+// https://sequelize.org/master/manual/getting-started.html
 const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");

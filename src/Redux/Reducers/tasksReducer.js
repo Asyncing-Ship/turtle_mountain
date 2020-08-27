@@ -40,18 +40,10 @@ const currentTask = (state = [], action) => {
   }
 };
 
+// Used to store the current task id that is selected
 const currentTaskId = (state = [], action) => {
   switch (action.type) {
     case "SET_CURRENT_TASK_ID":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const taskAuthor = (state = [], action) => {
-  switch (action.type) {
-    case "SET_TASK_AUTHOR":
       return action.payload;
     default:
       return state;
@@ -66,6 +58,5 @@ export default combineReducers({
   taskDetail,
   currentTaskId,
   currentTask,
-  taskAuthor,
   taskTags,
 });

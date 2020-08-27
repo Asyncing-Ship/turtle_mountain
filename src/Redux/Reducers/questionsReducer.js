@@ -49,18 +49,10 @@ const currentQuestion = (state = [], action) => {
   }
 };
 
+// Used to store the current question id that is selected
 const currentQuestionId = (state = [], action) => {
   switch (action.type) {
     case "SET_CURRENT_QUESTION_ID":
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const questionAuthor = (state = [], action) => {
-  switch (action.type) {
-    case "SET_QUESTION_AUTHOR":
       return action.payload;
     default:
       return state;
@@ -75,7 +67,6 @@ export default combineReducers({
   questionDetail,
   currentQuestionId,
   currentQuestion,
-  questionAuthor,
   questionsResponse,
   questionTags,
 });

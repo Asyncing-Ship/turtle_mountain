@@ -10,6 +10,8 @@ function* fetchQuestions(action) {
     // const result = yield call(axios.get, '/question');
     yield put({ type: "SET_QUESTIONS", payload: response.data });
   } catch (error) {
+    // We added a toast reducer/saga in every one of our error catches
+    // That way the toast is reusable throughout the application
     yield put({
       type: "ADD_TOAST",
       payload: {

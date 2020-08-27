@@ -1,6 +1,7 @@
 "use strict";
 // These are migrations that will setup our database
 // They will be automatically called by the CLI with Sequelize
+// https://sequelize.org/master/manual/migrations.html
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     // the up function will create a table
