@@ -64,16 +64,19 @@ class NewQuestion extends Component {
                 user_ids: this.state.select.map((x) => x.id),
               },
             });
-            await this.props.dispatch({
-              type: "ADD_NOTIFICATIONS",
-              payload: {
-                type: "tagged you in a question",
-                preview: this.state.title,
-                first_name: this.props.user.first_name,
-                last_name: this.props.user.last_name,
-                is_admin: this.props.user.is_admin,
-              },
-            });
+            for (let option of this.state.select) {
+              await this.props.dispatch({
+                type: "ADD_NOTIFICATIONS",
+                payload: {
+                  userId: option.id,
+                  type: "tagged you in a question",
+                  preview: this.state.title,
+                  first_name: this.props.user.first_name,
+                  last_name: this.props.user.last_name,
+                  is_admin: this.props.user.is_admin,
+                },
+              });
+            }
             await this.props.history.push("/questions/recent");
           }}
         >
