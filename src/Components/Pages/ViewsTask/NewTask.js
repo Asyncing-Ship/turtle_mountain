@@ -57,21 +57,24 @@ class NewTask extends Component {
               user_ids: this.state.select.map((x) => x.id),
             },
           });
-          await this.props.dispatch({
-            type: "ADD_NOTIFICATIONS",
-            payload: {
-              type: "tagged you in a task",
-              preview: this.state.title,
-              first_name: this.props.user.first_name,
-              last_name: this.props.user.last_name,
-              is_admin: this.props.user.is_admin,
-            },
-          });
+          for (let option of this.state.select) {
+            await this.props.dispatch({
+              type: "ADD_NOTIFICATIONS",
+              payload: {
+                userId: option.id,
+                type: "tagged you in a task",
+                preview: this.state.title,
+                first_name: this.props.user.first_name,
+                last_name: this.props.user.last_name,
+                is_admin: this.props.user.is_admin,
+              },
+            });
+          }
           await this.props.history.push("/tasks/open");
         }}
       >
         <FormControl textAlign="left" bg="#2f2e2e" p={5} rounded="lg">
-          <Heading color="#f5fffe">New Task</Heading>
+          <Heading color="#f5fffe">New Task {JSON.stringify(this.state[2])}</Heading>
           <FormLabel htmlFor="task-title">Task Title</FormLabel>
           <Input
             _focus={{ bg: "#f5fffe", border: "2px solid #3182ce" }}

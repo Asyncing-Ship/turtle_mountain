@@ -52,7 +52,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 
 // This is a route to create a new notificaiton
 router.post("/", rejectUnauthenticated, (req, res) => {
-  const userId = req.user.id;
+  const userId = req.body.userId;
   const type = req.body.type;
   const preview = req.body.preview;
   const first_name = req.body.first_name;
